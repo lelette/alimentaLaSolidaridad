@@ -1,0 +1,87 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  " ng-controller="IndexController">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">{{'menu.Recargar' | translate}}</h1>
+          <small class="text-muted">{{ 'Welcome to neeru application' | translate}} </small>
+        </div>
+        <div class="col-sm-6 text-right hidden-xs">
+          <div class="inline m-r text-left">
+            <div class="m-b-xs">1290 <span class="text-muted">items</span></div>
+            <div ng-init="d3_1=[ 106,108,110,105,110,109,105,104,107,109,105,100,105,102,101,99,98 ]" 
+              ui-jq="sparkline" 
+              ui-options="{{d3_1}}, {type:'bar', height:20, barWidth:5, barSpacing:1, barColor:'#dce5ec'}" 
+              class="sparkline inline">loading...
+            </div>
+          </div>
+          <div class="inline text-left">
+            <div class="m-b-xs">$30,000 <span class="text-muted">revenue</span></div>
+            <div ng-init="d3_2=[ 105,102,106,107,105,104,101,99,98,109,105,100,108,110,105,110,109 ]" 
+              ui-jq="sparkline" 
+              ui-options="{{d3_2}}, {type:'bar', height:20, barWidth:5, barSpacing:1, barColor:'#dce5ec'}" 
+              class="sparkline inline">loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+
+    <div class="wrapper-md" >
+      <div ui-view class="fade-in-right-big smooth"></div>
+    </div>
+  </div>
+  <!-- / main -->
+
+  <!-- right col -->
+  <div class="col w-md bg-white-only b-l bg-auto no-border-xs">
+    <div class="nav-tabs-alt" >
+      <ul class="nav nav-tabs" role="tablist">
+       <!--  <li class="active">
+          <a data-target="#tab-1" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-user text-md text-muted wrapper-sm"></i>
+          </a>
+        </li>
+        <li>
+          <a data-target="#tab-2" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-comment text-md text-muted wrapper-sm"></i>
+          </a>
+        </li> -->
+        <li class="active">
+          <a data-target="#tab-3" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-transfer text-md text-muted wrapper-sm"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane tab-3 active" id="tab-3">
+        <div class="wrapper-md text-sm">
+          <div class="m-b-sm text-md">{{'std.Transaction' | translate}}</div>
+          <ul class="list-group list-group-sm list-group-sp list-group-alt auto m-t">
+            <li class="list-group-item" ng-repeat="sale in datos.sales">
+              <span class="text-muted">{{'recarga_a' | translate}} {{sale.target.contrato}}</span>
+              <span class="block text-muted">{{sale.formatFecha.corto}}</span>
+              <span class="text-md text-info">$ {{sale.realAmount}}</span>
+              <span class="{{ (sale.status == 'C') ? 'text-success' : ( (sale.status == 'A') ? 'text-danger' : 'text-warning' )}} pull-right">
+                <i class="{{ (sale.status == 'C') ? 'glyphicon glyphicon-ok-circle' : ( (sale.status == 'A') ? 'glyphicon glyphicon-ban-circle' : 'glyphicon glyphicon-exclamation-sign' )}}"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="padder-md">      
+    </div>
+    <div data-ng-include=" 'templates/blocks/aside.right.html' ">
+      {% include '../templates/blocks/aside.right.html' %}
+    </div>
+  </div>
+  <!-- / right col -->
+</div>

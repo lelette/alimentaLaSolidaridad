@@ -1,0 +1,55 @@
+<div class="col-sm-5 pull-none m-a" ng-controller="GetContratoController">
+  <div class="panel panel-default m-t-lg">
+    <div class="panel-body">
+      <div class="wrapper">
+        <form class="bs-example form-horizontal" name="getContrato">
+          <div class="form-group">
+            <label class="m-l w-full">{{'std.phoneNumber' | translate}}</label>
+            <div class="col-sm-12">
+              <div class="w-full">
+
+                <div class="input-group w-full">
+                  <div class="input-group-btn uib-dropdown" uib-dropdown>
+                    <button type="button" class="btn btn-default" style="" uib-dropdown-toggle> {{currentPhoneCode}} <span class="caret"></span></button>
+                    <ul class="uib-dropdown-menu w-h-xs-i ">
+                      <li ng-repeat="pais in porPais" >
+                        <a href ng-click="updatePC('{{pais[0].pais.phone_code}}')">
+                          <img src="{{pais[0].pais.urlimg}}" style="width:25px;" alt=""> 
+                          <span class="font-bold">
+                            {{'+' + pais[0].pais.phone_code}}
+                          </span> 
+                          {{pais[0].pais.name}}
+                        </a>
+
+                      </li>
+                    </ul>
+                  </div>
+
+                  <input type="text" maxlength="12" class="form-control" style="text-align:right;letter-spacing: 5px;" ng-model="recharge.contrato" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" ng-show="currentPhoneCode != '---'">
+            <label class="m-l w-full">{{'std.operadora' | translate}}</label>
+            <div class="col-sm-12">
+              <div class="w-full">
+
+                <div class="input-group w-full">
+                  <select class="form-control" ng-options="oferta as oferta.proveedor.nombre+' '+oferta.servicio.nombre for oferta in proveedores" ng-model="recharge.proveedor" required>
+                    <option value="">{{'Elige la Operadora' | translate}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" ng-disabled="getContrato.$invalid" ng-click="continuar()" class="btn  btn-lg btn-success w-full">{{'std.Continuar' | translate}}</button>
+            </div>
+          </div>
+        </form>
+      </div>  
+    </div>
+  </div>
+</div>

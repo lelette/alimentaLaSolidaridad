@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/css/app_neeru.css">
+    <link rel="stylesheet" href="/styles/css/app.css">
+    <link rel="stylesheet" href="/styles/css/app.rtl.css">
+    <link rel="stylesheet" href="/styles/css/font.css">
+    <link rel="stylesheet" href="/styles/css/material-design-icons.css">
+    <link rel="stylesheet" href="/styles/css/md.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous">
+    </script>
+
+    <!-- STRIPE -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  </head>
+
+  <body>
+    <%- body %>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/jst.js"></script>
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/app.material.js"></script>
+    <script src="/js/app/calendar/calendar.js"></script>
+    <script src="/js/app/contact/contact.js"></script>
+    <script src="/js/app/mail/mail-service.js"></script>
+    <script src="/js/app/mail/mail.js"></script>
+    <script src="/js/app/map/load-google-maps.js"></script>
+    <script src="/js/app/map/map.js"></script>
+    <script src="/js/app/map/ui-map.js"></script>
+    <script src="/js/app/music/ctrl.js"></script>
+    <script src="/js/app/note/note.js"></script>
+    <script src="/js/app/todo/todo.js"></script>
+    <script src="/js/app/weather/angular-skycons.js"></script>
+    <script src="/js/app/weather/ctrl.js"></script>
+    <script src="/js/app/weather/skycons.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/config.lazyload.js"></script>
+    <script src="/js/config.router.js"></script>
+    <script src="/js/controllers/access/applyValEmail.js"></script>
+    <script src="/js/controllers/access/forgotpwd.js"></script>
+    <script src="/js/controllers/access/signin.js"></script>
+    <script src="/js/controllers/access/signup.js"></script>
+    <script src="/js/controllers/admin/transactions.js"></script>
+    <script src="/js/controllers/admin/users.js"></script>
+    <script src="/js/controllers/app/global.js"></script>
+    <script src="/js/controllers/app/header.js"></script>
+    <script src="/js/controllers/app/index.js"></script>
+    <script src="/js/controllers/app/profile.js"></script>
+    <script src="/js/controllers/app/recharge.js"></script>
+    <script src="/js/controllers/app/transactions.js"></script>
+    <script src="/js/controllers/bootstrap.js"></script>
+    <script src="/js/directives/html.js"></script>
+    <script src="/js/directives/setnganimate.js"></script>
+    <script src="/js/directives/stripe.js"></script>
+    <script src="/js/directives/ui-butterbar.js"></script>
+    <script src="/js/directives/ui-focus.js"></script>
+    <script src="/js/directives/ui-fullscreen.js"></script>
+    <script src="/js/directives/ui-jq.js"></script>
+    <script src="/js/directives/ui-module.js"></script>
+    <script src="/js/directives/ui-nav.js"></script>
+    <script src="/js/directives/ui-scroll.js"></script>
+    <script src="/js/directives/ui-shift.js"></script>
+    <script src="/js/directives/ui-toggleclass.js"></script>
+    <script src="/js/directives/val-input.js"></script>
+    <script src="/js/filters/fromNow.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/services/Password.js"></script>
+    <script src="/js/services/Recharge.js"></script>
+    <script src="/js/services/Sales.js"></script>
+    <script src="/js/services/ui-load.js"></script>
+    <script src="/js/services/User.js"></script>
+    <script src="/js/stripe/stripe.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

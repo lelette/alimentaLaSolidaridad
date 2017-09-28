@@ -1,0 +1,41 @@
+<div class="m-t-lg" ng-controller="applyValEmailController">
+  <div class="container w-xxl w-auto-xs" ng-init="app.settings.container = false;">
+    <div class="m-b-lg">
+      <div class="wrapper text-center">
+        <strong>{{"signup.applyValEmail.subtitulo" | translate }}</strong>
+      </div>
+
+      <div ng-if="!val" class="m-t">
+        <div class="alert alert-info">
+          <p class="text-center">
+            {{"signup.applyValEmail.exec" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="val == 'error'" class="m-t">
+        <div class="alert alert-danger">
+          <p class="text-center">
+            {{"signup.applyValEmail.error" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="val == true" class="m-t">
+        <div class="alert alert-success">
+          <p class="text-center">
+            {{"signup.applyValEmail.success" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">{{'Iniciar_Sesion' | translate}}</a>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<div class="text-center" ng-include="'templates/blocks/page_footer.html'">
+  {% include 'blocks/page_footer.html' %}
+</div>
+<!-- / footer -->

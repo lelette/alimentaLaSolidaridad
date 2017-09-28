@@ -1,0 +1,80 @@
+<!-- #### Necesaria para el uso del recaptcha de google ####-->
+<!-- #### No puede cargarse desde el router, supongo por problemas de actualizacion de recursos ####-->
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+
+<div class="m-t-lg">
+  <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
+    <div class="m-b-lg">
+      <div class="wrapper text-center">
+        <strong>{{"signup.subtitulo" | translate }}</strong>
+      </div>
+      <form name="form" class="form-validation">
+        <div class="text-danger wrapper text-center" ng-show="authError">
+            {{authError  | translate}}
+        </div>
+        <div class="list-group list-group-sm">
+          <div class="list-group-item">
+            <input type="email" placeholder="{{ 'std.Email' | translate }}" class="form-control no-border" name="email" ng-model="user.email" required>
+              <!-- ERRORES EN CAMPO DE EMAIL -->
+              <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
+                <span ng-if="form.email.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="form.email.$error.email" class="error-input-msj" >
+                  {{"err.email.format" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE EMAIL -->
+          </div>
+
+          <div class="list-group-item">
+            <input type="password" name="password"  class="form-control no-border" placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+          </div>
+
+          <div class="list-group-item">
+            <input type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" class="form-control no-border" name="confirm_password" ng-model="user.confirm_password" maxlength="16" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
+
+            <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
+            <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
+              <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="form.confirm_password.$error.maxlength" class="error-input-msj" >
+                {{"err.maxlength" | translate}} 16
+              </span>
+              <span ng-if="!form.confirm_password.$error.required && form.confirm_password.$error.equalsPassword" class="error-input-msj" >
+                {{"err.password.passwordConfirm" | translate}}
+              </span>
+            </div>
+            <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
+          </div>
+
+        </div>
+
+        <!-- recaptcha de Google -->
+        <div class="g-recaptcha wrapper" data-sitekey="6LeAHx8UAAAAAJ6cuHZl5SfPX28plzZ9rhOaBGah" insert-recaptcha data-callback="recaptchaCallback"></div>
+        <!-- Fin de recaptcha de Google -->
+
+        <div class="checkbox m-b-md m-t-none">
+          <label class="i-checks" >
+            <input type="checkbox" ng-model="agree" required>
+            <i></i> {{'Acepto_los' | translate}}
+            <a href>{{'terminos_y_condiciones' | translate}}</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="signup()" ng-disabled='form.$invalid'>{{'Registrarse' | translate}}</button>
+        <div class="line line-dashed"></div>
+        <p class="text-center"><small>{{"¿Ya_tienes_una_cuenta?" | translate }}</small></p>
+        <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">{{'Iniciar_Sesion' | translate}}</a>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- footer -->
+<div class="text-center" ng-include="'templates/blocks/page_footer.html'">
+  {% include 'blocks/page_footer.html' %}
+</div>
+<!-- / footer -->

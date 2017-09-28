@@ -1,0 +1,175 @@
+<div class="col-sm-5 pull-none m-a" ng-controller="GetTokenStripeController">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form id="payment-form" name="formP" class="bs-example form-horizontal">
+        <span class="payment-errors"></span>
+        <!-- tdc -->
+        <div class="form-group">
+          <label class="m-l w-full">{{'std.number_tarjet' | translate}}</label>
+          <div class="col-sm-12">
+            <div class="w-full">
+              <div class="input-group w-full">
+                <input type="text" name="CardNumber" class=" form-control " style="text-align:right;letter-spacing: 5px;" placeholder="0000 0000 0000 0000" ng-model="number" data-stripe="number" numero minlength="15" maxlength="16" required>
+              </div>
+              <!-- ERRORES NUMERO DE TDC-->
+              <div class="text-center" ng-if="formP.CardNumber.$dirty && (formP.CardNumber.$invalid || formP.CardNumber.$touched)">
+                <span ng-if="formP.CardNumber.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="!formP.CardNumber.$error.numero &&formP.CardNumber.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 16
+                </span>
+                <span ng-if="!formP.CardNumber.$error.numero && formP.CardNumber.$error.minlength" class="error-input-msj" >
+                  {{"err.minlength" | translate}} 15
+                </span>
+                <span ng-if="formP.CardNumber.$error.numero" class="error-input-msj" >
+                  {{"err.numero" | translate}}
+                </span>
+              </div>
+              <!-- / ERRORES NUMERO DE TDC -->
+            </div>
+          </div>
+        </div>
+        <!-- / tdc -->
+
+        <!-- CVC DE TDC -->
+        <div class="form-group">
+          <label class="m-l w-full">CVC</label>
+          <div class="col-sm-9">
+            <div class="w-sm">
+              <div class="input-group w-full">
+                <input type="text" name="CVC" class="form-control" style="text-align:right;letter-spacing: 5px;" placeholder="123" ng-model="cvc" data-stripe="cvc" minlength="3" maxlength="4" required numero>
+              </div>
+              <!-- ERRORES CVC-->
+              <div class="text-center" ng-if="formP.CVC.$dirty && (formP.CVC.$invalid || formP.CVC.$touched)">
+                <span ng-if="formP.CVC.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="!formP.CVC.$error.numero && formP.CVC.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 4
+                </span>
+                <span ng-if="!formP.CVC.$error.numero && formP.CVC.$error.minlength" class="error-input-msj" >
+                  {{"err.minlength" | translate}} 3
+                </span>
+                <span ng-if="formP.CVC.$error.numero" class="error-input-msj" >
+                  {{"err.numero" | translate}}
+                </span>
+              </div>
+              <!-- / ERRORES CVC -->
+            </div>
+
+          </div>
+        </div>
+        <!-- / CVC DE TDC -->
+
+          <!-- FECHA DE VENCIMIENTO -->
+          <div class="form-group">
+            <label class="m-l w-full">{{'std.fecha_vencimiento' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="col-lg-6 no-padder ">
+                <div class="w-full">
+                  <div class="input-group w-full">
+                    <select class="form-control" name="ExpirationDateM" ng-model="mes" data-stripe="exp_month" required >
+                      <option value="">{{'std.Mes' | translate}}</option>
+                      <option value="01">{{'std.Enero' | translate}}</option>
+                      <option value="02">{{'std.Febrero' | translate}}</option>
+                      <option value="03">{{'std.Marzo' | translate}}</option>
+                      <option value="04">{{'std.Abril' | translate}}</option>
+                      <option value="05">{{'std.Mayo' | translate}}</option>
+                      <option value="06">{{'std.Junio' | translate}}</option>
+                      <option value="07">{{'std.Julio' | translate}}</option>
+                      <option value="08">{{'std.Agosto' | translate}}</option>
+                      <option value="09">{{'std.Septiembre' | translate}}</option>
+                      <option value="10">{{'std.Octubre' | translate}}</option>
+                      <option value="11">{{'std.Noviembre' | translate}}</option>
+                      <option value="12">{{'std.Diciembre' | translate}}</option>
+                    </select>
+                  </div>
+
+
+                </div>
+                <!-- ERRORES MES DE VENCIMIENTO-->
+                <div class="text-center" ng-if="formP.ExpirationDateM.$dirty && (formP.ExpirationDateM.$invalid || formP.ExpirationDateM.$touched)">
+                  <span ng-if="formP.ExpirationDateM.$error.required" class="error-input-msj" >
+                    {{"err.required" | translate}}
+                  </span>
+                </div>
+                <!-- / ERRORES MES DE VENCIMIENTO -->
+              </div>
+              <div class="col-lg-6 no-padder ">
+                <div class="w-full">
+                  <div class="input-group w-full">
+                    <select class="form-control" name="ExpirationDateA" ng-model="year" data-stripe="exp_year" required ng-options="year as year for year in years track by year" convert-to-number>
+                        <option value="">{{'std.year' | translate}}</option>
+                    </select>
+                  </div>
+                  <!-- ERRORES YEAR DE VENCIMIENTO-->
+                  <div class="text-center" ng-if="formP.ExpirationDateA.$dirty && (formP.ExpirationDateA.$invalid || formP.ExpirationDateA.$touched)">
+                    <span ng-if="formP.ExpirationDateA.$error.required" class="error-input-msj" >
+                      {{"err.required" | translate}}
+                    </span>
+                  </div>
+                  <!-- / ERRORES YEAR DE VENCIMIENTO -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / FECHA DE VENCIMIENTO -->
+
+         <!-- ZIPCODE  -->
+        <div class="form-group">
+          <label class="m-l w-full">{{'std.zone.postal' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="w-sm">
+              <div class="input-group w-full">
+                <input type="text" name="ZIP" class="form-control" style="text-align:right;letter-spacing: 5px;" placeholder="0000" ng-model="zip" data-stripe="address_zip" maxlength="10" required numero>
+              </div>
+              <!-- ERRORES CVC-->
+              <div class="text-center" ng-if="formP.ZIP.$dirty && (formP.ZIP.$invalid || formP.ZIP.$touched)">
+                <span ng-if="formP.ZIP.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="!formP.ZIP.$error.numero && formP.ZIP.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 4
+                </span>
+                <span ng-if="formP.ZIP.$error.numero" class="error-input-msj" >
+                  {{"err.numero" | translate}}
+                </span>
+              </div>
+              <!-- / ERRORES CVC -->
+            </div>
+
+          </div>
+        </div>
+        <!-- / ZIPCODE DE TDC -->
+
+        <!-- amount -->
+        <div class="form-group">
+          <label class="m-l w-full">{{'std.Amount' | translate}}</label>
+          <div class="col-sm-12">
+            <div class="w-full">
+              <div class="input-group w-full">
+                <span class="input-group-addon">USD</span>
+                <input type="text" name="Amount" class=" form-control " style="text-align:right;" placeholder="0.0" ng-model="Amount" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / amount -->
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" ng-disabled="formP.$invalid" action-stripe class="w-full btn btn-lg btn-success">{{'std.Continuar' | translate}}</button>
+          </div>
+        </div>
+
+         <div class="form-group">
+          <div class="col-sm-12">
+            <button ui-sref="app.page.index.recharge.get_contrato" class="btn  btn-sm btn-default w-full">{{'std.Cancelar' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

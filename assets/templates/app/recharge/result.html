@@ -1,0 +1,22 @@
+<div class="col-sm-5 pull-none m-a" ng-controller="ResultController">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div>
+        <h4>Descripción</h4>
+        <p>{{'Recarga' | translate}} {{recharge.oferta.proveedor.nombre}}</p>
+        <p>Cuenta:{{recharge.contrato}}</p>
+        <p>Monto a recargar: {{recharge.amountExpected}} {{recharge.oferta.pais.iso_currency}}</p>
+        <p>Monto a cobrar: {{recharge.amountCharge}} USD</p>
+        <h4>Resultado</h4>
+        <p>{{recharge.result.recharge ? 'Recarga Exitosa' : 'Recarga Anulada'}}</p>
+        <p ng-if="recharge.result.recharge ">
+          Referencia: {{recharge.result.referencia}}
+        </p>
+      </div>
+      <div class="col-sm-12">
+        <button type="submit" ng-click="continuar()" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

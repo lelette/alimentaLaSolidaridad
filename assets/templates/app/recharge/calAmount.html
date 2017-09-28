@@ -1,0 +1,50 @@
+<div class="col-sm-5 pull-none m-a" ng-controller="CalAmountController">
+  <div class="panel panel-default m-t-lg">
+    <div class="panel-body">
+      <div class="wrapper">
+        <form name="form" class="bs-example form-horizontal">
+          
+
+          <div class="form-group">
+            <label class="m-l w-full">{{'Amount Recharge' | translate}}</label>
+            <div class="col-sm-12">
+              <div class="w-full">
+                <div class="input-group w-full">
+                  <span class="input-group-addon">{{currencyExpected}}</span>
+                  <input ng-show="medios.length <= 1" name="amountRecharge" type="text" maxlength="12" class="form-control " style="text-align:right;letter-spacing: 5px;" ng-change="getTasa()" ng-model="recharge.amountExpected" max-amount="{{restricciones.maxAmountExpected}}" min-amount="{{restricciones.minAmountExpected}}">
+                  <select ng-show="medios.length > 1" ng-options="{ medio: medio.medio, monto: medio.amountExpected} as medio.amountExpected for medio in medios" class="form-control" ng-model="recharge.amountExpected" ng-change="getTasa()">
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="m-l w-full">{{'Amount to Charge' | translate}}</label>
+            <div class="col-sm-12">
+              <div class="w-full">
+                <div class="input-group w-full">
+                  <span class="input-group-addon">USD</span>
+                  <input type="text" maxlength="12" name="amountCharge" class="form-control col-md-4" style="text-align:right;letter-spacing: 5px;" ng-model="recharge.amountCharge" readonly required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" ng-disabled="!recharge.amountExpected || !recharge.amountCharge" ng-click="continuar()" class="btn  btn-lg btn-success w-full">{{'std.Continuar' | translate}}</button>
+            </div>
+          </div>
+
+           <div class="form-group">
+            <div class="col-sm-12">
+              <button ui-sref="app.page.index.recharge.get_contrato" class="btn  btn-sm btn-default w-full">{{'std.Cancelar' | translate}}</button>
+            </div>
+          </div>
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>

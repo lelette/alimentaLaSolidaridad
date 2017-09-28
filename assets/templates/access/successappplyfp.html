@@ -1,0 +1,25 @@
+<div class="m-t-lg">
+  <div class="container w-xxl w-auto-xs" ng-init="app.settings.container = false;">
+    <div class="m-b-lg">
+      <div class="wrapper text-center">
+        <strong>{{"forgotpwd.successapplyfp.subtitulo" | translate }}</strong>
+      </div>
+
+      <div class="m-t">
+        <div class="alert alert-success">
+          <p class="text-center">
+            {{"forgotpwd.successapplyfp.msg" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">{{'Iniciar_Sesion' | translate}}</a>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<div class="text-center" ng-include="'templates/blocks/page_footer.html'">
+  {% include 'blocks/page_footer.html' %}
+</div>
+<!-- / footer -->
