@@ -69,8 +69,9 @@ module.exports.routes = {
   * Rutas del cliente web                                                   *
   **************************************************************************/
   '/app/*' : {
-    controller: 'ClienteWebController',
-    action: 'auth',
+    //controller: 'ClienteWebController',
+    //action: 'auth',
+    view: 'home',
     locals: {
       layout: 'layouts/neeru'
     }
