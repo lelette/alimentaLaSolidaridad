@@ -221,7 +221,7 @@ angular.module('app')
                 'js/directives/val-input.js',
                 'js/directives/html.js'
               ])
-          })
+          })          
           // autenticacion o inicio de session autenticada
           .state('access.signin', {
               url: '/signin',
