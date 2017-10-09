@@ -8,6 +8,35 @@
 app.controller('GetContratoController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate',
   function($rootScope,  $scope, $http, $state, Recharge,$translate) {
+
+    // Consulta de Paises Disponibles
+      $http.get('/plataform/countries')
+      .then(function(res){
+        $scope.paises = res.data;
+        console.log('Paises', $scope.paises);
+        //orgOfertas($scope.ofertas);
+      }, function(res){
+        console.log(res);
+      });
+    ////////////////////////////////
+
+
+    // Consulta las Ofertas Disponibles para un telefono
+      $http.post('/plataform/offers', {
+        phone:$scope.phone,
+        delivered_amount: true, // boolean
+        fee: true // boolean
+      })
+      .then(function(res){
+        $scope.ofertas = res.data;
+        console.log('Ofertas', $scope.ofertas);
+        //orgOfertas($scope.ofertas);
+      }, function(res){
+        console.log(res);
+      });
+    ////////////////////////////////
+
+
     $scope.ofertas = [];
     $scope.recharge = {};
 
