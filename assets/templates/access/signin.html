@@ -35,6 +35,10 @@
           </div>
         </div>
         <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="signin()" ng-disabled='form.$invalid'>{{'Iniciar_Sesion' | translate}}</button>
+        <div class="text-center" style="margin: 10px 0px;">
+          <a type="button" href="http://localhost:9002/plataform/user/signinFacebook" target="_parent" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" class="btn btn-primary btn-lg btn-block button-facebook" name="button"><span aria-hidden="true" class="fa fa-facebook pull-left"></span>{{ 'Iniciar_Sesion_Facebook' | translate}}</a>
+        </div>
+
         <div class="text-center m-t m-b">
           <a ui-sref="access.forgotpwd">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>
         </div>

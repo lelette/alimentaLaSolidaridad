@@ -49,7 +49,7 @@ app.controller('GetContratoController',
     $scope.continuar = function(){
       Recharge.info.contrato = $scope.currentPhoneCode.replace(/[ \+]/g,'') + $scope.recharge.contrato;
       Recharge.info.oferta = $scope.recharge.proveedor;
-      $state.go('app.page.index.recharge.cal_amount');
+      $state.go('app.page.recharge.cal_amount');
     }
 
 }]);
@@ -60,7 +60,7 @@ app.controller('CalAmountController',
 
     if (!Recharge.info.contrato || !Recharge.info.oferta) {
       Recharge.reset();
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.recharge.get_contrato');
     };
 
     $scope.medios = [];
@@ -119,7 +119,7 @@ app.controller('CalAmountController',
       $scope.medios.length > 1 ? Recharge.info.medio =  $scope.recharge.amountExpected.medio.id
         : Recharge.info.medio = $scope.medios[0].id;
         console.log(Recharge.info);
-      $state.go('app.page.index.recharge.get_token_stripe');
+      $state.go('app.page.recharge.get_token_stripe');
     }
 
 }]);
@@ -132,7 +132,7 @@ app.controller('GetTokenStripeController',
       || !Recharge.info.oferta
       || !Recharge.info.amountCharge) {
       Recharge.reset();
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.recharge.get_contrato');
     };
 
     // Cargamos el arreglo de años que usara el campo fecha de vencimiento de la tdc
@@ -154,7 +154,7 @@ app.controller('GetTokenStripeController',
         token : $scope.recharge.tokenStripe,
       }
 
-      $state.go('app.page.index.recharge.confirm');
+      $state.go('app.page.recharge.confirm');
     });
 }]);
 
@@ -167,7 +167,7 @@ app.controller('ConfirmController',
       || !Recharge.info.amountCharge
       || !Recharge.info.stripe) {
       Recharge.reset();
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.recharge.get_contrato');
     };
 
     $scope.recharge = Recharge.info;
@@ -179,7 +179,7 @@ app.controller('ConfirmController',
     $scope.continuar = function(){
       Recharge.apply(function(err, result){
         Sales.refreshResumenSales(function(){});
-        $state.go('app.page.index.recharge.result');
+        $state.go('app.page.recharge.result');
       });
     }
 
@@ -196,7 +196,7 @@ app.controller('ResultController',
       || !Recharge.info.amountCharge
       || !Recharge.info.stripe) {
       Recharge.reset();
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.recharge.get_contrato');
     };
 
     /****************************************************
@@ -204,7 +204,7 @@ app.controller('ResultController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.continuar = function(){
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.recharge.get_contrato');
     }
 
 }]);
