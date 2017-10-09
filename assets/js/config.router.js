@@ -29,11 +29,11 @@
    }
  };
 
- angular.module('app').run(function($http) {
-   $http.get('csrfToken').success(function(data) {
-     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
-   });
- });
+ // angular.module('app').run(function($http) {
+ //   $http.get('csrfToken').success(function(data) {
+ //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+ //   });
+ // });
 
 angular.module('app')
   .run(
@@ -123,7 +123,7 @@ angular.module('app')
           // transacciones ######################################
           .state('app.page.transactions', {
             url: '/transactions',
-            templateUrl: 'templates/app/transactions/layout.html',
+            templateUrl: 'templates/app/movimientos/movimientos.html',
             resolve: load([
                 'js/controllers/app/transactions.js'
               ])
