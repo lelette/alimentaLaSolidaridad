@@ -1,0 +1,39 @@
+
+		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px; justify-content: space-between;">
+			<div class="reload-master-box" style="width: 100%">
+				<section>
+          <div class="dynamic-content-box">
+              <div class="empty-activity-box" style="margin-top:120px">
+                  <div class="line-100">
+                      <img src="images/carita2.png">
+                      <p class="p-green p-300 p-5">No posees números registrados...</p>
+                  </div>
+                  <div class="line-100">
+                    <p class="p-gray">Añade un contacto y enviale una recarga!</p>
+                  </div>
+              </div>
+          </div>
+				</section>
+				<section>
+          <div style="border: 0">
+            <div class="pillar-30p" style="padding-bottom: 10px; width: 100%;">
+              <div class="neeru-select" style="width: 25%;" onclick="primeAppVar.openOptionBox()">
+                <div class="country-selected" onclick="primeAppVar.closeOptionBox()">
+                  <img src="images/icoSelectPais.png">
+                  <p class="p-small">Pais</p>
+                </div>
+              </div>
+              <div class="pillar-70p" style="width: 75%; padding-left: 5px;">
+                <input onblur="primeAppVar.validateInputPhone(this)" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7">
+              </div>
+            </div>
+            <div style="float: right;">
+              <button data-standard class="btn-green-on" style="display: flex">
+                <img src="images/icoAddNumero.png">
+                <p style="margin-left: 10px;">Añadir número</p>
+              </button>
+            </div>
+          </div>
+				</section>
+			</div>
+		</div>

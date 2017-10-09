@@ -128,6 +128,13 @@ angular.module('app')
                 'js/controllers/app/transactions.js'
               ])
           })
+          .state('app.page.frequent', {
+            url: '/frequent',
+            templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
+            resolve: load([
+                // 'js/controllers/app/transactions.js'
+              ])
+          })
           .state('app.page.transactions.index', {
             url: '/get',
             templateUrl: 'templates/app/transactions/index.html',
