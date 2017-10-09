@@ -12,7 +12,6 @@
  function apiInterceptor($q, $cookies) {
    return {
      request: function(config) {
-       console.log(config);
        var url = config.url;
        var regex = new RegExp("^(http[s]?:\\/\\/www\\.google\\.com)");
 
@@ -30,11 +29,11 @@
    }
  };
 
- angular.module('app').run(function($http) {
-   $http.get('csrfToken').success(function(data) {
-     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
-   });
- });
+ // angular.module('app').run(function($http) {
+ //   $http.get('csrfToken').success(function(data) {
+ //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+ //   });
+ // });
 
 angular.module('app')
   .run(
@@ -75,18 +74,18 @@ angular.module('app')
                 'js/controllers/app/header.js'
               ])
           })
-          .state('app.page.index', {
-            url: '/index',
-            templateUrl: 'templates/index.html',
-            resolve: load([
-              'js/controllers/app/index.js',
-              'js/services/Sales.js'
-              ])
-          })
+          // .state('app.page.index', {
+          //   url: '/index',
+          //   templateUrl: 'templates/index.html',
+          //   resolve: load([
+          //     'js/controllers/app/index.js',
+          //     'js/services/Sales.js'
+          //     ])
+          // })
           // recharge ###########################################
-          .state('app.page.index.recharge', {
+          .state('app.page.recharge', {
             url: '/recharge',
-            templateUrl: 'templates/app/recharge/recharge.html',
+            templateUrl: 'templates/app/recharge/reload.html',
             resolve: load([
               'js/services/Recharge.js',
               'js/controllers/app/recharge.js',
@@ -94,27 +93,27 @@ angular.module('app')
               'js/services/Sales.js'
               ])
           })
-          .state('app.page.index.recharge.get_contrato', {
+          .state('app.page.recharge.get_contrato', {
             url: '/contract',
             templateUrl: 'templates/app/recharge/getContrato.html',
             resolve: load([])
           })
-          .state('app.page.index.recharge.cal_amount', {
+          .state('app.page.recharge.cal_amount', {
             url: '/amount',
             templateUrl: 'templates/app/recharge/calAmount.html',
             resolve: load([])
           })
-          .state('app.page.index.recharge.get_token_stripe', {
+          .state('app.page.recharge.get_token_stripe', {
             url: '/tdc',
             templateUrl: 'templates/app/recharge/getTokenStripe.html',
             resolve: load(['js/stripe/stripe.js'])
           })
-          .state('app.page.index.recharge.confirm', {
+          .state('app.page.recharge.confirm', {
             url: '/confirm',
             templateUrl: 'templates/app/recharge/confirm.html',
             resolve: load([])
           })
-          .state('app.page.index.recharge.result', {
+          .state('app.page.recharge.result', {
             url: '/result',
             templateUrl: 'templates/app/recharge/result.html',
             resolve: load([])
@@ -124,7 +123,7 @@ angular.module('app')
           // transacciones ######################################
           .state('app.page.transactions', {
             url: '/transactions',
-            templateUrl: 'templates/app/transactions/layout.html',
+            templateUrl: 'templates/app/movimientos/movimientos.html',
             resolve: load([
                 'js/controllers/app/transactions.js'
               ])

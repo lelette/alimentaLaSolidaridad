@@ -1,18 +1,18 @@
 <div ng-controller="GlobalController">
   <!-- navbar -->
-  <div data-ng-include=" 'templates/blocks/header.html' " class="app-header navbar" ng-controller='HeaderController'>
+  <div data-ng-include=" 'templates/blocks/header.html' " class="" ng-controller='HeaderController'>
   </div>
   <!-- / navbar -->
 
   <!-- menu -->
-  <div data-ng-include=" 'templates/blocks/aside.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">
-  </div>
+  <!-- <div data-ng-include=" 'templates/blocks/aside.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">
+  </div> -->
   <!-- / menu -->
 
   <!-- content -->
   <div class="app-content">
     <div ui-butterbar></div>
-    <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
+    <!-- <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a> -->
     <div class="app-content-body fade-in-up" ui-view></div>
   </div>
   <!-- /content -->
