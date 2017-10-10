@@ -86,6 +86,28 @@
 					</button>\
 				</div>\
 			</div>\
+		',
+		notifyBoxMyAcount : '\
+			<div class="card-notify-box1">\
+				<div class="line-100">\
+					<div class="pillar-100p notify" style="background-color:gray; width:170px;">\
+						<div class="pillar-auto">\
+							<div class="line-100">\
+								<img src="images/icoMovimientos.png"> <a href="app/page/transactions"><p class="p-black p-tiny">MOVIMIENTOS</p></a>\
+							</div>\
+							<div class="line-100">\
+								<img src="images/icoNumFrec.png"> <a ui-sref="app.page.transactions"><p class="p-black p-tiny">NUMEROS FRECUENTES</p></a>\
+							</div>\
+							<div class="line-100">\
+								<img src="images/icoTDCAfiliada.png"> <a ui-sref="app.page.recharge"> <p class="p-black p-tiny">TDC AFILIADAS</p></a>\
+							</div>\
+							<div class="line-100">\
+								<img src="images/icoMiPerfil.png"> <a href="app/page/profile"><p class="p-black p-tiny">MI PERFIL</p></a>\
+							</div>\
+						</div>\
+					</div>\
+				</div>\
+			</div>\
 		'
 	}
 /* Elementos html para agregar */
@@ -162,6 +184,41 @@
 			}else{
 				if ($('.card-notify-box').length > 0) {
 					$('.card-notify-box').remove()
+					$(e).children('img').attr('src','images/icoCartEmpty.png')
+					$(e).removeAttr('style')
+				}
+			}
+		}
+	/* funciones complementarias */
+/* Agregar caja de notificaciones */
+
+/* Agregar caja mi cuenta */
+	primeAppVar.notifyBoxMyAcount = function(e){
+		if ($('.card-notify-box1').length == 0) {
+			primeAppVar.showNotifyBoxMyAcount(e);
+		}else{
+			primeAppVar.closeNotifyBoxMyAcount(e);
+		}
+	}
+	/* funciones complementarias */
+		primeAppVar.showNotifyBoxMyAcount = function(e){
+			if ($('.card-notify-box1').length == 0) {
+				$(e).append(primeAppVar.structureAppHtml.notifyBoxMyAcount)
+				$(e).children('img').attr('src','images/icoCartFull.png')
+				$(e).css('border-bottom','2px solid #FFFF00')
+			}
+		}
+		primeAppVar.closeNotifyBoxMyAcount = function(e){
+			var selector = $('.internal-vertical-panel > nav > div:last-child')
+			if (primeAppVar.windowWidth < 993) {
+				if ($('.card-notify-box1').length > 0) {
+					$('.card-notify-box1').remove()
+					selector.children('img').attr('src','images/icoCartEmpty.png')
+					selector.removeAttr('style')
+				}
+			}else{
+				if ($('.card-notify-box1').length > 0) {
+					$('.card-notify-box1').remove()
 					$(e).children('img').attr('src','images/icoCartEmpty.png')
 					$(e).removeAttr('style')
 				}

@@ -493,7 +493,7 @@
     padding: 1% 3%;
     flex-wrap: wrap;
 	}
-	.card-notify-box{
+	.card-notify-box, .card-notify-box1{
     position: absolute;
     max-width: 300px;
     display: flex;
