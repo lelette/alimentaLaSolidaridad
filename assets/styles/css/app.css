@@ -59,6 +59,21 @@
 		border-radius: .35rem;
 		box-sizing: border-box;
 	}
+	.tab-home{
+    border-radius: .5rem;
+		margin-right: 5pc;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+}
+.tab-dynamic-home {
+	border-radius: .5rem;
+	margin-right: 5pc;
+	justify-content: center;
+	cursor: pointer;
+	display: flex;
+}
+	}
 /* Boxes */
 
 /* Elements */
@@ -148,6 +163,18 @@
 		text-transform: uppercase;
 	}
 	.tab-box p,
+	.tab-home p{
+		text-transform: uppercase;
+		margin-left: 10px;
+		font-weight: 500;
+		color: #AEB7B3;
+		}
+	.tab-dynamic-home p{
+			color: #0DB731;
+			font-weight: 400;
+			font-size: 2pc;
+			margin-left: 2pc;
+	}
 	.btn-neeru p{
 		text-transform: uppercase;
 		margin-left: 0.5pc;
