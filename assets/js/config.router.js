@@ -128,6 +128,13 @@ angular.module('app')
                 'js/controllers/app/transactions.js'
               ])
           })
+          .state('app.page.frequent', {
+            url: '/frequent',
+            templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
+            resolve: load([
+                // 'js/controllers/app/transactions.js'
+              ])
+          })
           .state('app.page.transactions.index', {
             url: '/get',
             templateUrl: 'templates/app/transactions/index.html',
@@ -144,7 +151,15 @@ angular.module('app')
           })
 
           // fin de transacciones ###############################
+          //*******************************HOME*******************************
+          .state('app.page.home', {
+            url: '/home',
+            templateUrl: 'templates/app/home/home.html',
+            resolve: load([
 
+              ])
+          })
+          //***************** FIN DE HOME *************************************
           // perfil #############################################
           .state('app.page.profile', {
             url: '/profile',
