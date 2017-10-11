@@ -151,7 +151,15 @@ angular.module('app')
           })
 
           // fin de transacciones ###############################
+          //*******************************HOME*******************************
+          .state('app.page.home', {
+            url: '/home',
+            templateUrl: 'templates/app/home/home.html',
+            resolve: load([
 
+              ])
+          })
+          //***************** FIN DE HOME *************************************
           // perfil #############################################
           .state('app.page.profile', {
             url: '/profile',

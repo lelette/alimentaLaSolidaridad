@@ -59,6 +59,38 @@
 		border-radius: .35rem;
 		box-sizing: border-box;
 	}
+	.tab-home{
+    border-radius: .5rem;
+		margin-right: 5pc;
+    justify-content:flex-start;
+    cursor: pointer;
+    display: flex;
+}
+.tab-dynamic-home {
+	margin-right: 5pc;
+	align-items: -webkit-flex;
+	width: 12pc;
+	border-bottom: 1.5px solid #0DB731;
+	cursor: pointer;
+}
+.home1 {
+	margin-right: 5pc;
+	align-items: center;
+	width: 12pc;
+	justify-content: center;
+	display: flex;
+	margin-top: 2pc;
+	margin-bottom: 0pc;
+	cursor: pointer;
+}
+.publicity {
+	margin-right: 5pc;
+	width: 100%;
+	justify-content: space-between;
+
+	display: flex;
+}
+	}
 /* Boxes */
 
 /* Elements */
@@ -148,6 +180,33 @@
 		text-transform: uppercase;
 	}
 	.tab-box p,
+	.tab-home p{
+		text-transform: uppercase;
+		margin-left: 10px;
+		font-weight: 500;
+		color: #AEB7B3;
+		}
+		.tab-home p-1{
+			margin-left: 10px;
+			margin-right: 3pc;
+			font-weight: 500;
+			color: #AEB7B3;
+			margin-bottom: 0px;
+			margin-top: 0px;
+			font-size: 1em;
+	    line-height: 120%;
+	    font-family: neeru;
+			}
+	.tab-dynamic-home p{
+			color: #0DB731;
+			font-weight: 400;
+			font-size: 2pc;
+	}
+	.home-box p{
+			color: #0DB731;
+			font-weight: 300;
+			font-size: 1.5pc;
+	}
 	.btn-neeru p{
 		text-transform: uppercase;
 		margin-left: 0.5pc;
@@ -509,6 +568,20 @@
 		background: #F2F4F2;
 		border-radius: .5rem;
 		padding: 5px;
+	}.mainly {
+		display: flex;
+		margin-left: 3pc;
+		margin-top: 2pc;
+	}
+	.home-box {
+		display: flex;
+		border-top: 1.5px solid #CFD5D1;;
+		border-bottom: 1.5px solid #CFD5D1;;
+		display: block;
+		justify-content: center;
+		margin-left: 2pc;
+		margin-top: 2pc;
+		margin-bottom: 1pc;
 	}
 /* Boxes */
 
