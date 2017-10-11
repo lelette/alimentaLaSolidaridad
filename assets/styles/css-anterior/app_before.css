@@ -683,7 +683,7 @@ body {
 }
 
 .app-header-fixed {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
 }
 
 .app-header-fixed .app-header {
@@ -912,7 +912,7 @@ body {
   .navbar-collapse,
   .app-content,
   .app-footer {
-    margin-left: 200px;
+    /*margin-left: 200px;*/
   }
   .app-aside-right {
     position: absolute;
