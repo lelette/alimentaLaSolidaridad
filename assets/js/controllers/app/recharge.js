@@ -20,21 +20,36 @@ app.controller('GetContratoController',
       });
     ////////////////////////////////
 
+    $scope.offers = function () {
+      // Consulta las Ofertas Disponibles para un telefono
+        $http.post('/plataform/offers', {
+          phone:$scope.phone,
+          delivered_amount: true, // boolean
+          fee: true // boolean
+        })
+        .then(function(res){
+          $scope.ofertas = res.data;
+          console.log('Ofertas', $scope.ofertas);
+          //orgOfertas($scope.ofertas);
+        }, function(res){
+          console.log(res);
+        });
+      ////////////////////////////////
+    }
 
-    // Consulta las Ofertas Disponibles para un telefono
-      $http.post('/plataform/offers', {
-        phone:$scope.phone,
-        delivered_amount: true, // boolean
-        fee: true // boolean
-      })
-      .then(function(res){
-        $scope.ofertas = res.data;
-        console.log('Ofertas', $scope.ofertas);
-        //orgOfertas($scope.ofertas);
-      }, function(res){
-        console.log(res);
-      });
-    ////////////////////////////////
+
+    $scope.detailRecharge = function () {
+      // Consulta el detalle de una recarga
+        $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
+        .then(function(res){
+          //$scope.tr = res.data;
+          console.log('transaccion', res.data);
+          //orgOfertas($scope.ofertas);
+        }, function(res){
+          console.log(res);
+        });
+      ////////////////////////////////
+    }
 
 
     $scope.ofertas = [];
