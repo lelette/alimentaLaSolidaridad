@@ -8,12 +8,15 @@
 app.controller('GlobalController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
-    console.log("hola");
-    $scope.user = User.info;
+
+
     User.refresh(function(err){
       if (err) {
         console.log(err);
       }
+      $scope.user = User.info;
+      $scope.subHeader = 'Bienvenido '+$scope.user.nombres+'...'
+      console.log(User.info.nombres);
     });
 
 }]);

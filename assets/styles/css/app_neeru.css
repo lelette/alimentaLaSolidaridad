@@ -26,7 +26,242 @@
   text-align: justify;
 }
 
+body {
+	height: 100%;
+}
+
+body > * {
+	height: 100%;
+}
+body > * > * {
+	height: 100%;
+}
+
+.app-content {
+	height: 100%;
+}
+
+.app-content-body {
+	height: 100%;
+}
+
+.fade-in-down {
+	height: 100%;
+}
+
+
 .w-h-xs-i {
 	width: 250px !important;
 	height: 100px !important;
 }
+
+.frequent-master-box {
+	width: 100%;
+	display: flex;
+	height: 100%;
+}
+
+.frequent-add {
+	border: 0;
+	margin-top: 120px;
+}
+
+.frequent-master-box > section{
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.frequent-master-box > section:first-child {
+	flex-wrap: wrap;
+	display: flex;
+	width: 70%
+}
+
+.frequent-master-box > section:last-child {
+	flex-wrap: wrap;
+	display: flex;
+	width: 30%
+}
+
+/* Responsive */
+	@media screen and (max-width: 300px){
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc .5pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    height: calc(100% - 150px);
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+	}
+	@media screen and (min-width: 301px) and (max-width: 400px){
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    height: calc(100% - 150px);
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+	}
+	@media screen and (min-width: 401px) and (max-width: 500px){
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    height: calc(100% - 150px);
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+	}
+	@media screen and (min-width: 501px) and (max-width: 767px){
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+			width: 70%;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    height: calc(100% - 125px);
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+	}
+	@media screen and (min-width: 768px) and (max-width: 992px){
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+			width: 50%;
+		}
+
+		.frequent-master-box > section:first-child{
+			padding: 2pc 10%;
+		}
+
+		.frequent-master-box > section:first-child{
+	    width: 100%;
+		}
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    height: calc(100% - 125px);
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+	}
+	@media screen and (min-width: 993px) and (max-width: 1200px){
+		.frequent-master-box > section{
+	    padding: 0px 2.5%;
+		}
+	}
+	@media screen and (min-width: 1201px) and (max-width: 1500px){
+		.frequent-master-box > section{
+	    padding: 0px 2.5%;
+		}
+	}
+	@media screen and (min-width: 1501px){
+
+		.frequent-master-box > section{
+	    padding: 0px 2.5%;
+		}
+	}
+/* Responsive */
