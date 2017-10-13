@@ -133,6 +133,7 @@ angular.module('app')
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
             resolve: load([
                 // 'js/controllers/app/transactions.js'
+                'dataTable'
               ])
           })
           .state('app.page.transactions.index', {
