@@ -87,6 +87,7 @@ angular.module('app')
           .state('app.page.recharge', {
             url: '/recharge',
             templateUrl: 'templates/app/recharge/reload.html',
+            params: {'cod': '', 'contrato': ''},
             resolve: load([
               'js/services/Recharge.js',
               'js/controllers/app/recharge.js',
@@ -158,7 +159,7 @@ angular.module('app')
             url: '/home',
             templateUrl: 'templates/app/home/home.html',
             resolve: load([
-              
+
               ])
           })
           //***************** FIN DE HOME *************************************
