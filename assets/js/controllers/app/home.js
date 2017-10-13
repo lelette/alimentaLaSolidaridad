@@ -2,7 +2,7 @@
 
 /****************************************************************************************
 * @description :: Informacion y funciones del homepage *
-* @autor :: Aquilino Pinto apinto@transamovil.com                                       *
+* @autor :: Marialette Argulles marguelles@transamovil.com                                       *
 *****************************************************************************************/
 
 app.controller('HomeController',
@@ -22,6 +22,15 @@ app.controller('HomeController',
       $scope.datos.recargas = 0;
     });
 
+
+    $http.get('plataform/user/searchFrecuente')
+    .then(function(res){
+      $scope.datos.frecuentes = res.data.length;
+    });
+
+    /** REDIRECT
+    * description: funcion para redirigir al usuario al flujo de recarga
+    **/
     $scope.redirect = function (){
      if (($scope.count!=0)&&($scope.count == 7)&&($scope.auxCount  == true)){
        var cod = " ";
