@@ -13,7 +13,7 @@
       <div>
         <p>añadir saldo</p>
       </div>
-      <div>
+      <div onclick="primeAppVar.notifyBoxMyAcount(this)">
         <p>mi cuenta</p>
       </div>
       <div onclick="primeAppVar.notifyBox(this)">
@@ -36,8 +36,8 @@
   </section>
   <section>
     <div>
-      <img src="images/icoEnviarRecarga.png">
-      <p class="p-5 p-300">Enviar Recarga</p>
+      <img ng-src="{{header.icono}}">
+      <p class="p-5 p-300">{{header.namePage}}</p>
     </div>
     <div>
       <img src="images/icoSaldo.png">
