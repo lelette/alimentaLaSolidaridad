@@ -264,6 +264,7 @@ app.controller('ReloadController',
       contrato: ''
     };
     if (($stateParams.cod!='')&&($stateParams.contrato!='')){
+      console.log("$stateParams");
      $scope.datos.cod = $stateParams.cod;
      $scope.datos.contrato = $stateParams.contrato;
    }
