@@ -9,6 +9,14 @@ app.directive('apiUrl', ['$rootScope', function($rootScope) {
     }
   };
 }]);
+app.directive('subHeader', ['$rootScope', function($rootScope) {
+  return {
+    link: function(scope, elm, attrs, ctrl) {
+      $rootScope.subHeader = attrs.value;
+    }
+  };
+}]);
+
 
 // mudar de locacion a la carpeta de directivas
 

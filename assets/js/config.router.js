@@ -29,11 +29,11 @@
    }
  };
 
- // angular.module('app').run(function($http) {
- //   $http.get('csrfToken').success(function(data) {
- //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
- //   });
- // });
+ angular.module('app').run(function($http) {
+   $http.get('csrfToken').success(function(data) {
+     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+   });
+ });
 
 angular.module('app')
   .run(
@@ -71,7 +71,8 @@ angular.module('app')
                 'js/services/User.js',
                 'js/controllers/app/global.js',
                 'js/directives/val-input.js',
-                'js/controllers/app/header.js'
+                'js/controllers/app/header.js',
+                'js/controllers/app/home.js'
               ])
           })
           // .state('app.page.index', {
@@ -133,6 +134,7 @@ angular.module('app')
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
             resolve: load([
                 // 'js/controllers/app/transactions.js'
+                'dataTable'
               ])
           })
           .state('app.page.transactions.index', {
@@ -156,7 +158,7 @@ angular.module('app')
             url: '/home',
             templateUrl: 'templates/app/home/home.html',
             resolve: load([
-
+              
               ])
           })
           //***************** FIN DE HOME *************************************
@@ -202,7 +204,7 @@ angular.module('app')
               resolve: load([
                 'js/services/User.js',
                 'js/controllers/app/global.js',
-                'js/controllers/app/header.js'
+                'js/controllers/app/header.js',
               ])
           })
           .state('admin.page.index', {
