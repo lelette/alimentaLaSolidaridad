@@ -5,10 +5,10 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('HeaderController', 
+app.controller('HeaderController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
-    
+
     $scope.logout = function(){
       User.logout(function(err){
         if (err) {
@@ -16,7 +16,7 @@ app.controller('HeaderController',
           return fale;
         };
 
-        $state.go('access.signin');        
+        $state.go('access.signin');
       });
     };
 

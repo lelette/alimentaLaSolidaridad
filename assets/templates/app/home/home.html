@@ -1,0 +1,88 @@
+<div class="publicity" ng-controller="HomeController">
+<!-- SECCION DE HOME PAGE NEERU-->
+<section style="margin-left:0pc">
+<div class="mainly">
+  <section>
+    <div class="tab-home">
+
+    <img src="images/icoOrdenGrs.png"> <p>RECARGAS ENVIADAS</p>
+  </div>
+  </br>
+  <div class="tab-dynamic-home">
+    <p>{{datos.recargas}}</p>
+  </div>
+  </section>
+  <section>
+    <div class="tab-home">
+      <img src="images/menuNumFrecGrs.png"><p>NUMEROS FRECUENTES</p>
+    </div>
+    </br>
+    <div class="tab-dynamic-home">
+      <p>2</p>
+    </div>
+  </br>
+  <div class="tab-home">
+    <p-1>+ Añadir Número</p-1> <img src="images/icoVer.png">
+  </div>
+  </section>
+  <section>
+    <div class="tab-home">
+      <img src="images/menuTDCGrs.png">  <p>TDC AFILIADAS</p>
+    </div>
+    </br>
+    <div class="tab-dynamic-home">
+      <p>0</p>
+    </div>
+  </br>
+  <div class="tab-home">
+    <p-1>+ Añadir Tarjeta</p-1> <img src="images/icoVer.png">
+  </div>
+  </section>
+</div>
+</br>
+<div class="home-box">
+<div style="width: 100%;" class="home1">
+   <p>¿Desea realizar una recarga?</p>
+ </div>
+<div class="line-100 selecting-box-R" style="margin-bottom: 2pc">
+  <div class="selecting-internal-box-R">
+    <div class="line-100 aux-3-R">
+      <div class="pillar-45p">
+        <div class="pillar-30p">
+          <div class="neeru-select" onclick="primeAppVar.openOptionBox()">
+            <div class="country-selected" onclick="primeAppVar.closeOptionBox()">
+                <img src="images/icoSelectPais.png">
+                <p class="p-gray" style="font-size: 0.9em; color:black">Pais</p>
+            </div>
+            <div class="options-neeru-select-box">
+              <div class="option-neeru" data-country-code="+58">
+                <img src="images/banderas/Venezuela.png">
+                <p>+58</p>
+              </div>
+            <div class="option-neeru" data-country-code="+48">
+                <img src="images/banderas/Kyrgyzstan.png">
+                <p>+48</p>
+            </div>
+            <div class="option-neeru" data-country-code="+69">
+                <img src="images/banderas/United-States-of-America.png">
+                <p>+69</p>
+            </div>
+            </div>
+          </div>
+        </div>
+    <div class="pillar-70p">
+      <input onblur="primeAppVar.validateInputPhone(this)" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7">
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- FIN DE SECCION DE HOMEPAGE DE NEERU -->
+
+<!-- SECCION DE PUBLICIDAD -->
+<section style="margin-right:1pc">
+  <img src="images/puppies.jpg" style="width: 250px; height: 600px; margin-top: 2pc">
+</section>
+</div>

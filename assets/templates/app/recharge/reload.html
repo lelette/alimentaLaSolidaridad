@@ -1,0 +1,845 @@
+
+		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px">
+			<div class="reload-master-box">
+				<section>
+					<div class="line-100 aux-1-R">
+						<div id="tab1" class="pillar-45p tab-box tab-on" data-active-tab="1" onclick="primeAppVar.changeStateMW(this)">
+							<img src="images/icoOrdenVrd.png">
+							<p>Orden</p>
+						</div>
+						<div  id="tab2" class="pillar-45p tab-box tab-off" data-active-tab="2" onclick="primeAppVar.changeStateMW(this)">
+							<img src="images/icoPagoGrs.png">
+							<p>Pago</p>
+						</div>
+					</div>
+					<div class="line-100 selecting-box-R">
+						<div class="selecting-internal-box-R">
+							<div class="line-100 aux-3-R">
+								<div class="pillar-45p">
+									<div class="pillar-30p">
+										<div class="neeru-select" onclick="primeAppVar.openOptionBox()">
+											<div class="country-selected" onclick="primeAppVar.closeOptionBox()">
+												<img src="images/icoSelectPais.png">
+												<p class="p-small">Pais</p>
+											</div>
+											<div class="options-neeru-select-box">
+												<div class="option-neeru" data-country-code="+58">
+													<img src="images/banderas/Venezuela.png">
+													<p>+58</p>
+												</div>
+												<div class="option-neeru" data-country-code="+48">
+													<img src="images/banderas/Kyrgyzstan.png">
+													<p>+48</p>
+												</div>
+												<div class="option-neeru" data-country-code="+69">
+													<img src="images/banderas/United-States-of-America.png">
+													<p>+69</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-70p">
+										<input onblur="primeAppVar.validateInputPhone(this)" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7">
+									</div>
+								</div>
+								<div class="pillar-45p btn-neeru" onclick="primeAppVar.modalOpen('selectOperator')">
+									<img src="images/icoOperadoraVrd.png">
+									<p>Seleccionar Operadora</p>
+								</div>
+							</div>
+							<div class="pay-plans-box">
+								<div class="line-100">
+									<div class="line-100 promo-box">
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x2</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x5</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x2</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x5</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x2</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+										<div class="pillar-45p promo">
+											<div class="pillar-30px">
+												<div class="neeru-checkbox-2">
+													<input type="checkbox" name="">
+													<span></span>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<div class="line-100">
+													<p class="p-up p-600 p-short">Promo Movistar</p>
+												</div>
+												<div class="line-100">
+													<p class="p-2 p-300">Bono x5</p>
+												</div>
+											</div>
+											<div class="pillar-30px">
+												<img src="images/icoPromoOperadora.png">
+											</div>
+										</div>
+									</div>
+									<div class="line-100 plans-box">
+										<div class="pillar-45p regular-plan">
+											<div class="pillar-auto">
+												<div class="pillar-30px">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="">
+														<span></span>
+													</div>
+												</div>
+												<div class="pillar-auto">
+													<p><span class="p-500">B/. 5 -</span> 5<span class="p-short p-300">USD</span></p>
+												</div>
+											</div>
+										</div>
+										<div class="pillar-45p popular-plan">
+											<div class="pillar-auto">
+												<div class="pillar-30px">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="">
+														<span></span>
+													</div>
+												</div>
+												<div class="pillar-auto">
+													<p><span class="p-500">B/. 999 -</span> 999<span class="p-short p-300">USD</span></p>
+												</div>
+											</div>
+											<div class="pillar-auto">
+												<p class="p-up p-green p-600 p-tiny">Popular</p>
+												<img class="aux-img-1-R" src="images/icoPopular.png">
+											</div>
+										</div>
+										<div class="pillar-45p regular-plan">
+											<div class="pillar-auto">
+												<div class="pillar-30px">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="">
+														<span></span>
+													</div>
+												</div>
+												<div class="pillar-auto">
+													<p><span class="p-500">B/. 20 -</span> 20<span class="p-short p-300">USD</span></p>
+												</div>
+											</div>
+										</div>
+										<div class="pillar-45p regular-plan">
+											<div class="pillar-auto">
+												<div class="pillar-30px">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="">
+														<span></span>
+													</div>
+												</div>
+												<div class="pillar-auto">
+													<p><span class="p-500">B/. 30 -</span> 30<span class="p-short p-300">USD</span></p>
+												</div>
+											</div>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-500 p-short">Sujeto a tasas locales</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100 aux-5-R">
+									<div class="line-100">
+										<p>¡¡Avísale que recargaste!! Envía un mensaje...</p>
+									</div>
+									<div class="line-100">
+										<input type="text" name="" data-mode-1 placeholder="Mensaje...">
+									</div>
+								</div>
+							</div>
+							<div class="line-100	frecuency-phones-box">
+								<div class="line-100">
+									<p class="p-gray p-300">Números Frecuentes</p>
+								</div>
+								<div class="line-100 aux-4-R">
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Movistar</p>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Digitel</p>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Telcel</p>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Movistar</p>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Digitel</p>
+											</div>
+										</div>
+									</div>
+									<div class="pillar-25p frecuency-phone">
+										<div class="pillar-50px">
+											<div class="neeru-checkbox-1">
+												<input type="checkbox" name="">
+												<span></span>
+											</div>
+										</div>
+										<div class="pillar-100p">
+											<div class="line-100">
+												<p class="p-1">+58 111-2222</p>
+											</div>
+											<div class="line-100">
+												<p class="p-small p-gray">Telcel</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="line-100 aux-2-R">
+							<div class="pillar-45p">
+								<div class="pillar-30px">
+									<img src="images/icoPromo.png">
+								</div>
+								<div class="pillar-100p">
+									<input type="text" name="promo-code" placeholder="Inserte Código Promocional" data-hide>
+								</div>
+							</div>
+							<div class="pillar-45p">
+								<button data-standard class="btn-off" onclick="primeAppVar.payBox(this)">
+									<p>Elegir modo de pago</p>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="line-100 pay-box">
+						<div class="line-100">
+							<div class="line-100 pay-type-box">
+								<div class="pillar-auto">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="type-pay">
+											<span></span>
+										</div>
+									</div>
+									<p class="p-500">Pagar con TDC</p>
+								</div>
+								<div class="pillar-auto">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="type-pay">
+											<span></span>
+										</div>
+									</div>
+									<p class="p-500">Otro Medio</p>
+								</div>
+							</div>
+							<div class="line-100 aux-7-R">
+								<form class="pillar-60p">
+									<div class="line-100">
+										<div class="pillar-25p">
+											<input type="" name="" data-mode-1 placeholder="----">
+										</div>
+										<div class="pillar-25p">
+											<input type="" name="" data-mode-1 placeholder="----">
+										</div>
+										<div class="pillar-25p">
+											<input type="" name="" data-mode-1 placeholder="----">
+										</div>
+										<div class="pillar-25p">
+											<input type="" name="" data-mode-1 placeholder="----">
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-50p">
+											<div class="pillar-50px">
+												<img src="images/icoVence.png">
+											</div>
+											<div class="pillar-100p">
+												<input type="text" name="" data-mode-1 placeholder="MM / AAAA">
+											</div>
+										</div>
+										<div class="pillar-50p aux-6-R">
+											<p class="p-gray">CVV</p>
+											<div class="pillar-50p">
+												<input type="" name="" data-mode-1>
+											</div>
+										</div>
+									</div>
+									<img class="tdc-img-logo" src="images/visa.png">
+								</form>
+								<div class="line-100">
+									<div class="pillar-45p">
+										<input type="text" name="" data-hide-2 placeholder="Nombre">
+									</div>
+									<div class="pillar-45p">
+										<input type="text" name="" data-hide-2 placeholder="Direccion">
+									</div>
+									<div class="pillar-45p">
+										<input type="text" name="" data-hide-2 placeholder="Pais">
+									</div>
+									<div class="pillar-45p">
+										<input type="text" name="" data-hide-2 placeholder="Codigo Postal">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="line-100 member-card-box">
+							<div class="line-100">
+								<p class="p-up p-gray">tdc afilidas</p>
+							</div>
+							<div class="line-100">
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+								<div class="pillar-30p member-card">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member">
+											<span></span>
+										</div>
+									</div>
+									<div class="pillar-100p">
+										<div class="line-100">
+											<p>**** **** **** 5544</p>
+										</div>
+										<div class="line-100">
+											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="line-100" onclick="primeAppVar.showResumePanel()">
+						<div class="pillar-100p tab-box tab-off">
+							<img src="images/icoResumen.png">
+							<p>Resumen / Envío</p>
+						</div>
+					</div>
+					<div class="line-100 synopsis-box">
+						<div class="line-100 balance-box">
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="line-100 record">
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Número</p>
+										</div>
+										<div class="pillar-auto">
+											<p>+57 111-2222</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-salmon p-short p-300">Eliminar</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-300 p-short">Movistar</p>
+										</div>
+									</div>
+								</div>
+								<div class="line-100">
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Monto</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+									<div class="line-100">
+										<div class="pillar-auto">
+											<p class="p-up p-gray p-small">Tasa</p>
+										</div>
+										<div class="pillar-auto">
+											<p class="p-tiny aux-text-2-R">USD</p>
+											<p>999,999,999.99</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="line-100 total-box">
+							<div class="line-100">
+								<div class="pillar-auto">
+									<p class="p-up p-300 p-gray p-tiny">Total</p>
+								</div>
+								<div class="pillar-auto">
+									<p class="p-tiny aux-text-2-R">USD</p>
+									<p>999,9999,999</p>
+								</div>
+							</div>
+							<div class="line-100">
+								<button data-standard class="btn-off" onclick="primeAppVar.modalOpen('congratulationMsn')">
+									<p>Pagar y enviar</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>

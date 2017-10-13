@@ -77,12 +77,14 @@ module.exports.routes = {
     }
   },
 
+
+
   /**************************************************************************
   * Rutas del cliente web admin                                             *
   **************************************************************************/
   '/admin/*' : {
-    controller: 'ClienteWebController',
-    action: 'admin',
+    //controller: 'ClienteWebController',
+    //action: 'admin',
     locals: {
       layout: 'layouts/neeru'
     }

@@ -28,7 +28,7 @@ app.controller('SigninFormController',
 
     $http.post('plataform/user/signin', datos)
     .then(function(response) {
-      $state.go('app.page.index.recharge.get_contrato');
+      $state.go('app.page.home');
     }, function(res) {
       $scope.authError = res.data.error.msjUser;
     });

@@ -1,0 +1,74 @@
+<main onload="primeAppVar.init()" ng-controller="movController">
+  <div ng-if="msjmov" class="dynamic-content-box">
+      <div class="empty-activity-box" style="margin-top:120px">
+          <div class="line-100">
+              <img src="images/carita2.png">
+              <p class="p-green p-300 p-5">No posees movimientos... {{currentPage}}</p>
+          </div>
+          <div class="line-100">
+              <p class="p-gray">¿Quieres hacer una recarga o añadir saldo a tu cuenta ahora?</p>
+          </div>
+          <div class="line-100">
+              <button data-standard class="btn-green-on">
+                  <p>enviar recarga</p>
+              </button>
+              <button data-standard class="btn-green-on">
+                  <p>añadir saldo</p>
+              </button>
+          </div>
+      </div>
+  </div>
+  <div ng-if="tablemov" class="wrapper-md center">
+
+    <div class="panel-body table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          language: {
+            processing: 'Progreso en Curso',
+            search: 'Buscar',
+            lengthMenu: 'Mostrar _MENU_ registros',
+            emptyTable: 'Ningún dato disponible en esta tabla',
+            info: 'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+            infoEmpty: 'Mostrando registros del 0 al 0 de un total de 0 registros',
+            infoFiltered: '(filtrado de un total de _MAX_ registros)',
+            zeroRecords: 'No se encontraron resultados',
+            loadingRecords: 'Cargando...',
+            paginate: {
+              first: 'Primero',
+              last: 'Último',
+              next: 'Siguiente',
+              previous: 'Anterior'
+            },
+            aria: {
+              sortAscending: ': Activar para ordenar la columna de manera ascendente',
+              sortDescending: ': Activar para ordenar la columna de manera descendente'
+            }
+          },
+          aoColumns: [
+            { mData: 'createdAt' },
+            { mData: 'referencia' },
+            { mData: 'phone' },
+            { mData: 'expectedCurrency' },
+            { mData: 'realAmount' },
+            { mData: 'action' },
+          ],
+          aaData: {{datos.sales}}
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Fecha</th>
+            <th  style="width:15%">Referencia</th>
+            <th  style="width:20%">Telefono</th>
+            <th  style="width:10%">Moneda</th>
+            <th  style="width:15%">Monto</th>
+            <th  style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<script src="js/ui-load.js"></script>
+<script src="js/ui-jp.config.js"></script>
+<script src="js/ui-jp.js"></script>

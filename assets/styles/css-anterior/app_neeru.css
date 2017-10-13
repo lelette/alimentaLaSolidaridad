@@ -1,0 +1,32 @@
+.bg-neeru{
+	color:white;
+	background-color: #00B814;
+}
+
+
+.app-header .bold{
+	font-weight: bold;
+}
+
+/*tamano de contenido access*/
+.access-content{
+
+}
+
+/* *** estilo para los mensajes de error de inputs *** */
+.error-input-msj {
+  color: #f05050;
+  font-size: 0.75em;
+}
+
+.helper-pwd{
+  display: table !important;
+  width: 100%;
+  font-size: 0.9em;
+  text-align: justify;
+}
+
+.w-h-xs-i {
+	width: 250px !important;
+	height: 100px !important;
+}
