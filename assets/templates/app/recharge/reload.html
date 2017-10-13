@@ -1,5 +1,5 @@
 
-		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px">
+		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px" ng-controller="ReloadController">
 			<div class="reload-master-box">
 				<section>
 					<div class="line-100 aux-1-R">
@@ -17,12 +17,12 @@
 							<div class="line-100 aux-3-R">
 								<div class="pillar-45p">
 									<div class="pillar-30p">
-										<div class="neeru-select" onclick="primeAppVar.openOptionBox()">
-											<div class="country-selected" onclick="primeAppVar.closeOptionBox()">
+										<div class="neeru-select" onclick="primeAppVar.openOptionBox()" >
+											<div class="country-selected" onclick="primeAppVar.closeOptionBox()" name="datos.cod" ng-model="datos.cod">
 												<img src="images/icoSelectPais.png">
-												<p class="p-small">Pais</p>
+												<p class="p-small">{{datos.cod}}</p>
 											</div>
-											<div class="options-neeru-select-box">
+											<div class="options-neeru-select-box" >
 												<div class="option-neeru" data-country-code="+58">
 													<img src="images/banderas/Venezuela.png">
 													<p>+58</p>
@@ -39,7 +39,7 @@
 										</div>
 									</div>
 									<div class="pillar-70p">
-										<input onblur="primeAppVar.validateInputPhone(this)" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7">
+										<input onblur="primeAppVar.validateInputPhone(this)" type="text" name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="Inserte Número" maxlength="10" minlength="10">
 									</div>
 								</div>
 								<div class="pillar-45p btn-neeru" onclick="primeAppVar.modalOpen('selectOperator')">
