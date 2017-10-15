@@ -82,7 +82,35 @@ body > * > * {
 	display: flex;
 	width: 30%
 }
-
+th {
+	color: #989898;
+}
+table {
+	/*border-collapse: separate;*/
+}
+/*td {
+	border: solid 1px white;
+}
+tr:first-child td:first-child {
+	border-top-left-radius: 10px;
+}
+tr:first-child td:last-child {
+	border-top-right-radius: 10px;
+}
+tr:last-child td:first-child {
+	border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child {
+	border-bottom-right-radius: 10px;
+}*/
+tr:first-child{
+    -moz-border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+}
+tr:last-child{
+    -moz-border-radius:0 10px 10px 0;
+    -webkit-border-radius:0 10px 10px 0;
+}
 /* Responsive */
 	@media screen and (max-width: 300px){
 

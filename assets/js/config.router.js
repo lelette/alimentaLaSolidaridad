@@ -6,7 +6,7 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'http://localhost:9002/';
+ var API_URL = 'http://192.168.2.28:9002/';
  //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
@@ -29,11 +29,11 @@
    }
  };
 
- angular.module('app').run(function($http) {
-   $http.get('csrfToken').success(function(data) {
-     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
-   });
- });
+ // angular.module('app').run(function($http) {
+ //   $http.get('csrfToken').success(function(data) {
+ //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+ //   });
+ // });
 
 angular.module('app')
   .run(
