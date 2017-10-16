@@ -8,7 +8,9 @@
 app.controller('SignupFormController',
   ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
   function($rootScope,  $scope, $http, $state, validarPassword, $translate) {
-
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoMiPerfil.png";
+    $rootScope.header.namePage = "Registro";
 
   /*****************************************************
   * Validaciond e password dinamica                    *

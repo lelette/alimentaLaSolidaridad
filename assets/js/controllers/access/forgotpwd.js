@@ -9,6 +9,10 @@ app.controller('ForgotpwdController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
   function($rootScope,  $scope, $http, $state, $translate) {
 
+  $rootScope.header = {}
+  $rootScope.header.icono = "images/icoResumen.png";
+  $rootScope.header.namePage = "Recuperacion de Credenciales";
+
   $scope.authError = undefined;
   $scope.user = {};
   /****************************************************
