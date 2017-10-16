@@ -168,6 +168,8 @@ app.controller('ErrorCtrl', [
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
+    $scope.loader = 'ocultar';
+    $scope.cuerpo = 'mostrar';
     console.log('$scope.loader', $scope.loader);
     console.log('$scope.cuerpo', $scope.cuerpo);
     User.refresh(function(err){

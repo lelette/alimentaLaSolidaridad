@@ -54,11 +54,22 @@
   100% { transform: rotate(360deg); }
 }
 
+.mostrarLoader {
+  display: block !important;
+}
+
+.ocultarLoader {
+  display: none !important;
+}
+
 /* Loader */
 
 /* Position */
 .center {
 	margin: 0 auto;
+}
+.w-100 {
+	width: 100%;
 }
 /* Position */
 
