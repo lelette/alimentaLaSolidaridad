@@ -96,10 +96,10 @@
 								<img src="images/icoMovimientos.png"> <a href="app/page/transactions"><p class="p-black p-tiny">MOVIMIENTOS</p></a>\
 							</div>\
 							<div class="line-100">\
-								<img src="images/icoNumFrec.png"> <a ui-sref="app.page.transactions"><p class="p-black p-tiny">NUMEROS FRECUENTES</p></a>\
+								<img src="images/icoNumFrec.png"> <a href="app/page/frequent"><p class="p-black p-tiny">NUMEROS FRECUENTES</p></a>\
 							</div>\
 							<div class="line-100">\
-								<img src="images/icoTDCAfiliada.png"> <a ui-sref="app.page.recharge"> <p class="p-black p-tiny">TDC AFILIADAS</p></a>\
+								<img src="images/icoTDCAfiliada.png"> <a href="app/page/recharge"> <p class="p-black p-tiny">TDC AFILIADAS</p></a>\
 							</div>\
 							<div class="line-100">\
 								<img src="images/icoMiPerfil.png"> <a href="app/page/profile"><p class="p-black p-tiny">MI PERFIL</p></a>\

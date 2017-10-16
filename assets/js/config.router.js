@@ -28,13 +28,13 @@
      }
    }
  };
-
+/*
  angular.module('app').run(function($http) {
    $http.get('csrfToken').success(function(data) {
      $http.defaults.headers.common['x-csrf-token'] = data._csrf;
    });
  });
-
+*/
 angular.module('app')
   .run(
     ['$rootScope', '$state', '$stateParams','$http',
@@ -158,7 +158,7 @@ angular.module('app')
             url: '/home',
             templateUrl: 'templates/app/home/home.html',
             resolve: load([
-              
+
               ])
           })
           //***************** FIN DE HOME *************************************
