@@ -6,7 +6,7 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'http://192.168.2.28:9002/';
+ var API_URL = 'http://localhost:9002/';
  //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
@@ -142,7 +142,7 @@ angular.module('app')
             url: '/frequent',
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
             resolve: load([
-                // 'js/controllers/app/transactions.js'
+                'js/controllers/app/frequentController.js',
                 'dataTable'
               ])
           })

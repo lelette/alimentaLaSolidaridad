@@ -206,12 +206,32 @@
 /* Validacion de input phone */
   primeAppVar.validateInputPhone = function(e){
     var valueInputPhone = $(e).val();
-    if (valueInputPhone != '') {
+    var reg = /[0-9]/;
+    console.log(valueInputPhone);
+    console.log(reg.test(valueInputPhone));
+    if (reg.test(valueInputPhone)) {
       primeAppVar.payPlansReloadBox();
-      $(e).css('border','1.5px solid #0DB731')
+      $(e).css('border','1.5px solid #0DB731');
+    }else {
+      primeAppVar.payPlansReloadBox();
+      $(e).css('border','1.5px solid red');
     }
   }
 /* Validacion de input phone */
+
+
+/* Validacion de input alias */
+  primeAppVar.validateInputAlias = function(e){
+    var valueInputPhone = $(e).val();
+    var reg = /^[a-zA-Z0-9]*$/;
+    
+    if (reg.test(valueInputPhone)) {
+      $(e).css('border','1.5px solid #0DB731');
+    }else {
+      $(e).css('border','1.5px solid red');
+    }
+  }
+/* Validacion de input alias */
 
 /* Cambio de estado visual 1 */
   primeAppVar.payPlansReloadBox = function(){
