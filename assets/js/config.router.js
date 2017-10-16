@@ -28,13 +28,12 @@
      }
    }
  };
-/*
- angular.module('app').run(function($http) {
-   $http.get('csrfToken').success(function(data) {
-     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
-   });
- });
-*/
+ // angular.module('app').run(function($http) {
+ //   $http.get('csrfToken').success(function(data) {
+ //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+ //   });
+ // });
+
 angular.module('app')
   .run(
     ['$rootScope', '$state', '$stateParams','$http',
@@ -87,6 +86,7 @@ angular.module('app')
           .state('app.page.recharge', {
             url: '/recharge',
             templateUrl: 'templates/app/recharge/reload.html',
+            params: {'cod': '', 'contrato': ''},
             resolve: load([
               'js/services/Recharge.js',
               'js/controllers/app/recharge.js',
@@ -121,6 +121,14 @@ angular.module('app')
           })
           // fin recharge #######################################
 
+          .state('app.page.tdc_afiliadas', {
+            url: '/tdc_afiliadas',
+            templateUrl: 'templates/app/recharge/tdc_afiliadas.html',
+            resolve: load([
+              'js/controllers/tdc_afiliadas/tdcController.js'
+            ]),
+          })
+
           // transacciones ######################################
           .state('app.page.transactions', {
             url: '/transactions',
@@ -133,7 +141,7 @@ angular.module('app')
             url: '/frequent',
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
             resolve: load([
-                // 'js/controllers/app/transactions.js'
+                'js/controllers/app/frequentController.js',
                 'dataTable'
               ])
           })

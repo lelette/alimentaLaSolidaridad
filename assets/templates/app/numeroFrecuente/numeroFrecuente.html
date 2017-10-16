@@ -1,9 +1,9 @@
 
-		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px; justify-content: space-between; height: 100%">
+		<div ng-controller="FrequentController" class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px; justify-content: space-between; height: 100%">
 			<div class="frequent-master-box" >
 				<section>
           <div class="dynamic-content-box">
-              <!-- <div class="empty-activity-box" style="margin-top:120px">
+              <div ng-show="frecuentes.length == 0" class="empty-activity-box" style="margin-top:120px">
                   <div class="line-100">
                       <img src="images/carita2.png">
                       <p class="p-green p-300 p-5">No posees números registrados...</p>
@@ -11,31 +11,41 @@
                   <div class="line-100">
                     <p class="p-gray">Añade un contacto y enviale una recarga!</p>
                   </div>
-              </div> -->
-							<div class="container" style="width: 100%; margin-top: 120px;">
+              </div>
+							<div ng-show="frecuentes.length != 0" class="container" style="width: 100%; margin-top: 120px;">
 								<table datatable="ng" cellpadding="2" cellspacing="2" border="2" class="table" style="width: 100%; border: solid white;">
-							    <thead style="border-bottom: solid #48c863;">
+							    <thead style="border-bottom: solid #cfd5d1;">
 								    <tr class="odd gradeA">
-							        <th>ID</th>
-							        <th>First name</th>
-							        <th>Last name</th>
+							        <th style="text-align: center;">NÚMERO</th>
+							        <th></th>
+							        <th></th>
+											<th style="text-align: center;">SELECCIONA PARA RECARGAR</th>
 								    </tr>
 							    </thead>
 							    <tbody>
-						    		<tr style="border-bottom: solid #48c863;">
-							        <td>1</td>
-							        <td>Foo</td>
-							        <td>Bar</td>
-								    </tr>
-								    <tr style="border-bottom: solid #48c863;">
-							        <td>123</td>
-							        <td>Someone</td>
-							        <td>Youknow</td>
-								    </tr>
-								    <tr style="border-bottom: solid #48c863;">
-							        <td>987</td>
-							        <td>Iamout</td>
-							        <td>Ofinspiration</td>
+						    		<tr ng-repeat="frecuente in frecuentes" style="border-bottom: solid #cfd5d1;">
+							        <td>
+												<p style="text-align:center;">{{frecuente.frecuente.numero}}</p>
+												<p style="text-align:center;">{{frecuente.alias}}</p>
+											</td>
+							        <td>
+												<div class="pillar-30px" style="margin-left: 20%">
+													<img ng-click="eliminarFrecuente(frecuente.frecuente.numero)" src="images/icoEliminar.png" alt="">
+												</div>
+											</td>
+							        <td>
+												<div class="pillar-30px" style="margin-left: 20%">
+													<img ng-click="modificarFrecuente(frecuente)" src="images/icoEdit.png" alt="">
+												</div>
+											</td>
+											<td style="text-align: center">
+												<div class="pillar-30px" style="margin-left: 50%">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="">
+														<span></span>
+													</div>
+												</div>
+											</td>
 								    </tr>
 							    </tbody>
 								</table>

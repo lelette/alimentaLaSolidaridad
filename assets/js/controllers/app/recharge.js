@@ -6,8 +6,10 @@
 *****************************************************************************************/
 
 app.controller('GetContratoController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate',
-  function($rootScope,  $scope, $http, $state, Recharge,$translate) {
+  ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate', '$stateParams',
+  function($rootScope,  $scope, $http, $state, Recharge,$translate, $stateParams) {
+    //recibir parametros de homepage
+
 
     // Consulta de Paises Disponibles
       $http.get('/plataform/countries')
@@ -251,4 +253,19 @@ app.controller('ResultController',
       $state.go('app.page.recharge.get_contrato');
     }
 
+}]);
+
+
+app.controller('ReloadController',
+  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
+  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
+    $scope.datos={
+      cod: 'Pais',
+      contrato: ''
+    };
+    if (($stateParams.cod!='')&&($stateParams.contrato!='')){
+      console.log("$stateParams");
+     $scope.datos.cod = $stateParams.cod;
+     $scope.datos.contrato = $stateParams.contrato;
+   }
 }]);
