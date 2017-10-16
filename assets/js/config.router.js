@@ -28,7 +28,6 @@
      }
    }
  };
-
  // angular.module('app').run(function($http) {
  //   $http.get('csrfToken').success(function(data) {
  //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
