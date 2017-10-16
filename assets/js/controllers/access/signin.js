@@ -9,6 +9,10 @@ app.controller('SigninFormController',
   ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
   function($rootScope,  $scope, $http, $state, validarPassword, $translate) {
 
+  $rootScope.header = {}
+  $rootScope.header.icono = "images/icoInicio.png";
+  $rootScope.header.namePage = "Inicio de Sesion";
+
   $scope.user = {};
   $scope.authError = null;
 

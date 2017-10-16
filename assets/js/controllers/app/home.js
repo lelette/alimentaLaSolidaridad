@@ -5,25 +5,43 @@
 * @autor :: Marialette Argulles marguelles@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('HomeController',
-  ['$rootScope', '$scope', '$http', '$state', '$translate', 'User', '$timeout',
-  function($rootScope, $scope, $http, $state, $translate, User, $timeout) {
-    $scope.datos= {
+app.controller('HomeCtrl',
+  ['$rootScope', '$scope', '$http', '$state', '$translate', 'User',
+  function($rootScope, $scope, $http, $state, $translate, User) {
+
+    $scope.datos  = {
       tdcAfiliadas: '',
       frecuentes: '',
-      recargas: '',
+      recargas: 'HOLA'
     };
-    $scope.count = 0;
-    $scope.auxCount = false;
+    /*
+    console.log('$rootScope.loader', $scope.loader);
+    console.log('$rootScope.cuerpo', $scope.cuerpo);
 
-    //*********************** CARGANDO EL CONTROLADOR ******************************
-    //Consultando cantidad de recargas exitosas del usuario
+    $http.pendingRequests.length = 0; // Reseteo las peticiones cero
+    $scope.conteoDePeticiones = 0;
+    $scope.loader = 'ocultar'; // Permite ocultar el loader cuando solo haya una peticion por finalizar
+    $scope.cuerpo = 'mostrar';
+    console.log('$rootScope.loader', $scope.loader);
+    console.log('$rootScope.cuerpo', $scope.cuerpo);
+    $scope.$watch("conteoDePeticiones",function(newValue,oldValue) {
+      // Se manejan X peticiones en http en este controlador
+      console.log('entre en el watch');
+      //if ($scope.conteoDePeticiones >= 0) {
+        $scope.loader = 'ocultar'; // Permite ocultar el loader cuando solo haya una peticion por finalizar
+        $scope.cuerpo = 'mostrar';
+      //}
+    });
+
+
+    /*
     $http.post('plataform/sale/getSalesAmount', {ejecutor: User.id})
     .then(function(res){
       $scope.datos.recargas = res.data.ventas;
     }, function(error){
       $scope.datos.recargas = 0;
     });
+    */
 
     //Consultando cantidad de frecuentes del usuario
     $http.get('plataform/user/searchFrecuente')

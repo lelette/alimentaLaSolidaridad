@@ -28,11 +28,13 @@
      }
    }
  };
- // angular.module('app').run(function($http) {
- //   $http.get('csrfToken').success(function(data) {
- //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
- //   });
- // });
+/*
+ angular.module('app').run(function($http) {
+   $http.get('csrfToken').success(function(data) {
+     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+   });
+ });
+ */
 
 angular.module('app')
   .run(
@@ -54,7 +56,7 @@ angular.module('app')
         var layout = "templates/app.html";
 
 				$urlRouterProvider.when('/', '/access/signin');
-        $urlRouterProvider.otherwise('/app/access/404');
+        $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
           // session autenticada estandar
@@ -67,11 +69,13 @@ angular.module('app')
               url: '/page',
               template: '<div ui-view class="fade-in-down"></div>',
               resolve: load([
+                // para usar toaster (mensajes asincronos)
+                'toaster',
                 'js/services/User.js',
                 'js/controllers/app/global.js',
                 'js/directives/val-input.js',
                 'js/controllers/app/header.js',
-                'js/controllers/app/home.js'
+                'js/controllers/app/home.js',
               ])
           })
           // .state('app.page.index', {
@@ -166,8 +170,8 @@ angular.module('app')
             url: '/home',
             templateUrl: 'templates/app/home/home.html',
             resolve: load([
-
-              ])
+              'js/controllers/app/home.js'
+            ])
           })
           //***************** FIN DE HOME *************************************
           // perfil #############################################
