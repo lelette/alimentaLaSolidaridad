@@ -26,17 +26,6 @@
   text-align: justify;
 }
 
-body {
-	height: 100%;
-}
-
-body > * {
-	height: 100%;
-}
-body > * > * {
-	height: 100%;
-}
-
 .app-content {
 	height: 100%;
 }

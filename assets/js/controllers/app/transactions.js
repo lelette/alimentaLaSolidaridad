@@ -26,10 +26,10 @@ app.controller('movController',
       if ( ($scope.techo && ($scope.currentPage >= $scope.techo) ) || page == 0) {
         $scope.msjmov = true;
         $scope.tablemov = false;
-        return ;
+        return;
       };
 
-      $http.get('plataform/sale/getTransactions?page='+page+'&limit='+$scope.pageSize)
+      $http.get('plataform/sale/getTransactions?page='+page+'&limit=10')
       .then(function(res){
         console.log('res.data', res.data);
         if (res.data.sales.length == 0 && (page) > 1) {
@@ -48,7 +48,9 @@ app.controller('movController',
           });
         };
       }, function(res){
-        console.log(res.data);
+        console.log('res.data',res.data);
+        $scope.msjmov = false;$scope.tablemov = true;
+        $scope.$emit('$errorAjax',res.data);
       });
     }
 
