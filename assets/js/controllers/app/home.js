@@ -33,6 +33,13 @@ app.controller('HomeController',
       $scope.datos.frecuentes = 0;
     });
 
+    //Consultando cantidad de TDC afiliadas del usuario en Stripe
+    $http.get('platform/stripe/getCards')
+    .then(function(res){
+      $scope.datos.tdcAfiliadas = res.data.length;
+    }, function(error){
+      $scope.datos.tdcAfiliadas = 0;
+    })
     //************************ FIN DE CARGA DE CONTROLADOR **************************
 
 
