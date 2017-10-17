@@ -4,6 +4,11 @@
 			width: 100%;
 			display: flex;
 		}
+		.line-101{
+			width: 100%;
+			display: grid;
+			justify-content: center;
+		}
 	/* Fila global */
 	/* Columna automatica */
 		.pillar-auto{

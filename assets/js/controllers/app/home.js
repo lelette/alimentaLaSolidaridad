@@ -12,7 +12,7 @@ app.controller('HomeCtrl',
     $scope.datos  = {
       tdcAfiliadas: '',
       frecuentes: '',
-      recargas: 'HOLA'
+      recargas: '0'
     };
     /*
     console.log('$rootScope.loader', $scope.loader);
@@ -32,16 +32,16 @@ app.controller('HomeCtrl',
         $scope.cuerpo = 'mostrar';
       //}
     });
+*/
 
 
-    /*
     $http.post('plataform/sale/getSalesAmount', {ejecutor: User.id})
     .then(function(res){
       $scope.datos.recargas = res.data.ventas;
     }, function(error){
       $scope.datos.recargas = 0;
     });
-    */
+
 
     //Consultando cantidad de frecuentes del usuario
     $http.get('plataform/user/searchFrecuente')
