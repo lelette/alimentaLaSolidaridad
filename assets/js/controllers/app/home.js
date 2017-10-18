@@ -14,6 +14,52 @@ app.controller('HomeCtrl',
       frecuentes: '',
       recargas: 'HOLA'
     };
+
+    var primeAppVar = {}
+    primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
+    primeAppVar.selectNeeruOpen = $('.option-neeru');
+    primeAppVar.window = $(window);
+    $scope.showCountry = false;
+
+    $http.get('plataform/countries').then(function(response) {
+      $scope.countries = response.data.paises;
+      $scope.$emit('$resetAjax');
+    }, function(res) {
+      $scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);
+    });
+
+
+    /*
+    primeAppVar.window.click(function(e){
+      console.log('e', e);
+        console.log("primeAppVar.optionsNeeruSelectBox.css('display')s", primeAppVar.optionsNeeruSelectBox.css('display'));
+      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'block') {
+        primeAppVar.optionsNeeruSelectBox.css('display','none');
+        primeAppVar.selectNeeruOpen.css('display','none');
+      }
+    });
+    */
+
+    $scope.countrySelected = function (id, code, url) {
+      primeAppVar.optionsNeeruSelectBox.css('display','none');
+      primeAppVar.selectNeeruOpen.css('display','none');
+      $scope.showCountry = true;
+      $scope.pais = {
+        url: 'images/banderas/Venezuela.png',
+        ext: '+'+code
+      }
+    }
+
+    $scope.abrirSelectCountry = function () {
+      console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
+      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
+        primeAppVar.optionsNeeruSelectBox.css('display','block');
+        primeAppVar.selectNeeruOpen.css('display','block');
+      }
+    }
+
+
     /*
     console.log('$rootScope.loader', $scope.loader);
     console.log('$rootScope.cuerpo', $scope.cuerpo);
