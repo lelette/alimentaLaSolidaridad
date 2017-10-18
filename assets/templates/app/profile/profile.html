@@ -3,11 +3,11 @@
         <div id="pwdChange" ng-if="changePwd" class="pad20">
             <p class="pad20">Introduce tu nueva contraseña</p>
             <input type="password" name="newPwd" class="pad5" value="" />
-            <input type="password" name="newPwdRptd" class="pad5" value="" />
+            <input type="password" name="newPwdRptd" class="pad5" value="" onchange=""/>  <!-- Ask Chourio for .js to code -->
+            <p ng-model="pwdSecurity">Seguridad: media</p>
             <button class="btn btn-green-on">Aceptar</button>
         </div>
     </div>
-    <div class="leftBorder"></div>
     <div class="rightSpace">
         <div id="profile">
             <div class="pad20"><a href="#"><img src="images/a3.jpg"></a></div>
