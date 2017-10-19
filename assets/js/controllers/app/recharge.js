@@ -261,6 +261,39 @@ app.controller('ReloadController',
      $scope.datos.contrato = $stateParams.contrato;
    }
 
+
+   var primeAppVar = {}
+   primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
+   primeAppVar.selectNeeruOpen = $('.option-neeru');
+   primeAppVar.window = $(window);
+   $scope.showCountry = false;
+
+   $http.get('plataform/countries').then(function(response) {
+     $scope.countries = response.data.paises;
+     $scope.$emit('$resetAjax');
+   }, function(res) {
+     $scope.$emit('$resetAjax');
+     $scope.$emit('$errorAjax',res.data);
+   });
+
+   $scope.countrySelected = function (id, code, url) {
+     primeAppVar.optionsNeeruSelectBox.css('display','none');
+     primeAppVar.selectNeeruOpen.css('display','none');
+     $scope.showCountry = true;
+     $scope.pais = {
+       url: 'images/banderas/Venezuela.png',
+       ext: '+'+code
+     }
+   }
+
+   $scope.abrirSelectCountry = function () {
+     console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
+     if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
+       primeAppVar.optionsNeeruSelectBox.css('display','block');
+       primeAppVar.selectNeeruOpen.css('display','block');
+     }
+   }
+
    $http.post('plataform/offers',{
          "phone": "584263885330",
          "delivered_amount": true,
@@ -272,6 +305,9 @@ app.controller('ReloadController',
    }, function(res){
      console.log(res);
    });
+
+
+
 
 
 
