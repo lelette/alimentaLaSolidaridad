@@ -10,36 +10,6 @@ app.controller('GetContratoController',
   function($rootScope,  $scope, $http, $state, Recharge,$translate, $stateParams) {
     //recibir parametros de homepage
 
-
-    // Consulta de Paises Disponibles
-      $http.get('/plataform/countries')
-      .then(function(res){
-        $scope.paises = res.data;
-        console.log('Paises', $scope.paises);
-        //orgOfertas($scope.ofertas);
-      }, function(res){
-        console.log(res);
-      });
-    ////////////////////////////////
-
-    $scope.offers = function () {
-      // Consulta las Ofertas Disponibles para un telefono
-        $http.post('/plataform/offers', {
-          phone:$scope.phone,
-          delivered_amount: true, // boolean
-          fee: true // boolean
-        })
-        .then(function(res){
-          $scope.ofertas = res.data;
-          console.log('Ofertas', $scope.ofertas);
-          //orgOfertas($scope.ofertas);
-        }, function(res){
-          console.log(res);
-        });
-      ////////////////////////////////
-    }
-
-
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
         $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
@@ -287,7 +257,6 @@ app.controller('ReloadController',
    }
 
    $scope.abrirSelectCountry = function () {
-     console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
        primeAppVar.optionsNeeruSelectBox.css('display','block');
        primeAppVar.selectNeeruOpen.css('display','block');
@@ -301,14 +270,8 @@ app.controller('ReloadController',
     })
    .then(function(res){
      $scope.ofertas = res.data;
-     console.log('$scope.ofertas', $scope.ofertas);
    }, function(res){
      console.log(res);
    });
-
-
-
-
-
 
 }]);
