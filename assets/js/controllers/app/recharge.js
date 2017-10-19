@@ -57,14 +57,6 @@ app.controller('GetContratoController',
     $scope.ofertas = [];
     $scope.recharge = {};
 
-    $http.get('plataform/offer/')
-    .then(function(res){
-      $scope.ofertas = res.data;
-      orgOfertas($scope.ofertas);
-    }, function(res){
-      console.log(res);
-    });
-
     $scope.porPais = {};
 
     function orgOfertas(ofertas){
@@ -268,4 +260,19 @@ app.controller('ReloadController',
      $scope.datos.cod = $stateParams.cod;
      $scope.datos.contrato = $stateParams.contrato;
    }
+
+   $http.post('plataform/offers',{
+         "phone": "584263885330",
+         "delivered_amount": true,
+         "fee": true
+    })
+   .then(function(res){
+     $scope.ofertas = res.data;
+     console.log('$scope.ofertas', $scope.ofertas);
+   }, function(res){
+     console.log(res);
+   });
+
+
+
 }]);
