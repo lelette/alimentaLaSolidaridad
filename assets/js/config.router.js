@@ -121,13 +121,15 @@ angular.module('app')
           })
           // fin recharge #######################################
 
+          // State para tarjetas afiliadas #########################
           .state('app.page.tdc_afiliadas', {
             url: '/tdc_afiliadas',
             templateUrl: 'templates/app/recharge/tdc_afiliadas.html',
             resolve: load([
-              'js/controllers/tdc_afiliadas/tdcController.js'
+              'js/controllers/app/tdcController.js'
             ]),
           })
+          // #######################################################
 
           // transacciones ######################################
           .state('app.page.transactions', {
