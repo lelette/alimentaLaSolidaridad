@@ -7,6 +7,7 @@
   primeAppVar.internalModalBox = $('.internal-modal-box');
   primeAppVar.window = $(window);
   primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
+  primeAppVar.selectNeeruOpen = $('.option-neeru');
 /* variables de selectores */
 
 /* Apertura del modal */
@@ -45,7 +46,7 @@
     */
     primeAppVar.window.keyup(function(e) {
       if (primeAppVar.customModalBox.css('display') == 'flex') {
-        if (e.keyCode == 27) { 
+        if (e.keyCode == 27) {
           primeAppVar.modalClose();
         }
       }
@@ -66,15 +67,17 @@
 /* Abrir el select de neeru */
   primeAppVar.openOptionBox = function(){
     if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
-      primeAppVar.optionsNeeruSelectBox.css('display','block')
-      primeAppVar.selectNeeruOpen = true;
+      primeAppVar.optionsNeeruSelectBox.css('display','block');
+      primeAppVar.selectNeeruOpen.css('display','block');
+      //primeAppVar.selectNeeruOpen = true;
     }
-  }   
+  }
 /* Abrir el select de neeru */
 
 /* Cerrar el select de neeru */
   primeAppVar.closeOptionBox = function(){
-    primeAppVar.optionsNeeruSelectBox.removeAttr('style')
-    primeAppVar.selectNeeruOpen = false;
+    primeAppVar.optionsNeeruSelectBox.removeAttr('style');
+    primeAppVar.selectNeeruOpen.remove('style');
+    //primeAppVar.selectNeeruOpen = false;
   }
 /* Cerrar el select de neeru */

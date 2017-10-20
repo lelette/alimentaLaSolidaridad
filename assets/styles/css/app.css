@@ -1,5 +1,5 @@
 .button-facebook {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: neeru;
   letter-spacing: .25px;
   max-width: 272px;
   min-width: initial;
@@ -87,8 +87,28 @@
 	margin-right: 5pc;
 	width: 100%;
 	justify-content: space-between;
-
 	display: flex;
+}
+.access {
+	width: 100%;
+	justify-content: center;
+}
+.access-signup {
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	margin-top: 15px;
+	margin-bottom: 8px;
+}
+.access-container {
+	width: 100%;
+	justify-content: center;
+	margin-top: 2.5pc;
+}
+.recaptcha {
+	justify-content: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 	}
 /* Boxes */
@@ -102,6 +122,15 @@
 	}
 	.btn-green-on{
 		background-color: #0DB731;
+	}
+	.btn-green{
+		background-color: #0DB731;
+		width: 40%;
+		margin-left: 75px;
+	}
+	.btn-green-uno{
+		background-color: #0DB731;
+		width: 35%;
 	}
 	.btn-off,
 	.btn-gray-on{
@@ -207,6 +236,11 @@
 			font-weight: 300;
 			font-size: 1.5pc;
 	}
+	.access p{
+			color: white;
+			font-weight: 300;
+			font-size: 1.7pc;
+	}
 	.btn-neeru p{
 		text-transform: uppercase;
 		margin-left: 0.5pc;
@@ -253,6 +287,18 @@
 		width: 100%;
     border: none;
     padding: 8px 0.35pc;
+    outline: none;
+    font-family: neeru;
+    font-size: 1em;
+    border-bottom: 1.5px solid #CFD5D1;
+    transition: .5s;
+	}
+	input[data-hide-3]{
+		width: 100%;
+    border: none;
+    padding: 8px 0.35pc;
+		margin-bottom: 10px;
+		margin-top: 6px;
     outline: none;
     font-family: neeru;
     font-size: 1em;
@@ -1012,15 +1058,16 @@
 
 
 .button-facebook {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: neeru;
   letter-spacing: .25px;
   max-width: 272px;
   min-width: initial;
-  width: auto;
-  font-size: 16px;
+  width: 100%;
+  font-size: small;
   height: 40px;
   background-color: #4267b2 !important;
   border-color: #4267b2 !important;
+	justify-content: center;
     line-height: 1.28;
     display: inline-flex;
 }
@@ -1028,6 +1075,32 @@
 .button-facebook > span {
     background-color: white;
     color: #4267b2;
+    width: 20px;
+    height: 20px;
+    font-size: larger;
+    font: normal normal normal 20px/1.2 FontAwesome;
+    padding-left: 2px;
+    font-size: 21px;
+}
+
+.button-google {
+    font-family: neeru;
+  letter-spacing: .25px;
+  max-width: 272px;
+  min-width: initial;
+  width: 100%;
+  font-size: small;
+  height: 40px;
+  background-color:red !important;
+  border-color: red !important;
+    line-height: 1.28;
+	justify-content: center;
+    display: inline-flex;
+}
+
+.button-google > span {
+    background-color: white;
+    color: red;
     width: 20px;
     height: 20px;
     font-size: larger;
@@ -1168,6 +1241,24 @@
 	.plans-box{
 		justify-content: space-around;
 		padding: 1pc 0pc;
+	}
+	.panel-green{
+		background: #48C863;
+		border: 1px solid #48C863;
+		border-radius: .5rem;
+		box-sizing: border-box;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 1pc 2.5pc;
+	}
+	.panel-red{
+		background: red;
+		border: 1px solid red;
+		border-radius: .5rem;
+		box-sizing: border-box;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 1pc 2.5pc;
 	}
 	.reload-master-box > section:last-child > div:last-child{
     border: 1.5px solid #E5EBE6;

@@ -8,10 +8,7 @@
 	font-weight: bold;
 }
 
-/*tamano de contenido access*/
-.access-content{
 
-}
 
 /* *** estilo para los mensajes de error de inputs *** */
 .error-input-msj {
@@ -24,17 +21,6 @@
   width: 100%;
   font-size: 0.9em;
   text-align: justify;
-}
-
-body {
-	height: 100%;
-}
-
-body > * {
-	height: 100%;
-}
-body > * > * {
-	height: 100%;
 }
 
 .app-content {

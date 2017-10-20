@@ -23,9 +23,52 @@
 	font-size: 21px;
 }
 
+/* Loader */
+
+#loaderBody {
+  margin: auto !important;
+  position: static;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 14px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 14px solid #48C863;
+  /*border-bottom: 14px solid #3498db;*/
+  width: 200px;
+  height: 200px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mostrarLoader {
+  display: block !important;
+}
+
+.ocultarLoader {
+  display: none !important;
+}
+
+/* Loader */
+
 /* Position */
 .center {
 	margin: 0 auto;
+}
+.w-100 {
 	width: 100%;
 }
 /* Position */
@@ -34,7 +77,6 @@
 	body, html{
 		margin: 0px;
 		z-index: 0;
-		height: 100%;
 		width: 100%;
 	}
 	.tab-box{
@@ -290,6 +332,7 @@
     border-radius: .5rem;
     max-height: 300px;
     display: none;
+		overflow: auto;
     background: white;
     z-index: 10;
 	}

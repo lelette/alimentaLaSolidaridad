@@ -9,6 +9,10 @@ app.controller('ForgotpwdController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
   function($rootScope,  $scope, $http, $state, $translate) {
 
+  $rootScope.header = {}
+  $rootScope.header.icono = "images/icoCVV.png";
+  $rootScope.header.namePage = "Recuperación de Contraseña";
+
   $scope.authError = undefined;
   $scope.user = {};
   /****************************************************
@@ -18,27 +22,15 @@ app.controller('ForgotpwdController',
   *****************************************************/
   $scope.forgotpwd = function() {
     $scope.authError = null;
-
-
-    var recaptcha = $scope.$getValRecaptcha();
-
-    if (!recaptcha) {
-      $scope.authError = 'err.recaptcha.required';
-      return false;
-    };
-
     var datos = {
-      email: $scope.user.email,
-      recaptcha: recaptcha
+      email: $scope.user.email
     };
 
     $http.post('plataform/forgotpwd/generate', datos)
     .then(function(response) {
-        $state.go('access.successforgotpwd');
+        $state.go('access.applyForgotPwd');
     }, function(res) {
-
       $scope.authError = res.data.error.msjUser;
-
     });
   };
 
@@ -47,7 +39,9 @@ app.controller('ForgotpwdController',
 app.controller('applyFPController',
   ['$rootScope', '$scope', '$http', '$state', '$translate', '$location', 'validarPassword',
   function($rootScope,  $scope, $http, $state, $translate, $location, validarPassword) {
-
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoCVV.png";
+    $rootScope.header.namePage = "Cambiar Contraseña";
 /*****************************************************
   * Validaciond e password dinamica                    *
   *****************************************************/
@@ -166,3 +160,16 @@ app.controller('applyFPController',
   };
 
 }]);
+
+app.controller('SuccessController',
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
+
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoCVV.png";
+    $rootScope.header.namePage = "Cambiar Contraseña";
+
+    $scope.redirect = function () {
+        $state.go('access.signin');
+    }
+  }]);
