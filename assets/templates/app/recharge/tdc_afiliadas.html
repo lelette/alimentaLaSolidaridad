@@ -3,7 +3,7 @@
     <section>
       <div class="dynamic-content-box">
 
-        <div ng-show="msjmov" class="empty-activity-box" style="margin-top:120px;">
+        <div ng-show="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
   				<div class="line-100">
   					<img src="../../images/carita4.png">
   					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
@@ -13,21 +13,16 @@
   				</div>
     		</div>
 
-        <div ng-show="!msjmov" class="container" style="width: 100%; margin-top: 120px;">
-          <div class="pillar-30p member-card">
-            <div class="pillar-30px">
-              <div class="neeru-checkbox-1">
-                <input type="radio" name="tdc-member">
-                <span></span>
-              </div>
+        <div ng-show="cards.length != 0" class="pillar-15p member-card" style="margin-top:120px;">
+          <div class="pillar-100p">
+            <div class="line-100">
+              <p>**** **** **** 5544</p>
             </div>
-            <div class="pillar-100p">
-              <div class="line-100">
-                <p>**** **** **** 5544</p>
-              </div>
-              <div class="line-100">
-                <p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-              </div>
+            <div class="line-100">
+              <p class="p-up p-gray p-500 p-small">Exp 2022</p>
+            </div>
+            <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
+              <img src="../../images/visa.png">
             </div>
           </div>
         </div>
@@ -35,20 +30,20 @@
       </div>
     </section>
     <section>
-      <div class="frequent-add">
+      <div class="frequent-add" style="margin-right:40px">
         <form>
           <div class="line-100">
             <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry">
             </div>&nbsp;&nbsp;
             <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.secondEntry">
             </div>&nbsp;&nbsp;
             <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.thirdEntry">
             </div>&nbsp;&nbsp;
             <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.fourthEntry">
             </div>&nbsp;&nbsp;
             <div class="pillar-70px" style="justify-content:center; align-items: center;">
               <img src="../../images/visa.png">
@@ -61,7 +56,7 @@
                 <img src="../../images/icoVence.png">
               </div>
               <div class="pillar-200p">
-                <input type="text" name="" data-mode-1 placeholder="MM / AAAA">
+                <input type="text" name="" data-mode-1 placeholder="MM / AAAA" ng-model="fullCard.cardExpiry" maxlength="7">
               </div>
             </div>
 
@@ -71,16 +66,26 @@
               </div>
               <p class="p-gray">CVV</p>
               <div class="pillar-50p">
-                <input maxlength="3" type="password" data-mode-1>
+                <input maxlength="3" type="password" data-mode-1 ng-model="card.cvc">
               </div>
             </div>
           </div>
         </form><br>
         <div class="line-100">
-            <input type="text" data-hide-2 placeholder="Nombre del titular">
-        </div><br><br>
+            <input type="text" data-hide-2 placeholder="Nombre del titular" ng-model="card.name">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Código postal" ng-model="card.address_zip">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
+        </div>
+        <br><br>
         <div style="float: right;">
-          <button data-standard class="btn-green-on" style="display: flex">
+          <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()">
             <img src="images/icoTDCAfiliada.png">
             <p style="margin-left: 10px;">Añadir tarjeta</p>
           </button>
