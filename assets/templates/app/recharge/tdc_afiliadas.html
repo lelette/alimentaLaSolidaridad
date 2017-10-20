@@ -1,21 +1,94 @@
-<main onload="primeAppVar.init()" ng-controller="tdcCtrl">
+<div class="dynamic-content-box" onload="primeAppVar.init()" ng-controller="tdcCtrl" style="margin-top: 20px; justify-content: space-between; height: 100%">
+  <div class="frequent-master-box">
+    <section>
+      <div class="dynamic-content-box">
 
-  <!-- ##### Box que contiene la informacion si no posee tarjetas afiliadas ########-->
-  <div ng-if="msjmov" class="dynamic-content-box">
-      <div class="empty-activity-box" style="margin-top:120px">
-          <div class="line-100">
-              <img src="images/carita4.png">
-              <p class="p-green p-300 p-5">No posees tarjetas registradas ...</p>
+        <div ng-show="msjmov" class="empty-activity-box" style="margin-top:120px;">
+  				<div class="line-100">
+  					<img src="../../images/carita4.png">
+  					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
+  				</div>
+  				<div class="line-100">
+  					<p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
+  				</div>
+    		</div>
+
+        <div ng-show="!msjmov" class="container" style="width: 100%; margin-top: 120px;">
+          <div class="pillar-30p member-card">
+            <div class="pillar-30px">
+              <div class="neeru-checkbox-1">
+                <input type="radio" name="tdc-member">
+                <span></span>
+              </div>
+            </div>
+            <div class="pillar-100p">
+              <div class="line-100">
+                <p>**** **** **** 5544</p>
+              </div>
+              <div class="line-100">
+                <p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
+              </div>
+            </div>
           </div>
-          <div class="line-100">
-              <p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
-          </div>
+        </div>
+
       </div>
+    </section>
+    <section>
+      <div class="frequent-add">
+        <form>
+          <div class="line-100">
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-70px" style="justify-content:center; align-items: center;">
+              <img src="../../images/visa.png">
+            </div>
+          </div><br>
+
+          <div class="line-100">
+            <div class="pillar-50p" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
+              <div class="pillar-50px">
+                <img src="../../images/icoVence.png">
+              </div>
+              <div class="pillar-200p">
+                <input type="text" name="" data-mode-1 placeholder="MM / AAAA">
+              </div>
+            </div>
+
+            <div class="pillar-50p aux-6-R" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
+              <div class="pillar-50px" style="justify-content:space-around;">
+                <img src="../../images/icoCVV.png">
+              </div>
+              <p class="p-gray">CVV</p>
+              <div class="pillar-50p">
+                <input maxlength="3" type="password" data-mode-1>
+              </div>
+            </div>
+          </div>
+        </form><br>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Nombre del titular">
+        </div><br><br>
+        <div style="float: right;">
+          <button data-standard class="btn-green-on" style="display: flex">
+            <img src="images/icoTDCAfiliada.png">
+            <p style="margin-left: 10px;">Añadir tarjeta</p>
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <!-- ##### Box que contiene la informacion si no posee tarjetas afiliadas ########-->
-
-</main>
+</div>
 <script src="js/ui-load.js"></script>
 <script src="js/ui-jp.config.js"></script>
 <script src="js/ui-jp.js"></script>
