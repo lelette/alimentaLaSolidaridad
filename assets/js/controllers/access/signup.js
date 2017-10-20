@@ -123,3 +123,28 @@ app.controller('SignupFormController',
   };
 
 }]);
+
+
+
+
+
+
+
+
+
+
+
+
+app.controller('SuccessController',
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
+
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoMiPerfil.png";
+    $rootScope.header.namePage = "Registro";
+
+    $scope.redirect = function () {
+        $state.go('access.signin');
+    }
+
+  }]);
