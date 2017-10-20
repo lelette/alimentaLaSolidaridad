@@ -17,26 +17,26 @@
 							<div class="line-100 aux-3-R">
 								<div class="pillar-45p">
 									<div class="pillar-30p">
-										<div class="neeru-select" onclick="primeAppVar.openOptionBox()" >
-											<div class="country-selected" onclick="primeAppVar.closeOptionBox()" name="datos.cod" ng-model="datos.cod">
-												<img src="images/icoSelectPais.png">
-												<p class="p-small">{{datos.cod}}</p>
-											</div>
-											<div class="options-neeru-select-box" >
-												<div class="option-neeru" data-country-code="+58">
-													<img src="images/banderas/Venezuela.png">
-													<p>+58</p>
-												</div>
-												<div class="option-neeru" data-country-code="+48">
-													<img src="images/banderas/Kyrgyzstan.png">
-													<p>+48</p>
-												</div>
-												<div class="option-neeru" data-country-code="+69">
-													<img src="images/banderas/United-States-of-America.png">
-													<p>+69</p>
-												</div>
-											</div>
-										</div>
+										<!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
+					          <div class="neeru-select" name="cod" ng-model="cod" >
+					            <div id="select" ng-click="abrirSelectCountry()" class="country-selected">
+					                <div ng-hide="showCountry">
+					                  <img src="images/icoSelectPais.png">
+					                  <p class="p-gray" style="font-size: 0.9em; color:black">Pais</p>
+					                </div>
+					                <div ng-show="showCountry" data-country-code="+58" >
+					                  <img src="{{pais.url}}" style="width:26%; display:inline;">
+					                  <p class="p-gray" style="font-size: 1.5em; color:black; display:inline;">{{pais.ext}}</p>
+					                </div>
+					            </div>
+					            <!-- quitar el ng-click cuando se implemente correctamente el combobox-->
+					            <div class="options-neeru-select-box" style="width:140%">
+					              <div ng-repeat="country in countries" ng-click="countrySelected(country.id,country.phone_code,country.url)" class="option-neeru" data-country-code="+58" >
+					                <img src="images/banderas/Venezuela.png">
+					                <p>{{'+'+country.phone_code}}</p>
+					              </div>
+					            </div>
+					          </div>
 									</div>
 									<div class="pillar-70p">
 										<input onblur="primeAppVar.validateInputPhone(this)" type="text" name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="Inserte Número" maxlength="10" minlength="10">
@@ -47,8 +47,9 @@
 									<p>Seleccionar Operadora</p>
 								</div>
 							</div>
-							<div class="pay-plans-box">
+							<div class="pay-plans-box" style="display:block">
 								<div class="line-100">
+									<!-- Promociones
 									<div class="line-100 promo-box">
 										<div class="pillar-45p promo">
 											<div class="pillar-30px">
@@ -165,8 +166,10 @@
 											</div>
 										</div>
 									</div>
+								-->
+								<!-- Ofertas -->
 									<div class="line-100 plans-box">
-										<div class="pillar-45p regular-plan">
+										<div ng-repeat="producto in ofertas.productos" class="pillar-45p regular-plan">
 											<div class="pillar-auto">
 												<div class="pillar-30px">
 													<div class="neeru-checkbox-1">
@@ -175,50 +178,7 @@
 													</div>
 												</div>
 												<div class="pillar-auto">
-													<p><span class="p-500">B/. 5 -</span> 5<span class="p-short p-300">USD</span></p>
-												</div>
-											</div>
-										</div>
-										<div class="pillar-45p popular-plan">
-											<div class="pillar-auto">
-												<div class="pillar-30px">
-													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="">
-														<span></span>
-													</div>
-												</div>
-												<div class="pillar-auto">
-													<p><span class="p-500">B/. 999 -</span> 999<span class="p-short p-300">USD</span></p>
-												</div>
-											</div>
-											<div class="pillar-auto">
-												<p class="p-up p-green p-600 p-tiny">Popular</p>
-												<img class="aux-img-1-R" src="images/icoPopular.png">
-											</div>
-										</div>
-										<div class="pillar-45p regular-plan">
-											<div class="pillar-auto">
-												<div class="pillar-30px">
-													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="">
-														<span></span>
-													</div>
-												</div>
-												<div class="pillar-auto">
-													<p><span class="p-500">B/. 20 -</span> 20<span class="p-short p-300">USD</span></p>
-												</div>
-											</div>
-										</div>
-										<div class="pillar-45p regular-plan">
-											<div class="pillar-auto">
-												<div class="pillar-30px">
-													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="">
-														<span></span>
-													</div>
-												</div>
-												<div class="pillar-auto">
-													<p><span class="p-500">B/. 30 -</span> 30<span class="p-short p-300">USD</span></p>
+													<p><span class="p-500">{{ofertas.moneda_local}}/. {{producto.price_local}} - </span> {{producto.price_unit}}<span class="p-short p-300">{{ofertas.moneda_detino}}</span></p>
 												</div>
 											</div>
 										</div>

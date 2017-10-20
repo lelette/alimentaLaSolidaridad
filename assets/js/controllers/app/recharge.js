@@ -10,36 +10,6 @@ app.controller('GetContratoController',
   function($rootScope,  $scope, $http, $state, Recharge,$translate, $stateParams) {
     //recibir parametros de homepage
 
-
-    // Consulta de Paises Disponibles
-      $http.get('/plataform/countries')
-      .then(function(res){
-        $scope.paises = res.data;
-        console.log('Paises', $scope.paises);
-        //orgOfertas($scope.ofertas);
-      }, function(res){
-        console.log(res);
-      });
-    ////////////////////////////////
-
-    $scope.offers = function () {
-      // Consulta las Ofertas Disponibles para un telefono
-        $http.post('/plataform/offers', {
-          phone:$scope.phone,
-          delivered_amount: true, // boolean
-          fee: true // boolean
-        })
-        .then(function(res){
-          $scope.ofertas = res.data;
-          console.log('Ofertas', $scope.ofertas);
-          //orgOfertas($scope.ofertas);
-        }, function(res){
-          console.log(res);
-        });
-      ////////////////////////////////
-    }
-
-
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
         $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
@@ -56,14 +26,6 @@ app.controller('GetContratoController',
 
     $scope.ofertas = [];
     $scope.recharge = {};
-
-    $http.get('plataform/offer/')
-    .then(function(res){
-      $scope.ofertas = res.data;
-      orgOfertas($scope.ofertas);
-    }, function(res){
-      console.log(res);
-    });
 
     $scope.porPais = {};
 
@@ -268,4 +230,48 @@ app.controller('ReloadController',
      $scope.datos.cod = $stateParams.cod;
      $scope.datos.contrato = $stateParams.contrato;
    }
+
+
+   var primeAppVar = {}
+   primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
+   primeAppVar.selectNeeruOpen = $('.option-neeru');
+   primeAppVar.window = $(window);
+   $scope.showCountry = false;
+
+   $http.get('plataform/countries').then(function(response) {
+     $scope.countries = response.data.paises;
+     $scope.$emit('$resetAjax');
+   }, function(res) {
+     $scope.$emit('$resetAjax');
+     $scope.$emit('$errorAjax',res.data);
+   });
+
+   $scope.countrySelected = function (id, code, url) {
+     primeAppVar.optionsNeeruSelectBox.css('display','none');
+     primeAppVar.selectNeeruOpen.css('display','none');
+     $scope.showCountry = true;
+     $scope.pais = {
+       url: 'images/banderas/Venezuela.png',
+       ext: '+'+code
+     }
+   }
+
+   $scope.abrirSelectCountry = function () {
+     if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
+       primeAppVar.optionsNeeruSelectBox.css('display','block');
+       primeAppVar.selectNeeruOpen.css('display','block');
+     }
+   }
+
+   $http.post('plataform/offers',{
+         "phone": "584263885330",
+         "delivered_amount": true,
+         "fee": true
+    })
+   .then(function(res){
+     $scope.ofertas = res.data;
+   }, function(res){
+     console.log(res);
+   });
+
 }]);
