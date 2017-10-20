@@ -64,7 +64,7 @@
             <!-- quitar el ng-click cuando se implemente correctamente el combobox-->
             <div class="options-neeru-select-box" style="width:140%">
               <div ng-repeat="country in countries" ng-click="countrySelected(country.id,country.phone_code,country.url)" class="option-neeru" data-country-code="+58" >
-                <img src="images/banderas/Venezuela.png">
+                <img src="images/banderas/{{country.name}}.png">
                 <p>{{'+'+country.phone_code}}</p>
               </div>
             </div>

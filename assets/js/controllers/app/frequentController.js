@@ -14,6 +14,45 @@ app.controller('FrequentController',
       alias: '',
       numero: ''
     };
+    $scope.auxNumero = '';
+
+    var primeAppVar = {}
+    primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
+    primeAppVar.selectNeeruOpen = $('.option-neeru');
+    primeAppVar.window = $(window);
+    $scope.showCountry = false;
+
+    $http.get('plataform/countries').then(function(response) {
+      $scope.countries = response.data.paises;
+      $scope.$emit('$resetAjax');
+    }, function(res) {
+      $scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);
+    });
+
+    $scope.countrySelected = function (country) {
+      primeAppVar.optionsNeeruSelectBox.css('display','none');
+      primeAppVar.selectNeeruOpen.css('display','none');
+      $scope.showCountry = true;
+      $scope.pais = {
+        url: 'images/banderas/'+country.name+'.png',
+        ext: '+'+country.phone_code
+      }
+    }
+
+    $scope.abrirSelectCountry = function () {
+      console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
+      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
+        primeAppVar.optionsNeeruSelectBox.css('display','block');
+        primeAppVar.selectNeeruOpen.css('display','block');
+      }
+    }
+
+    $scope.closeOptionBox = function(){
+      primeAppVar.optionsNeeruSelectBox.removeAttr('style')
+      primeAppVar.selectNeeruOpen = false;
+    }
+
 
     $scope.consultarFrecuentes = function () {
       $http.get('plataform/user/searchFrecuente')
@@ -28,6 +67,8 @@ app.controller('FrequentController',
 
 
     $scope.agregarFrecuentes = function () {
+      $scope.newFrequent.numero = $scope.pais.ext + $scope.auxNumero;
+      console.log($scope.newFrequent.numero);
       $http.post('plataform/user/addFrecuente', $scope.newFrequent)
       .then(function (response) {
         console.log('New Frequent', response.data);
