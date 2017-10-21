@@ -29,18 +29,6 @@ app.controller('HomeCtrl',
       $scope.$emit('$errorAjax',res.data);
     });
 
-
-    /*
-    primeAppVar.window.click(function(e){
-      console.log('e', e);
-        console.log("primeAppVar.optionsNeeruSelectBox.css('display')s", primeAppVar.optionsNeeruSelectBox.css('display'));
-      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'block') {
-        primeAppVar.optionsNeeruSelectBox.css('display','none');
-        primeAppVar.selectNeeruOpen.css('display','none');
-      }
-    });
-    */
-
     $scope.countrySelected = function (id, code, url) {
       primeAppVar.optionsNeeruSelectBox.css('display','none');
       primeAppVar.selectNeeruOpen.css('display','none');

@@ -128,6 +128,10 @@
 		width: 40%;
 		margin-left: 75px;
 	}
+	.btn-green-uno{
+		background-color: #0DB731;
+		width: 35%;
+	}
 	.btn-off,
 	.btn-gray-on{
 		background-color: #BAC2BC;
@@ -1237,6 +1241,24 @@
 	.plans-box{
 		justify-content: space-around;
 		padding: 1pc 0pc;
+	}
+	.panel-green{
+		background: #48C863;
+		border: 1px solid #48C863;
+		border-radius: .5rem;
+		box-sizing: border-box;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 1pc 2.5pc;
+	}
+	.panel-red{
+		background: red;
+		border: 1px solid red;
+		border-radius: .5rem;
+		box-sizing: border-box;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 1pc 2.5pc;
 	}
 	.reload-master-box > section:last-child > div:last-child{
     border: 1.5px solid #E5EBE6;
