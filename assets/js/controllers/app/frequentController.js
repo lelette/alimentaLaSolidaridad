@@ -9,17 +9,17 @@ app.controller('FrequentController',
   ['$rootScope', '$scope', '$http', '$state', '$translate', '$uibModal',
   function($rootScope,  $scope, $http, $state, $translate, $uibModal) {
 
+    // Variables fijas del Header
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoNumFrec.png";
+    $rootScope.header.namePage = "Números Frecuentes";
+
     $scope.frecuentes = [];
     $scope.newFrequent = {
       alias: '',
       numero: ''
     };
     $scope.auxNumero = '';
-
-    var primeAppVar = {}
-    primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
-    primeAppVar.selectNeeruOpen = $('.option-neeru');
-    primeAppVar.window = $(window);
     $scope.showCountry = false;
 
     $http.get('plataform/countries').then(function(response) {
@@ -31,27 +31,12 @@ app.controller('FrequentController',
     });
 
     $scope.countrySelected = function (country) {
-      primeAppVar.optionsNeeruSelectBox.css('display','none');
-      primeAppVar.selectNeeruOpen.css('display','none');
       $scope.showCountry = true;
       $scope.pais = {
         url: 'images/banderas/'+country.name+'.png',
         ext: '+'+country.phone_code
-      }
-    }
-
-    $scope.abrirSelectCountry = function () {
-      console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
-      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
-        primeAppVar.optionsNeeruSelectBox.css('display','block');
-        primeAppVar.selectNeeruOpen.css('display','block');
-      }
-    }
-
-    $scope.closeOptionBox = function(){
-      primeAppVar.optionsNeeruSelectBox.removeAttr('style')
-      primeAppVar.selectNeeruOpen = false;
-    }
+      };
+    };
 
 
     $scope.consultarFrecuentes = function () {
@@ -68,18 +53,46 @@ app.controller('FrequentController',
 
     $scope.agregarFrecuentes = function () {
       $scope.newFrequent.numero = $scope.pais.ext + $scope.auxNumero;
-      console.log($scope.newFrequent.numero);
-      $http.post('plataform/user/addFrecuente', $scope.newFrequent)
-      .then(function (response) {
-        console.log('New Frequent', response.data);
-        $scope.consultarFrecuentes();
-      },function (x) {
-        console.log(x.data);
-      })
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'templates/modals/modalAddFrequent.html',
+        controller: 'modalAddCtrl',
+        backdrop: 'static',
+        resolve: {
+          dataScope:function() {
+            return {
+              frecuente: {
+                numero: $scope.newFrequent.numero
+              }
+            }
+          }
+        }
+      });
+
+      modalInstance.result
+      .then(function (result) {
+        $scope.newFrequent.alias = result;
+        $http.post('plataform/user/addFrecuente', $scope.newFrequent)
+        .then(function (response) {
+
+          $scope.auxNumero = '';
+          $scope.showCountry = false;
+          $scope.pais = {
+            url: '',
+            ext: ''
+          };
+          $scope.form.phone.$dirty = false;
+          $scope.form.phone.$pristine = false;
+          $scope.consultarFrecuentes();
+        }, function (x) {
+          console.log(x.data);
+        });
+      }, function () {
+
+      });
     };
 
     $scope.eliminarFrecuente = function (frecuente) {
-      console.log(frecuente);
       $http.post('plataform/user/removeFrecuente', {numero: frecuente})
       .then(function (response) {
         console.log(response.data);
@@ -109,7 +122,6 @@ app.controller('FrequentController',
 
       modalInstance.result
       .then(function (result) {
-        console.log(result);
         $http.post('plataform/user/updateFrecuente', result)
         .then(function (response) {
 
@@ -127,6 +139,8 @@ app.controller('FrequentController',
     $scope.consultarFrecuentes();
 
 }]);
+
+
 app.controller('modalUpdateCtrl',[
 	'$scope',
   '$state',
@@ -139,6 +153,27 @@ app.controller('modalUpdateCtrl',[
 
 		$scope.confirmar = function() {
       $modalInstance.close($scope.datos);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+  }
+]);
+
+
+app.controller('modalAddCtrl',[
+	'$scope',
+  '$state',
+	'$modalInstance',
+	'$uibModal',
+	'dataScope',
+	'$http',
+	function($scope, $state, $modalInstance, $uibModal, dataScope, $http) {
+		$scope.datos = dataScope.frecuente;
+
+		$scope.confirmar = function() {
+      $modalInstance.close($scope.datos.alias);
 		};
 
 		$scope.cancel = function() {

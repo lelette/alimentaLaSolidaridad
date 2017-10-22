@@ -381,26 +381,22 @@
 	.neeru-select > .country-selected p{
 		margin-left: 0.35pc;
 	}
-	.options-neeru-select-box{
-		position: absolute;
-    width: 100%;
-    top: 100%;
-    border: 1.5px solid #CFD5D1;
-    border-radius: .5rem;
-    max-height: 300px;
-    display: none;
-    background: white;
-    z-index: 10;
-	}
+
 	.option-neeru{
     padding: 5px 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 	}
-	.options-neeru-select-box img{
-		width: 25px;
+
+	.options-neeru-open {
+		display: block !important;
 	}
+
+	.options-neeru-close {
+		display: none !important;
+	}
+
 	.option-neeru p{
 		margin-left: 1pc;
 	}
