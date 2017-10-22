@@ -6,7 +6,13 @@
 *****************************************************************************************/
 
 app.controller('FrequentController',
-  ['$rootScope', '$scope', '$http', '$state', '$translate', '$uibModal',
+  [
+    '$rootScope',
+    '$scope',
+    '$http',
+    '$state',
+    '$translate',
+    '$uibModal',
   function($rootScope,  $scope, $http, $state, $translate, $uibModal) {
 
     // Variables fijas del Header
