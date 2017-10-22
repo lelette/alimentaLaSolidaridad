@@ -264,9 +264,8 @@ app.controller('ReloadController',
    }
 
    $http.post('plataform/offers',{
-         "phone": "584263885330",
-         "delivered_amount": true,
-         "fee": true
+         "phone": "34912509849",//"5491127184499"
+         "currency": "EUR",
     })
    .then(function(res){
      $scope.ofertas = res.data;
