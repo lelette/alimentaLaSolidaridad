@@ -1,21 +1,124 @@
-<main onload="primeAppVar.init()" ng-controller="tdcCtrl">
+<div class="dynamic-content-box" onload="primeAppVar.init()" ng-controller="tdcCtrl" style="margin-top: 20px; justify-content: space-between; height: 100%">
+  <div class="frequent-master-box">
+    <section>
+      <div class="dynamic-content-box">
 
-  <!-- ##### Box que contiene la informacion si no posee tarjetas afiliadas ########-->
-  <div ng-if="msjmov" class="dynamic-content-box">
-      <div class="empty-activity-box" style="margin-top:120px">
-          <div class="line-100">
-              <img src="images/carita4.png">
-              <p class="p-green p-300 p-5">No posees tarjetas registradas ...</p>
+        <div ng-show="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+  				<div class="line-100">
+  					<img src="../../images/carita4.png">
+  					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
+  				</div>
+  				<div class="line-100">
+  					<p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
+  				</div>
+    		</div>
+
+        <div ng-show="cards.length != 0" class="pillar-16p member-card" style="margin-top:120px; margin-left:37px; width:185px">
+          <div class="pillar-100p">
+            <div class="line-100">
+              <p>**** **** **** 5544</p>
+            </div>
+            <div class="line-100">
+              <p class="p-up p-gray p-500 p-small">Exp 2022</p>
+            </div>
+            <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
+              <img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center;">
+              <span style="display: flex; justify-content: flex-end; position: relative; left: 165px;"><a><img src="../../images/icoEliminar.png"></a></span>
+            </div>
           </div>
-          <div class="line-100">
-              <p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
-          </div>
+        </div>
+
       </div>
+    </section>
+    <section>
+      <div class="frequent-add" style="margin-right:40px">
+        <form name="formTDC">
+          <div class="line-100">
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.secondEntry">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.thirdEntry">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-25p">
+              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.fourthEntry">
+            </div>&nbsp;&nbsp;
+            <div class="pillar-70px" style="justify-content:center; align-items: center;">
+              <img src="../../images/visa.png">
+            </div>
+          </div><br>
+
+          <div class="line-100">
+            <div class="pillar-50p" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
+              <div class="pillar-50px">
+                <img src="../../images/icoVence.png">
+              </div>
+              <div class="pillar-200p">
+                <input type="text" name="dateExp" data-mode-1 placeholder="MM/AAAA" ng-model="fullCard.cardExpiry" maxlength="7" numero required>
+              </div>
+            </div><br>
+            <!-- ERRORES EN CAMPO DE FECHA DE EXPIRACION -->
+            <!--<div class="text-center" ng-if="formTDC.dateExp.$dirty && (formTDC.dateExp.$invalid || formTDC.dateExp.$touched)">
+              <span ng-if="formTDC.dateExp.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.dateExp.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+            </div>-->
+            <!-- ERRORES EN CAMPO DE EXPIRACION -->
+
+            <div class="pillar-50p aux-6-R" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
+              <div class="pillar-50px" style="justify-content:space-around;">
+                <img src="../../images/icoCVV.png">
+              </div>
+              <p class="p-gray">CVV</p>
+              <div class="pillar-50p">
+                <input minlength="3" maxlength="3" type="password" name="cvv" data-mode-1 ng-model="card.cvc" required numero>
+              </div>
+            </div><br>
+            <!-- ERRORES EN CAMPO DE CVV -->
+            <!--<div class="text-center" ng-if="formTDC.dateExp.$dirty && (formTDC.dateExp.$invalid || formTDC.dateExp.$touched)">
+              <span ng-if="formTDC.cvv.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.cvv.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}}
+              </span>
+              <span ng-if="formTDC.cvv.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+            </div>-->
+            <!-- ERRORES EN CAMPO DE CVV-->
+
+          </div>
+        </form><br>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Nombre del titular" ng-model="card.name">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Código postal" ng-model="card.address_zip">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email">
+        </div>
+        <div class="line-100">
+            <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
+        </div>
+        <br><br>
+        <div style="float: right;">
+          <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()">
+            <img src="images/icoTDCAfiliada.png">
+            <p style="margin-left: 10px;">Añadir tarjeta</p>
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <!-- ##### Box que contiene la informacion si no posee tarjetas afiliadas ########-->
-
-</main>
+</div>
 <script src="js/ui-load.js"></script>
 <script src="js/ui-jp.config.js"></script>
 <script src="js/ui-jp.js"></script>
