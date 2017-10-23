@@ -13,7 +13,7 @@
   				</div>
     		</div>
 
-        <div ng-show="cards.length != 0" class="pillar-15p member-card" style="margin-top:120px;">
+        <div ng-show="cards.length != 0" class="pillar-16p member-card" style="margin-top:120px; margin-left:37px; width:185px">
           <div class="pillar-100p">
             <div class="line-100">
               <p>**** **** **** 5544</p>
@@ -22,7 +22,8 @@
               <p class="p-up p-gray p-500 p-small">Exp 2022</p>
             </div>
             <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
-              <img src="../../images/visa.png">
+              <img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center;">
+              <span style="display: flex; justify-content: flex-end; position: relative; left: 165px;"><a><img src="../../images/icoEliminar.png"></a></span>
             </div>
           </div>
         </div>
@@ -31,7 +32,7 @@
     </section>
     <section>
       <div class="frequent-add" style="margin-right:40px">
-        <form>
+        <form name="formTDC">
           <div class="line-100">
             <div class="pillar-25p">
               <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry">
@@ -56,9 +57,19 @@
                 <img src="../../images/icoVence.png">
               </div>
               <div class="pillar-200p">
-                <input type="text" name="" data-mode-1 placeholder="MM / AAAA" ng-model="fullCard.cardExpiry" maxlength="7">
+                <input type="text" name="dateExp" data-mode-1 placeholder="MM/AAAA" ng-model="fullCard.cardExpiry" maxlength="7" numero required>
               </div>
-            </div>
+            </div><br>
+            <!-- ERRORES EN CAMPO DE FECHA DE EXPIRACION -->
+            <!--<div class="text-center" ng-if="formTDC.dateExp.$dirty && (formTDC.dateExp.$invalid || formTDC.dateExp.$touched)">
+              <span ng-if="formTDC.dateExp.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.dateExp.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+            </div>-->
+            <!-- ERRORES EN CAMPO DE EXPIRACION -->
 
             <div class="pillar-50p aux-6-R" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
               <div class="pillar-50px" style="justify-content:space-around;">
@@ -66,9 +77,23 @@
               </div>
               <p class="p-gray">CVV</p>
               <div class="pillar-50p">
-                <input maxlength="3" type="password" data-mode-1 ng-model="card.cvc">
+                <input minlength="3" maxlength="3" type="password" name="cvv" data-mode-1 ng-model="card.cvc" required numero>
               </div>
-            </div>
+            </div><br>
+            <!-- ERRORES EN CAMPO DE CVV -->
+            <!--<div class="text-center" ng-if="formTDC.dateExp.$dirty && (formTDC.dateExp.$invalid || formTDC.dateExp.$touched)">
+              <span ng-if="formTDC.cvv.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.cvv.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}}
+              </span>
+              <span ng-if="formTDC.cvv.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+            </div>-->
+            <!-- ERRORES EN CAMPO DE CVV-->
+
           </div>
         </form><br>
         <div class="line-100">
