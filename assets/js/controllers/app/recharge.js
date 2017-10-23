@@ -230,15 +230,17 @@ app.controller('ReloadController',
      $scope.datos.cod = $stateParams.cod;
      $scope.datos.contrato = $stateParams.contrato;
    }
+   $scope.recharge = function () {
+     $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
+       $scope.recharge = response.data.recharge;
+       $scope.$emit('$resetAjax');
+     }, function(res) {
+       $scope.$emit('$resetAjax');
+       $scope.$emit('$errorAjax',res.data);
+     });
+   }
 
-   $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
-     $scope.recharge = response.data.recharge;
-     $scope.$emit('$resetAjax');
-   }, function(res) {
-     $scope.$emit('$resetAjax');
-     $scope.$emit('$errorAjax',res.data);
-   });
-sss
+
    var primeAppVar = {}
    primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
    primeAppVar.selectNeeruOpen = $('.option-neeru');
