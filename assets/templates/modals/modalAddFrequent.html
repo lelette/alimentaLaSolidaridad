@@ -1,0 +1,13 @@
+<div onload="primeAppVar.init()" class="modal-header">
+	<h3 class="modal-title" style="color: #989898;">Agregar número frecuente</h3>
+</div>
+<div class="modal-body text-center">
+	<form id="form" name="form" class="form-validation modal-body text-center" style="display: flex; justify-content: center;">
+    <label style="color: #989898; padding-right: inherit; margin-top: 5px;">Alias: </label>
+		<input class="form-control" stringExt data-mode-1 style="width: 45% !important;" type="text" name="alias" ng-model="datos.alias" placeholder="Alias...">
+	</form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-link" style="float: left; color: #989898;" ng-click="cancel()">Cancelar</button>
+	<button class="btn-green-on" data-standard ng-click="confirmar()" ng-disabled='form.$invalid'><p>Agregar</p></button>
+</div>

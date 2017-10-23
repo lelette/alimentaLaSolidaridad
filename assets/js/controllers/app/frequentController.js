@@ -6,14 +6,44 @@
 *****************************************************************************************/
 
 app.controller('FrequentController',
-  ['$rootScope', '$scope', '$http', '$state', '$translate', '$uibModal',
+  [
+    '$rootScope',
+    '$scope',
+    '$http',
+    '$state',
+    '$translate',
+    '$uibModal',
   function($rootScope,  $scope, $http, $state, $translate, $uibModal) {
+
+    // Variables fijas del Header
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoNumFrec.png";
+    $rootScope.header.namePage = "Números Frecuentes";
 
     $scope.frecuentes = [];
     $scope.newFrequent = {
       alias: '',
       numero: ''
     };
+    $scope.auxNumero = '';
+    $scope.showCountry = false;
+
+    $http.get('plataform/countries').then(function(response) {
+      $scope.countries = response.data.paises;
+      $scope.$emit('$resetAjax');
+    }, function(res) {
+      $scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);
+    });
+
+    $scope.countrySelected = function (country) {
+      $scope.showCountry = true;
+      $scope.pais = {
+        url: 'images/banderas/'+country.name+'.png',
+        ext: '+'+country.phone_code
+      };
+    };
+
 
     $scope.consultarFrecuentes = function () {
       $http.get('plataform/user/searchFrecuente')
@@ -28,17 +58,47 @@ app.controller('FrequentController',
 
 
     $scope.agregarFrecuentes = function () {
-      $http.post('plataform/user/addFrecuente', $scope.newFrequent)
-      .then(function (response) {
-        console.log('New Frequent', response.data);
-        $scope.consultarFrecuentes();
-      },function (x) {
-        console.log(x.data);
-      })
+      $scope.newFrequent.numero = $scope.pais.ext + $scope.auxNumero;
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'templates/modals/modalAddFrequent.html',
+        controller: 'modalAddCtrl',
+        backdrop: 'static',
+        resolve: {
+          dataScope:function() {
+            return {
+              frecuente: {
+                numero: $scope.newFrequent.numero
+              }
+            }
+          }
+        }
+      });
+
+      modalInstance.result
+      .then(function (result) {
+        $scope.newFrequent.alias = result;
+        $http.post('plataform/user/addFrecuente', $scope.newFrequent)
+        .then(function (response) {
+
+          $scope.auxNumero = '';
+          $scope.showCountry = false;
+          $scope.pais = {
+            url: '',
+            ext: ''
+          };
+          $scope.form.phone.$dirty = false;
+          $scope.form.phone.$pristine = false;
+          $scope.consultarFrecuentes();
+        }, function (x) {
+          console.log(x.data);
+        });
+      }, function () {
+
+      });
     };
 
     $scope.eliminarFrecuente = function (frecuente) {
-      console.log(frecuente);
       $http.post('plataform/user/removeFrecuente', {numero: frecuente})
       .then(function (response) {
         console.log(response.data);
@@ -68,7 +128,6 @@ app.controller('FrequentController',
 
       modalInstance.result
       .then(function (result) {
-        console.log(result);
         $http.post('plataform/user/updateFrecuente', result)
         .then(function (response) {
 
@@ -86,6 +145,8 @@ app.controller('FrequentController',
     $scope.consultarFrecuentes();
 
 }]);
+
+
 app.controller('modalUpdateCtrl',[
 	'$scope',
   '$state',
@@ -98,6 +159,27 @@ app.controller('modalUpdateCtrl',[
 
 		$scope.confirmar = function() {
       $modalInstance.close($scope.datos);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+  }
+]);
+
+
+app.controller('modalAddCtrl',[
+	'$scope',
+  '$state',
+	'$modalInstance',
+	'$uibModal',
+	'dataScope',
+	'$http',
+	function($scope, $state, $modalInstance, $uibModal, dataScope, $http) {
+		$scope.datos = dataScope.frecuente;
+
+		$scope.confirmar = function() {
+      $modalInstance.close($scope.datos.alias);
 		};
 
 		$scope.cancel = function() {

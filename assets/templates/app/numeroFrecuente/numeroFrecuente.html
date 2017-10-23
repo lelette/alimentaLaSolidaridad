@@ -54,28 +54,40 @@
           	</div>
 				</section>
 				<section>
-          <div class="frequent-add">
+          <form id="form" name="form" class="form-validation frequent-add" autocomplete="off">
             <div class="pillar-30p" style="padding-bottom: 10px; width: 100%">
-              <div class="neeru-select" style="width: 25%; height: 38px;" onclick="primeAppVar.openOptionBox()">
-                <div class="country-selected" onclick="primeAppVar.closeOptionBox()">
-                  <img src="images/icoSelectPais.png">
-                  <p class="p-small">Pais</p>
+              <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 38px; padding: 0;" required>
+                <div class="country-selected">
+									<div style="display: flex; " ng-hide="showCountry">
+										<img src="images/icoSelectPais.png">
+										<p style="margin-top: 3px; color: #747474; font-family: neeru;" class="p-small">País</p>
+									</div>
+									<div ng-show="showCountry" data-country-code="+58" style="display: flex; margin-left: 5px;">
+	                  <img src="{{pais.url}}" style="width:26%; height: 26%">
+	                  <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
+	                </div>
                 </div>
+								<div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
+		              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
+		                <img src="images/banderas/{{country.name}}.png">
+		                <p style="color: #747474">{{'+'+country.phone_code}}</p>
+		              </div>
+		            </div>
               </div>
               <div class="pillar-70p" style="width: 75%; padding-left: 5px; display: grid">
-                <input onblur="primeAppVar.validateInputPhone(this)" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7">
+                <input numero class="form-control" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="7" minlength="7" ng-model="auxNumero" required>
 								<div style="text-align: center">
 									<img src="images/logos/movistar.png" style="width:60%;">
 								</div>
               </div>
             </div>
             <div style="float: right;">
-              <button data-standard class="btn-green-on" style="display: flex">
+              <button data-standard class="btn-green-on" style="display: flex" ng-click="agregarFrecuentes()" ng-disabled='form.$invalid'>
                 <img src="images/icoAddNumero.png">
                 <p style="margin-left: 10px;">Añadir número</p>
               </button>
             </div>
-          </div>
+          </form>
 				</section>
 			</div>
 		</div>

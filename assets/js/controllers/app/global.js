@@ -168,18 +168,21 @@ app.controller('ErrorCtrl', [
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
+
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
-    console.log('$scope.loader', $scope.loader);
-    console.log('$scope.cuerpo', $scope.cuerpo);
     User.refresh(function(err){
       if (err) {
-        console.log(err);
         return $state.go('access.signin');
       }
       $scope.user = User.info;
-      $scope.subHeader = 'Bienvenido '+$scope.user.nombres+'...'
-      console.log(User.info.nombres);
+
+      // Variables fijas del Header
+      $rootScope.header = {}
+      $rootScope.header.icono = "images/icoInicio.png";
+      $rootScope.header.namePage = "Bienvenido "+$scope.user.nombres+'...';
+
+
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
 

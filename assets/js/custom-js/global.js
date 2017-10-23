@@ -45,7 +45,7 @@
     */
     primeAppVar.window.keyup(function(e) {
       if (primeAppVar.customModalBox.css('display') == 'flex') {
-        if (e.keyCode == 27) { 
+        if (e.keyCode == 27) {
           primeAppVar.modalClose();
         }
       }
@@ -69,7 +69,7 @@
       primeAppVar.optionsNeeruSelectBox.css('display','block')
       primeAppVar.selectNeeruOpen = true;
     }
-  }   
+  }
 /* Abrir el select de neeru */
 
 /* Cerrar el select de neeru */
