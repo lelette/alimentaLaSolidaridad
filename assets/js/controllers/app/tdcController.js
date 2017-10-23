@@ -90,5 +90,11 @@ app.controller('tdcCtrl',
       });
     };
 
+    // Queda por probar ya que no existe una sesion persistente.
+
+    $scope.desafiliarTarjeta = function(){
+
+    };
+
 
 }]);
