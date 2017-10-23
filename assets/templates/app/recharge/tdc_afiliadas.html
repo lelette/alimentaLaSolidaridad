@@ -57,19 +57,10 @@
                 <img src="../../images/icoVence.png">
               </div>
               <div class="pillar-200p">
-                <input type="text" name="dateExp" data-mode-1 placeholder="MM/AAAA" ng-model="fullCard.cardExpiry" maxlength="7" numero required>
+                <input type="text" data-mode-1 placeholder="MM/AAAA" maxlength="7" ng-model="fullCard.cardExpiry" required>
+                {{fullCard.cardExpiry}}
               </div>
             </div><br>
-            <!-- ERRORES EN CAMPO DE FECHA DE EXPIRACION -->
-            <!--<div class="text-center" ng-if="formTDC.dateExp.$dirty && (formTDC.dateExp.$invalid || formTDC.dateExp.$touched)">
-              <span ng-if="formTDC.dateExp.$error.required" class="error-input-msj" >
-                {{"err.required" | translate}}
-              </span>
-              <span ng-if="formTDC.dateExp.$error.numero" class="error-input-msj" >
-                {{"err.numero" | translate}}
-              </span>
-            </div>-->
-            <!-- ERRORES EN CAMPO DE EXPIRACION -->
 
             <div class="pillar-50p aux-6-R" style="display:flex; flex-wrap: nowrap; justify-content:center; align-items: center">
               <div class="pillar-50px" style="justify-content:space-around;">

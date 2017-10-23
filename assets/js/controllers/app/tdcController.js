@@ -9,10 +9,10 @@ app.controller('tdcCtrl',
   ['$rootScope', '$scope', '$http', '$state','$translate',
   function($rootScope, $scope, $http, $state,$translate) {
 
-    Stripe.setPublishableKey('pk_test_BR7HShIv2kTdYnhQeUw1xwLp'); // Identificacion con Stripe
+    Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
 
     // Variables fijas del Header
-    $rootScope.header = {}
+    $rootScope.header = {};
     $rootScope.header.icono = "images/icoTDCAfiliada.png"; // Icono del Sub-Header
     $rootScope.header.namePage = "TDC Afiliadas"; // Titulo del Sub-Header
 
@@ -43,7 +43,7 @@ app.controller('tdcCtrl',
     // Consulta las tarjetas afiliadas del usuario
     $http.get('platform/stripe/getCards')
       .then(function(response){
-
+        console.log("RESPUESTA DE TARJETA >>>>", response);
       }, function(error){
 
       });
@@ -80,12 +80,12 @@ app.controller('tdcCtrl',
           }
 
           console.log("AFFILIATE >>>>", card_customer);
-          /*$http.post('platform/stripe/affiliateCard', card_customer)
+          $http.post('platform/stripe/affiliateCard', card_customer)
             .then(function(response){
-
+              console.log("response >>>", response);
             }, function(error){
               console.log(error);
-            });*/
+            });
         }
       });
     };
