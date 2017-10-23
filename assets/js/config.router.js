@@ -130,7 +130,8 @@ angular.module('app')
             url: '/tdc_afiliadas',
             templateUrl: 'templates/app/recharge/tdc_afiliadas.html',
             resolve: load([
-              'js/controllers/app/tdcController.js'
+              'js/controllers/app/tdcController.js',
+              'js/directives/val-input.js',
             ]),
           })
           // #######################################################
