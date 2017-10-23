@@ -126,7 +126,6 @@
 	.btn-green{
 		background-color: #0DB731;
 		width: 40%;
-		margin-left: 75px;
 	}
 	.btn-green-uno{
 		background-color: #0DB731;
@@ -1087,8 +1086,8 @@
   width: 100%;
   font-size: small;
   height: 40px;
-  background-color:red !important;
-  border-color: red !important;
+  background-color: #db3236 !important;
+  border-color: #db3236 !important;
     line-height: 1.28;
 	justify-content: center;
     display: inline-flex;
