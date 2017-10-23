@@ -14,7 +14,7 @@
             <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Conectarse con Google</a>
           </div>
           <div class="pillar-auto" style="margin-top: 45px">
-            <input data-hide-3 type="email" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required>
+            <input data-hide-3 type="email" placeholder="{{ 'std.Email' | translate }}" name="user.login" ng-model="user.login" required>
           </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
               <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
@@ -28,7 +28,7 @@
               <!-- ERRORES EN CAMPO DE EMAIL -->
 
             <div class="pillar-auto">
-              <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+              <input data-hide-3 type="password" name="user.password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
             <div class="text-center" ng-if="form.password.$dirty && (form.password.$invalid || form.password.$touched)">
