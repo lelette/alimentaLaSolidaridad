@@ -6,8 +6,8 @@
 *									 las acciones sobre contraseñas.
 */
 
-app.service('validarPassword', 
-  [ '$translate' , 
+app.service('validarPassword',
+  [ '$translate' ,
   function($translate) {
 
   var dataCruda = [
@@ -16,12 +16,12 @@ app.service('validarPassword',
     {valor: 'remove', color:'text-danger', nombre: 'Debe tener por lo menos una letra en mayúscula.',key:'mayusChar'},
     {valor: 'remove', color:'text-danger', nombre: 'Debe tener por lo menos una letra en minúscula.',key:'minusChar'},
     {valor: 'remove', color:'text-danger', nombre: 'Debe tener al menos un carácter numérico.',key:'number'},
-    {valor: 'remove', color:'text-danger', nombre: 'Debe tener al menos un carácter especial (Ej: $@#<>.,)',key:'especialChar'},
+    {valor: 'remove', color:'text-danger', nombre: 'Debe tener al menos un carácter especial (Ej: $@#.,)',key:'especialChar'},
     {valor: 'remove', color:'text-danger', nombre: 'Debe solo contener letras, números y caracteres especiales',key:'validChar'}
   ];
 
   this.criterios = dataCruda;
-  
+
   this.imprimirContenidoPopover = function(criterios, cb) {
     // internacionalizacion
     $translate([

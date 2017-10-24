@@ -16,11 +16,25 @@
             {{authError  | translate}}
         </div>
           <div class="pillar-auto">
-            <input data-hide-3 type="text" placeholder="Nombre" required>
+            <input data-hide-3 type="text" maxLength="40" string-std placeholder="Nombre" required name="nombres" ng-model="user.nombres">
           </div>
-          <div class="pillar-auto">
-            <input data-hide-3 type="email" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required>
+            <!-- ERRORES EN CAMPO DE NOMBRES -->
+            <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
+              <span ng-if="form.nombres.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="form.nombres.$error.maxlength" class="error-input-msj" >
+                {{"err.maxlength" | translate}} 40
+              </span>
+              <span ng-if="form.nombres.$error.stringStd" class="error-input-msj" >
+                {{"err.stringStd" | translate}}
+              </span>
+            </div>
+            <!-- ERRORES EN CAMPO DE NOMBRES -->
 
+          <div class="pillar-auto">
+            <input data-hide-3 type="email" maxLength="40" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required>
+          </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
               <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
                 <span ng-if="form.email.$error.required" class="error-input-msj" >
@@ -29,14 +43,18 @@
                 <span ng-if="form.email.$error.email" class="error-input-msj" >
                   {{"err.email.format" | translate}}
                 </span>
+                <span ng-if="form.email.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 40
+                </span>
               </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
-          </div>
+
           <div class="pillar-auto">
             <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
           </div>
           <div class="pillar-auto">
             <input data-hide-3 type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" name="confirm_password" ng-model="user.confirm_password" maxlength="16" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
+          </div>
             <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
             <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
               <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
@@ -49,7 +67,7 @@
                 {{"err.password.passwordConfirm" | translate}}
               </span>
             </div>
-          </div>
+
             <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
 
 
