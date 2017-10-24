@@ -22,7 +22,7 @@
     "operadora": "Operator",
     "Cancelar": "Cancel",
     "Amount":"Amount",
-    "zone.postal": "ZIP Code",
+    "codigo_postal": "ZIP Code",
     "fecha_vencimiento": "Expiration Date",
     "year":"Year",
     "Mes":"Month",

@@ -56,8 +56,8 @@
 				<section>
           <form id="form" name="form" class="form-validation frequent-add" autocomplete="off">
             <div class="pillar-30p" style="padding-bottom: 10px; width: 100%">
-              <div uib-dropdown class="neeru-select form-control" style="width: 25%; height: 38px; padding: 0;" required>
-                <div uib-dropdown-toggle class="country-selected">
+              <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 38px; padding: 0;" required>
+                <div class="country-selected">
 									<div style="display: flex; " ng-hide="showCountry">
 										<img src="images/icoSelectPais.png">
 										<p style="margin-top: 3px; color: #747474; font-family: neeru;" class="p-small">País</p>
@@ -68,7 +68,7 @@
 	                </div>
                 </div>
 								<div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
-		              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" >
+		              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
 		                <img src="images/banderas/{{country.name}}.png">
 		                <p style="color: #747474">{{'+'+country.phone_code}}</p>
 		              </div>

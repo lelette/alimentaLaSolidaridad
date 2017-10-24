@@ -31,7 +31,7 @@
     </div>
     </br>
     <div class="tab-dynamic-home">
-      <p>0</p>
+      <p>{{datos.tdcAfiliadas}}</p>
     </div>
   </br>
   <div class="tab-home" ui-sref="app.page.tdc_afiliadas">
@@ -50,22 +50,22 @@
       <div class="pillar-45p">
         <div class="pillar-30p">
           <!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
-          <div class="neeru-select" name="cod" ng-model="cod" >
-            <div id="select" ng-click="abrirSelectCountry()" class="country-selected">
-                <div ng-hide="showCountry">
-                  <img src="images/icoSelectPais.png">
-                  <p class="p-gray" style="font-size: 0.9em; color:black">Pais</p>
-                </div>
-                <div ng-show="showCountry" data-country-code="+58" >
-                  <img src="{{pais.url}}" style="width:26%; display:inline;">
-                  <p class="p-gray" style="font-size: 1.5em; color:black; display:inline;">{{pais.ext}}</p>
-                </div>
+
+          <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: auto;" required>
+            <div class="country-selected">
+              <div style="display: flex;" ng-hide="showCountry">
+                <img src="images/icoSelectPais.png">
+                <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
+              </div>
+              <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
+                <img src="{{pais.url}}" style="width:26%; height: 26%">
+                <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
+              </div>
             </div>
-            <!-- quitar el ng-click cuando se implemente correctamente el combobox-->
-            <div class="options-neeru-select-box" style="width:140%">
-              <div ng-repeat="country in countries" ng-click="countrySelected(country.id,country.phone_code,country.url)" class="option-neeru" data-country-code="+58" >
+            <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
+              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
                 <img src="images/banderas/{{country.name}}.png">
-                <p>{{'+'+country.phone_code}}</p>
+                <p style="color: #747474; font-size: 1.1em;">{{'+'+country.phone_code}}</p>
               </div>
             </div>
           </div>

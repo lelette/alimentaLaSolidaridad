@@ -6,7 +6,7 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'http://192.168.3.236:9002/';
+ var API_URL = 'http://localhost:9002/';
  //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
@@ -125,13 +125,16 @@ angular.module('app')
           })
           // fin recharge #######################################
 
+          // State para tarjetas afiliadas #########################
           .state('app.page.tdc_afiliadas', {
             url: '/tdc_afiliadas',
             templateUrl: 'templates/app/recharge/tdc_afiliadas.html',
             resolve: load([
-              'js/controllers/tdc_afiliadas/tdcController.js'
+              'js/controllers/app/tdcController.js',
+              'js/directives/val-input.js',
             ]),
           })
+          // #######################################################
 
           // transacciones ######################################
           .state('app.page.transactions', {

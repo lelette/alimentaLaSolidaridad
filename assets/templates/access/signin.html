@@ -2,29 +2,34 @@
 <div class="m-t-lg">
   <div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
     <div class="m-b-lg">
-      <div class="wrapper text-center">
-        <strong>{{"signin.subtitulo" | translate}}</strong>
-      </div>
       <form name="form" class="form-validation">
         <div class="text-danger wrapper text-center" ng-show="authError">
             {{authError | translate}}
         </div>
-        <div class="list-group list-group-sm">
-          <div class="list-group-item">
-            <input type="email" name="login" placeholder="{{'std.Email' | translate}}" class="form-control no-border" ng-model="user.login" required>
-            <!-- ERRORES EN CAMPO DE EMAIL -->
-            <div class="text-center" ng-if="form.login.$dirty && (form.login.$invalid || form.login.$touched)">
-              <span ng-if="form.login.$error.required" class="error-input-msj" >
-                {{"err.required" | translate}}
-              </span>
-              <span ng-if="form.login.$error.email" class="error-input-msj" >
-                {{"err.email.format" | translate}}
-              </span>
-            </div>
-            <!-- ERRORES EN CAMPO DE EMAIL -->
+        <div class="list-group list-group-sm" style="margin-top: 45px">
+          <div class="text-center" style="margin-bottom: 10px;">
+            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button" href="http://localhost:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>Conectarse con Facebook</a>
           </div>
-          <div class="list-group-item">
-            <input type="password" name="password" placeholder="{{'std.Password' | translate}}" class="form-control no-border" ng-model="user.password" required>
+          <div class="text-center" style="margin-bottom: 10px;">
+            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Conectarse con Google</a>
+          </div>
+          <div class="pillar-auto" style="margin-top: 45px">
+            <input data-hide-3 type="email" placeholder="{{ 'std.Email' | translate }}" name="user.login" ng-model="user.login" required>
+          </div>
+              <!-- ERRORES EN CAMPO DE EMAIL -->
+              <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
+                <span ng-if="form.email.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="form.email.$error.email" class="error-input-msj" >
+                  {{"err.email.format" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE EMAIL -->
+
+            <div class="pillar-auto">
+              <input data-hide-3 type="password" name="user.password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+            </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
             <div class="text-center" ng-if="form.password.$dirty && (form.password.$invalid || form.password.$touched)">
               <span ng-if="form.password.$error.required" class="error-input-msj" >
@@ -32,28 +37,24 @@
               </span>
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
-          </div>
         </div>
-        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="signin()" ng-disabled='form.$invalid'>{{'Iniciar_Sesion' | translate}}</button>
-        <div class="text-center" style="margin: 10px 0px;">
-          <a type="button" href="http://localhost:9002/plataform/user/signinFacebook" target="_parent" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" class="btn btn-primary btn-lg btn-block button-facebook" name="button"><span aria-hidden="true" class="fa fa-facebook pull-left"></span>{{ 'Iniciar_Sesion_Facebook' | translate}}</a>
+        <div class="access-signup">
+          <div class="pillar-30px">
+            <div class="neeru-checkbox-1">
+              <input type="checkbox" name="">
+              <span></span>
+            </div>
+          </div>
+          <p-gray style="font-family: neeru; color: gray"> Recordarme</p-gray>
+        </div>
+        <div style="margin-top:51px; justify-content:center; display:flex; padding-left: 0px">
+          <button type="submit" style="font-family: neeru; width:60%" data-standard class="btn-green" ng-click="signin()" >{{'Iniciar_Sesion' | translate}}</button>
+        </div>
+        <div class="text-center m-t m-b" style="margin-top:15px">
+          <a ui-sref="access.forgotpwd" style="font-family:neeru; color:gray; font-weight:200px">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>
         </div>
 
-        <div class="text-center m-t m-b">
-          <a ui-sref="access.forgotpwd">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>
-        </div>
-        <div class="line line-dashed"></div>
-        <p class="text-center">
-          <small>{{'¿Ya_tienes_una_cuenta?' | translate}}</small>
-        </p>
-        <a ui-sref="access.signup" class="btn btn-lg btn-default btn-block">{{'Registrarse' | translate}}</a>
       </form>
     </div>
   </div>
 </div>
-
-<!-- footer -->
-<div class="text-center" ng-include="'templates/blocks/page_footer.html'" style="margin-top: 9pc">
-  {% include 'blocks/page_footer.html' %}
-</div>
-<!-- / footer -->

@@ -15,10 +15,6 @@ app.controller('HomeCtrl',
       recargas: '0'
     };
 
-    var primeAppVar = {}
-    primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
-    primeAppVar.selectNeeruOpen = $('.option-neeru');
-    primeAppVar.window = $(window);
     $scope.showCountry = false;
 
     $http.get('plataform/countries').then(function(response) {
@@ -29,44 +25,14 @@ app.controller('HomeCtrl',
       $scope.$emit('$errorAjax',res.data);
     });
 
-    $scope.countrySelected = function (id, code, url) {
-      primeAppVar.optionsNeeruSelectBox.css('display','none');
-      primeAppVar.selectNeeruOpen.css('display','none');
+    $scope.countrySelected = function (country) {
       $scope.showCountry = true;
       $scope.pais = {
-        url: 'images/banderas/Venezuela.png',
-        ext: '+'+code
-      }
-    }
+        url: 'images/banderas/'+country.name+'.png',
+        ext: '+'+country.phone_code
+      };
+    };
 
-    $scope.abrirSelectCountry = function () {
-      console.log("primeAppVar.optionsNeeruSelectBox.css('display')", primeAppVar.optionsNeeruSelectBox.css('display'));
-      if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
-        primeAppVar.optionsNeeruSelectBox.css('display','block');
-        primeAppVar.selectNeeruOpen.css('display','block');
-      }
-    }
-
-
-    /*
-    console.log('$rootScope.loader', $scope.loader);
-    console.log('$rootScope.cuerpo', $scope.cuerpo);
-
-    $http.pendingRequests.length = 0; // Reseteo las peticiones cero
-    $scope.conteoDePeticiones = 0;
-    $scope.loader = 'ocultar'; // Permite ocultar el loader cuando solo haya una peticion por finalizar
-    $scope.cuerpo = 'mostrar';
-    console.log('$rootScope.loader', $scope.loader);
-    console.log('$rootScope.cuerpo', $scope.cuerpo);
-    $scope.$watch("conteoDePeticiones",function(newValue,oldValue) {
-      // Se manejan X peticiones en http en este controlador
-      console.log('entre en el watch');
-      //if ($scope.conteoDePeticiones >= 0) {
-        $scope.loader = 'ocultar'; // Permite ocultar el loader cuando solo haya una peticion por finalizar
-        $scope.cuerpo = 'mostrar';
-      //}
-    });
-*/
 
 
     $http.post('plataform/sale/getSalesAmount', {ejecutor: User.id})
@@ -88,7 +54,7 @@ app.controller('HomeCtrl',
     //Consultando cantidad de TDC afiliadas del usuario en Stripe
     $http.get('platform/stripe/getCards')
     .then(function(res){
-      $scope.datos.tdcAfiliadas = res.data.length;
+      $scope.datos.tdcAfiliadas = res.data.data.length;
     }, function(error){
       $scope.datos.tdcAfiliadas = 0;
     })

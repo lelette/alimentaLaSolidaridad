@@ -6,10 +6,10 @@
     <div class="line-101">
 
       <div class="text-center" style="margin-bottom: 10px;">
-        <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button"><span aria-hidden="true" class="fa fa-facebook pull-left"></span>Registrarse con Facebook</a>
+        <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>Registrarse con Facebook</a>
       </div>
       <div class="text-center" style="margin-bottom: 10px;">
-        <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left"></span>Registrarse con Google</a>
+        <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Registrarse con Google</a>
       </div>
       <form name="form" class="form-validation" style="margin-top: 40px">
         <div style="color:red; font-family: neeru;" ng-show="authError">
@@ -68,7 +68,7 @@
           <p-black style="font-family: neeru"> Acepto los Términos y Condiciones</p-black>
         </div>
         </form>
-        <div style="justify-content:center; margin-top: 25px;">
+        <div style="justify-content:center; display:flex; margin-top: 25px;">
           <button type="submit" style="font-family: neeru" data-standard class="btn-green" ng-click="signup()" >{{'Registrarse' | translate}}</button>
         </div>
         <!-- <div style="justify-content:center; display: grid; text-align:center;">
@@ -77,9 +77,3 @@
         </div> -->
     </div>
   </div>
-
-<!-- footer -->
-<div class="text-center" ng-include="'templates/blocks/page_footer.html'" style="margin-top: 9pc">
-  {% include 'blocks/page_footer.html' %}
-</div>
-<!-- / footer -->

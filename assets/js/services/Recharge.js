@@ -10,7 +10,7 @@ app.service('Recharge', [
   '$http',
   function ($http) {
 
-    // Información por defecto del usuario
+    // Información de la recarga a realizar
     this.info = {};
 
     /*******************************************************
