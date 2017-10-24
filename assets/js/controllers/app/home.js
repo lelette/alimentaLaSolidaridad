@@ -71,7 +71,7 @@ app.controller('HomeCtrl',
     * description: funcion para redirigir al usuario al flujo de recarga
     **/
     $scope.redirect = function (){
-     if (($scope.count!=0)&&($scope.count == 10)&&($scope.auxCount  == true)){
+     if (($scope.count!=0)&&($scope.count == 10)){
        var cod = " ";
        var contrato = $scope.contrato;
        $state.go('app.page.recharge', {cod: cod, contrato: contrato});

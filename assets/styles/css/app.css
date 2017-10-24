@@ -86,7 +86,6 @@
 .publicity {
 	margin-right: 5pc;
 	width: 100%;
-	justify-content: space-between;
 	display: flex;
 }
 
@@ -111,7 +110,7 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-	
+
 /* Boxes */
 
 /* Elements */
