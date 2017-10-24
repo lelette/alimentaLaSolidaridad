@@ -54,7 +54,7 @@ app.controller('HomeCtrl',
     //Consultando cantidad de TDC afiliadas del usuario en Stripe
     $http.get('platform/stripe/getCards')
     .then(function(res){
-      $scope.datos.tdcAfiliadas = res.data.length;
+      $scope.datos.tdcAfiliadas = res.data.data.length;
     }, function(error){
       $scope.datos.tdcAfiliadas = 0;
     })

@@ -5,9 +5,9 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('BasicController', 
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+app.controller('BasicController',
+  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate', '$uibModal',
+  function($rootScope,  $scope, $http, $state, User, $translate, $uibModal) {
 
     $scope.user = {};
 
@@ -44,7 +44,7 @@ app.controller('BasicController',
 
 }]);
 
-app.controller('SecurityController', 
+app.controller('SecurityController',
   ['$rootScope', '$scope', '$http', '$state', 'User', 'validarPassword', '$translate',
   function($rootScope,  $scope, $http, $state, User, validarPassword, $translate) {
 
@@ -130,7 +130,7 @@ app.controller('SecurityController',
 }]);
 
 
-app.controller('ContactController', 
+app.controller('ContactController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
 
@@ -161,9 +161,9 @@ app.controller('ContactController',
     $scope.data = [];
 
     $scope.numberOfPages=function(){
-        return Math.ceil($scope.user.emails.length/$scope.pageSize);                
+        return Math.ceil($scope.user.emails.length/$scope.pageSize);
     }
-  
+
 }]);
 
 
@@ -175,7 +175,7 @@ app.filter('startFrom', function() {
 });
 
 
-app.controller('AddEmailController', 
+app.controller('AddEmailController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
 
@@ -202,3 +202,17 @@ app.controller('AddEmailController',
       });
     };
 }]);
+
+app.controller('modalProfileImageController',
+[
+  '$rootScope',
+  '$scope',
+  '$http',
+  '$state',
+  '$translate',
+  '$modalInstance',
+  '$uibModal',
+  function ($rootScope, $scope, $http, $state, $translate, $modalInstance, $uibModal) {
+
+  }
+])
