@@ -7,7 +7,7 @@
 
 app.controller('GetContratoController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate', '$stateParams',
-  function($rootScope,  $scope, $http, $state, Recharge,$translate, $stateParams) {
+  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     //recibir parametros de homepage
 
     $scope.detailRecharge = function () {
@@ -221,7 +221,7 @@ app.controller('ResultController',
 app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
-    $scope.datos={
+    $scope.datos = {
       cod: 'Pais',
       contrato: ''
     };
@@ -229,6 +229,15 @@ app.controller('ReloadController',
       console.log("$stateParams");
      $scope.datos.cod = $stateParams.cod;
      $scope.datos.contrato = $stateParams.contrato;
+   }
+   $scope.recharge = function () {
+     $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
+       $scope.recharge = response.data.recharge;
+       $scope.$emit('$resetAjax');
+     }, function(res) {
+       $scope.$emit('$resetAjax');
+       $scope.$emit('$errorAjax',res.data);
+     });
    }
 
 

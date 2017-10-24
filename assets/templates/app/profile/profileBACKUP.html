@@ -1,0 +1,144 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <div class="col">
+    <div style="background:url(images/c4.jpg) center center; background-size:cover">
+      <div class="wrapper-lg bg-white-opacity">
+        <div class="row m-t">
+          <div class="col-sm-7">
+            <a href class="thumb-lg pull-left m-r">
+              <img src="images/a0.jpg" class="img-circle">
+            </a>
+            <div class="clear m-b">
+              <div class="m-b m-t-sm">
+                <span class="h3 text-black"> 
+                  {{ ( (user.nombres.split(' ')[0] ? user.nombres.split(' ')[0] +  " ":"") + user.apellidos.split(' ')[0] ) || user.login.email.email || 'User'}}
+                </span>
+              </div>
+              <p class="m-b">
+              <!--   <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a> -->
+              </p>
+              <a href class="btn btn-sm btn-success btn-rounded">Update</a>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="pull-right pull-none-xs text-center">
+             <!--  <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">2k</span>
+                <small>Followers</small>
+              </a>
+              <a href class="m-b-md inline m">
+                <span class="h3 block font-bold">250</span>
+                <small>Following</small>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper bg-white b-b">
+      <ul class="nav nav-pills nav-sm">
+        <li class="active">
+          <a ui-sref="app.page.profile.update_datos">
+            {{'profile.basicos' | translate}}
+          </a>
+        </li>
+        <li>
+          <a ui-sref="app.page.profile.contacto">
+            {{'profile.contacto' | translate}}
+          </a>
+        </li>
+        <li>
+          <a ui-sref="app.page.profile.security">
+            {{'profile.seguridad' | translate}}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="padder">      
+      <!-- contenido -->
+      <div ui-view class="fade-in-right-big smooth"></div>
+      <!-- / contenido -->
+    </div>
+
+  </div>
+
+  <!-- <div class="col w-lg bg-light lter b-l bg-auto">
+    <div class="wrapper">
+      <div class="">
+        <h4 class="m-t-xs m-b-xs">Who to follow</h4>
+        <ul class="list-group no-bg no-borders pull-in">
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="images/a4.jpg" alt="..." class="img-circle">
+              <i class="on b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Chris Fox</a></div>
+              <small class="text-muted">Designer, Blogger</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="images/a5.jpg" alt="..." class="img-circle">
+              <i class="on b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Mogen Polish</a></div>
+              <small class="text-muted">Writter, Mag Editor</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="images/a6.jpg" alt="..." class="img-circle">
+              <i class="busy b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Joge Lucky</a></div>
+              <small class="text-muted">Art director, Movie Cut</small>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <a herf class="pull-left thumb-sm avatar m-r">
+              <img src="images/a7.jpg" alt="..." class="img-circle">
+              <i class="away b-white bottom"></i>
+            </a>
+            <div class="clear">
+              <div><a href>Folisise Chosielie</a></div>
+              <small class="text-muted">Musician, Player</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="panel b-a">
+        <h4 class="font-thin padder">Latest Tweets</h4>
+        <ul class="list-group">
+          <li class="list-group-item">
+              <p>Wellcome <a href class="text-info">@Drew Wllon</a> and play this web application template, have fun1 </p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
+          </li>
+          <li class="list-group-item">
+              <p>Morbi nec <a href class="text-info">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
+          </li>
+          <li class="list-group-item">                     
+              <p><a href class="text-info">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
+              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
+          </li>
+        </ul>
+      </div>
+      <div class="panel b-light clearfix">
+        <div class="panel-body">
+          <a href class="thumb pull-left m-r">
+            <img src="images/a0.jpg" class="img-circle">
+          </a>
+          <div class="clear">
+            <a href class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
+            <small class="block text-muted">2,415 followers / 225 tweets</small>
+            <a href class="btn btn-xs btn-success m-t-xs">Follow</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
