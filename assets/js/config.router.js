@@ -136,14 +136,24 @@ angular.module('app')
           })
           // #######################################################
 
-          // transacciones ######################################
+          // Transacciones ######################################
           .state('app.page.transactions', {
             url: '/transactions',
             templateUrl: 'templates/app/movimientos/movimientos.html',
             resolve: load([
-                'js/controllers/app/transactions.js'
-              ])
+              'js/controllers/app/transactions.js'
+            ])
           })
+          .state('app.page.transactionDetail', {
+            url: '/transactionDetail/:id',
+            templateUrl: 'templates/app/movimientos/movDetalles.html',
+            resolve: load([
+              'js/controllers/app/transactionDetail.js'
+            ])
+          })
+          // Fin de Transacciones ###############################
+
+          // Numeros Frecuentes ################################
           .state('app.page.frequent', {
             url: '/frequent',
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
@@ -152,22 +162,8 @@ angular.module('app')
                 'dataTable'
               ])
           })
-          .state('app.page.transactions.index', {
-            url: '/get',
-            templateUrl: 'templates/app/transactions/index.html',
-            resolve: load([
+          // Fin de Frecuentes ###############################
 
-            ])
-          })
-          .state('app.page.transactions.details', {
-            url: '/details',
-            templateUrl: 'templates/app/transactions/details.html',
-            resolve: load([
-
-              ])
-          })
-
-          // fin de transacciones ###############################
           //*******************************HOME*******************************
           .state('app.page.home', {
             url: '/home',
