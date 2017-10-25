@@ -23,15 +23,7 @@ module.exports.http = {
 
   middleware: {
 
-    /****************************************************************************
-    *                                                                           *
-    * Configuramos el passport para abstraer el proceso de abstraccion          *
-    *                                                                           *
-    ****************************************************************************/
-
-    passportInit    : require('passport').initialize(),
-    passportSession : require('passport').session(),
-
+  
     /***************************************************************************
     *                                                                          *
     * The order in which middleware should be run for HTTP request. (the Sails *
