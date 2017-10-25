@@ -11,7 +11,7 @@ app.controller('movController',
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoMovimientos.png";
     $rootScope.header.namePage = "Movimientos";
-    $scope.datos = { sales : []};
+    $scope.datos = { sales : [] };
 
     // variables para control de paginacion
     $scope.techo = undefined;
@@ -31,38 +31,31 @@ app.controller('movController',
 
       $http.get('plataform/sale/getTransactions?page='+page+'&limit=10')
       .then(function(res){
-        console.log('res.data', res.data);
-
-        if (res.data.sales.length == 0 /*&& (page) > 1*/) {
+        var ventas = res.data.sales;
+        if (ventas.length == 0) {
           $scope.msjmov = true;
           $scope.tablemov = false;
           $scope.tableMovDetails = false;
-          //$scope.techo = page-1;
-          //$scope.consultar(page-1);
-        }else if (res.data.sales.length == 1) {
-          $scope.msjmov = false;
-          $scope.tablemov = false;
-          $scope.tableMovDetails = true;
-          $scope.datos.sales = {
-            date: '10/10/2018',
-            reference: 1224255,
-            phone: '(+58) 0412-383043',
-            status: 'Rechazada',
-            rechargeOf: ' B/. 10.00 - USD 10.00',
-            total: 'USD 10.88'
-          }
         }else{
           $scope.msjmov = false;
           $scope.tablemov = true;
           $scope.tableMovDetails = false;
-          $scope.datos.sales.splice(0,$scope.datos.sales.length);
+          //$scope.datos.sales.splice(0,$scope.datos.sales.length);
+          var newSale;
+          var fecha;
           $scope.currentPage = page;
-          res.data.sales.forEach(function(sale){
-            // detectamos el email principal
-            sale.phone = '041x - xxxxxxx';
-            sale.action = "<img src='images/icoEliminar.png' />";
-            $scope.datos.sales.push(sale);
+          ventas.forEach(function(sale){
+            newSale = {};
+            fecha = sale.createdAt;
+            newSale.date = fecha.substring(0,10);//sale.createdAt.getDate()+"/"+ (sale.createdAt.getMonth()+1)+"/"+ sale.createdAt.getFullYear();
+            newSale.reference = sale.referencia;
+            newSale.phone = sale.phone;
+            newSale.recharge = "EUR /. 5 - 10 USD ";
+            newSale.total = "10,28 USD";//sale.realAmountUSD + sale.serviceFee,
+            newSale.action = "<img src='images/icoEliminar.png' />";
+            $scope.datos.sales.push(newSale);
           });
+
         };
       }, function(res){
         console.log('res.data',res.data);
