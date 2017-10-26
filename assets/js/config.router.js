@@ -6,7 +6,7 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'http://192.168.2.28:9002/';
+ var API_URL = 'http://192.168.3.166:9002/';
  //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
@@ -185,9 +185,15 @@ angular.module('app')
                 'js/controllers/app/profile.js'
               ])
           })
-          .state('app.page.profile.update_datos', {
-            url: '/updateProfile',
-            templateUrl: 'templates/app/profile/update_datos.html'
+          .state('app.page.imageChange', {
+            url: '/changeImage',
+            templateUrl: 'templates/app/profile/changeImage.html',
+            resolve: load([
+              'js/controllers/app/imageChange.js',
+              'ngImgCrop',
+              'filestyle',
+              'angularFileUpload'
+            ])
           })
           .state('app.page.profile.contacto', {
             url: '/contact',

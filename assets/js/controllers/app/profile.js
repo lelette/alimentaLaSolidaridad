@@ -44,19 +44,7 @@ app.controller('BasicController',
     }
 
     $scope.changeImage = function () {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'templates/modals/modalProfileImage.html',
-        controller: 'modalProfileImageController',
-        backdrop: 'static',
-      });
-
-      modalInstance.result
-      .then(function (result) {
-
-
-      }, function () {
-
-      });
+      $state.go('app.page.imageChange')
     };
 
 }]);
@@ -239,8 +227,9 @@ app.controller('modalProfileImageController',[
     var prueba = function (evt) {
       console.log(evt);
     }
-    console.log(angular.element('#fileInput').on('change',prueba));
-    angular.element(document.querySelector('#fileInput')).on('change',prueba);
+    // console.log(angular.element('#fileInput').on('change',prueba));
+    console.log(angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect));
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 
     var handleFileSelect = function(evt) {
       console.log(evt);
