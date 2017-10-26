@@ -1,4 +1,4 @@
-<div id="background">
+<div id="background" ng-controller="BasicController">
     <div class="leftSpace">
         <div id="pwdChange" ng-if="changePwd" class="pad20">
             <p class="pad20">Introduce tu nueva contraseña</p>
@@ -13,11 +13,11 @@
     <div class="rightSpace">
         <div id="profile">
             <div class="pad20"><a href="#"><img src="images/a3.jpg"></a></div>
-            <p>CAMBIAR FOTO <br>DE PERFIL</p>
+            <p ng-click="changeImage()">CAMBIAR FOTO <br>DE PERFIL</p>
         </div>
         <div class="pad20">
             <p>EMAIL</p>
-            <p id="email">zhandra.arevalo@gmail.com</p>
+            <p id="email">{{user.email}}</p>
             <div class="click" ng-model="changePwd" ng-click="changePwd = true"><p>CAMBIAR CONTRASEÑA</p></div>
         </div>
     </div>

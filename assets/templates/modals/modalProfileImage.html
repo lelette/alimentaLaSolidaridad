@@ -2,12 +2,35 @@
 	<h3 class="modal-title" style="color: #989898;">Imagen de perfil</h3>
 </div>
 <div class="modal-body text-center">
-	<form id="form" name="form" class="form-validation modal-body text-center" style="display: flex; justify-content: center;">
-    <label style="color: #989898; padding-right: inherit; margin-top: 5px;">Alias: </label>
-		<input class="form-control" stringExt data-mode-1 style="width: 45% !important;" type="text" name="alias" ng-model="datos.alias" placeholder="Alias...">
-	</form>
+  <!-- <div class="hbox hbox-auto-xs">
+    <div class="col">
+      <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+        <div class="bg-light" style="height:320px">
+          <img-crop
+            ng-src="{myCroppedImage}"
+            image="myImage"
+            result-image="myCroppedImage"
+            result-image-size="160"
+            area-type="{{cropType}}"
+          ></img-crop>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="inline bg-white wrapper-sm b-a">
+        <div class="bg-light">
+          <img ng-src="{{myCroppedImage}}" />
+        </div>
+      </div>
+    </div>
+  </div> -->
+	<div style="display: flex;position: relative;align-items: center;justify-content: center;">
+		<input id="#fileInput" style="position: absolute;height: 25px;margin: 0px;z-index: 2;opacity: 0;cursor: pointer;" type="file" ng-model="files">
+		<button style="z-index: 1;" class='btn-green-on' data-standard>Subir foto</button>
+  </div>
+
 </div>
 <div class="modal-footer">
   <button class="btn btn-link" style="float: left; color: #989898;" ng-click="cancel()">Cancelar</button>
-	<button class="btn-green-on" data-standard ng-click="confirmar()" ng-disabled='form.$invalid'><p>Agregar</p></button>
+	<button class="btn-green-on" data-standard ng-click="confirmar()" ng-disabled='form.$invalid'><p>Cambiar</p></button>
 </div>
