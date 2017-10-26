@@ -43,14 +43,15 @@ app.controller('tdcCtrl',
     // Consulta las tarjetas afiliadas del usuario
     $http.get('platform/stripe/getCards')
       .then(function(response){
-        console.log("RESPUESTA DE TARJETA >>>>", response);
+        $scope.cards = response.data.data;
+        console.log("CARDS >>>>", $scope.cards);
       }, function(error){
 
       });
 
     /****************************************************************************************
     *    function     :: Funcion que permite afiliar la tarjeta de credito                  *
-    *    @description :: Define todas las funciones que manejan las tarjetas de credito     *
+    *    @description :: Permite la afiliación de una tarjeta a un customer en Stripe       *
     *    @autor       :: Javier Stifano <jstifano@transamovil.com>                          *
     *****************************************************************************************/
 
@@ -70,8 +71,7 @@ app.controller('tdcCtrl',
       // Creo el token de seguridad de la tarjeta
       Stripe.card.createToken($scope.card,function(status, res){
         if(res.error){
-          // Mientras acordamos como hacer el $errorAjax
-          console.log("Ocurrio un error ...", res.error);
+          console.log("Ocurrio un error ....");
         }else{
           var card_customer = {
             token: res.id,
@@ -79,10 +79,9 @@ app.controller('tdcCtrl',
             description: $scope.fullCard.description,
           }
 
-          console.log("AFFILIATE >>>>", card_customer);
           $http.post('platform/stripe/affiliateCard', card_customer)
             .then(function(response){
-              console.log("response >>>", response);
+              $state.reload();
             }, function(error){
               console.log(error);
             });
@@ -90,10 +89,28 @@ app.controller('tdcCtrl',
       });
     };
 
-    // Queda por probar ya que no existe una sesion persistente.
+    /****************************************************************************************
+    *    function     :: Funcion que permite desafiliar una tarjeta de crédito              *
+    *    @description :: Permite desafiliar la tarjeta de crédito de un customer en Stripe  *
+    *    @autor       :: Javier Stifano <jstifano@transamovil.com>                          *
+    *****************************************************************************************/
 
-    $scope.desafiliarTarjeta = function(){
+    $scope.desafiliarTarjeta = function(card){
 
+      var data = {
+        token: card // Token de la tarjeta
+      }
+
+      $http.post('platform/stripe/untieCard', data)
+        .then(function(response){
+          if(response.data.deleted){
+            $state.reload();
+          }else {
+            console.log("NO SE DESAFILIO LA TARJETA");
+          }
+        }, function(error){
+          console.log(error);
+        });
     };
 
 
