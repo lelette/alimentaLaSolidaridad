@@ -368,7 +368,7 @@ app.directive('password', function() {
 
 // ################### Directiva Caracteres validos ####################
 
-var PASSWORD_REGEXPE = /^[\*]*$/;
+var PASSWORD_REGEXP = /^[0-9A-Za-z@ñÑ\.\,\_\$#\-]*$/;
 
 app.directive('caracteresValidos', function() {
   return {

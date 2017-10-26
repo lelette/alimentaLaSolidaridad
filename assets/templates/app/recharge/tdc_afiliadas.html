@@ -3,7 +3,7 @@
     <section>
       <div class="dynamic-content-box">
 
-        <div ng-show="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
   				<div class="line-100">
   					<img src="../../images/carita4.png">
   					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
@@ -13,17 +13,18 @@
   				</div>
     		</div>
 
-        <div ng-show="cards.length != 0" class="pillar-16p member-card" style="margin-top:120px; margin-left:37px; width:185px">
+        <div ng-if="cards.length != 0" class="pillar-16p member-card" style="margin-top:120px; margin-left:37px; width:185px" ng-repeat="card in cards">
           <div class="pillar-100p">
             <div class="line-100">
-              <p>**** **** **** 5544</p>
+              <p>**** **** **** {{card.last4}}</p>
             </div>
             <div class="line-100">
-              <p class="p-up p-gray p-500 p-small">Exp 2022</p>
+              <p class="p-up p-gray p-500 p-small" ng-if="card.exp_month <10"> Exp: {{card.exp_month}}/{{card.exp_year}}</p>
             </div>
             <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
-              <img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center;">
-              <span style="display: flex; justify-content: flex-end; position: relative; left: 165px;"><a><img src="../../images/icoEliminar.png"></a></span>
+              <span ng-show="card.brand == 'Visa'"><img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center; top:5px;"></span>
+              <span ng-show="card.brand == 'MasterCard'"><img src="../../images/master.png" style="position: relative;left: 87px;display: flex;justify-content: center;"></span>
+              <span style="display: flex; justify-content: flex-end; position: relative; left: 165px;"><a style="cursor:pointer" ng-click="desafiliarTarjeta(card.id)"><img src="../../images/icoEliminar.png"></a></span>
             </div>
           </div>
         </div>
@@ -58,7 +59,6 @@
               </div>
               <div class="pillar-200p">
                 <input type="text" data-mode-1 placeholder="MM/AAAA" maxlength="7" ng-model="fullCard.cardExpiry" required>
-                {{fullCard.cardExpiry}}
               </div>
             </div><br>
 

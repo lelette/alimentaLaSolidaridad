@@ -98,6 +98,7 @@ app.controller('SignupFormController',
     };
 
     var datos = {
+      nombres: $scope.user.nombres,
       email: $scope.user.email,
       password: $scope.user.password,
       recaptcha: recaptcha
