@@ -1,83 +1,83 @@
 <div class="publicity" ng-controller="HomeCtrl">
 <!-- SECCION DE HOME PAGE NEERU-->
-<section style="margin: 0 auto">
-<div class="mainly">
-  <section>
-    <div class="tab-home">
+<section style="margin: 0 auto;">
+  <div class="mainly">
+    <section>
+      <div class="tab-home">
 
-    <img src="images/icoOrdenGrs.png"> <p>RECARGAS ENVIADAS</p>
-  </div>
-  </br>
-  <div class="tab-dynamic-home">
-    <p>{{datos.recargas}}</p>
-  </div>
-  </section>
-  <section>
-    <div class="tab-home">
-      <img src="images/menuNumFrecGrs.png"><p>NUMEROS FRECUENTES</p>
+      <img src="images/icoOrdenGrs.png"> <p>RECARGAS ENVIADAS</p>
     </div>
     </br>
     <div class="tab-dynamic-home">
-      <p>{{datos.frecuentes}}</p>
+      <p>{{datos.recargas}}</p>
     </div>
-  </br>
-  <div class="tab-home" ui-sref="app.page.frequent">
-    <p-1>+ Añadir Número</p-1> <img src="images/icoVer.png">
-  </div>
-  </section>
-  <section>
-    <div class="tab-home">
-      <img src="images/menuTDCGrs.png">  <p>TDC AFILIADAS</p>
-    </div>
+    </section>
+    <section>
+      <div class="tab-home">
+        <img src="images/menuNumFrecGrs.png"><p>NUMEROS FRECUENTES</p>
+      </div>
+      </br>
+      <div class="tab-dynamic-home">
+        <p>{{datos.frecuentes}}</p>
+      </div>
     </br>
-    <div class="tab-dynamic-home">
-      <p>{{datos.tdcAfiliadas}}</p>
+    <div class="tab-home" style="cursor:pointer;" ui-sref="app.page.frequent">
+      <p-1>+ Añadir Número</p-1> <img src="images/icoVer.png">
     </div>
-  </br>
-  <div class="tab-home" ui-sref="app.page.tdc_afiliadas">
-    <p-1>+ Añadir Tarjeta</p-1> <img src="images/icoVer.png">
+    </section>
+    <section>
+      <div class="tab-home">
+        <img src="images/menuTDCGrs.png">  <p>TDC AFILIADAS</p>
+      </div>
+      </br>
+      <div class="tab-dynamic-home">
+        <p>{{datos.tdcAfiliadas}}</p>
+      </div>
+    </br>
+    <div class="tab-home" style="cursor:pointer;" ui-sref="app.page.tdc_afiliadas">
+      <p-1>+ Añadir Tarjeta</p-1> <img src="images/icoVer.png">
+    </div>
+    </section>
   </div>
-  </section>
-</div>
-</br>
-<div class="home-box">
-<div style="width: 100%;" class="home1">
-   <p>¿Desea realizar una recarga?</p>
- </div>
-<div class="line-100 selecting-box-R" style="margin-bottom: 2pc">
-  <div class="selecting-internal-box-R">
-    <div class="line-100 aux-3-R">
-      <div class="pillar-45p">
-        <div class="pillar-30p">
-          <!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
+  </br>
+  <div class="home-box">
+  <div style="width: 100%;" class="home1">
+     <p>¿Desea realizar una recarga?</p>
+   </div>
+  <div class="line-100 selecting-box-R" style="margin-bottom: 2pc">
+    <div class="selecting-internal-box-R">
+      <div class="line-100 aux-3-R">
+        <div class="pillar-45p">
+          <div class="pillar-30p">
+            <!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
 
-          <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: auto;" required>
-            <div class="country-selected">
-              <div style="display: flex;" ng-hide="showCountry">
-                <img src="images/icoSelectPais.png">
-                <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
+            <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: auto;" required>
+              <div class="country-selected">
+                <div style="display: flex;" ng-hide="showCountry">
+                  <img src="images/icoSelectPais.png">
+                  <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
+                </div>
+                <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
+                  <img src="{{pais.url}}" style="width:26%; height: 26%">
+                  <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
+                </div>
               </div>
-              <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
-                <img src="{{pais.url}}" style="width:26%; height: 26%">
-                <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
-              </div>
-            </div>
-            <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
-              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
-                <img src="images/banderas/{{country.name}}.png">
-                <p style="color: #747474; font-size: 1.1em;">{{'+'+country.phone_code}}</p>
+              <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
+                <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
+                  <img src="images/banderas/{{country.name}}.png">
+                  <p style="color: #747474; font-size: 1.1em;">{{'+'+country.phone_code}}</p>
+                </div>
               </div>
             </div>
           </div>
+      <div class="pillar-70p">
+        <input  onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="10" minlength="10" ng-keyUp="count= count + 1; redirect()">
+      </div>
         </div>
-    <div class="pillar-70p">
-      <input  onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="10" minlength="10" ng-keyUp="count= count + 1; redirect()">
-    </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+  </div>
 </section>
 <!-- FIN DE SECCION DE HOMEPAGE DE NEERU -->
 

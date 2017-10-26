@@ -10,9 +10,9 @@ app.controller('HomeCtrl',
   function($rootScope, $scope, $http, $state, $translate, User) {
 
     $scope.datos  = {
-      tdcAfiliadas: '',
-      frecuentes: '',
-      recargas: '0'
+      tdcAfiliadas: 0,
+      frecuentes: 0,
+      recargas: 0
     };
 
     $scope.showCountry = false;
@@ -33,9 +33,7 @@ app.controller('HomeCtrl',
       };
     };
 
-
-
-    $http.post('plataform/sale/getSalesAmount', {ejecutor: User.id})
+    $http.post('plataform/sale/getSalesAmount')
     .then(function(res){
       $scope.datos.recargas = res.data.ventas;
     }, function(error){
@@ -59,12 +57,6 @@ app.controller('HomeCtrl',
       $scope.datos.tdcAfiliadas = 0;
     })
     //************************ FIN DE CARGA DE CONTROLADOR **************************
-
-
-
-
-
-
 
     //************************* FUNCIONES DEL CONTROLADOR **************************
     /** REDIRECT
