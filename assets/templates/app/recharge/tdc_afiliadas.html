@@ -87,30 +87,59 @@
                 </span>
               </div>
               <!-- ERRORES EN CAMPO DE CVV -->
+              </div>
             </div><br>
-
-
-          </div>
+            <div class="line-100">
+                <input type="text" name="holder_name" data-hide-2 placeholder="Nombre del titular" maxlength="40" ng-model="card.name" string-std required>
+            </div>
+            <!--ERRORES EN CAMPO DE NOMBRE DEL TITULAR -->
+            <div class="text-center" ng-if="formTDC.holder_name.$dirty && (formTDC.holder_name.$invalid || formTDC.holder_name.$touched)">
+              <span ng-if="formTDC.holder_name.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.holder_name.$error.stringStd" class="error-input-msj" >
+                {{"err.stringStd" | translate}}
+              </span>
+            </div>
+            <!-- ERRORES EN CAMPO DEL NOMBRE DEL TITULAR -->
+            <div class="line-100">
+                <input type="text" name="address_zip" data-hide-2 placeholder="Código postal" maxlength="4" ng-model="card.address_zip" numero required>
+            </div>
+            <!--ERRORES EN CAMPO DEL CODIGO POSTAL -->
+            <div class="text-center" ng-if="formTDC.address_zip.$dirty && (formTDC.address_zip.$invalid || formTDC.address_zip.$touched)">
+              <span ng-if="formTDC.address_zip.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.address_zip.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+            </div>
+            <!-- ERRORES EN CAMPO DEL CODIGO POSTAL -->
+            <div class="line-100">
+                <input type="email" name="email" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" maxlength="254" required>
+            </div>
+            <!--ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
+            <div class="text-center" ng-if="formTDC.email.$dirty && (formTDC.email.$invalid || formTDC.email.$touched)">
+              <span ng-if="formTDC.email.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.email.$error.email" class="error-input-msj" >
+                {{"err.email.format" | translate}}
+              </span>
+            </div>
+            <!-- ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
+            <div class="line-100">
+                <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
+            </div>
+            <br><br>
+            <div style="float: right;">
+              <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()" ng-disabled="formTDC.$invalid">
+                <img src="images/icoTDCAfiliada.png">
+                <p style="margin-left: 10px;">Añadir tarjeta</p>
+              </button>
+            </div>
         </form><br>
-        <div class="line-100">
-            <input type="text" data-hide-2 placeholder="Nombre del titular" ng-model="card.name">
-        </div>
-        <div class="line-100">
-            <input type="text" data-hide-2 placeholder="Código postal" maxlength="4" ng-model="card.address_zip">
-        </div>
-        <div class="line-100">
-            <input type="text" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email">
-        </div>
-        <div class="line-100">
-            <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
-        </div>
-        <br><br>
-        <div style="float: right;">
-          <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()">
-            <img src="images/icoTDCAfiliada.png">
-            <p style="margin-left: 10px;">Añadir tarjeta</p>
-          </button>
-        </div>
+
       </div>
     </section>
   </div>
