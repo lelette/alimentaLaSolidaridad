@@ -6,14 +6,16 @@
 *****************************************************************************************/
 
 app.controller('HomeCtrl',
-  ['$rootScope', '$scope', '$http', '$state', '$translate', 'User',
-  function($rootScope, $scope, $http, $state, $translate, User) {
+  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', 'User',
+  function($rootScope, $scope, $http, $state, Recharge, $translate, User) {
 
     $scope.datos  = {
       tdcAfiliadas: 0,
       frecuentes: 0,
       recargas: 0
     };
+
+    $scope.pais = {}
 
     $scope.showCountry = false;
 
@@ -32,6 +34,34 @@ app.controller('HomeCtrl',
         ext: '+'+country.phone_code
       };
     };
+
+    $scope.obtenerOfertas = function (){
+      var numero = $scope.contrato;
+      var cod = $scope.pais.ext;
+      var url = $scope.pais.url;
+     if (cod && numero) {
+       $http.post('plataform/offers',{
+             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
+             "phone":  cod+numero,
+             "currency": "EUR",
+        }).then(function(res){
+         var ofertas = res.data;
+         var operadora = ofertas.operadora;
+         console.log('Recharge', Recharge);
+         Recharge.info.ofertas = ofertas;
+         Recharge.info.pais = {
+           codigo: cod,
+           numero: numero,
+           url: url,
+           operadora: operadora
+         }
+        $state.go('app.page.recharge');
+       }, function(res){
+         $scope.ShowOffers = false;
+         console.log(res);
+       });
+     }
+    }
 
     $http.post('plataform/sale/getSalesAmount')
     .then(function(res){
@@ -58,17 +88,17 @@ app.controller('HomeCtrl',
     })
     //************************ FIN DE CARGA DE CONTROLADOR **************************
 
-    //************************* FUNCIONES DEL CONTROLADOR **************************
-    /** REDIRECT
-    * description: funcion para redirigir al usuario al flujo de recarga
-    **/
-    $scope.redirect = function (){
-     if (($scope.count!=0)&&($scope.count == 10)){
-       var cod = " ";
-       var contrato = $scope.contrato;
-       $state.go('app.page.recharge', {cod: cod, contrato: contrato});
-     }
-   }
-   //************************ FIN DE FUNCIONES DEL CONTROLADOR **************************
+  //   //************************* FUNCIONES DEL CONTROLADOR **************************
+  //   /** REDIRECT
+  //   * description: funcion para redirigir al usuario al flujo de recarga
+  //   **/
+  //   $scope.redirect = function (){
+  //    if (($scope.count!=0)&&($scope.count == 10)){
+  //      var cod = " ";
+  //      var contrato = $scope.contrato;
+  //      $state.go('app.page.recharge', {cod: cod, contrato: contrato});
+  //    }
+  //  }
+  //  //************************ FIN DE FUNCIONES DEL CONTROLADOR **************************
 
 }]);

@@ -221,15 +221,26 @@ app.controller('ResultController',
 app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
+    console.log('Recharge', Recharge);
     $scope.datos = {
       cod: 'Pais',
-      contrato: ''
+      contrato: '',
+      operadora: ''
     };
-    if (($stateParams.cod!='')&&($stateParams.contrato!='')){
-      console.log("$stateParams");
-     $scope.datos.cod = $stateParams.cod;
-     $scope.datos.contrato = $stateParams.contrato;
-   }
+
+    $scope.pais = {}
+
+    $scope.showOffers   = false;
+    $scope.showOperator = false;
+    $scope.showCountry = false;
+
+  //   if (($stateParams.cod!='')&&($stateParams.contrato!='')){
+  //     console.log("$stateParams");
+  //    $scope.datos.cod = $stateParams.cod;
+  //    $scope.datos.contrato = $stateParams.contrato;
+  //  }
+
+
    $scope.recharge = function () {
      $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
        $scope.recharge = response.data.recharge;
@@ -240,46 +251,64 @@ app.controller('ReloadController',
      });
    }
 
+   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
+     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
 
-   var primeAppVar = {}
-   primeAppVar.optionsNeeruSelectBox = $('.options-neeru-select-box');
-   primeAppVar.selectNeeruOpen = $('.option-neeru');
-   primeAppVar.window = $(window);
-   $scope.showCountry = false;
+      $scope.ofertas = Recharge.info.ofertas;
+      $scope.pais.cod = Recharge.info.pais.codigo;
+      $scope.pais.url = Recharge.info.pais.url;
+      $scope.datos.contrato = Recharge.info.pais.numero
+      $scope.datos.operadora = Recharge.info.pais.operadora;
+      $scope.showCountry = true;
+      $scope.showOffers = true;
+      $scope.showOperator = true;
 
-   $http.get('plataform/countries').then(function(response) {
-     $scope.countries = response.data.paises;
-     $scope.$emit('$resetAjax');
-   }, function(res) {
-     $scope.$emit('$resetAjax');
-     $scope.$emit('$errorAjax',res.data);
-   });
+   }else {
+     $http.get('plataform/countries').then(function(response) {
+       $scope.countries = response.data.paises;
+       $scope.$emit('$resetAjax');
+     }, function(res) {
+       $scope.$emit('$resetAjax');
+       $scope.$emit('$errorAjax',res.data);
+     });
+   }
 
-   $scope.countrySelected = function (id, code, url) {
-     primeAppVar.optionsNeeruSelectBox.css('display','none');
-     primeAppVar.selectNeeruOpen.css('display','none');
+   $scope.countrySelected = function (country) {
      $scope.showCountry = true;
      $scope.pais = {
-       url: 'images/banderas/Venezuela.png',
-       ext: '+'+code
-     }
-   }
+       url: 'images/banderas/'+country.name+'.png',
+       cod: '+'+country.phone_code
+     };
+     $scope.datos.cod = country.phone_code;
+   };
 
-   $scope.abrirSelectCountry = function () {
-     if (primeAppVar.optionsNeeruSelectBox.css('display') == 'none') {
-       primeAppVar.optionsNeeruSelectBox.css('display','block');
-       primeAppVar.selectNeeruOpen.css('display','block');
-     }
+   $scope.obtenerOfertas = function (){
+     $scope.showOffers = false;
+     var numero = $scope.datos.contrato;
+     var cod = Recharge.info.pais.codigo | $scope.datos.cod;
+    if (cod && numero) {
+      $http.post('plataform/offers',{
+            // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
+            "phone":  cod+numero,
+            "currency": "EUR",
+       }).then(function(res){
+         var ofertas = res.data;
+         var operadora = $scope.ofertas.operadora;
+         console.log('Recharge', Recharge);
+         Recharge.info.ofertas = ofertas;
+         Recharge.info.pais = {
+           codigo: cod,
+           numero: numero,
+           operadora: operadora
+         }
+        $scope.ofertas = Recharge.info.ofertas;
+        $scope.showOffers = true; $scope.showOperator = true;
+        console.log('Recharge', Recharge);
+      }, function(res){
+        $scope.showOffers = false;
+        console.log(res);
+      });
+    }
    }
-
-   $http.post('plataform/offers',{
-         "phone": "34912509849",//"5491127184499"
-         "currency": "EUR",
-    })
-   .then(function(res){
-     $scope.ofertas = res.data;
-   }, function(res){
-     console.log(res);
-   });
 
 }]);

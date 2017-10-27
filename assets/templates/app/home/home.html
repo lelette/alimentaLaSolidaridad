@@ -71,7 +71,7 @@
             </div>
           </div>
       <div class="pillar-70p">
-        <input  onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="10" minlength="10" ng-keyUp="count= count + 1; redirect()">
+        <input  onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="11" minlength="8" ng-blur="obtenerOfertas()">
       </div>
         </div>
       </div>

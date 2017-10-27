@@ -72,6 +72,7 @@ angular.module('app')
                 // para usar toaster (mensajes asincronos)
                 'toaster',
                 'js/services/User.js',
+                'js/services/Recharge.js',
                 'js/controllers/app/global.js',
                 'js/directives/val-input.js',
                 'js/controllers/app/header.js',
@@ -92,7 +93,6 @@ angular.module('app')
             templateUrl: 'templates/app/recharge/reload.html',
             params: {'cod': '', 'contrato': ''},
             resolve: load([
-              'js/services/Recharge.js',
               'js/controllers/app/recharge.js',
               'js/directives/stripe.js',
               'js/services/Sales.js'
