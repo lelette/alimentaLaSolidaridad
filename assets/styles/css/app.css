@@ -63,7 +63,6 @@
     border-radius: .5rem;
 		margin-right: 5pc;
     justify-content:flex-start;
-    cursor: pointer;
     display: flex;
 }
 .tab-dynamic-home {
@@ -71,7 +70,6 @@
 	align-items: -webkit-flex;
 	width: 12pc;
 	border-bottom: 1.5px solid #0DB731;
-	cursor: pointer;
 }
 .home1 {
 	margin-right: 5pc;
