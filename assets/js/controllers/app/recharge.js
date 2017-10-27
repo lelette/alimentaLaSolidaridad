@@ -280,12 +280,16 @@ app.controller('ReloadController',
        cod: '+'+country.phone_code
      };
      $scope.datos.cod = country.phone_code;
+     Recharge.info.pais.codigo = country.phone_code;
    };
 
    $scope.obtenerOfertas = function (){
      $scope.showOffers = false;
      var numero = $scope.datos.contrato;
-     var cod = Recharge.info.pais.codigo | $scope.datos.cod;
+     var cod = $scope.datos.cod;
+
+     if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
+
     if (cod && numero) {
       $http.post('plataform/offers',{
             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
@@ -293,7 +297,7 @@ app.controller('ReloadController',
             "currency": "EUR",
        }).then(function(res){
          var ofertas = res.data;
-         var operadora = $scope.ofertas.operadora;
+         var operadora = ofertas.operadora;
          console.log('Recharge', Recharge);
          Recharge.info.ofertas = ofertas;
          Recharge.info.pais = {
@@ -301,6 +305,7 @@ app.controller('ReloadController',
            numero: numero,
            operadora: operadora
          }
+        $scope.datos.operadora = operadora;
         $scope.ofertas = Recharge.info.ofertas;
         $scope.showOffers = true; $scope.showOperator = true;
         console.log('Recharge', Recharge);

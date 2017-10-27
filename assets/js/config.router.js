@@ -181,6 +181,8 @@ angular.module('app')
             resolve: load([
                 'js/directives/val-input.js',
                 'ngImgCrop',
+                'filestyle',
+                'angularFileUpload',
                 'js/directives/html.js',
                 'js/controllers/app/profile.js'
               ])

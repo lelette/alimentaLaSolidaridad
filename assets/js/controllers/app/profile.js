@@ -6,8 +6,8 @@
 *****************************************************************************************/
 
 app.controller('BasicController',
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate', '$uibModal',
-  function($rootScope,  $scope, $http, $state, User, $translate, $uibModal) {
+  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate', '$uibModal','FileUploader',
+  function($rootScope,  $scope, $http, $state, User, $translate, $uibModal, FileUploader) {
 
     $scope.user = {};
 
@@ -29,6 +29,7 @@ app.controller('BasicController',
           email: User.info.login.email.email,
           imagen_perfil: $rootScope.apiUrl+User.info.imagen_perfil,
         };
+        console.log($scope.user.imagen_perfil);
       }
     });
 
@@ -45,12 +46,12 @@ app.controller('BasicController',
     }
 
     $scope.changeImage = function () {
-      // $state.go('app.page.imageChange')
-      var modalInstance = $uibModal.open({
-        templateUrl: 'templates/modals/modalProfileImage.html',
-        controller: 'BasicController',
-        backdrop: 'static'
-      });
+      $state.go('app.page.imageChange')
+      // var modalInstance = $uibModal.open({
+      //   templateUrl: 'templates/modals/modalProfileImage.html',
+      //   controller: 'BasicController',
+      //   backdrop: 'static'
+      // });
     };
 
 
@@ -62,10 +63,14 @@ app.controller('BasicController',
     $scope.estatus= false;
     var filename = undefined;
 
+    var uploader = $scope.uploader = new FileUploader({
+       url: $rootScope.apiUrl+'plataform/user/changeImage',
+       alias: 'imagen_perfil',
+       autoUpload: false,
+       withCredentials: true,
+     });
 
     var handleFileSelect = function(evt) {
-      console.log(evt);
-      console.log($scope.files);
       var file = evt.currentTarget.files[0];
       var reader = new FileReader();
 
@@ -79,10 +84,67 @@ app.controller('BasicController',
           $scope.estatus = true;
         });
       };
+
       reader.readAsDataURL(file);
     };
 
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+    function base64ToBlob(base64Data, contentType) {
+      contentType = contentType || '';
+
+      var sliceSize = 1024;
+      var byteCharacters = atob(base64Data);
+      var bytesLength = byteCharacters.length;
+      var slicesCount = Math.ceil(bytesLength / sliceSize);
+      var byteArrays = new Array(slicesCount);
+
+      for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+        var begin = sliceIndex * sliceSize;
+        var end = Math.min(begin + sliceSize, bytesLength);
+
+        var bytes = new Array(end - begin);
+        for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+          bytes[i] = byteCharacters[offset].charCodeAt(0);
+        }
+        byteArrays[sliceIndex] = new Uint8Array(bytes);
+      }
+
+      var blob = new Blob(byteArrays, { type: contentType});
+
+      return blob;
+    };
+
+    $scope.upload = function() {
+      var sep = $scope.myCroppedImage.split(';');
+      console.log(sep);
+      var type = sep[0].replace('data:','');
+      console.log(type);
+      var base64 = sep[1];
+      var rutaDeImagen = "";
+      var file = base64ToBlob(base64.replace('base64,',''), type);
+      file.name = filename;
+
+      uploader.addToQueue(file);
+      uploader.uploadAll();
+      uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        //console.info('onSuccessItem', fileItem, response, status, headers);
+        // Usuario.usuario.imagen_perfil.nombre_servidor = response.ruta;
+        // toaster.pop('success','Imagen','Imagen de perfil actualizada de forma exitosa');
+        // Actualizo imagen de perfil
+          // $scope.$apply(function() {
+          //   if (Usuario.usuario.imagen_perfil.nombre_servidor) {
+          //     $scope.user.imgPrevPerfil = $rootScope.apiUrl+Usuario.usuario.imagen_perfil.nombre_servidor.replace('dinamicas','preview');
+          //     $scope.user.imgPerfil = $rootScope.apiUrl+Usuario.usuario.imagen_perfil.nombre_servidor;
+          //   };
+          // }, 1000);
+        // $state.go('app.page.profile');
+        $modalInstance.close();
+      };
+      uploader.onErrorItem = function(fileItem, response, status, headers) {
+        // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
+      };
+    };
 
 		$scope.confirmar = function() {
       $modalInstance.close();

@@ -9,7 +9,7 @@
             image="myImage"
             result-image="myCroppedImage"
             result-image-size="160"
-            area-type="{{cropType}}"
+            area-type="square"
           ></img-crop>
         </div>
       </div>
@@ -23,11 +23,14 @@
     </div>
   </div>
   <div class="m-b">
-    <!-- <div style="display: flex;position: relative;align-items: center;justify-content: center;">
-    <input ng-change="handleFileSelect($event)" id="#fileInput" style="position: absolute;height: 25px;margin: 0px;z-index: 2;opacity: 0;cursor: pointer;" type="file" ng-model="files">
-    <button style="z-index: 1;" ng-click="handleFileSelect($event)" class='btn-green-on' data-standard>Subir foto</button>
-  </div> -->
-  <input type="file" id="fileInput" ng-model="files"/><br>
+    <div class="empty-activity-box" style=" justify-content: center">
+  		<div style="display: flex;">
+  			<input style="position: absolute;width: 410px;height: 70px;margin: 0px;z-index: 1;opacity: 0;cursor: pointer;" type="file" id="fileInput" data-standard ng-model="files"/>
+  			<img src="images/conectar.png" alt="">
+  			<p style="margin-left: 20px;">Subir Foto</p>
+  		</div>
+
+  	</div>
   <button type="button"  ng-click="upload()" ng-disabled="!estatus">Actualizar</button>
 </div>
 <!--   <div class="btn-group m-t">
