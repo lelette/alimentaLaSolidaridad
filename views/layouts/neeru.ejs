@@ -29,7 +29,8 @@
   <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
     <%-body%>
   </div>
-
+  <input type="hidden" api-url value="http://192.168.2.28:9002/">
+  <script src="js/directives/html.js"></script>
   <!-- LIBRERIAS -->
 
   <!-- jQuery -->
