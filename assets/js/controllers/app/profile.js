@@ -45,8 +45,52 @@ app.controller('BasicController',
     }
 
     $scope.changeImage = function () {
-      $state.go('app.page.imageChange')
+      // $state.go('app.page.imageChange')
+      var modalInstance = $uibModal.open({
+        templateUrl: 'templates/modals/modalProfileImage.html',
+        controller: 'BasicController',
+        backdrop: 'static'
+      });
     };
+
+
+
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+    $scope.cropType="circle";
+    $scope.files='';
+    $scope.estatus= false;
+    var filename = undefined;
+
+
+    var handleFileSelect = function(evt) {
+      console.log(evt);
+      console.log($scope.files);
+      var file = evt.currentTarget.files[0];
+      var reader = new FileReader();
+
+      if (file) {
+        filename = file.name;
+      }
+
+      reader.onload = function(evt) {
+        $scope.$apply(function($scope) {
+          $scope.myImage = evt.target.result;
+          $scope.estatus = true;
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+		$scope.confirmar = function() {
+      $modalInstance.close();
+		 };
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
 
 }]);
 
