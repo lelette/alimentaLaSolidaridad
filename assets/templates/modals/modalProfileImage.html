@@ -11,26 +11,33 @@
             image="myImage"
             result-image="myCroppedImage"
             result-image-size="160"
-            area-type="{{cropType}}"
+            area-type="square"
           ></img-crop>
         </div>
       </div>
     </div>
-    <div class="col">
+    <!-- <div class="col">
       <div class="inline bg-white wrapper-sm b-a">
         <div class="bg-light">
           <img ng-src="{{myCroppedImage}}" />
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-	<input type="file" id="fileInput" ng-model="files"/><br>
+	<div class="empty-activity-box" style=" justify-content: center">
+		<div style="display: flex;">
+			<input style="position: absolute;width: 410px;height: 70px;margin: 0px;z-index: 1;opacity: 0;cursor: pointer;" type="file" id="fileInput" data-standard ng-model="files"/>
+			<img src="images/conectar.png" alt="">
+			<p style="margin-left: 20px;">Subir Foto</p>
+		</div>
+
+	</div>
 	<!-- <div style="display: flex;position: relative;align-items: center;justify-content: center;">
-		<button style="z-index: 1;" ng-click="handleFileSelect($event)" class='btn-green-on' data-standard>Subir foto</button>
+		<button id="fileInput" style="z-index: 0;" ng-click="handleFileSelect($event)" class='btn-green-on' data-standard>Subir foto</button>
   </div> -->
 
 </div>
 <div class="modal-footer">
   <button class="btn btn-link" style="float: left; color: #989898;" ng-click="cancel()">Cancelar</button>
-	<button class="btn-green-on" data-standard ng-click="confirmar()" ng-disabled='form.$invalid'><p>Cambiar</p></button>
+	<button class="btn-green-on" data-standard ng-click="upload()" ng-disabled='form.$invalid'><p>Cambiar</p></button>
 </div>
