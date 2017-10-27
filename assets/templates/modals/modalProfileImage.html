@@ -1,8 +1,8 @@
 <div onload="primeAppVar.init()" class="modal-header">
 	<h3 class="modal-title" style="color: #989898;">Imagen de perfil</h3>
 </div>
-<div class="modal-body text-center">
-  <!-- <div class="hbox hbox-auto-xs">
+<div class="modal-body text-center" ng-controller="BasicController">
+  <div class="hbox hbox-auto-xs">
     <div class="col">
       <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
         <div class="bg-light" style="height:320px">
@@ -23,11 +23,11 @@
         </div>
       </div>
     </div>
-  </div> -->
-	<div style="display: flex;position: relative;align-items: center;justify-content: center;">
-		<input ng-change="handleFileSelect($event)" id="#fileInput" style="position: absolute;height: 25px;margin: 0px;z-index: 2;opacity: 0;cursor: pointer;" type="file" ng-model="files">
-		<button style="z-index: 1;" ng-click="handleFileSelect($event)" class='btn-green-on' data-standard>Subir foto</button>
   </div>
+	<input type="file" id="fileInput" ng-model="files"/><br>
+	<!-- <div style="display: flex;position: relative;align-items: center;justify-content: center;">
+		<button style="z-index: 1;" ng-click="handleFileSelect($event)" class='btn-green-on' data-standard>Subir foto</button>
+  </div> -->
 
 </div>
 <div class="modal-footer">
