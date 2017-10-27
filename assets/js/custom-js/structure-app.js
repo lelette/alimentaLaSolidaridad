@@ -99,9 +99,6 @@
 								<img src="images/icoNumFrec.png"> <a href="app/page/frequent"><p class="p-black p-tiny">NUMEROS FRECUENTES</p></a>\
 							</div>\
 							<div class="line-100">\
-								<img src="images/icoNumFrec.png"> <a href="app/page/recharge"><p class="p-black p-tiny">Recarga</p></a>\
-							</div>\
-							<div class="line-100">\
 								<img src="images/icoTDCAfiliada.png"> <a href="app/page/tdc_afiliadas"> <p class="p-black p-tiny">TDC AFILIADAS</p></a>\
 							</div>\
 							<div class="line-100">\

@@ -5,8 +5,10 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "angular-image-cropper": "^1.2.0",
     "async": "^2.1.4",
     "bcrypt": "^1.0.2",
+    "canvas": "^1.6.7",
     "connect-redis": "^1.4.5",
     "ejs": "2.3.4",
     "fast-csv": "^2.3.0",

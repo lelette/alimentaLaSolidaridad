@@ -72,10 +72,12 @@ angular.module('app')
                 // para usar toaster (mensajes asincronos)
                 'toaster',
                 'js/services/User.js',
+                'js/services/Recharge.js',
                 'js/controllers/app/global.js',
                 'js/directives/val-input.js',
                 'js/controllers/app/header.js',
                 'js/controllers/app/home.js',
+                'js/directives/html.js',
               ])
           })
           // .state('app.page.index', {
@@ -92,7 +94,6 @@ angular.module('app')
             templateUrl: 'templates/app/recharge/reload.html',
             params: {'cod': '', 'contrato': ''},
             resolve: load([
-              'js/services/Recharge.js',
               'js/controllers/app/recharge.js',
               'js/directives/stripe.js',
               'js/services/Sales.js'
@@ -179,13 +180,20 @@ angular.module('app')
             templateUrl: 'templates/app/profile/profile.html',
             resolve: load([
                 'js/directives/val-input.js',
+                'ngImgCrop',
                 'js/directives/html.js',
                 'js/controllers/app/profile.js'
               ])
           })
-          .state('app.page.profile.update_datos', {
-            url: '/updateProfile',
-            templateUrl: 'templates/app/profile/update_datos.html'
+          .state('app.page.imageChange', {
+            url: '/changeImage',
+            templateUrl: 'templates/app/profile/changeImage.html',
+            resolve: load([
+              'js/controllers/app/imageChange.js',
+              'ngImgCrop',
+              'filestyle',
+              'angularFileUpload'
+            ])
           })
           .state('app.page.profile.contacto', {
             url: '/contact',

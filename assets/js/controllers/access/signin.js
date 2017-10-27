@@ -12,7 +12,7 @@ app.controller('SigninFormController',
   $rootScope.header = {}
   $rootScope.header.icono = "images/icoMiPerfil.png";
   $rootScope.header.namePage = "Inicio de Sesión";
-
+  $scope.fbLogin = '';
   $scope.user = {};
   $scope.authError = null;
 
@@ -36,6 +36,16 @@ app.controller('SigninFormController',
     }, function(res) {
       $scope.authError = res.data.error.msjUser;
     });
+  };
+
+  $scope.FBLogin = function (fb) {
+    console.log('INICIO CON FACEBOOK', fb);
+    $http.get('plataform/user/signinFacebook')
+    .then(function (response) {
+      console.log(response.data);
+    },function (x) {
+      console.log(x.data);
+    })
   };
 
 }]);
