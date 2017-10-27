@@ -21,6 +21,7 @@ app.service('User', [
       var aux = this.info;
       $http.get('plataform/user/getProfile')
       .then(function(res){
+        
         aux.nombres= res.data.datos_basicos.nombres;
         aux.apellidos= res.data.datos_basicos.apellidos;
         aux.fecha_nacimiento= res.data.datos_basicos.fecha_nacimiento;
@@ -28,6 +29,7 @@ app.service('User', [
         aux.id= res.data.id;
         aux.emails= res.data.emails;
         aux.login= undefined;
+        aux.imagen_perfil = res.data.datos_basicos.imagen_perfil;
 
         res.data.emails.forEach(function(email){
           if (email.enableLogin) {

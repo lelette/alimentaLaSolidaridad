@@ -25,7 +25,9 @@ app.controller('BasicController',
           nombres : User.info.nombres,
           apellidos : User.info.apellidos,
           sexo: User.info.sexo,
-          fecha_nacimiento: new Date(User.info.fecha_nacimiento)
+          fecha_nacimiento: new Date(User.info.fecha_nacimiento),
+          email: User.info.login.email.email,
+          imagen_perfil: $rootScope.apiUrl+User.info.imagen_perfil,
         };
       }
     });
@@ -41,6 +43,10 @@ app.controller('BasicController',
         };
       });
     }
+
+    $scope.changeImage = function () {
+      $state.go('app.page.imageChange')
+    };
 
 }]);
 
@@ -152,7 +158,6 @@ app.controller('ContactController',
         });
 
         $scope.user.emails = emails;
-        console.log($scope.user.emails);
       }
     });
 
@@ -203,16 +208,55 @@ app.controller('AddEmailController',
     };
 }]);
 
-app.controller('modalProfileImageController',
-[
-  '$rootScope',
-  '$scope',
-  '$http',
+app.controller('modalProfileImageController',[
+	'$scope',
   '$state',
-  '$translate',
-  '$modalInstance',
-  '$uibModal',
-  function ($rootScope, $scope, $http, $state, $translate, $modalInstance, $uibModal) {
+	'$modalInstance',
+	'$uibModal',
+	'$http',
+	function($scope, $state, $modalInstance, $uibModal, $http) {
 
+
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+    $scope.cropType="circle";
+    $scope.files='';
+    $scope.estatus= false;
+    var filename = undefined;
+
+    var prueba = function (evt) {
+      console.log(evt);
+    }
+    // console.log(angular.element('#fileInput').on('change',prueba));
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+    var handleFileSelect = function(evt) {
+      console.log(evt);
+      console.log($scope.files);
+      var file = evt.currentTarget.files[0];
+      var reader = new FileReader();
+
+      if (file) {
+        filename = file.name;
+      }
+
+      reader.onload = function(evt) {
+        $scope.$apply(function($scope) {
+          $scope.myImage = evt.target.result;
+          $scope.estatus = true;
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+		$scope.confirmar = function() {
+      $modalInstance.close();
+		 };
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
   }
-])
+]);
