@@ -1,24 +1,26 @@
 <div id="background" ng-controller="BasicController">
-    <div class="leftSpace">
-        <div id="pwdChange" ng-if="changePwd" class="pad20">
+    <div class="fade-in-right-big smooth leftSpace" ui-view>
+        <!-- <div id="pwdChange" ng-if="changePwd" class="pad20">
             <p class="pad20">Introduce tu nueva contraseña</p>
             <input type="password" name="newPwd" class="pad5" value="" />
-            <input type="password" name="newPwdRptd" class="pad5" value="" onchange=""/>  <!-- Ask Chourio for .js to code -->
+            <input type="password" name="newPwdRptd" class="pad5" value="" onchange=""/>
             <p ng-model="pwdSecurity">Seguridad: media</p>
             <button data-standard class="btn-green-on">
                 <p>Aceptar</p>
             </button>
-        </div>
+        </div> -->
     </div>
     <div class="rightSpace">
-        <div id="profile">
+        <div class="profile">
             <div class="pad20"><a href="#"><img src="{{user.imagen_perfil}}"></a></div>
-            <p ng-click="changeImage()">CAMBIAR FOTO <br>DE PERFIL</p>
+            <p class="profile-p" ui-sref="app.page.profile.imageChange" style="cursor: pointer;">CAMBIAR FOTO <br>DE PERFIL</p>
         </div>
         <div class="pad20">
-            <p>EMAIL</p>
-            <p id="email">{{user.email}}</p>
-            <div class="click" ng-model="changePwd" ng-click="changePwd = true"><p>CAMBIAR CONTRASEÑA</p></div>
+            <p class="profile-p">EMAIL</p>
+            <p class="profile-email">{{user.email}}</p>
+            <div class="click" ng-model="changePwd" ng-click="changePwd = true">
+              <p class="profile-p">CAMBIAR CONTRASEÑA</p>
+            </div>
         </div>
     </div>
 </div>

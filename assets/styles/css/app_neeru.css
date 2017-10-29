@@ -121,58 +121,58 @@ tr:last-child{
     height: 60px;
 }
 
-#background p {
+ .profile-p {
     margin: 0px;
     color: #88918c;
     font-size: 0.8em;
 }
 
-#background button p {
+.profile-p button {
     color: #fff;
 }
 
-#background button:active p {
+.profile-p button:active {
     color: #0DB731;
 }
 
-#background a {
+.profile-a {
     margin: 0px;
     color: #88918c;
     font-size: 0.8em;
 }
 
-#background #email {
+.profile-email {
     color: #0db731;
     font-size: 0.9em;
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-#profile {
+.profile {
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-#pwdChange {
+.pass-change {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-#pwdChange input {
+.pass-change input {
     border: 0px solid;
     border-bottom: .15rem #cfd5d1 solid;
     width: 250px;
     margin-top: 5px;
 }
 
-#pwdChange button {
+.pass-change button {
     margin-top: 30px;
 }
 
 .leftSpace {
-    width: 60%;
+    width: 70%;
     display: flex;
     justify-content: center;
 }
