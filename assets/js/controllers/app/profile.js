@@ -28,8 +28,10 @@ app.controller('BasicController',
           sexo: User.info.sexo,
           fecha_nacimiento: new Date(User.info.fecha_nacimiento),
           email: User.info.login.email.email,
-          imagen_perfil: $rootScope.apiUrl+User.info.imagen_perfil,
+          imagen_perfil: User.info.imagen_perfil,
         };
+        if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
+        else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       }
     });
   };
