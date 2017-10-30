@@ -187,11 +187,10 @@ angular.module('app')
                 'js/controllers/app/profile.js'
               ])
           })
-          .state('app.page.imageChange', {
+          .state('app.page.profile.imageChange', {
             url: '/changeImage',
             templateUrl: 'templates/app/profile/changeImage.html',
             resolve: load([
-              'js/controllers/app/imageChange.js',
               'ngImgCrop',
               'filestyle',
               'angularFileUpload'

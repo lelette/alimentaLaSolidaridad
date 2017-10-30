@@ -176,7 +176,7 @@ app.controller('GlobalCtrl',
         return $state.go('access.signin');
       }
       $scope.user = User.info;
-      $scope.user.imagen_perfil = $rootScope.apiUrl+User.info.imagen_perfil;
+      $scope.user.imagen_perfil = User.info.imagen_perfil;
 
       // Variables fijas del Header
       $rootScope.header = {}
