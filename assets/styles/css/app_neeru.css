@@ -9,6 +9,35 @@
 }
 
 
+.header-neeru-select-box{
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	border: 1.5px solid #5fc963;
+	border-radius: .5rem;
+	max-height: 300px;
+	display: none;
+	overflow: auto;
+	background: white;
+	z-index: 10;
+}
+
+.header-option-neeru{
+	padding: 5px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+}
+
+.header-option-neeru p{
+	margin-left: 1pc;
+}
+
+.header-option-neeru:hover{
+	background-color: white;
+}
+
+
 
 /* *** estilo para los mensajes de error de inputs *** */
 .error-input-msj {

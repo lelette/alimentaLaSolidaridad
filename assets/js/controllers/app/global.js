@@ -19,15 +19,7 @@ app.controller('ErrorCtrl', [
       });
     };
   */
-  // Variable global para el manejo del tiempo de sesion
-  var timer;
 
-  // Funcion para iniciar el contador de tiempo de sesion
-  function startTimer() {
-    timer = setTimeout(function() {
-      alert('Estimado Usuario: Queda aproximadamente un minuto para que su tiempo de sesión expire.');
-    }, 240000);
-  };
 
   /*
   *   listenerEvent :: resetAjax
@@ -37,8 +29,6 @@ app.controller('ErrorCtrl', [
 
   $scope.$on('$resetAjax', function(event) {
     event.stopPropagation();
-    clearTimeout(timer);
-    startTimer();
   });
 
   /*
@@ -49,10 +39,8 @@ app.controller('ErrorCtrl', [
 
   $scope.$on('$clearAjax', function(event) {
     event.stopPropagation();
-    clearTimeout(timer);
   });
 
-  startTimer();
 
   var cleanUp = function() {
     // limpiamos los eventos globales creados
@@ -86,12 +74,10 @@ app.controller('ErrorCtrl', [
     switch (error.codigo) {
       case 10002 :
         //getCSRF();
-        clearTimeout(timer);
         $state.go('access.signin');
         break;
       case 10104 : // error de usuario no autenticado. redirigimos al signin
         //getCSRF();
-        clearTimeout(timer);
         $state.go('access.signin');
         break;
         /*
