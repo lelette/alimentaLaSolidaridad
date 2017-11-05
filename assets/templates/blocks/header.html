@@ -8,7 +8,7 @@
         <i class="fa fa-home" aria-hidden="true"></i>
       </div>
       <div ui-sref="app.page.recharge">
-        <p>enviar recarga</p>
+        <p>{{"header.enviar_recarga" | translate}}</p>
       </div>
       <!--
       <div>
@@ -16,23 +16,23 @@
       </div>
       -->
       <div class="" uib-dropdown uib-dropdown-toggle>
-        <p class="mi-cuenta">Mi cuenta</p>
+        <p class="mi-cuenta">{{ "header.mi_cuenta" | translate}}</p>
         <div class="uib-dropdown-menu header-neeru-select-box animated fadeInUp">
           <div class="header-option-neeru"  ui-sref="app.page.transactions">
             <img onmouseover="this.src = 'images/menuMovimientoVrd.png'" onmouseout="this.src = 'images/menuMovimientoGrs.png'" src="images/menuMovimientoGrs.png">
-            <p>MOVIMIENTOS</p>
+            <p>{{"header.cuenta_select.movimiento" | translate}}</p>
           </div>
           <div class="header-option-neeru" ui-sref="app.page.frequent">
             <img onmouseover="this.src = 'images/menuNumFrecVrd.png'" onmouseout="this.src = 'images/menuNumFrecGrs.png'" src="images/menuNumFrecGrs.png">
-            <p>NÚMEROS FRECUENTES</p>
+            <p>{{"header.cuenta_select.numero_frecuente" | translate}}</p>
           </div>
           <div class="header-option-neeru" ui-sref="app.page.tdc_afiliadas">
             <img onmouseover="this.src = 'images/menuTDCVrd.png'" onmouseout="this.src = 'images/menuTDCGrs.png'" src="images/menuTDCGrs.png">
-            <p>TDC AFiLiADAS</p>
+            <p>{{"header.cuenta_select.tdc_afiliada" | translate}}</p>
           </div>
           <div class="header-option-neeru" ui-sref="app.page.profile">
             <img onmouseover="this.src = 'images/menuPerfilVrd.png'" onmouseout="this.src = 'images/menuPerfilGrs.png'"  src="images/menuPerfilGrs.png">
-            <p>MI PERFIL</p>
+            <p>{{"header.cuenta_select.perfil" | translate}}</p>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
     <div data-aux-1>
       <div>
         <p class="p-small">ID 99999999</p>
-        <p class="p-tiny">Cerrar Sesión</p>
+        <p class="p-tiny">{{"Cerrar_Sesion" | translate}}</p>
       </div>
       <div>
         <img class="aux-img-1-SA" src="{{user.imagen_perfil}}">
@@ -68,7 +68,7 @@
   <section>
     <div>
       <img ng-src="{{header.icono}}">
-      <p class="p-5 p-300">{{header.namePage}}</p>
+      <p class="p-5 p-300">{{header.namePage | translate}}</p>
     </div>
     <div>
       <!--

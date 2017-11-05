@@ -12,6 +12,25 @@
 	border-bottom: 4px solid #FFFF00;
 }*/
 
+/*
+	FOOTER
+*/
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	color: #58666e;
+  background-color: #edf1f2;
+	padding: 15px;
+	border-top: 1px solid #dee5e7;
+}
+
+/*
+	FOOTER
+*/
+
 
 /*
 	Social Media Profile
@@ -136,6 +155,7 @@
 .header-option-neeru p{
 	margin-left: 1pc;
 	color: #AEB7B3;
+	text-transform: uppercase;
 }
 
 .header-option-neeru img{

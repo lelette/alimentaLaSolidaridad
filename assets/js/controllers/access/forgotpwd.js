@@ -11,7 +11,7 @@ app.controller('ForgotpwdController',
 
   $rootScope.header = {}
   $rootScope.header.icono = "images/icoCVV.png";
-  $rootScope.header.namePage = "Recuperación de Contraseña";
+  $rootScope.header.namePage = "forgotpwd.successfp.subtitulo";
 
   $scope.authError = undefined;
   $scope.user = {};
