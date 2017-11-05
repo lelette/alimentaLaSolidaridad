@@ -106,6 +106,9 @@
 	Input Control
 */
 
+/*
+	HEADER
+*/
 
 .header-neeru-select-box{
 	position: absolute;
@@ -146,6 +149,43 @@
 .header-option-neeru:hover p {
 	color: #5fc963;
 }
+
+.header-language-select-box {
+    position: absolute;
+    width: 100%;
+    /*top: 100%;*/
+    border: 1.5px solid #5fc963;
+    border-radius: .5rem;
+    max-height: 300px;
+    min-width: 65px;
+    display: none;
+    overflow: auto;
+    background: white;
+    z-index: 10;
+    top: 40px;
+    left: 0%;
+		text-align: -webkit-center;
+}
+
+.header-language-select-box div:focus{
+	outline: 0;
+}
+
+.header-language-select-box p {
+	color: #aeb7b1
+}
+
+.header-language-select-box p:hover{
+	color: #5fc963;
+}
+
+.header-language-select-box p:focus{
+	outline: 0;
+}
+
+/*
+	HEADER
+*/
 
 
 
