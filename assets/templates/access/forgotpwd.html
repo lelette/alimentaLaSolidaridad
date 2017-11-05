@@ -6,12 +6,26 @@
     <div class="line-101">
 
       <p style="margin-top: 5pc">Introduce tu email y enviaremos un correo para recuperar tu contraseña</p>
-
-      <div class="pillar-auto" style="justify-content:center;margin-top: 4pc">
-        <input data-hide-3 type="text" placeholder="Email" style="width:70%" required>
-      </div>
-      <div class="pillar-auto" style="justify-content:center; margin-top: 4pc;">
-        <button type="submit" style="font-family: neeru" data-standard class="btn-green-uno" ng-click="forgotpwd()">ENVIAR</button>
-      </div>
+      <form id="form" name="form" class="form-validation" autocomplete="off">
+        <div class="pillar-auto " style="justify-content:center;margin-top: 4pc">
+          <input name="email" ng-model="user.email" class="form-control" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" data-hide-3 type="text" placeholder="Email" style="width:70%; text-align: center;" maxlength="254" required>
+        </div>
+        <!-- ERRORES EN CAMPO DE EMAIL -->
+        <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
+          <span ng-if="form.email.$error.required" class="error-input-msj" >
+            {{"err.required" | translate}}
+          </span>
+          <span ng-if="form.email.$error.email || form.email.$error.pattern" class="error-input-msj" >
+            {{"err.email.format" | translate}}
+          </span>
+          <span ng-if="form.email.$error.maxlength" class="error-input-msj" >
+            {{"err.maxlength" | translate}}
+          </span>
+        </div>
+        <!-- ERRORES EN CAMPO DE EMAIL -->
+        <div class="pillar-auto" style="justify-content:center; margin-top: 4pc;">
+          <button style="font-family: neeru" data-standard class="btn-green-uno" ng-disabled='form.$invalid' ng-click="forgotpwd()">ENVIAR</button>
+        </div>
+      </form>
     </div>
 </div>

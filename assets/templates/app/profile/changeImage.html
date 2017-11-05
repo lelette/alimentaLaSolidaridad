@@ -1,40 +1,42 @@
-
-<div class="wrapper-md" ng-controller="ImgChangeCtrl">
-  <div class="hbox hbox-auto-xs" style="text-align: -webkit-center; width: 120%" ng-show="!selectPreview">
-    <div class="col" style="margin-bottom: 20px;" ng-show="imageFile">
-      <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
-        <div class="bg-light" style="height:320px">
-          <img-crop
+<div style="text-align: -webkit-center; width: 100%;">
+  <div class="wrapper-md" ng-controller="ImgChangeCtrl">
+    <div class="hbox hbox-auto-xs" style="text-align: -webkit-center; width: 120%" ng-show="!selectPreview">
+      <div class="col" style="margin-bottom: 20px;" ng-show="imageFile">
+        <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+          <div class="bg-light" style="height:320px">
+            <img-crop
             ng-src="{myCroppedImage}"
             image="myImage"
             result-image="myCroppedImage"
             result-image-size="160"
             area-type="square"
-          ></img-crop>
+            ></img-crop>
+          </div>
+        </div>
+      </div>
+      <div class="empty-profile-box" style="margin-top: 75px;" ng-hide="imageFile">
+        <div class="line-100">
+          <input class="btn-file" type="file" id="fileInput" accept="image/png, image/jpeg"  data-standard ng-model="files"/>
+          <img src="images/conectar.png" style="width: 25px; height: 25px;">
+          <p style="margin-left: 20px;">Subir Foto</p>
+        </div>
+      </div>
+      <div ng-show="imageFile">
+        <button type="button" data-standard class="btn-gray-on" style="float: left; width: 140px;"><p>Cancelar</p></button>
+        <button type="button" data-standard class="btn-green-on" style="float: right; width: 140px;" ng-click="selectPreview = true;"><p>Aceptar</p></button>
+      </div>
+    </div>
+    <div class="m-b" style="text-align: -webkit-center;" ng-show="selectPreview">
+      <div class="empty-image-box">
+        <div class="line-100" >
+          <img style="width: 40%; height: 70%;" ng-src="{{myCroppedImage}}" />
+          <div class="">
+            <p>{{imageName}}</p>
+            <a data-standard ng-click="upload()" ui-sref="app.page.profile" class="btn-change">Cambiar</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="empty-profile-box" style="margin-top: 75px;" ng-hide="imageFile">
-      <div class="line-100">
-        <input class="btn-file" type="file" id="fileInput" data-standard ng-model="files"/>
-        <img src="images/conectar.png" style="width: 25px; height: 25px;">
-        <p style="margin-left: 20px;">Subir Foto</p>
-      </div>
-    </div>
-    <div ng-show="imageFile">
-      <button type="button" data-standard class="btn-gray-on" style="float: left; width: 140px;"><p>Cancelar</p></button>
-      <button type="button" data-standard class="btn-green-on" style="float: right; width: 140px;" ng-click="selectPreview = true;"><p>Aceptar</p></button>
-    </div>
   </div>
-  <div class="m-b" style="text-align: -webkit-center;" ng-show="selectPreview">
-    <div class="empty-image-box">
-      <div class="line-100" >
-        <img style="width: 40%; height: 70%;" ng-src="{{myCroppedImage}}" />
-        <div class="">
-          <p>{{imageName}}</p>
-          <a data-standard ng-click="upload()" ui-sref="app.page.profile" class="btn-change">Cambiar</a>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>

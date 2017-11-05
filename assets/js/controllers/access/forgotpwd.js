@@ -28,7 +28,7 @@ app.controller('ForgotpwdController',
 
     $http.post('plataform/forgotpwd/generate', datos)
     .then(function(response) {
-        $state.go('access.applyForgotPwd');
+        // $state.go('access.applyForgotPwd');
     }, function(res) {
       $scope.authError = res.data.error.msjUser;
     });

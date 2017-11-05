@@ -1,14 +1,38 @@
 <div id="background" ng-controller="BasicController">
     <div class="fade-in-right-big smooth leftSpace" ui-view>
-        <!-- <div id="pwdChange" ng-if="changePwd" class="pad20">
-            <p class="pad20">Introduce tu nueva contraseña</p>
-            <input type="password" name="newPwd" class="pad5" value="" />
-            <input type="password" name="newPwdRptd" class="pad5" value="" onchange=""/>
-            <p ng-model="pwdSecurity">Seguridad: media</p>
-            <button data-standard class="btn-green-on">
-                <p>Aceptar</p>
-            </button>
-        </div> -->
+
+      <div class="profile-default-view">
+        <div class="social-box">
+          <div class="social-image-box">
+            <div class="vertical-line-separate">
+              <img src="images/facebook.png">
+            </div>
+          </div>
+          <div class="social-description-box">
+            <p>Desconectado</p>
+            <div class="social-section-box">
+              <img src="images/conectar.png" alt="">
+              <small>Conectar con Facebbok</small>
+            </div>
+          </div>
+        </div>
+        <div class="social-box">
+          <div class="social-image-box">
+            <div class="vertical-line-separate">
+              <img src="images/google.png">
+            </div>
+          </div>
+          <div class="social-description-box">
+            <p>Desconectado</p>
+            <div class="social-section-box">
+              <img src="images/conectar.png" alt="">
+              <small>Conectar con Google</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     <div class="rightSpace">
         <div class="profile">
@@ -18,7 +42,7 @@
         <div class="pad20">
             <p class="profile-p">EMAIL</p>
             <p class="profile-email">{{user.email}}</p>
-            <div class="click" ng-model="changePwd" ng-click="changePwd = true">
+            <div class="click" ui-sref="app.page.profile.security">
               <p class="profile-p">CAMBIAR CONTRASEÑA</p>
             </div>
         </div>

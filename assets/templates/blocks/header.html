@@ -16,23 +16,23 @@
       </div>
       -->
       <div class="" uib-dropdown uib-dropdown-toggle>
-        <p class="">Mi cuenta</p>
-        <div style="top: 45px;" class="uib-dropdown-menu header-neeru-select-box animated fadeInUp">
-          <div class="header-option-neeru" >
-            <img width="16px !important;" src="images/menuMovimientoGrs.png">
-            <p style="color: #AEB7B3;">MOVIMIENTOS</p>
+        <p class="mi-cuenta">Mi cuenta</p>
+        <div class="uib-dropdown-menu header-neeru-select-box animated fadeInUp">
+          <div class="header-option-neeru"  ui-sref="app.page.transactions">
+            <img onmouseover="this.src = 'images/menuMovimientoVrd.png'" onmouseout="this.src = 'images/menuMovimientoGrs.png'" src="images/menuMovimientoGrs.png">
+            <p>MOVIMIENTOS</p>
           </div>
-          <div class="header-option-neeru" >
-            <img width="16px !important;" src="images/menuNumFrecGrs.png">
-            <p style="color: #AEB7B3;">NÚMEROS FRECUENTES</p>
+          <div class="header-option-neeru" ui-sref="app.page.frequent">
+            <img onmouseover="this.src = 'images/menuNumFrecVrd.png'" onmouseout="this.src = 'images/menuNumFrecGrs.png'" src="images/menuNumFrecGrs.png">
+            <p>NÚMEROS FRECUENTES</p>
           </div>
-          <div class="header-option-neeru" >
-            <img width="16px !important;" src="images/menuTDCGrs.png">
-            <p style="color: #AEB7B3;">TDC AFiLiADAS</p>
+          <div class="header-option-neeru" ui-sref="app.page.tdc_afiliadas">
+            <img onmouseover="this.src = 'images/menuTDCVrd.png'" onmouseout="this.src = 'images/menuTDCGrs.png'" src="images/menuTDCGrs.png">
+            <p>TDC AFiLiADAS</p>
           </div>
-          <div class="header-option-neeru">
-            <img width="16px !important;" src="images/menuPerfilGrs.png">
-            <p style="color: #AEB7B3;">MI PERFIL</p>
+          <div class="header-option-neeru" ui-sref="app.page.profile">
+            <img onmouseover="this.src = 'images/menuPerfilVrd.png'" onmouseout="this.src = 'images/menuPerfilGrs.png'"  src="images/menuPerfilGrs.png">
+            <p>MI PERFIL</p>
           </div>
         </div>
       </div>

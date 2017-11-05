@@ -20,6 +20,9 @@ app.controller('FrequentController',
     $rootScope.header.icono = "images/icoNumFrec.png";
     $rootScope.header.namePage = "Números Frecuentes";
 
+
+    $scope.recarga = false;
+    $scope.procesarRegarga = {};
     $scope.frecuentes = [];
     $scope.newFrequent = {
       alias: '',
@@ -55,7 +58,9 @@ app.controller('FrequentController',
       })
     };
 
-
+    $scope.agregarRecarga = function (datos) {
+      $scope.recarga = true;
+    };
 
     $scope.agregarFrecuentes = function () {
       $scope.newFrequent.numero = $scope.pais.ext + $scope.auxNumero;

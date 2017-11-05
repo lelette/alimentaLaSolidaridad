@@ -23,6 +23,9 @@
 	font-size: 21px;
 }
 
+.modal-dialog {
+	top: 25% !important;
+}
 
 /* Boxes */
 	 html{

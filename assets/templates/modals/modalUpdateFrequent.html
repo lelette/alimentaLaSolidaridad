@@ -1,13 +1,19 @@
-<div onload="primeAppVar.init()" class="modal-header">
-	<h3 class="modal-title" style="color: #989898;">Modificar número frecuente</h3>
-</div>
-<div class="modal-body text-center">
-	<div class="modal-body text-center">
-    <label style="color: #989898;">Nuevo alias: </label>
-		<input onblur="primeAppVar.validateInputAlias(this)" data-mode-1 style="width: 45% !important;" type="text" name="alias" ng-model="datos.alias" placeholder="Nuevo alias...">
+<div class="select-operator-box">
+	<div class="line-100" style="margin-top: 50px;">
+		<p class="p-green p-3">Modificar número frecuente...</p>
 	</div>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-link" style="float: left; color: #989898;" ng-click="cancel()">Cancelar</button>
-	<button class="btn-green-on" data-standard ng-click="confirmar(); "><p>Modificar</p></button>
+	<div class="line-100">
+		<form id="form" name="form" class="form-validation modal-body text-center" style="display: flex; justify-content: center;">
+	    <label style="color: #989898; padding-right: inherit; margin-top: 5px; width: 70% !important;">Nuevo alias: </label>
+			<input class="form-control" stringExt data-mode-1  type="text" name="alias" ng-model="datos.alias" placeholder="Nuevo alias..." required>
+		</form>
+	</div>
+	<div class="" style="margin-bottom: 100px; margin-top: 30px;">
+		<button data-standard class="btn-gray-on"  style="float: left; margin-left: 10%; width: 140px;" ng-click="cancel()">
+			<p>Cancelar</p>
+		</button>
+		<button data-standard class="btn-green-on" style="float: right; margin-right: 10%; width: 140px;" ng-click="confirmar()" ng-disabled='form.$invalid'>
+			<p>Aceptar</p>
+		</button>
+	</div>
 </div>

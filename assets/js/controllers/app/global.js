@@ -163,6 +163,8 @@ app.controller('GlobalCtrl',
       }
       $scope.user = User.info;
       $scope.user.imagen_perfil = User.info.imagen_perfil;
+      if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
+      else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
 
       // Variables fijas del Header
       $rootScope.header = {}
