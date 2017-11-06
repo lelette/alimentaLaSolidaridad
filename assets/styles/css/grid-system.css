@@ -9,6 +9,17 @@
 			display: grid;
 			justify-content: center;
 		}
+		.line-102{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.line-103{
+			width: 100%;
+			 justify-content: center;
+			 display: flex;
+			 position: relative;
+		}
 	/* Fila global */
 	/* Columna automatica */
 		.pillar-auto{
