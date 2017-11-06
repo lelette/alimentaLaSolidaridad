@@ -41,12 +41,16 @@ app.controller('tdcCtrl',
     $scope.cards = [];
 
     // Consulta las tarjetas afiliadas del usuario
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
     $http.get('platform/stripe/getCards')
       .then(function(response){
+        $scope.loader='ocultar';
+        $scope.cuerpo='mostrar';
         $scope.cards = response.data.data;
-        console.log("CARDS >>>>", $scope.cards);
       }, function(error){
-
+        $scope.loader='ocultar';
+        $scope.cuerpo='mostrar';
       });
 
     /****************************************************************************************
@@ -69,9 +73,13 @@ app.controller('tdcCtrl',
       $scope.card.exp_year = $scope.fullCard.cardExpiry.substr(3,7);
 
       // Creo el token de seguridad de la tarjeta
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       Stripe.card.createToken($scope.card,function(status, res){
         if(res.error){
           console.log("Ocurrio un error ....");
+            $scope.loader='ocultar';
+            $scope.cuerpo='mostrar';
         }else{
           var card_customer = {
             token: res.id,
@@ -81,9 +89,13 @@ app.controller('tdcCtrl',
 
           $http.post('platform/stripe/affiliateCard', card_customer)
             .then(function(response){
+                $scope.loader='ocultar';
+                $scope.cuerpo='mostrar';
               $state.reload();
             }, function(error){
               console.log(error);
+                $scope.loader='ocultar';
+                $scope.cuerpo='mostrar';
             });
         }
       });
@@ -100,15 +112,22 @@ app.controller('tdcCtrl',
       var data = {
         token: card // Token de la tarjeta
       }
-
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       $http.post('platform/stripe/untieCard', data)
         .then(function(response){
           if(response.data.deleted){
+            $scope.loader='ocultar';
+            $scope.cuerpo='mostrar';
             $state.reload();
           }else {
+            $scope.loader='ocultar';
+            $scope.cuerpo='mostrar';
             console.log("NO SE DESAFILIO LA TARJETA");
           }
         }, function(error){
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
           console.log(error);
         });
     };

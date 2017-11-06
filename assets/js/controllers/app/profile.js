@@ -255,6 +255,8 @@ app.controller('ImgChangeCtrl', [
       $scope.selectPreview = false;
     }
 
+    $scope.loader='ocultar';
+    $scope.cuerpo='mostrar';
     var uploader = $scope.uploader = new FileUploader({
        url: $rootScope.apiUrl+'/plataform/user/changeImage',
        alias: 'imagen_perfil',
@@ -319,6 +321,8 @@ app.controller('ImgChangeCtrl', [
 
       uploader.addToQueue(file);
       uploader.uploadAll();
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       uploader.onSuccessItem = function(fileItem, response, status, headers) {
 
         // refrescamos la data que tenemos del user
@@ -328,9 +332,13 @@ app.controller('ImgChangeCtrl', [
           }
         });
         // $modalInstance.dismiss();
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
       };
       uploader.onErrorItem = function(fileItem, response, status, headers) {
         // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
       };
     };
 

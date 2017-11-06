@@ -1,8 +1,42 @@
+
+<div  ng-init="loader='ocultar';cuerpo='mostrar'" ng-controller="ImgChangeCtrl">
+
+  <div ng-class="{ocultarLoader: loader === 'ocultar', mostrarLoader: loader === 'mostrar'}" style="display:flex; justify-content:center; padding:20%">
+    <!-- <div class="overlay"></div>
+      <div class="spinner" id="loaderBody"  style="position: fixed; top:30%; left:45%;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div> -->
+    <div class="line-102">
+      <div class="panel-green" style="padding: 0.5pc 2pc;opacity:0.8">
+      <div class="line-103">
+        <section>
+          <div class="lds-css ng-scope" style="float:left; display:flex;">
+            <div style="width:100%;height:100%" class="lds-rolling">
+              <div></div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div>
+            <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
+            Cargando
+            </p>
+          </div>
+        </section>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
 <div class="select-operator-box">
   <div class="line-100" style="margin-top: 50px;">
     <p class="p-green modal-title">Cambiar foto de perfil...</p>
   </div>
-  <div class="wrapper-md" ng-controller="ImgChangeCtrl">
+  <div class="wrapper-md">
     <div class="hbox hbox-auto-xs modal-body" style="text-align: -webkit-center" ng-show="!selectPreview">
       <div class="col" style="margin-bottom: 20px;" ng-show="imageFile">
         <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
@@ -42,4 +76,6 @@
       <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-show="!selectPreview" ng-click="selectPreview = true;"><p>Aceptar</p></button>
     </div>
   </div>
+</div>
+</div>
 </div>
