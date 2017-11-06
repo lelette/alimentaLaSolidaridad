@@ -208,6 +208,9 @@
 	.p-up{
 		text-transform: uppercase;
 	}
+	.modal-title {
+		font-size: 2em;
+	}
 	.tab-box p,
 	.tab-home p{
 		text-transform: uppercase;
