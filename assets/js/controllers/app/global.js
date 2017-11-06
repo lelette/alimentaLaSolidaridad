@@ -153,7 +153,7 @@ app.controller('ErrorCtrl', [
 
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+  function($rootScope,  $scope, $http, $state, User, $translate, spinnerService) {
 
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';

@@ -15,7 +15,7 @@ app.controller('BasicController',
       'F',
       'M'
     ];
-
+    $scope.load = true;
     // refrescamos la data que tenemos del user
   $scope.refreshUser = function () {
     User.refresh(function(err){
