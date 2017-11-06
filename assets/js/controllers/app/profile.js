@@ -17,11 +17,17 @@ app.controller('BasicController',
     ];
     $scope.load = true;
     // refrescamos la data que tenemos del user
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
   $scope.refreshUser = function () {
     User.refresh(function(err){
       if (err) {
         console.log(err);
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
       }else{
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
         $scope.user = {
           nombres : User.info.nombres,
           apellidos : User.info.apellidos,
@@ -46,6 +52,7 @@ app.controller('BasicController',
         if (err) {
           console.log(err);
         };
+
       });
     };
 

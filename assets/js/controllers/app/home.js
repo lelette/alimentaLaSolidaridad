@@ -80,12 +80,19 @@ app.controller('HomeCtrl',
     });
 
     //Consultando cantidad de TDC afiliadas del usuario en Stripe
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
     $http.get('platform/stripe/getCards')
     .then(function(res){
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.datos.tdcAfiliadas = res.data.data.length;
     }, function(error){
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.datos.tdcAfiliadas = 0;
     })
+
     //************************ FIN DE CARGA DE CONTROLADOR **************************
 
   //   //************************* FUNCIONES DEL CONTROLADOR **************************
