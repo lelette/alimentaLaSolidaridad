@@ -6,8 +6,8 @@
 *****************************************************************************************/
 
 app.controller('BasicController',
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate', '$uibModal',
+  function($rootScope,  $scope, $http, $state, User, $translate, $uibModal) {
 
     $scope.user = {};
 
@@ -36,6 +36,21 @@ app.controller('BasicController',
     });
   };
   $scope.refreshUser();
+
+  $scope.imageChange = function () {
+    var modalInstance = $uibModal.open({
+      templateUrl: 'templates/modals/modalChangeImage.html',
+      controller: 'ImgChangeCtrl',
+      resolve: {
+        dataScope:function() {
+          return {
+            user: $scope.user
+          }
+        }
+      }
+    });
+
+  }
 
     /****************************************************
     * update                                            *
@@ -218,7 +233,6 @@ app.controller('ImgChangeCtrl', [
   '$interval',
   'User',
   function($rootScope, $scope, FileUploader, $http, $state, $interval, User) {
-    console.log($scope);
     $scope.myImage='';
     $scope.myCroppedImage='';
     $scope.cropType="circle";
@@ -229,83 +243,88 @@ app.controller('ImgChangeCtrl', [
     $scope.imageName = '';
     $scope.selectPreview = false;
 
+    $scope.btnCambiar = function () {
+      $scope.imageFile = false;
+      $scope.selectPreview = false;
+    }
 
-      var uploader = $scope.uploader = new FileUploader({
-         url: $rootScope.apiUrl+'/plataform/user/changeImage',
-         alias: 'imagen_perfil',
-         autoUpload: false,
-         withCredentials: true,
-       });
+    var uploader = $scope.uploader = new FileUploader({
+       url: $rootScope.apiUrl+'/plataform/user/changeImage',
+       alias: 'imagen_perfil',
+       autoUpload: false,
+       withCredentials: true,
+     });
 
-      var handleFileSelect = function(evt) {
-        var file = evt.currentTarget.files[0];
-        var reader = new FileReader();
+    var handleFileSelect = function(evt) {
+      console.log($scope);
+      var file = evt.currentTarget.files[0];
+      var reader = new FileReader();
 
-        if (file) {
-          filename = file.name;
-        }
+      if (file) {
+        filename = file.name;
+      }
 
-        reader.onload = function(evt) {
-          $scope.$apply(function($scope) {
-            $scope.myImage = evt.target.result;
-            $scope.estatus = true;
-          });
-        };
-        $scope.imageFile = true;
-        $scope.imageName = file.name;
-        reader.readAsDataURL(file);
+      reader.onload = function(evt) {
+        $scope.$apply(function($scope) {
+          $scope.myImage = evt.target.result;
+          $scope.estatus = true;
+        });
       };
+      $scope.imageFile = true;
+      $scope.imageName = file.name;
+      reader.readAsDataURL(file);
+    };
 
-      angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 
-      function base64ToBlob(base64Data, contentType) {
-        contentType = contentType || '';
+    function base64ToBlob(base64Data, contentType) {
+      contentType = contentType || '';
 
-        var sliceSize = 1024;
-        var byteCharacters = atob(base64Data);
-        var bytesLength = byteCharacters.length;
-        var slicesCount = Math.ceil(bytesLength / sliceSize);
-        var byteArrays = new Array(slicesCount);
+      var sliceSize = 1024;
+      var byteCharacters = atob(base64Data);
+      var bytesLength = byteCharacters.length;
+      var slicesCount = Math.ceil(bytesLength / sliceSize);
+      var byteArrays = new Array(slicesCount);
 
-        for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
-          var begin = sliceIndex * sliceSize;
-          var end = Math.min(begin + sliceSize, bytesLength);
+      for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+        var begin = sliceIndex * sliceSize;
+        var end = Math.min(begin + sliceSize, bytesLength);
 
-          var bytes = new Array(end - begin);
-          for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
-            bytes[i] = byteCharacters[offset].charCodeAt(0);
+        var bytes = new Array(end - begin);
+        for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+          bytes[i] = byteCharacters[offset].charCodeAt(0);
+        }
+        byteArrays[sliceIndex] = new Uint8Array(bytes);
+      }
+
+      var blob = new Blob(byteArrays, { type: contentType});
+
+      return blob;
+    };
+
+    $scope.upload = function() {
+      var sep = $scope.myCroppedImage.split(';');
+      var type = sep[0].replace('data:','');
+      var base64 = sep[1];
+      var rutaDeImagen = "";
+      var file = base64ToBlob(base64.replace('base64,',''), type);
+      file.name = filename;
+
+      uploader.addToQueue(file);
+      uploader.uploadAll();
+      uploader.onSuccessItem = function(fileItem, response, status, headers) {
+
+        // refrescamos la data que tenemos del user
+        User.refresh(function(err){
+          if (err) {
+            console.log(err);
           }
-          byteArrays[sliceIndex] = new Uint8Array(bytes);
-        }
-
-        var blob = new Blob(byteArrays, { type: contentType});
-
-        return blob;
+        });
+        // $modalInstance.dismiss();
       };
-
-      $scope.upload = function() {
-        var sep = $scope.myCroppedImage.split(';');
-        var type = sep[0].replace('data:','');
-        var base64 = sep[1];
-        var rutaDeImagen = "";
-        var file = base64ToBlob(base64.replace('base64,',''), type);
-        file.name = filename;
-
-        uploader.addToQueue(file);
-        uploader.uploadAll();
-        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-
-          // refrescamos la data que tenemos del user
-          User.refresh(function(err){
-            if (err) {
-              console.log(err);
-            }
-          });
-          $state.go('app.page.profile');
-        };
-        uploader.onErrorItem = function(fileItem, response, status, headers) {
-          // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
-        };
+      uploader.onErrorItem = function(fileItem, response, status, headers) {
+        // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
       };
+    };
 
 }]);
