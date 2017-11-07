@@ -204,6 +204,9 @@ tr:last-child{
     cursor: pointer;
 }
 
+.l-height-2 {
+	line-height: 2.0;
+}
 
 /* Responsive */
 	@media screen and (max-width: 300px){
