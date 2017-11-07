@@ -243,6 +243,8 @@ app.controller('ReloadController',
     };
 
     $scope.pais = {}
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
 
     $scope.showOffers   = false;
     $scope.showOperator = false;
@@ -282,18 +284,18 @@ app.controller('ReloadController',
       $scope.showCountry = true;
       $scope.showOffers = true;
       $scope.showOperator = true;
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
 
    }else {
-     $scope.loader='mostrar';
-     $scope.cuerpo='ocultar';
      $http.get('plataform/countries').then(function(response) {
-       $scope.loader='ocultar';
-       $scope.cuerpo='mostrar';
        $scope.countries = response.data.paises;
        $scope.$emit('$resetAjax');
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
      }, function(res) {
-       $scope.loader='ocultar';
-       $scope.cuerpo='mostrar';
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
        $scope.$emit('$resetAjax');
        $scope.$emit('$errorAjax',res.data);
      });
@@ -311,14 +313,15 @@ app.controller('ReloadController',
 
    $scope.obtenerOfertas = function (){
      $scope.showOffers = false;
+     $scope.loader = 'mostrar';
+     $scope.cuerpo = 'ocultar';
+
      var numero = $scope.datos.contrato;
      var cod = $scope.datos.cod;
 
      if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
 
     if (cod && numero) {
-      $scope.loader='mostrar';
-      $scope.cuerpo='ocultar';
       $http.post('plataform/offers',{
             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
             "phone":  cod+numero,
@@ -328,7 +331,6 @@ app.controller('ReloadController',
          $scope.cuerpo='mostrar';
          var ofertas = res.data;
          var operadora = ofertas.operadora;
-         console.log('Recharge', Recharge);
          Recharge.info.ofertas = ofertas;
          Recharge.info.pais = {
            codigo: cod,
@@ -338,12 +340,13 @@ app.controller('ReloadController',
         $scope.datos.operadora = operadora;
         $scope.ofertas = Recharge.info.ofertas;
         $scope.showOffers = true; $scope.showOperator = true;
-        console.log('Recharge', Recharge);
       }, function(res){
-        $scope.loader='ocultar';
-        $scope.cuerpo='mostrar';
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
         $scope.showOffers = false;
         console.log(res);
+        $scope.$emit('$resetAjax');
+        $scope.$emit('$errorAjax',res.data);
       });
     }
    }

@@ -47,7 +47,6 @@ app.controller('HomeCtrl',
         }).then(function(res){
          var ofertas = res.data;
          var operadora = ofertas.operadora;
-         console.log('Recharge', Recharge);
          Recharge.info.ofertas = ofertas;
          Recharge.info.pais = {
            codigo: cod,
