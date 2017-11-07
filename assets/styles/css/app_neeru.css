@@ -22,7 +22,7 @@
 	width: 100%;
 	text-align: center;
 	color: #58666e;
-  background-color: #edf1f2;
+  background-color: #f3f5f3;
 	padding: 15px;
 	border-top: 1px solid #dee5e7;
 }
@@ -328,6 +328,10 @@ tr:last-child{
 
 .profile-p button {
     color: #fff;
+}
+
+.profile-p:focus {
+	outline: 0;
 }
 
 .profile-p button:active {

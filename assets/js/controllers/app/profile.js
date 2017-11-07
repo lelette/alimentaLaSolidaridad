@@ -47,6 +47,7 @@ app.controller('BasicController',
     var modalInstance = $uibModal.open({
       templateUrl: 'templates/modals/modalChangeImage.html',
       controller: 'ImgChangeCtrl',
+      backdrop: 'static',
       resolve: {
         dataScope:function() {
           return {
@@ -249,6 +250,8 @@ app.controller('ImgChangeCtrl', [
     $scope.imageFile = false;
     $scope.imageName = '';
     $scope.selectPreview = false;
+    $('.modal-backdrop').removeAttr('style')
+
 
     $scope.btnCambiar = function () {
       $scope.imageFile = false;
@@ -257,6 +260,21 @@ app.controller('ImgChangeCtrl', [
 
     $scope.loader='ocultar';
     $scope.cuerpo='mostrar';
+
+    $(window).keyup(function (e) {
+      if (e.keyCode == 27) {
+        $scope.cancel();
+      }
+    });
+
+    $scope.cancel = function () {
+
+      $('.modal-backdrop').css('opacity',0)
+      $('.modal-backdrop').css('z-index','0');
+      $('div.modal').children().remove()
+      $('div.modal').css('display','none');
+    }
+
     var uploader = $scope.uploader = new FileUploader({
        url: $rootScope.apiUrl+'/plataform/user/changeImage',
        alias: 'imagen_perfil',
@@ -324,6 +342,8 @@ app.controller('ImgChangeCtrl', [
       $scope.loader='mostrar';
       $scope.cuerpo='ocultar';
       uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        // $state.reload();
+        $scope.cancel();
 
         // refrescamos la data que tenemos del user
         User.refresh(function(err){
@@ -339,6 +359,7 @@ app.controller('ImgChangeCtrl', [
         // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
         $scope.loader = 'ocultar';
         $scope.cuerpo = 'mostrar';
+        $scope.cancel();
       };
     };
 
