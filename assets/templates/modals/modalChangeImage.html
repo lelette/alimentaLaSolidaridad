@@ -37,9 +37,9 @@
       </div>
     </div>
     <div style="margin-bottom: 100px; margin-top: 40px;">
-      <button type="button" data-standard class="btn-gray-on" style="float: left; width: 160px; margin-left: 10%; border-radius: 1rem;" data-dismiss="modal"><p>Cancelar</p></button>
+      <button type="button" data-standard class="btn-gray-on" style="float: left; width: 160px; margin-left: 10%; border-radius: 1rem;" ng-click="cancel()"><p>Cancelar</p></button>
       <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-hide="!selectPreview" ng-click="upload()"><p>Aceptar</p></button>
-      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-show="!selectPreview" ng-click="selectPreview = true;"><p>Aceptar</p></button>
+      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-show="!selectPreview" ng-disabled="!imageFile" ng-click="selectPreview = true;"><p>Aceptar</p></button>
     </div>
   </div>
 </div>
