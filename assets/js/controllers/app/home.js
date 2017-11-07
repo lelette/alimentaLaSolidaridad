@@ -86,6 +86,7 @@ app.controller('HomeCtrl',
     .then(function(res){
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
+      console.log("hello");
       $scope.datos.tdcAfiliadas = res.data.data.length;
     }, function(error){
       $scope.loader = 'ocultar';

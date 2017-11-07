@@ -9,15 +9,20 @@ app.controller('GetContratoController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     //recibir parametros de homepage
-
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
         $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
         .then(function(res){
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
           //$scope.tr = res.data;
           console.log('transaccion', res.data);
           //orgOfertas($scope.ofertas);
         }, function(res){
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
           console.log(res);
         });
       ////////////////////////////////
@@ -103,11 +108,16 @@ app.controller('CalAmountController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.getTasa = function(){
-
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       Recharge.getTasa($scope.recharge.amountExpected, function(err, amountCharge){
         if (err) {
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
           console.log(err)
         }else{
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
           console.log(amountCharge);
           $scope.recharge.amountCharge = amountCharge;
         };
@@ -185,7 +195,11 @@ app.controller('ConfirmController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.continuar = function(){
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       Recharge.apply(function(err, result){
+        $scope.loader='ocultar';
+        $scope.cuerpo='mostrar';
         Sales.refreshResumenSales(function(){});
         $state.go('app.page.recharge.result');
       });
@@ -242,10 +256,16 @@ app.controller('ReloadController',
 
 
    $scope.recharge = function () {
+     $scope.loader='mostrar';
+     $scope.cuerpo='ocultar';
      $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
        $scope.recharge = response.data.recharge;
        $scope.$emit('$resetAjax');
      }, function(res) {
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
        $scope.$emit('$resetAjax');
        $scope.$emit('$errorAjax',res.data);
      });
@@ -264,10 +284,16 @@ app.controller('ReloadController',
       $scope.showOperator = true;
 
    }else {
+     $scope.loader='mostrar';
+     $scope.cuerpo='ocultar';
      $http.get('plataform/countries').then(function(response) {
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
        $scope.countries = response.data.paises;
        $scope.$emit('$resetAjax');
      }, function(res) {
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
        $scope.$emit('$resetAjax');
        $scope.$emit('$errorAjax',res.data);
      });
@@ -291,11 +317,15 @@ app.controller('ReloadController',
      if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
 
     if (cod && numero) {
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
       $http.post('plataform/offers',{
             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
             "phone":  cod+numero,
             "currency": "EUR",
        }).then(function(res){
+         $scope.loader='ocultar';
+         $scope.cuerpo='mostrar';
          var ofertas = res.data;
          var operadora = ofertas.operadora;
          console.log('Recharge', Recharge);
@@ -310,6 +340,8 @@ app.controller('ReloadController',
         $scope.showOffers = true; $scope.showOperator = true;
         console.log('Recharge', Recharge);
       }, function(res){
+        $scope.loader='ocultar';
+        $scope.cuerpo='mostrar';
         $scope.showOffers = false;
         console.log(res);
       });

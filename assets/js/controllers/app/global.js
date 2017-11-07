@@ -177,4 +177,11 @@ app.controller('GlobalCtrl',
 
     });
 
+
+    $scope.logout = function(){
+      $http.post('plataform/user/logout').then(function (res){
+        console.log("logout");
+        $state.go('access.signin');
+      });
+    }
 }]);
