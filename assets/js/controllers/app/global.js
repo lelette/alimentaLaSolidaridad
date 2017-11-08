@@ -153,7 +153,7 @@ app.controller('ErrorCtrl', [
 
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+  function($rootScope,  $scope, $http, $state, User, $translate, spinnerService) {
 
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
@@ -177,4 +177,11 @@ app.controller('GlobalCtrl',
 
     });
 
+
+    $scope.logout = function(){
+      $http.post('plataform/user/logout').then(function (res){
+        console.log("logout");
+        $state.go('access.signin');
+      });
+    }
 }]);

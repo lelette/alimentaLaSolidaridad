@@ -47,7 +47,6 @@ app.controller('HomeCtrl',
         }).then(function(res){
          var ofertas = res.data;
          var operadora = ofertas.operadora;
-         console.log('Recharge', Recharge);
          Recharge.info.ofertas = ofertas;
          Recharge.info.pais = {
            codigo: cod,
@@ -80,12 +79,20 @@ app.controller('HomeCtrl',
     });
 
     //Consultando cantidad de TDC afiliadas del usuario en Stripe
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
     $http.get('platform/stripe/getCards')
     .then(function(res){
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+      console.log("hello");
       $scope.datos.tdcAfiliadas = res.data.data.length;
     }, function(error){
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.datos.tdcAfiliadas = 0;
     })
+
     //************************ FIN DE CARGA DE CONTROLADOR **************************
 
   //   //************************* FUNCIONES DEL CONTROLADOR **************************
