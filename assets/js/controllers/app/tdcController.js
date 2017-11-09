@@ -15,6 +15,8 @@ app.controller('tdcCtrl',
     $rootScope.header = {};
     $rootScope.header.icono = "images/icoTDCAfiliada.png"; // Icono del Sub-Header
     $rootScope.header.namePage = "TDC Afiliadas"; // Titulo del Sub-Header
+    $scope.cardType = ""
+    $scope.checkDate = "";
 
     // Objeto que almacenara los datos de la tarjeta
     $scope.card = {
@@ -23,7 +25,7 @@ app.controller('tdcCtrl',
       cvc: "",
       exp_year: "",
       exp_month: "",
-      address_zip: "",
+      country: "",
     };
 
     // Entradas de HTML a transformar
@@ -35,6 +37,7 @@ app.controller('tdcCtrl',
       cardExpiry: "",
       email: "",
       description: "",
+      address: ""
     };
 
     // Tarjeta afiliadas del usuario
@@ -99,6 +102,68 @@ app.controller('tdcCtrl',
             });
         }
       });
+    };
+
+    /*********************************************************************************************
+    *    function     :: Funcion que permite saber que tipo de tarjeta va utilizar dinámicamente *
+    *    @description :: Permite adivinar que tipo de TDC es con los primeros dígitos de la TDC  *
+    *    @autor       :: Javier Stifano <jstifano@transamovil.com>                               *
+    **********************************************************************************************/
+
+    $scope.showType = function(card){
+
+      if(!card){
+        $scope.cardType = 'Not found';
+        return $scope.cardType;
+      }
+      else if(card[0] == '4'){
+        $scope.cardType = 'Visa';
+        return $scope.cardType;
+      }
+      else if(card[0]+card[1] == '51' || card[0]+card[1] == '52' || card[0]+card[1] == '53' || card[0]+card[1] == '54' ||
+      card[0]+card[1] == '55' || card[0]+card[1] == '22' || card[0]+card[1] == '23' || card[0]+card[1] == '24' || card[0]+card[1] == '25' ||
+      card[0]+card[1] == '26' || card[0]+card[1] == '27'){
+        $scope.cardType = 'Mastercard';
+        return $scope.cardType;
+      }
+      /*else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
+        $scope.cardType = 'AmericanExpress';
+        return $scope.cardType;
+      }*/
+      else{
+        $scope.cardType = 'Not found';
+        return $scope.cardType;
+      }
+    }
+
+    /***************************************************************************************************
+    *    function     :: Funcion que permite validar si la fecha de expiración es válida               *
+    *    @description :: Permite adivinar si el mes ingresado es válido y si el año es mayor al actual *
+    *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                     *
+    ****************************************************************************************************/
+
+    $scope.verifyDate = function(date){
+      var current_date = new Date();
+      var current_year = current_date.getFullYear();
+      var current_month = current_date.getMonth()+1;
+
+      var month = parseInt(date.split("/")[0]);
+      var year = parseInt(date.split("/")[1]);
+
+      if(month > 12 || month <= 0){
+        $scope.checkDate = false;
+      }
+      else if(year < current_year){
+        $scope.checkDate = false;
+      }
+      else if(month <= current_month && year <= current_year){
+        $scope.checkDate = false;
+      }
+      else{
+        $scope.checkDate = true;
+        return $scope.checkDate;
+      }
+
     };
 
     /****************************************************************************************
