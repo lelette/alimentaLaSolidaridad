@@ -67,21 +67,71 @@
       <div class="frequent-add" style="margin-right:40px">
         <form name="formTDC">
           <div class="line-100">
+
             <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry">
+              <input type="text" name="first_fourth" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero>
             </div>&nbsp;&nbsp;
-            <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.secondEntry">
-            </div>&nbsp;&nbsp;
-            <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.thirdEntry">
-            </div>&nbsp;&nbsp;
-            <div class="pillar-25p">
-              <input type="" name="" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.fourthEntry">
-            </div>&nbsp;&nbsp;
-            <div class="pillar-70px" style="justify-content:center; align-items: center;">
-              <img src="../../images/visa.png">
+            <div class="text-center" ng-if="formTDC.first_fourth.$dirty && (formTDC.first_fourth.$invalid || formTDC.first_fourth.$touched)">
+              <span ng-if="formTDC.first_fourth.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.first_fourth.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+              <!-- <span ng-if="formTDC.first_fourth.$error.minlength && !formTDC.first_fourth.$error.numero && !formTDC.first_fourth.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}} 4
+              </span> -->
             </div>
+
+            <div class="pillar-25p">
+              <input type="" name="second_fourth" data-mode-1 placeholder="----" maxlength="4" minlenght="4" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength" ng-model="fullCard.secondEntry">
+            </div>&nbsp;&nbsp;
+            <div class="text-center" ng-if="formTDC.second_fourth.$dirty && (formTDC.second_fourth.$invalid || formTDC.second_fourth.$touched)">
+              <span ng-if="formTDC.second_fourth.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.second_fourth.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+              <!-- <span ng-if="formTDC.second_fourth.$error.minlength && !formTDC.second_fourth.$error.numero && !formTDC.second_fourth.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}} 4
+              </span> -->
+            </div>
+
+            <div class="pillar-25p">
+              <input type="" name="third_fourth" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.thirdEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength">
+            </div>&nbsp;&nbsp;
+            <div class="text-center" ng-if="formTDC.third_fourth.$dirty && (formTDC.third_fourth.$invalid || formTDC.third_fourth.$touched)">
+              <span ng-if="formTDC.third_fourth.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.third_fourth.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+              <span ng-if="formTDC.third_fourth.$error.minlength && !formTDC.third_fourth.$error.numero && !formTDC.third_fourth.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}} 4
+              </span>
+            </div>
+
+            <div class="pillar-25p">
+              <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength">
+            </div>&nbsp;&nbsp;
+            <div class="text-center" ng-if="formTDC.fourth_fourth.$dirty && (formTDC.fourth_fourth.$invalid || formTDC.fourth_fourth.$touched)">
+              <span ng-if="formTDC.fourth_fourth.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.fourth_fourth.$error.numero" class="error-input-msj" >
+                {{"err.numero" | translate}}
+              </span>
+              <span ng-if="formTDC.fourth_fourth.$error.minlength && !formTDC.third_fourth.$error.numero && !formTDC.third_fourth.$error.required" class="error-input-msj" >
+                {{"err.minlength" | translate}} 3
+              </span>
+            </div>
+
+            <span ng-show="cardType == 'Visa'" class="pillar-70px" style="justify-content:center; align-items: center;">
+              <img src="../../images/visa.png">
+            </span>
+
           </div><br>
 
           <div class="line-100">
@@ -135,18 +185,40 @@
             </div>
             <!-- ERRORES EN CAMPO DEL NOMBRE DEL TITULAR -->
             <div class="line-100">
-                <input type="text" name="address_zip" data-hide-2 placeholder="Código postal" maxlength="4" ng-model="card.address_zip" numero required>
+                <input type="text" name="country" data-hide-2 placeholder="Pais" maxlength="40" ng-model="card.country" required string-std>
             </div>
-            <!--ERRORES EN CAMPO DEL CODIGO POSTAL -->
-            <div class="text-center" ng-if="formTDC.address_zip.$dirty && (formTDC.address_zip.$invalid || formTDC.address_zip.$touched)">
-              <span ng-if="formTDC.address_zip.$error.required" class="error-input-msj" >
+            <!--ERRORES EN CAMPO DEL PAIS -->
+            <div class="text-center" ng-if="formTDC.country.$dirty && (formTDC.country.$invalid || formTDC.country.$touched)">
+              <span ng-if="formTDC.country.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
-              <span ng-if="formTDC.address_zip.$error.numero" class="error-input-msj" >
-                {{"err.numero" | translate}}
+              <span ng-if="formTDC.country.$error.maxlength" class="error-input-msj" >
+                {{"err.maxlength" | translate}}
+              </span>
+              <span ng-if="formTDC.country.$error.stringStd" class="error-input-msj" >
+                {{"err.stringStd" | translate}}
               </span>
             </div>
-            <!-- ERRORES EN CAMPO DEL CODIGO POSTAL -->
+            <!-- ERRORES EN CAMPO DEL PAIS -->
+
+            <div class="line-100">
+                <input type="text" name="address" data-hide-2 placeholder="Dirección" ng-model="fullCard.address" maxlength="40" required>
+            </div>
+            <!--ERRORES EN CAMPO DE LA DIRECCION -->
+            <div class="text-center" ng-if="formTDC.address.$dirty && (formTDC.address.$invalid || formTDC.address.$touched)">
+              <span ng-if="formTDC.address.$error.required" class="error-input-msj" >
+                {{"err.required" | translate}}
+              </span>
+              <span ng-if="formTDC.address.$error.required" class="error-input-msj" >
+                {{"err.maxlength" | translate}}
+              </span>
+            </div>
+            <!--ERRORES EN CAMPO DE LA DIRECCION -->
+
+            <div class="line-100">
+                <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
+            </div>
+
             <div class="line-100">
                 <input type="email" name="email" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" maxlength="254" required>
             </div>
@@ -160,9 +232,6 @@
               </span>
             </div>
             <!-- ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
-            <div class="line-100">
-                <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
-            </div>
             <br><br>
             <div style="float: right;">
               <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()" ng-disabled="formTDC.$invalid">

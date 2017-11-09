@@ -15,6 +15,7 @@ app.controller('tdcCtrl',
     $rootScope.header = {};
     $rootScope.header.icono = "images/icoTDCAfiliada.png"; // Icono del Sub-Header
     $rootScope.header.namePage = "TDC Afiliadas"; // Titulo del Sub-Header
+    $scope.cardType = ""
 
     // Objeto que almacenara los datos de la tarjeta
     $scope.card = {
@@ -23,7 +24,7 @@ app.controller('tdcCtrl',
       cvc: "",
       exp_year: "",
       exp_month: "",
-      address_zip: "",
+      country: "",
     };
 
     // Entradas de HTML a Transformar
@@ -35,6 +36,7 @@ app.controller('tdcCtrl',
       cardExpiry: "",
       email: "",
       description: "",
+      address: ""
     };
 
     // Tarjeta afiliadas del usuario
@@ -100,6 +102,21 @@ app.controller('tdcCtrl',
         }
       });
     };
+
+    $scope.showType = function(card){
+      if(!card){
+        $scope.cardType = 'Not found';
+        return $scope.cardType;
+      }
+      else if(card[0] == '4'){
+        $scope.cardType = 'Visa';
+        return $scope.cardType;
+      }
+      else{
+        $scope.cardType = 'Not found';
+        return $scope.cardType;
+      }
+    }
 
     /****************************************************************************************
     *    function     :: Funcion que permite desafiliar una tarjeta de crédito              *
