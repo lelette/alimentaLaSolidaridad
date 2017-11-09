@@ -27,8 +27,6 @@
 </div>
 </div>
 
-
-
 <div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
 <div class="dynamic-content-box" onload="primeAppVar.init()"  style="margin-top: 20px; justify-content: space-between; height: 100%">
   <div class="frequent-master-box">
@@ -65,11 +63,11 @@
     </section>
     <section>
       <div class="frequent-add" style="margin-right:40px">
-        <form name="formTDC">
+        <form id= "formTDC" name="formTDC">
           <div class="line-100">
 
             <div class="pillar-25p">
-              <input type="text" name="first_fourth" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero>
+              <input type="text" name="first_fourth" data-mode-1 placeholder="----" minlength="4" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero>
             </div>&nbsp;&nbsp;
             <div class="text-center" ng-if="formTDC.first_fourth.$dirty && (formTDC.first_fourth.$invalid || formTDC.first_fourth.$touched)">
               <span ng-if="formTDC.first_fourth.$error.required" class="error-input-msj" >
@@ -78,13 +76,13 @@
               <span ng-if="formTDC.first_fourth.$error.numero" class="error-input-msj" >
                 {{"err.numero" | translate}}
               </span>
-              <!-- <span ng-if="formTDC.first_fourth.$error.minlength && !formTDC.first_fourth.$error.numero && !formTDC.first_fourth.$error.required" class="error-input-msj" >
+              <span ng-if="formTDC.first_fourth.$error.minlength && !formTDC.first_fourth.$error.numero && !formTDC.first_fourth.$error.required" class="error-input-msj">
                 {{"err.minlength" | translate}} 4
-              </span> -->
+              </span>
             </div>
 
             <div class="pillar-25p">
-              <input type="" name="second_fourth" data-mode-1 placeholder="----" maxlength="4" minlenght="4" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength" ng-model="fullCard.secondEntry">
+              <input type="" name="second_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == ''" ng-model="fullCard.secondEntry" required numero>
             </div>&nbsp;&nbsp;
             <div class="text-center" ng-if="formTDC.second_fourth.$dirty && (formTDC.second_fourth.$invalid || formTDC.second_fourth.$touched)">
               <span ng-if="formTDC.second_fourth.$error.required" class="error-input-msj" >
@@ -93,15 +91,15 @@
               <span ng-if="formTDC.second_fourth.$error.numero" class="error-input-msj" >
                 {{"err.numero" | translate}}
               </span>
-              <!-- <span ng-if="formTDC.second_fourth.$error.minlength && !formTDC.second_fourth.$error.numero && !formTDC.second_fourth.$error.required" class="error-input-msj" >
+              <span ng-if="formTDC.second_fourth.$error.minlength && !formTDC.second_fourth.$error.numero && !formTDC.second_fourth.$error.required" class="error-input-msj" >
                 {{"err.minlength" | translate}} 4
-              </span> -->
+              </span>
             </div>
 
             <div class="pillar-25p">
-              <input type="" name="third_fourth" data-mode-1 placeholder="----" maxlength="4" ng-model="fullCard.thirdEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength">
+              <input type="" name="third_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-model="fullCard.thirdEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == '' || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || !fullCard.secondEntry || fullCard.secondEntry == ''" required numero>
             </div>&nbsp;&nbsp;
-            <div class="text-center" ng-if="formTDC.third_fourth.$dirty && (formTDC.third_fourth.$invalid || formTDC.third_fourth.$touched)">
+            <div class="text-center" ng-if="formTDC.third_fourth.$dirty && (formTDC.third_fourth.$invalid || formTDC.third_fourth.$touched)" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == '' || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || !fullCard.secondEntry || fullCard.secondEntry == ''">
               <span ng-if="formTDC.third_fourth.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
@@ -131,6 +129,9 @@
             <span ng-show="cardType == 'Visa'" class="pillar-70px" style="justify-content:center; align-items: center;">
               <img src="../../images/visa.png">
             </span>
+            <span ng-show="cardType == 'Mastercard'" class="pillar-70px" style="justify-content:center; align-items: center;">
+              <img src="../../images/master.png">
+            </span>
 
           </div><br>
 
@@ -140,12 +141,18 @@
                 <img src="../../images/icoVence.png">
               </div>
               <div class="pillar-200p">
-                <input type="text" name="exp_date" data-mode-1 placeholder="MM/AAAA" minlegth="6" maxlength="7" ng-model="fullCard.cardExpiry" required exp-date>
+                <input type="text" name="exp_date" data-mode-1 placeholder="MM/AAAA" minlegth="6" maxlength="7" ng-model="fullCard.cardExpiry" ng-blur="verifyDate(fullCard.cardExpiry)" required>
               </div>
               <!--ERRORES EN CAMPO DE FECHA DE EXPIRACION -->
               <div class="text-center" ng-if="formTDC.exp_date.$dirty && (formTDC.exp_date.$invalid || formTDC.exp_date.$touched)">
                 <span ng-if="formTDC.exp_date.$error.required" class="error-input-msj" >
                   {{"err.required" | translate}}
+                </span>
+                <span ng-if="formTDC.exp_date.$error.minlength && !formTDC.exp_date.$error.required && !formTDC.exp_date.$error.expDate" class="error-input-msj" >
+                  {{"err.minlength" | translate}}
+                </span>
+                <span ng-if="!checkDate && !formTDC.exp_date.$error.required && !formTDC.exp_date.$error.minlength" class="error-input-msj" >
+                  La fecha de expiración es inválida
                 </span>
               </div>
               <!-- ERRORES EN CAMPO DE FECHA DE EXPIRACION -->
@@ -209,7 +216,7 @@
               <span ng-if="formTDC.address.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
-              <span ng-if="formTDC.address.$error.required" class="error-input-msj" >
+              <span ng-if="formTDC.address.$error.maxlength" class="error-input-msj" >
                 {{"err.maxlength" | translate}}
               </span>
             </div>
@@ -220,7 +227,7 @@
             </div>
 
             <div class="line-100">
-                <input type="email" name="email" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" maxlength="254" required>
+                <input type="email" name="email" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" maxlength="60" required>
             </div>
             <!--ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
             <div class="text-center" ng-if="formTDC.email.$dirty && (formTDC.email.$invalid || formTDC.email.$touched)">
