@@ -26,7 +26,7 @@ app.controller('tdcCtrl',
       address_zip: "",
     };
 
-    // Entradas de HTML a transformar
+    // Entradas de HTML a Transformar
     $scope.fullCard = {
       firstEntry: "",
       secondEntry: "",
