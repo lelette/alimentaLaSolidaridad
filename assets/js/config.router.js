@@ -52,18 +52,26 @@ angular.module('app')
         // Configuración general del servicio $http
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push(apiInterceptor);
-
-        var layout = "templates/app.html";
-
 				$urlRouterProvider.when('/', '/access/signin');
         $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
+          .state('landing', {
+              url: '/landing',
+              templateUrl: 'templates/landing.html',
+              resolve: load([])
+          })
+          // autenticacion o inicio de session autenticada
+          .state('landing.home', {
+              url: '/home',
+              templateUrl: 'templates/landing/home.html',
+              resolve: load([])
+          })
           // session autenticada estandar
           .state('app', {
             abstract: true,
             url: '/app',
-            templateUrl: layout
+            templateUrl: "templates/app.html"
           })
           .state('app.page', {
               url: '/page',

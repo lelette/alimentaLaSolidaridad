@@ -11,7 +11,7 @@ app.controller('SigninFormController',
 
   $rootScope.header = {}
   $rootScope.header.icono = "images/icoMiPerfil.png";
-  $rootScope.header.namePage = "Inicio de Sesión";
+  $rootScope.header.namePage = "signin.subtitulo";
   $scope.fbLogin = '';
   $scope.user = {};
   $scope.authError = null;

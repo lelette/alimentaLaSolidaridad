@@ -19,15 +19,7 @@ app.controller('ErrorCtrl', [
       });
     };
   */
-  // Variable global para el manejo del tiempo de sesion
-  var timer;
 
-  // Funcion para iniciar el contador de tiempo de sesion
-  function startTimer() {
-    timer = setTimeout(function() {
-      alert('Estimado Usuario: Queda aproximadamente un minuto para que su tiempo de sesión expire.');
-    }, 240000);
-  };
 
   /*
   *   listenerEvent :: resetAjax
@@ -37,8 +29,6 @@ app.controller('ErrorCtrl', [
 
   $scope.$on('$resetAjax', function(event) {
     event.stopPropagation();
-    clearTimeout(timer);
-    startTimer();
   });
 
   /*
@@ -49,10 +39,8 @@ app.controller('ErrorCtrl', [
 
   $scope.$on('$clearAjax', function(event) {
     event.stopPropagation();
-    clearTimeout(timer);
   });
 
-  startTimer();
 
   var cleanUp = function() {
     // limpiamos los eventos globales creados
@@ -86,12 +74,10 @@ app.controller('ErrorCtrl', [
     switch (error.codigo) {
       case 10002 :
         //getCSRF();
-        clearTimeout(timer);
         $state.go('access.signin');
         break;
       case 10104 : // error de usuario no autenticado. redirigimos al signin
         //getCSRF();
-        clearTimeout(timer);
         $state.go('access.signin');
         break;
         /*
@@ -167,7 +153,7 @@ app.controller('ErrorCtrl', [
 
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+  function($rootScope,  $scope, $http, $state, User, $translate, spinnerService) {
 
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
@@ -177,6 +163,8 @@ app.controller('GlobalCtrl',
       }
       $scope.user = User.info;
       $scope.user.imagen_perfil = User.info.imagen_perfil;
+      if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
+      else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
 
       // Variables fijas del Header
       $rootScope.header = {}
@@ -189,4 +177,11 @@ app.controller('GlobalCtrl',
 
     });
 
+
+    $scope.logout = function(){
+      $http.post('plataform/user/logout').then(function (res){
+        console.log("logout");
+        $state.go('access.signin');
+      });
+    }
 }]);

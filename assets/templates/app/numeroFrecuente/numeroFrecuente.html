@@ -12,13 +12,15 @@
                     <p class="p-gray">Añade un contacto y enviale una recarga!</p>
                   </div>
               </div>
-							<div ng-show="frecuentes.length != 0" class="container" style="width: 100%; margin-top: 120px;">
-								<table datatable="ng" cellpadding="2" cellspacing="2" border="2" class="table" style="width: 100%; border: solid white;">
+							<div ng-show="frecuentes.length != 0" class="container" style="width: 90%; margin-top: 120px;">
+								<table datatable="ng" cellpadding="2" cellspacing="2" border="2" class="table" style="width: 100%; border: solid white; margin: auto">
 							    <thead style="border-bottom: solid #cfd5d1;">
 								    <tr class="odd gradeA">
 							        <th style="text-align: center;">NÚMERO</th>
 							        <th></th>
 							        <th></th>
+											<th></th>
+											<th></th>
 											<th style="text-align: center;">SELECCIONA PARA RECARGAR</th>
 								    </tr>
 							    </thead>
@@ -38,10 +40,12 @@
 													<img ng-click="modificarFrecuente(frecuente)" src="images/icoEdit.png" alt="">
 												</div>
 											</td>
+											<td></td>
+											<td></td>
 											<td style="text-align: center">
 												<div class="pillar-30px" style="margin-left: 50%">
 													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="">
+														<input type="checkbox" name="" ng-click=agregarRecarga(frecuente)>
 														<span></span>
 													</div>
 												</div>
@@ -49,6 +53,10 @@
 								    </tr>
 							    </tbody>
 								</table>
+								<div class="tab-box tab-on" style="display: flex; width: 25%; height: 35px; float: right; margin-top: 30px;" ng-show="recarga">
+									<img src="images/icoOrdenVrd.png">
+									<p style="color:#59b833">ENVIAR RECARGA</p>
+								</div>
 							</div>
 
           	</div>
@@ -76,9 +84,9 @@
               </div>
               <div class="pillar-70p" style="width: 75%; padding-left: 5px; display: grid">
                 <input numero class="form-control" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="15" minlength="4" ng-model="auxNumero" required>
-								<div style="text-align: center">
+								<!-- <div style="text-align: center">
 									<img src="images/logos/movistar.png" style="width:60%;">
-								</div>
+								</div> -->
               </div>
             </div>
             <div style="float: right;">
