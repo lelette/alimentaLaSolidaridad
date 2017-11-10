@@ -7,7 +7,7 @@
 
  // Prefijo de URL para el Core de Servicios
  //var API_URL = 'http://localhost:9002/';
- var API_URL = 'http://192.168.3.96:9002/';
+ var API_URL = 'http://localhost:9002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -277,6 +277,12 @@ angular.module('app')
             url: '/signup',
             templateUrl: 'templates/access/signup.html',
             resolve: load( ['js/controllers/access/signup.js'] )
+          })
+          // registro de usuario ################################
+          .state('access.terminos', {
+            url: '/terminos',
+            templateUrl: 'templates/access/terminos/terminosycondiciones.html',
+            resolve: load( ['js/controllers/access/terminos/terminos.js'] )
           })
           .state('access.emitValEmail', {
             url: '/emitValEmail',

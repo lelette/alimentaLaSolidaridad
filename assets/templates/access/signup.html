@@ -16,15 +16,15 @@
             {{authError  | translate}}
         </div>
           <div class="pillar-auto">
-            <input data-hide-3 type="text" maxLength="40" string-std placeholder="Nombre" required name="nombres" ng-model="user.nombres">
+            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="Nombre" required name="nombres" ng-model="user.nombres">
           </div>
             <!-- ERRORES EN CAMPO DE NOMBRES -->
             <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
               <span ng-if="form.nombres.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
-              <span ng-if="form.nombres.$error.maxlength" class="error-input-msj" >
-                {{"err.maxlength" | translate}} 40
+              <span ng-if="form.nombres.$error.minlength" class="error-input-msj" >
+                {{"err.minlength" | translate}} 4
               </span>
               <span ng-if="form.nombres.$error.stringStd" class="error-input-msj" >
                 {{"err.stringStd" | translate}}
@@ -33,35 +33,35 @@
             <!-- ERRORES EN CAMPO DE NOMBRES -->
 
           <div class="pillar-auto">
-            <input data-hide-3 type="email" maxLength="40" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required>
+            <input data-hide-3 type="email" maxLength="256" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required ng-blur="consultaCorreo()">
           </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
               <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
+                <span ng-if="!(form.email.$error.required)" class="error-input-msj">
+                  {{correoval}}
+                </span>
                 <span ng-if="form.email.$error.required" class="error-input-msj" >
                   {{"err.required" | translate}}
                 </span>
                 <span ng-if="form.email.$error.email" class="error-input-msj" >
                   {{"err.email.format" | translate}}
                 </span>
-                <span ng-if="form.email.$error.maxlength" class="error-input-msj" >
-                  {{"err.maxlength" | translate}} 40
-                </span>
               </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
 
           <div class="pillar-auto">
-            <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+            <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" minlength="8" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
           </div>
           <div class="pillar-auto">
-            <input data-hide-3 type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" name="confirm_password" ng-model="user.confirm_password" maxlength="16" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
+            <input data-hide-3 type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" name="confirm_password" ng-model="user.confirm_password" maxlength="16" minlength="8" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
           </div>
             <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
             <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
               <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
-              <span ng-if="form.confirm_password.$error.maxlength" class="error-input-msj" >
-                {{"err.maxlength" | translate}} 16
+              <span ng-if="form.confirm_password.$error.minlength" class="error-input-msj" >
+                {{"err.minlength" | translate}} 8
               </span>
               <span ng-if="!form.confirm_password.$error.required && form.confirm_password.$error.equalsPassword" class="error-input-msj" >
                 {{"err.password.passwordConfirm" | translate}}
@@ -83,7 +83,7 @@
               <span></span>
             </div>
           </div>
-          <p-black style="font-family: neeru"> Acepto los Términos y Condiciones</p-black>
+          <p-black style="font-family: neeru"> Acepto los <a ui-sref="access.terminos">Términos y Condiciones</a></p-black>
         </div>
         </form>
         <div style="justify-content:center; display:flex; margin-top: 25px;">
