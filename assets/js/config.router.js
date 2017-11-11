@@ -6,8 +6,8 @@
 
 
  // Prefijo de URL para el Core de Servicios
+ //var API_URL = 'http://localhost:9002/';
  var API_URL = 'http://localhost:9002/';
- //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -52,20 +52,25 @@ angular.module('app')
         // Configuración general del servicio $http
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push(apiInterceptor);
-				$urlRouterProvider.when('/', '/access/signin');
+				$urlRouterProvider.when('/', '/landing/home');
+        $urlRouterProvider.when('/landing', '/landing/home');
         $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
           .state('landing', {
               url: '/landing',
               templateUrl: 'templates/landing.html',
-              resolve: load([])
+              resolve: load([
+                'js/directives/val-input.js',
+              ])
           })
           // autenticacion o inicio de session autenticada
           .state('landing.home', {
               url: '/home',
               templateUrl: 'templates/landing/home.html',
-              resolve: load([])
+              resolve: load([
+                'js/controllers/landingHome.js'
+              ])
           })
           // session autenticada estandar
           .state('app', {
@@ -277,6 +282,12 @@ angular.module('app')
             url: '/signup',
             templateUrl: 'templates/access/signup.html',
             resolve: load( ['js/controllers/access/signup.js'] )
+          })
+          // registro de usuario ################################
+          .state('access.terminos', {
+            url: '/terminos',
+            templateUrl: 'templates/access/terminos/terminosycondiciones.html',
+            resolve: load( ['js/controllers/access/terminos/terminos.js'] )
           })
           .state('access.emitValEmail', {
             url: '/emitValEmail',

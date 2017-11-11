@@ -81,7 +81,29 @@ app.controller('SignupFormController',
     return val1 == val2;
   };
 
+  //************* Verifica si el correo ya fue registrado **********************//
+  $scope.consultaCorreo = function() {
+    if ($scope.user.email !== undefined) {
+      $http.post('plataform/consultaRapida',{email: $scope.user.email.toLowerCase()})
+      .then(function(res) {  // success
+        if (res.data.msj === false) {
+          $scope.correoval = "El correo ingresado ya está registrado";
+          $scope.correoValido = true;
+        }
+        else {
+          $scope.correoval = "";
+          $scope.correoValido = false;
+        };
+      }, function(res) { // fail
+        if (res.data.error && res.data.error.codigo == 10000) $scope.$emit('$errorAjax',res.data);
+      });
+    }
+    else {
+      $scope.correoval = "";
+    }
+  };
 
+  if ($scope.user.email) $scope.consultaCorreo();
   /****************************************************
   * signup                                            *
   *   @descripcion :: realiza el consumo del          *
@@ -123,16 +145,8 @@ app.controller('SignupFormController',
     });
   };
 
+
 }]);
-
-
-
-
-
-
-
-
-
 
 
 
