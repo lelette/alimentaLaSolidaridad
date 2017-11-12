@@ -229,6 +229,16 @@
 	    line-height: 120%;
 	    font-family: neeru;
 			}
+		.tab-home p-2{
+			margin-left: 10px;
+			font-weight: 400;
+			color: #AEB7B3;
+		}
+		.tab-home p-3{
+			margin-left: 10px;
+			font-weight: 400;
+			color: #0DB731;
+		}
 	.tab-dynamic-home p{
 			color: #0DB731;
 			font-weight: 400;
