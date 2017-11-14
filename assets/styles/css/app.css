@@ -778,9 +778,36 @@
 	.btn-burger:active i{
 		color: #0DB731;
 	}
-	/* header > section > nav > div:last-child:hover{
+	 /*header > section > nav > div:hover{
 		border-bottom: 2px solid #FFFF00;
 	}*/
+
+header > section > nav > div:hover{
+text-decoration: none;
+color: #fff;
+}
+
+header > section > nav > div:before {
+content: "";
+position: absolute;
+width: 30%;
+height: 2px;
+bottom: 0;
+left: 33%;
+background-color: #FFFF00;
+visibility: hidden;
+-webkit-transform: scaleX(0);
+transform: scaleX(0);
+-webkit-transition: all 0.3s ease-in-out 0s;
+transition: all 0.3s ease-in-out 0s;
+}
+header > section > nav > div:hover:before {
+visibility: visible;
+-webkit-transform: scaleX(1);
+transform: scaleX(1);
+}
+
+ }
 /* Actions */
 
 /* Responsive */
