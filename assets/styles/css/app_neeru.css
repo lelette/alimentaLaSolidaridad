@@ -511,6 +511,105 @@ tr:last-child{
 	}
 	@media screen and (min-width: 501px) and (max-width: 767px){
 
+		.imgNeeru {
+			flex-direction: column;
+    	margin: -31px auto 5px auto;
+			left: 0% !important;
+		}
+
+		.boxFunciona {
+	    width: 66.6666% !important;
+			padding: 0px 10px !important;
+			margin: 30px auto !important;
+	  }
+
+		.homeLeft {
+			width: 100% !important;
+			position: relative !important;
+			left: 0% !important;
+			top: 90px !important;
+		}
+
+		.img {
+			height: 890px !important;
+		}
+
+		.img-seg {
+			width: 530px;
+		}
+
+		.img-center {
+			left: 10% !important;
+			top: 8% !important;
+			font-size: 16px;
+			width: 80% !important;
+		}
+
+		.imgHome{
+			position: relative !important;
+			top: 98px !important;
+			left: 0% !important;
+		}
+
+		.imgSeguridad{
+			position: relative !important;
+			top: 125px !important;
+			left: 0% !important;
+		}
+
+		.footer-central {
+			margin: 20px auto;
+    	justify-content: space-between;
+    	width: 100%;
+		}
+
+		.footer-home {
+			flex-direction: column;
+			top: 90px !important;
+			padding: 0% 5% !important;
+		}
+
+		.pillar-ajust {
+	    display: flex !important;
+			flex-direction: column !important;
+	  }
+
+		.seguridadLeft {
+	    width: 35%;
+	    position: relative;
+	    left: 15%;
+	    top: 125px;
+	  }
+
+		.secContactos {
+			position: relative;
+			top: 140px;
+		}
+
+		.homeBtnLeft {
+			position: relative !important;
+			top: 102px !important;
+		}
+
+		.secFunciona{
+			position: relative !important;
+			height: initial !important;
+			top: 165px !important;
+		}
+
+		.secSeguridad{
+			position: relative !important;
+			top: 100px !important;
+			flex-direction: column !important;
+		}
+
+		.seguridadLeft {
+			width: 100% !important;
+			position: relative !important;
+			left: 10% !important;
+			top: 125px !important;
+		}
+
 		.frequent-master-box{
 			padding-bottom: 70px;
 			display: block;
@@ -541,6 +640,7 @@ tr:last-child{
       transition: .45s;
 			text-align: -webkit-center;
 		}
+
 	}
 	@media screen and (min-width: 768px) and (max-width: 992px){
 
