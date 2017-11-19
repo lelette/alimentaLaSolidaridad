@@ -275,6 +275,80 @@ tr:last-child{
 	}
 	@media screen and (min-width: 401px) and (max-width: 500px){
 
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.boxSecFunciona{
+			width: 66.6666% !important;
+			padding: 10px 10px !important;
+		}
+
 		.frequent-master-box{
 			padding-bottom: 70px;
 			display: block;
