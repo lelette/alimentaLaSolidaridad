@@ -211,6 +211,97 @@ tr:last-child{
 /* Responsive */
 	@media screen and (max-width: 300px){
 
+		.boxSecFunciona{
+			width: 95% !important;
+			padding: 10px 10px !important;
+		}
+
+		.btnContactos{
+			width: inherit !important;
+			padding: 0px 0px  !important;
+		}
+
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.hTxt1{
+			font-size: 2em !important;
+			padding: 25px 5px !important;
+		}
+
+		.input-contactos{
+			flex-wrap: wrap !important;
+		}
+
+		.btnHome{
+			padding: 5px 21px !important;
+			width: inherit !important;
+			font-size: 1.1em !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 7% !important;
+		}
+
+		.w-45p {
+			width: 100% !important;
+		}
+
 		.frequent-master-box{
 			padding-bottom: 70px;
 			display: block;
@@ -470,6 +561,78 @@ tr:last-child{
 	}
 	@media screen and (min-width: 501px) and (max-width: 767px){
 
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.boxSecFunciona{
+			width: 66.6666% !important;
+			padding: 10px 10px !important;
+		}
+
 		.frequent-master-box{
 			padding-bottom: 70px;
 			display: block;
@@ -502,6 +665,77 @@ tr:last-child{
 		}
 	}
 	@media screen and (min-width: 768px) and (max-width: 992px){
+
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
 
 		.frequent-master-box{
 			padding-bottom: 70px;
@@ -537,46 +771,154 @@ tr:last-child{
 		}
 	}
 	@media screen and (min-width: 993px) and (max-width: 1200px){
+
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
 		.frequent-master-box > section{
 	    padding: 0px 2.5%;
 		}
 	}
 	@media screen and (min-width: 1201px) and (max-width: 1399px){
 
-		.imgHome {
-			position: absolute !important;
-			top: 144px !important;
-			left: 25% !important;
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
 		}
-		.frequent-master-box > section{
-	    padding: 0px 2.5%;
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
 		}
-		.seguridadLeft{
-			width: 35% !important;
-			position: relative !important;
-			left: 7% !important;
-			top: 125px !important;
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
 		}
-		.img {
-	    width: 100%  !important;
-	    height: 1100px  !important;
-	    opacity: 1  !important;
+
+		.hTxt1{
+			padding: 40px 5px !important;
 		}
-		.imgSeguridad{
-			position: relative !important;
-			top: 78px !important;
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
 			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
 		}
 
-		.footer-home {
-	    position: relative !important;
-	    top: -157px !important;
-	    padding: 5% 7% !important;
-		}
-		.w-img-table{
-			width: 1205;
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
 		}
 
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
 
 	}
 	@media screen and (min-width: 1400px) and (max-width: 1500px){
