@@ -81,6 +81,11 @@
   margin-left: 0px;
 }
 
+.input-contactos{
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
 .color-verde {
   color: #2BBF49;
 }
