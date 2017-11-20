@@ -170,7 +170,7 @@ app.controller('GlobalCtrl',
       // Variables fijas del Header
       $rootScope.header = {}
       $rootScope.header.icono = "images/icoInicio.png";
-      $rootScope.header.namePage = "Bienvenido "+$scope.user.nombres+'...';
+      $rootScope.header.namePage = "Bienvenido "+$scope.user.nombres;
 
 
       $scope.loader = 'ocultar';
