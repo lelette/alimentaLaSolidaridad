@@ -211,6 +211,10 @@ tr:last-child{
 /* Responsive */
 	@media screen and (max-width: 300px){
 
+		.access-content{
+			margin-top: 180px !important;
+		}
+
 		.boxSecFunciona{
 			width: 95% !important;
 			padding: 10px 10px !important;
@@ -219,6 +223,11 @@ tr:last-child{
 		.btnContactos{
 			width: inherit !important;
 			padding: 0px 0px  !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
 		}
 
 		.homeLeft{
@@ -334,6 +343,11 @@ tr:last-child{
 	}
 	@media screen and (min-width: 301px) and (max-width: 400px){
 
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
 		.boxSecFunciona{
 			width: 95% !important;
 			padding: 10px 10px !important;
@@ -342,6 +356,11 @@ tr:last-child{
 		.btnContactos{
 			width: inherit !important;
 			padding: 0px 0px  !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
 		}
 
 		.homeLeft{
@@ -460,6 +479,9 @@ tr:last-child{
 	}
 	@media screen and (min-width: 401px) and (max-width: 500px){
 
+		.access-content{
+			margin-top: 180px !important;
+		}
 
 		.boxSecFunciona{
 			width: 66.6666% !important;
@@ -472,6 +494,11 @@ tr:last-child{
 
 		.btnSeguridad{
 			margin-left: 9% !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
 		}
 
 		.homeLeft{
@@ -577,6 +604,10 @@ tr:last-child{
 	}
 	@media screen and (min-width: 501px) and (max-width: 767px){
 
+		.access-content{
+			margin-top: 180px !important;
+		}
+
 		.btnHome{
 				margin: 0 auto;
 		}
@@ -618,6 +649,11 @@ tr:last-child{
 
 		.paddingContactos{
 			padding: 0px 0px 24px;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
 		}
 
 
@@ -690,6 +726,10 @@ tr:last-child{
 	}
 	@media screen and (min-width: 768px) and (max-width: 992px){
 
+		.access-content{
+			margin-top: 180px !important;
+		}
+
 		.boxSecFunciona{
 			width: 33.3333% !important;
 			padding: 0px 10px !important;
@@ -697,6 +737,11 @@ tr:last-child{
 
 		.flex-wrap{
 			flex-wrap: nowrap !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
 		}
 
 		.homeLeft{
@@ -810,6 +855,14 @@ tr:last-child{
 			flex-wrap: nowrap !important;
 		}
 
+		.headerTxt{
+			width: 55% !important;
+		}
+
+		.headerSignin{
+			width: 30%;
+		}
+
 		.homeLeft{
 				width: 40% !important;
 				position: static !important;
@@ -827,6 +880,10 @@ tr:last-child{
 
 		.img{
 			height: 819px !important;
+		}
+
+		.imgNeeru {
+			width: 35% !important;
 		}
 
 		.imgNeeruContactos{
