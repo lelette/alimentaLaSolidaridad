@@ -25,7 +25,6 @@ app.controller('tdcCtrl',
       cvc: "",
       exp_year: "",
       exp_month: "",
-      country: "",
     };
 
     // Entradas de HTML a Transformar
@@ -37,7 +36,8 @@ app.controller('tdcCtrl',
       cardExpiry: "",
       email: "",
       description: "",
-      address: ""
+      address: "",
+      country: "",
     };
 
     // Tarjeta afiliadas del usuario
@@ -78,6 +78,7 @@ app.controller('tdcCtrl',
       // Creo el token de seguridad de la tarjeta
       $scope.loader='mostrar';
       $scope.cuerpo='ocultar';
+      console.log("CARD >>>>", $scope.card);
       Stripe.card.createToken($scope.card,function(status, res){
         if(res.error){
           console.log("Ocurrio un error ....");
