@@ -180,8 +180,8 @@
 }
 
 .pillar-ajust-funciona{
-  width: 100%!important;
-  display: flex !important;
+  width: 70%;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }

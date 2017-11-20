@@ -12,6 +12,13 @@
       <img ng-src="images/icoEnviarRecarga.png" alt="">
       <span style="margin-left:10px;"> Registrate y envia una recarga</span>
     </div>
+    <br><br>
+    <div class="text-center" style="margin-bottom: 10px;">
+        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-untouched ng-valid" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>Conectarse con Facebook</a>
+    </div>
+    <div class="text-center" style="margin-bottom: 10px;">
+      <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://localhost:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Conectarse con Google</a>
+    </div>
   </div>
   <div class="imgHome">
     <img class="w-img-table" src="images/landing/ipad.png">
@@ -129,7 +136,7 @@
           </div>
         </div>
         <div class="pillar-100p" style="padding:25px 0px;">
-            <textarea style="background:none; padding:20px; border: 1px white solid;" name="name" rows="4" cols="80" placeholder="Como te podemos ayudar?"></textarea>
+            <textarea style="background:none; padding:20px; border: 1px white solid;" name="name" rows="4" cols="120" placeholder="Como te podemos ayudar?"></textarea>
         </div>
         <div class="pillar-100p" style="flex-direction:column; text-align: -webkit-center;">
           <div class="subirImg">
