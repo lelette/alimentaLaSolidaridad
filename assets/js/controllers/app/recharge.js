@@ -236,6 +236,9 @@ app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     console.log('Recharge', Recharge);
+
+    $scope.btnClass = "btn-off";
+    $scope.pruebax = "sssss"
     $scope.datos = {
       cod: 'Pais',
       contrato: '',
@@ -255,6 +258,23 @@ app.controller('ReloadController',
   //    $scope.datos.cod = $stateParams.cod;
   //    $scope.datos.contrato = $stateParams.contrato;
   //  }
+
+
+  $scope.agregarAlCarrito = function () {
+    Recharge.cart.push({
+      phone: Recharge.info.ofertas.telefono_detino,
+      idProduct: Recharge.info.idProduct
+    });
+    Recharge.reset();
+    $state.reload();
+  }
+
+  $scope.selectOffer = function (id) {
+    console.log('id', id);
+    console.log('Recharge', Recharge);
+    Recharge.info.idProduct = id;
+    $scope.btnClass = "btn-green-on;";
+  }
 
 
    $scope.recharge = function () {

@@ -10,8 +10,12 @@ app.service('Recharge', [
   '$http',
   function ($http) {
 
+    this.cart = [];
+
     // Información de la recarga a realizar
-    this.info = {};
+    this.info = {
+      pais: {}
+    };
 
     /*******************************************************
     * reset                                                *
