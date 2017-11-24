@@ -82,14 +82,14 @@
           <div class="pillar-30p">
             <!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
 
-            <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: 30px;" required>
+            <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: 40px;" required>
               <div class="country-selected">
                 <div style="display: flex;" ng-hide="showCountry">
-                  <img src="images/icoSelectPais.png">
+                  <img src="images/icoSelectPais.png" style="width: 100%">
                   <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
                 </div>
                 <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
-                  <img src="{{pais.url}}" style="width:100%; height: 100%">
+                  <img src="{{pais.url}}">
                   <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
                 </div>
               </div>
@@ -102,7 +102,7 @@
             </div>
           </div>
       <div class="pillar-70p" style="width:60%">
-        <input style="height: 30px;" onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="11" minlength="8" ng-blur="obtenerOfertas()">
+        <input style="height: 40px;" onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="11" minlength="8" ng-blur="obtenerOfertas()">
       </div>
         </div>
       </div>
@@ -110,10 +110,10 @@
   </div>
 </div>
 <div>
-  <div style="width: 100%; display:flex; justify-content:center; text-align:center;" class="home1">
+  <div style="width: 100%;text-align:-webkit-center;" class="home1">
     <div>
      <p>¿Quieres añadir una tarjeta?</p>
-     <div class="tab-home" ng-if="datos.tdc_afiliadas != 0" style="display:table-cell; text-align:center; padding: 5%; padding-left: 22%;">
+     <div class="tab-home" ng-if="datos.tdc_afiliadas != 0" style="display:block; padding-top: 10px; margin-right: 0">
        <p-2>No tienes tarjetas registradas</p-2>
        <br>
        <p-3 ui-sref="app.page.tdc_afiliadas">+ Añadir tarjeta</p-3>

@@ -13,6 +13,12 @@ app.controller('GetContratoController',
     $scope.cuerpo='ocultar';
 
 
+    $http.get('/plataform/sales/getshoppingCart')
+    .then(function (res) {
+      console.log('Hola mundo!!!! ',res.data);
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
 
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
@@ -261,6 +267,13 @@ app.controller('ReloadController',
   //    $scope.datos.cod = $stateParams.cod;
   //    $scope.datos.contrato = $stateParams.contrato;
   //  }
+
+    $http.get('plataform/sales/getshoppingCart')
+    .then(function (res) {
+      console.log('Hola mundo!!!! ',res.data);
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
 
 
    $scope.recharge = function () {

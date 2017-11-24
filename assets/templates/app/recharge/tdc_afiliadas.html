@@ -66,19 +66,19 @@
         <form id= "formTDC" name="formTDC">
           <div class="line-100">
             <div class="pillar-25p">
-              <input type="text" name="first_fourth" data-mode-1 placeholder="----" minlength="4" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero>
+              <input type="text" name="first_fourth" data-mode-1 placeholder="----" minlength="4" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero style="text-align: center; letter-spacing: 5px;">
             </div>&nbsp;&nbsp;
 
             <div class="pillar-25p">
-              <input type="" name="second_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == ''" ng-model="fullCard.secondEntry" required numero>
+              <input type="" name="second_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == ''" ng-model="fullCard.secondEntry" required numero style="text-align: center; letter-spacing: 5px;">
             </div>&nbsp;&nbsp;
 
             <div class="pillar-25p">
-              <input type="" name="third_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-model="fullCard.thirdEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == '' || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || !fullCard.secondEntry || fullCard.secondEntry == ''" required numero>
+              <input type="" name="third_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="4" ng-model="fullCard.thirdEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || !fullCard.firstEntry || fullCard.firstEntry == '' || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || !fullCard.secondEntry || fullCard.secondEntry == ''" required numero style="text-align: center; letter-spacing: 5px;">
             </div>&nbsp;&nbsp;
 
             <div class="pillar-25p">
-              <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength">
+              <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength" style="text-align: center; letter-spacing: 5px;">
             </div>&nbsp;&nbsp;
 
             <span ng-show="cardType == 'Visa'" class="pillar-70px" style="justify-content:center; align-items: center;">

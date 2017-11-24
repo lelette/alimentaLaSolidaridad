@@ -1,202 +1,154 @@
 
-<div ng-controller="LandingHomeCtrl">
-  <!-- Seccion del home -->
-  <section class="pillar-100p" style="height:660px">
-    <div class="homeLeft">
-      <p class="txt1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. {{pruebas}}</p>
-      <br>
-      <hr class="hrHome">
-      <br>
-      <p class="txt2 w-65p">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla.</p>
-      <br><br><br>
-      <div ui-sref="access.signup" class="btnHome" type="button" name="button">
-        <img ng-src="images/icoEnviarRecarga.png" alt="">
-        <span style="margin-left:10px;"> Registrate y envia una recarga</span>
-      </div>
-      <br><br>
-      <div style="margin-bottom: 10px;">
-        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-valid ng-binding ng-touched" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false" style=""><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>Inicio de Sesion con Facebook</a>
-      </div>
-      <div style="margin-bottom: 10px;">
-        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google ng-binding" name="button" href="http://localhost:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Inicio de Sesion con Google</a>
-      </div>
+<!-- Seccion del home -->
+<section class="pillar-100p flex-wrap" style="/*height:660px*/">
+  <div class="homeLeft">
+    <p class="txt1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+    <br>
+    <hr class="hrHome">
+    <br>
+    <p class="txt2 w-65p">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla.</p>
+    <br><br><br>
+    <div ui-sref="access.signup" class="btnHome" type="button" name="button">
+      <img ng-src="images/icoEnviarRecarga.png" alt="">
+      <span style="margin-left:10px;"> Registrate y envia una recarga</span>
     </div>
-    <div class="imgHome">
-      <img class="w-img-table" src="images/landing/ipad.png">
+    <br><br>
+    <div class="text-center" style="margin-bottom: 10px;">
+        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-untouched ng-valid" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>Conectarse con Facebook</a>
     </div>
-  </section>
-  <!-- Fin de seccion del home -->
+    <div class="text-center" style="margin-bottom: 10px;">
+      <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://localhost:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>Conectarse con Google</a>
+    </div>
+  </div>
+  <div class="imgHome">
+    <img class="w-img-table" src="images/landing/ipad.png">
+  </div>
+</section>
+<!-- Fin de seccion del home -->
 
-  <!-- Seccion del area como funciona -->
-  <section class="secFunciona">
-    <a name="item1"></a>
-    <h2 class="center hTxt1 color-verde"> ¿CÓMO FUNCIONA? </h2>
-    <div class="pillar-70p" style="margin:0 auto;">
-      <div style=" width: 33.3333%; padding: 0px 10px;">
-        <div class="white">
-          <div class="img-central">
-            <img src="images/landing/icoOrden.png" alt="">
-          </div>
-          <div class="center">
-            <h4 style="color: #0DB730;">1. ORDEN</h4>
-          </div>
-          <div>
-            <p class="txt3">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
-          </div>
-          <div class="hrFunciona">
-          </div>
+<!-- Seccion del area como funciona -->
+<section class="secFunciona">
+  <a name="item1"></a>
+  <h2 class="center hTxt1 color-verde"> ¿CÓMO FUNCIONA? </h2>
+  <div class="pillar-ajust-funciona" style="margin:0 auto;">
+    <div class="boxSecFunciona">
+      <div class="white">
+        <div class="img-central">
+          <img src="images/landing/icoOrden.png" alt="">
         </div>
-      </div>
-      <div style="width: 33.3333%; padding: 0px 10px;">
-        <div class="white">
-          <div class="img-central">
-            <img src="images/landing/icoPago.png" alt="">
-          </div>
-          <div class="center">
-            <h4 style="color: #0DB730;">2. PAGO</h4>
-          </div>
-          <div>
-            <p class="txt3">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-          </div>
-          <div class="hrFunciona">
-          </div>
+        <div class="center">
+          <h4 style="color: #0DB730;">1. ORDEN</h4>
         </div>
-      </div>
-      <div style=" width: 33.3333%; padding: 0px 10px;">
-        <div class="white">
-          <div class="img-central">
-            <img src="images/landing/icoRecarga.png" alt="">
-          </div>
-          <div class="center">
-            <h4 style="color: #0DB730;">3. RECARGA</h4>
-          </div>
-          <div>
-            <p class="txt3">Accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis.</p>
-          </div>
-          <div class="hrFunciona">
-          </div>
+        <div>
+          <p class="txt3">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
+        </div>
+        <div class="hrFunciona">
         </div>
       </div>
     </div>
-  </section>
-  <!-- Fin de seccion del area como funciona -->
+    <div class="boxSecFunciona">
+      <div class="white">
+        <div class="img-central">
+          <img src="images/landing/icoPago.png" alt="">
+        </div>
+        <div class="center">
+          <h4 style="color: #0DB730;">2. PAGO</h4>
+        </div>
+        <div>
+          <p class="txt3">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+        </div>
+        <div class="hrFunciona">
+        </div>
+      </div>
+    </div>
+    <div class="boxSecFunciona">
+      <div class="white">
+        <div class="img-central">
+          <img src="images/landing/icoRecarga.png" alt="">
+        </div>
+        <div class="center">
+          <h4 style="color: #0DB730;">3. RECARGA</h4>
+        </div>
+        <div>
+          <p class="txt3">Accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis.</p>
+        </div>
+        <div class="hrFunciona">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Fin de seccion del area como funciona -->
 
-  <!-- Seccion de Seguridad -->
-  <section class="secSeguridad pillar-100p">
-    <a name="item2"></a>
-    <div class="seguridadLeft">
-      <p class="hTxt2">SEGURIDAD</p>
-      <br>
-      <hr class="hrHome">
-      <br>
-      <div class="pillar-100p">
-        <div class="">
-          <img src="images/landing/icoSeg1.png">
-          <br> <br>
-          <p class="titulo1">Cons ectetuer adipiscing</p>
-          <br> <br>
-          <p class="txt2 w-80p"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet magna</p>
-        </div>
-        <div class="">
-          <img src="images/landing/icoSeg2.png">
-          <br> <br>
-          <p class="titulo1">Quis nostrud exerci</p>
-          <br> <br>
-          <p class="txt2 w-80p">Ut wisi enim ad minim veniam, quis nostrud exerci
-            tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat
-          </p>
-        </div>
-      </div>
-      <br><br><br>
-      <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button">
-        <img ng-src="images/icoEnviarRecarga.png" alt="">
-        <span style="margin-left:10px;"> Registrate y envia una recarga</span>
-      </div>
-    </div>
-    <div class="imgSeguridad">
-      <img src="images/landing/macFront.png">
-    </div>
-  </section>
-  <!-- Fin de seccion de seguridad -->
-
-  <!-- Seccion contactos -->
-  <section>
+<!-- Seccion de Seguridad -->
+<section class="secSeguridad pillar-100p">
+  <a name="item2"></a>
+  <div class="seguridadLeft">
+    <p class="hTxt2">SEGURIDAD</p>
+    <br>
+    <hr class="hrHome">
+    <br>
     <div class="pillar-100p">
-      <div class="img-container">
-        <img class="img" src="images/landing/bgContacto.png" alt="Norway">
-        <a name="item3"></a>
-        <!-- Inicio campos formulario de registro -->
-        <form id="form" name="form" class="form-validation" autocomplete="off" novalidate="">
-          <div class="img-center color-blanco">
-          <h2 class="center hTxt1 color-blanco"> CONTACTANOS </h2>
-          <p class="p-400">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
-          <br><br><br><br><br>
-          <div class="pillar-100p" style="-webkit-justify-content: space-between;justify-content: space-between;">
-            <div class="w-45p">
-              <input maxlength="25" string-std class="input-text" type="text" ng-model="consulta.nombres" name="nombres" placeholder="Nombre Completo" required>
-              <!-- ERRORES EN CAMPO DE NOMBRES -->
-              <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
-                <span ng-if="form.nombres.$error.required" class="error-input-msj" >
-                  {{msjErrors.required}}
-                </span>
-                <span ng-if="form.nombres.$error.maxlength" class="error-input-msj" >
-                  {{msjErrors.maxlength}}
-                </span>
-                <span ng-if="form.nombres.$error.stringStd" class="error-input-msj" >
-                  {{msjErrors.stringStd}}
-                </span>
-              </div>
-              <!-- ERRORES EN CAMPO DE NOMBRES -->
-            </div>
-            <div class="w-45p">
-              <input class="input-text" name="emailPrincipal" type="email" placeholder="Correo Electrónico" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" ng-model="consulta.email" maxlength="254" required>
-              <!-- ERRORES EN CAMPO DE EMAIL PRINCIPAL -->
-              <div class="text-center" ng-if="(form.emailPrincipal.$dirty && (form.emailPrincipal.$touched || form.emailPrincipal.$invalid))">
-                <span class="error-input-msj">
-                  {{correoval}}
-                </span>
-                <span ng-if="form.emailPrincipal.$error.required && !correoval" class="error-input-msj">
-                  {{msjErrors.required}}
-                </span>
-                <span ng-if="form.emailPrincipal.$error.maxlength" class="error-input-msj">
-                  {{msjErrors.maxlength}}
-                </span>
-                <span ng-if="form.emailPrincipal.$error.email || form.emailPrincipal.$error.pattern" class="error-input-msj">
-                  {{msjErrors.email}}
-                </span>
-              </div>
-              <!-- ERRORES EN CAMPO DE EMAIL PRINCIPAL -->
-            </div>
-          </div>
-          <br><br><br>
-          <div class="pillar-100p">
-            <textarea  maxlength="200" style="background:none; padding:20px; border: 1px white solid;" ng-model="consulta.mensaje" name="mensaje" rows="4" cols="80" placeholder="Como te podemos ayudar?" required=""></textarea>
-            <!-- ERRORES EN CAMPO DE MENSAJE -->
-            <div class="text-center" ng-if="form.mensaje.$dirty && (form.mensaje.$invalid || form.mensaje.$touched)">
-              <span ng-if="form.mensaje.$error.required" class="error-input-msj" >
-                {{msjErrors.required}}
-              </span>
-              <span ng-if="form.mensaje.$error.maxlength" class="error-input-msj" >
-                {{msjErrors.maxlength}}
-              </span>
-            </div>
-            <!-- ERRORES EN CAMPO DE MENSAJE -->
-          </div>
-          <div class="pillar-100p" style="flex-direction:column; text-align: -webkit-center;">
-            <div class="subirImg">
-              <!-- <img src="images/conectar.png" style="width: 21px;margin-right: 10px;"> -->
-              <!-- <span> Subir imagen </span> -->
-              <input type="file" name="pic" placeholder="subir Imagen" accept="image/*">
-            </div>
-            <div class="btnContactos" type="button" name="button" ng-disabled='form.$invalid'>
-              <span style="margin-left:10px; text-align:center"> ENVIAR</span>
-            </div>
-          </div>
-        </div>
-        </form>
+      <div class="">
+        <img src="images/landing/icoSeg1.png">
+        <br> <br>
+        <p class="titulo1">Cons ectetuer adipiscing</p>
+        <br> <br>
+        <p class="txt2 w-80p"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet magna</p>
+      </div>
+      <div class="">
+        <img src="images/landing/icoSeg2.png">
+        <br> <br>
+        <p class="titulo1">Quis nostrud exerci</p>
+        <br> <br>
+        <p class="txt2 w-80p">Ut wisi enim ad minim veniam, quis nostrud exerci
+          tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat
+        </p>
       </div>
     </div>
-  </section>
-  <!-- Fin de Seccion contactos -->
-</div>
+    <br><br><br>
+    <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button">
+      <img ng-src="images/icoEnviarRecarga.png" alt="">
+      <span style="margin-left:10px;"> Registrate y envia una recarga</span>
+    </div>
+  </div>
+  <div class="imgSeguridad">
+    <img style="width:100%" src="images/landing/macFront.png">
+  </div>
+</section>
+<!-- Fin de seccion de seguridad -->
+
+<!-- Seccion contactos -->
+<section>
+  <div class="pillar-100p">
+    <div class="img-container">
+      <img class="img" src="images/landing/bgContacto.png" alt="Norway">
+      <div class="img-center color-blanco">
+        <h2 class="center hTxt1 color-blanco"> CONTACTANOS </h2>
+        <p class="p-400 paddingContactos">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
+        <div class="pillar-100p input-contactos">
+          <div class="w-45p">
+            <input class="input-text" type="text" name="" placeholder="Nombre Completo">
+          </div>
+          <div class="w-45p">
+            <input class="input-text" type="text" name="" placeholder="Email">
+          </div>
+        </div>
+        <div class="pillar-100p" style="padding:25px 0px;">
+            <textarea style="background:none; padding:20px; border: 1px white solid;" name="name" rows="4" cols="120" placeholder="Como te podemos ayudar?"></textarea>
+        </div>
+        <div class="pillar-100p" style="flex-direction:column; text-align: -webkit-center;">
+          <div class="subirImg">
+            <img src="images/conectar.png" style="width: 21px;margin-right: 10px;">
+            <span> Subir imagen </span>
+          </div>
+          <div class="btnContactos" type="button" name="button">
+            <span style="margin-left:10px; text-align:center"> ENVIAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Fin de Seccion contactos -->
