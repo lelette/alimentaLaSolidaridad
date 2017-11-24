@@ -12,10 +12,8 @@ app.service('Recharge', [
 
     this.cart = [];
 
-    // Información de la recarga a realizar
-    this.info = {
-      pais: {}
-    };
+    // Información temporal de la recarga a realizar
+    this.info = {};
 
     /*******************************************************
     * reset                                                *
