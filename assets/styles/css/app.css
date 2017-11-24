@@ -28,7 +28,9 @@
 }
 
 /* Boxes */
-	 html{
+
+
+	html{
 		margin: 0px;
 		z-index: 0;
 		height: 100%;
@@ -395,8 +397,8 @@
 
 /* Select */
 	.neeru-select{
-    width: 90%;
-		height: 120%;
+    width: 110px !important;
+		height: 40px !important;
     border: 1.5px solid #CFD5D1;
     border-radius: .8rem;
     display: flex;
