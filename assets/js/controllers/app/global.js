@@ -153,10 +153,16 @@ app.controller('ErrorCtrl', [
 
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate, spinnerService) {
+  function($rootScope,  $scope, $http, $state, User, $translate) {
 
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
+    var element = angular.element('.main-content');
+    var name = element.attr('ui-view'); // 'content-one'
+    //$rootScope.header = {}
+    //   $rootScope.header.icono = "";
+    //   $rootScope.header.home = true;
+    //   $rootScope.header.namePage = '';
     User.refresh(function(err){
       if (err) {
         return $state.go('access.signin');
@@ -166,12 +172,23 @@ app.controller('GlobalCtrl',
       $scope.user.pin = User.info.pin;
       if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
       else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
-
-      // Variables fijas del Header
-      $rootScope.header = {}
-      $rootScope.header.icono = "images/icoInicio.png";
-      $rootScope.header.namePage = "Bienvenido "+$scope.user.nombres;
-
+      $rootScope.usernombre = $scope.user.nombres;
+      console.log($rootScope.usernombre);
+      // Variables fijas del SUBHeader
+      // if ($state.current.name=='app.page.home')
+      // { $rootScope.header = {}
+      //   $rootScope.header.icono = "images/icoInicio.png";
+      //   $rootScope.header.home = true;
+      //   $rootScope.header.namePage = $scope.user.nombres;
+      //   console.log($state.current.name);
+      // }else {
+      //   if($state.current.name=='app.page.transactions'){
+      //     $rootScope.header = {}
+      //     $rootScope.header.icono = "images/icoMovimientos.png";
+      //     $rootScope.header.namePage = "Movimientos";
+      //   }
+      //   console.log($state.current.name);
+      // }
 
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';

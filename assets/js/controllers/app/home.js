@@ -15,6 +15,27 @@ app.controller('HomeCtrl',
       recargas: 0
     };
 
+
+
+    User.refresh(function(err){
+      if (err) {
+        return $state.go('access.signin');
+      }
+      $scope.user = User.info;
+      $scope.user.imagen_perfil = User.info.imagen_perfil;
+      $scope.user.pin = User.info.pin;
+      if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
+      else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
+      $rootScope.usernombre = $scope.user.nombres;
+      console.log($rootScope.usernombre);
+      // Variables fijas del SUBHeader
+      $rootScope.header = {}
+      $rootScope.header.icono = "images/icoInicio.png";
+      $rootScope.header.home = true;
+      $rootScope.header.namePage = $scope.user.nombres;
+    });
+
+
     $scope.pais = {}
 
     $scope.showCountry = false;

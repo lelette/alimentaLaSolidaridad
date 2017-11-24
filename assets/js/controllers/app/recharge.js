@@ -11,6 +11,9 @@ app.controller('GetContratoController',
     //recibir parametros de homepage
     $scope.loader='mostrar';
     $scope.cuerpo='ocultar';
+
+
+
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
         $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
@@ -245,7 +248,10 @@ app.controller('ReloadController',
     $scope.pais = {}
     $scope.loader = 'mostrar';
     $scope.cuerpo = 'ocultar';
-
+    // Variables fijas del Header
+    $rootScope.header = {};
+    $rootScope.header.icono = "images/icoOrdenGrs.png"; // Icono del Sub-Header
+    $rootScope.header.namePage = "Enviar Recarga"; // Titulo del Sub-Header
     $scope.showOffers   = false;
     $scope.showOperator = false;
     $scope.showCountry = false;

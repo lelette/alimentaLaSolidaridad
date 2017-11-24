@@ -156,5 +156,6 @@
   "Nueva Recarga": "Another Recharge",
   "Informacion sobre los usuarios activos del sistema": "Information about active users of the system",
   "Informacion sobre las transacciones realizadas en el sistema":"Information about transactions performed in the system",
-  "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system"
+  "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system",
+  "Bienvenido": "Welcome, "
 }

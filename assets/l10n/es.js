@@ -154,5 +154,6 @@
   "Nueva Recarga":"Otra Recarga",
   "Informacion sobre los usuarios activos del sistema": "Información sobre los usuarios activos del sistema",
   "Informacion sobre las transacciones realizadas en el sistema": "Información sobre las transacciones realizadas en el sistema",
-  "Informacion de todas las transacciones que haz realizado en el sistema":"Información de todas las transacciones realizadas por el usuario en el sistema"
+  "Informacion de todas las transacciones que haz realizado en el sistema":"Información de todas las transacciones realizadas por el usuario en el sistema",
+  "Bienvenido" : "Bienvenido, "
 }

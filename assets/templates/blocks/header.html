@@ -68,7 +68,8 @@
   <section>
     <div>
       <img ng-src="{{header.icono}}">
-      <p class="p-5 p-300">{{header.namePage | translate}}</p>
+      <p class="p-5 p-300" ng-if="!header.home">{{header.namePage | translate}}</p>
+      <p class="p-5 p-300" ng-if="header.home">{{"Bienvenido" | translate}} {{header.namePage}}</p>
     </div>
     <div>
       <!--
