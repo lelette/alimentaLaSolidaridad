@@ -53,7 +53,7 @@
 								    </tr>
 							    </tbody>
 								</table>
-								<div class="tab-box tab-on" style="display: flex; width: 25%; height: 35px; float: right; margin-top: 30px;" ng-show="recarga">
+								<div class="tab-box tab-on" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px;" ng-show="recarga">
 									<img src="images/icoOrdenVrd.png">
 									<p style="color:#59b833">ENVIAR RECARGA</p>
 								</div>
@@ -64,14 +64,14 @@
 				<section>
           <form id="form" name="form" class="form-validation frequent-add" autocomplete="off">
             <div class="pillar-30p" style="padding-bottom: 10px; width: 100%">
-              <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 38px; padding: 0;" required>
+              <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 40px; padding: 0;" required>
                 <div class="country-selected">
 									<div style="display: flex; " ng-hide="showCountry">
-										<img src="images/icoSelectPais.png">
+										<img src="images/icoSelectPais.png" style="width: 100%">
 										<p style="margin-top: 3px; color: #747474; font-family: neeru;" class="p-small">País</p>
 									</div>
 									<div ng-show="showCountry" data-country-code="+58" style="display: flex; margin-left: 5px;">
-	                  <img src="{{pais.url}}" style="width:26%; height: 26%">
+	                  <img src="{{pais.url}}">
 	                  <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
 	                </div>
                 </div>
@@ -83,7 +83,7 @@
 		            </div>
               </div>
               <div class="pillar-70p" style="width: 75%; padding-left: 5px; display: grid">
-                <input numero class="form-control" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="15" minlength="4" ng-model="auxNumero" required>
+                <input numero class="form-control" style="height: 40px;" type="text" name="phone" data-mode-1 placeholder="Inserte Número" maxlength="15" minlength="4" ng-model="auxNumero" required>
 								<!-- <div style="text-align: center">
 									<img src="images/logos/movistar.png" style="width:60%;">
 								</div> -->

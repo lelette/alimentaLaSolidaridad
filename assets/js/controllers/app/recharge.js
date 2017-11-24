@@ -11,6 +11,14 @@ app.controller('GetContratoController',
     //recibir parametros de homepage
     $scope.loader='mostrar';
     $scope.cuerpo='ocultar';
+
+
+    $http.get('/plataform/sales/getshoppingCart')
+    .then(function (res) {
+      console.log('Hola mundo!!!! ',res.data);
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
     $scope.detailRecharge = function () {
       // Consulta el detalle de una recarga
         $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
@@ -255,6 +263,13 @@ app.controller('ReloadController',
   //    $scope.datos.cod = $stateParams.cod;
   //    $scope.datos.contrato = $stateParams.contrato;
   //  }
+
+    $http.get('plataform/sales/getshoppingCart')
+    .then(function (res) {
+      console.log('Hola mundo!!!! ',res.data);
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
 
 
    $scope.recharge = function () {
