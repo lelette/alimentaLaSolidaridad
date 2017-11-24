@@ -85,11 +85,11 @@
             <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: 40px;" required>
               <div class="country-selected">
                 <div style="display: flex;" ng-hide="showCountry">
-                  <img src="images/icoSelectPais.png">
+                  <img src="images/icoSelectPais.png" style="width: 100%">
                   <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
                 </div>
                 <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
-                  <img src="{{pais.url}}" style="width: 100%">
+                  <img src="{{pais.url}}">
                   <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.ext}}</p>
                 </div>
               </div>
