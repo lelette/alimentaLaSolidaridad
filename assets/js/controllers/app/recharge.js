@@ -245,6 +245,10 @@ app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     console.log('Recharge', Recharge);
+
+    $scope.btnClass = "btn-off";
+    $scope.error_msj_oferta = false;
+    $scope.cart = [];
     $scope.datos = {
       cod: 'Pais',
       contrato: '',
@@ -276,6 +280,26 @@ app.controller('ReloadController',
     });
 
 
+  $scope.agregarAlCarrito = function () {
+    Recharge.info.oferta.msj = $scope.msjRecarga;
+    Recharge.cart.push(Recharge.info.oferta);
+    console.log('Recharge.cart', Recharge.cart);
+    Recharge.reset();
+    $state.reload();
+  }
+
+  $scope.selectOffer = function (producto) {
+    console.log('producto', producto);
+    console.log('Recharge.info', Recharge.info);
+    console.log('Recharge.cart', Recharge.cart);
+    Recharge.info.oferta = producto;
+    Recharge.info.oferta.phone = Recharge.info.ofertas.telefono_destino;
+    Recharge.info.oferta.operator = Recharge.info.ofertas.operadora;
+    $scope.btnClass = "btn-green-on";
+  }
+
+  if (Recharge.cart) $scope.cart = Recharge.cart;
+
    $scope.recharge = function () {
      $scope.loader='mostrar';
      $scope.cuerpo='ocultar';
@@ -285,10 +309,12 @@ app.controller('ReloadController',
        $scope.recharge = response.data.recharge;
        $scope.$emit('$resetAjax');
      }, function(res) {
-       $scope.loader='ocultar';
-       $scope.cuerpo='mostrar';
+       $scope.loader ='ocultar';
+       $scope.cuerpo ='mostrar';
+       /*
        $scope.$emit('$resetAjax');
        $scope.$emit('$errorAjax',res.data);
+       */
      });
    }
 
@@ -346,6 +372,7 @@ app.controller('ReloadController',
             "phone":  cod+numero,
             "currency": "EUR",
        }).then(function(res){
+         $scope.error_msj_oferta = false;
          $scope.loader='ocultar';
          $scope.cuerpo='mostrar';
          var ofertas = res.data;
@@ -363,9 +390,10 @@ app.controller('ReloadController',
         $scope.loader = 'ocultar';
         $scope.cuerpo = 'mostrar';
         $scope.showOffers = false;
+        $scope.error_msj_oferta = true;
         console.log(res);
-        $scope.$emit('$resetAjax');
-        $scope.$emit('$errorAjax',res.data);
+        /*$scope.$emit('$resetAjax');
+        $scope.$emit('$errorAjax',res.data);*/
       });
     }
    }
