@@ -78,7 +78,7 @@ app.controller('tdcCtrl',
       // Creo el token de seguridad de la tarjeta
       $scope.loader='mostrar';
       $scope.cuerpo='ocultar';
-      console.log("CARD >>>>", $scope.card);
+
       Stripe.card.createToken($scope.card,function(status, res){
         if(res.error){
           console.log("Ocurrio un error ....");
@@ -127,10 +127,10 @@ app.controller('tdcCtrl',
         $scope.cardType = 'Mastercard';
         return $scope.cardType;
       }
-      /*else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
+      else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
         $scope.cardType = 'AmericanExpress';
         return $scope.cardType;
-      }*/
+      }
       else{
         $scope.cardType = 'Not found';
         return $scope.cardType;
@@ -189,7 +189,6 @@ app.controller('tdcCtrl',
           }else {
             $scope.loader='ocultar';
             $scope.cuerpo='mostrar';
-            console.log("NO SE DESAFILIO LA TARJETA");
           }
         }, function(error){
           $scope.loader='ocultar';
