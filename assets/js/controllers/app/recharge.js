@@ -281,11 +281,14 @@ app.controller('ReloadController',
 
 
   $scope.agregarAlCarrito = function () {
-    Recharge.info.oferta.msj = $scope.msjRecarga;
-    Recharge.cart.push(Recharge.info.oferta);
-    console.log('Recharge.cart', Recharge.cart);
-    Recharge.reset();
-    $state.reload();
+    $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
+    .then(function (res) {
+      Recharge.reset();
+      $state.reload();
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
+
   }
 
   $scope.selectOffer = function (producto) {

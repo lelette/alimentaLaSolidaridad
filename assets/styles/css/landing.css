@@ -1,10 +1,13 @@
-::-webkit-input-placeholder { color: white; }
 
-:-moz-placeholder { /* Firefox 18- */ color: white; }
+.placeholder-blanco {
+  ::-webkit-input-placeholder { color: white; }
 
-::-moz-placeholder { /* Firefox 19+ */ color: white; }
+  :-moz-placeholder { /* Firefox 18- */ color: white; }
 
-:-ms-input-placeholder { color: white; }
+  ::-moz-placeholder { /* Firefox 19+ */ color: white; }
+
+  :-ms-input-placeholder { color: white; }
+}
 
 a:hover, a:link, a:active {
   color: white;
