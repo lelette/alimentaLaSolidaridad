@@ -345,28 +345,61 @@
 					</div>
 					<div class="line-100 pay-box">
 						<div class="line-100" style="width: 750px;">
-							<div class="line-100 pay-type-box">
+							<div class="line-100 pay-type-box" style="position:relative; left:1%">
 								<div class="pillar-auto">
 									<div class="pillar-30px">
 										<div class="neeru-checkbox-1">
-											<input type="radio" name="type-pay">
+											<input type="radio" name="type-pay" ng-model="typePay" value="tdcnueva">
 											<span></span>
 										</div>
 									</div>
-									<p class="p-500">Pagar con TDC</p>
+									<p class="p-500">Pagar con TDC nueva</p>
 								</div>
 								<div class="pillar-auto">
 									<div class="pillar-30px">
 										<div class="neeru-checkbox-1">
-											<input type="radio" name="type-pay">
+											<input type="radio" name="type-pay" ng-model="typePay" value="afiliadas">
 											<span></span>
 										</div>
 									</div>
-									<p class="p-500">Otro Medio</p>
+									<p class="p-500">Pagar con tarjetas afiliadas</p>
 								</div>
 							</div>
-							<div class="frequent-add" style="margin-top:40px">
-				        <form id= "formTDC" name="formTDC" style="width: 50%; float: left;">
+							<div class="dynamic-content-box" ng-if="typePay == 'afiliadas'" style="position: relative; right:11%; bottom:70px">
+				        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+				  				<div class="line-100">
+				  					<img src="../../images/carita4.png">
+				  					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
+				  				</div>
+				  				<div class="line-100">
+				  					<p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
+				  				</div>
+				    		</div>
+
+				        <div ng-if="cards.length != 0" class="pillar-30p member-card" style="margin-top:120px; margin-left:87px; width:200px" ng-repeat="card in cards">
+									<div class="pillar-30px">
+										<div class="neeru-checkbox-1">
+											<input type="radio" name="tdc-member" ng-model="cardSelected" value="{{card.id}}">
+											<span></span>
+										</div>
+									</div>
+				          <div class="pillar-100p">
+				            <div class="line-100">
+				              <p>**** **** **** {{card.last4}}</p>
+				            </div>
+				            <div class="line-100">
+				              <p class="p-up p-gray p-500 p-small" ng-if="card.exp_month <10"> Exp: {{card.exp_month}}/{{card.exp_year}}</p>
+				            </div>
+				            <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
+				              <span ng-show="card.brand == 'Visa'"><img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center; top:5px;"></span>
+				              <span ng-show="card.brand == 'MasterCard'"><img src="../../images/master.png" style="position: relative;left: 87px;display: flex;justify-content: center;"></span>
+				              <span ng-show="card.brand == 'American Express'"><img src="../../images/american-express.png" style="position: relative;left: 87px;display: flex;justify-content: center;"></span>
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+							<div class="frequent-add" style="margin-top:40px" ng-if="typePay == 'tdcnueva'">
+								<form id= "formTDC" name="formTDC">
 				          <div class="line-100">
 				            <div class="pillar-25p">
 				              <input type="text" name="first_fourth" data-mode-1 placeholder="----" minlength="4" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero style="text-align: center; letter-spacing: 5px;">
@@ -389,6 +422,9 @@
 				            </span>
 				            <span ng-show="cardType == 'Mastercard'" class="pillar-70px" style="justify-content:center; align-items: center;">
 				              <img src="../../images/master.png">
+				            </span>
+				            <span ng-show="cardType == 'AmericanExpress'" class="pillar-70px" style="justify-content:center; align-items: center;">
+				              <img src="../../images/american-express.png">
 				            </span>
 				          </div><br>
 
@@ -529,137 +565,17 @@
 				            <div class="line-100">
 				                <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
 				            </div>
-
-				            <div class="line-100">
-				                <input type="email" name="email" data-hide-2 placeholder="Correo electrónico" ng-model="fullCard.email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" maxlength="60" required>
-				            </div>
-				            <!--ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
-				            <div class="text-center" ng-if="formTDC.email.$dirty && (formTDC.email.$invalid || formTDC.email.$touched)">
-				              <span ng-if="formTDC.email.$error.required" class="error-input-msj" >
-				                {{"err.required" | translate}}
-				              </span>
-				              <span ng-if="formTDC.email.$error.email" class="error-input-msj" >
-				                {{"err.email.format" | translate}}
-				              </span>
-				            </div>
-				            <!-- ERRORES EN CAMPO DEL EMAIL DEL TITULAR -->
-				            <br><br>
-				            <div style="float: right;">
-				              <button data-standard class="btn-green-on" style="display: flex" ng-click="afiliarTarjeta()" ng-disabled="formTDC.$invalid">
-				                <img src="images/icoTDCAfiliada.png">
-				                <p style="margin-left: 10px;">Añadir tarjeta</p>
-				              </button>
-				            </div>
 				        </form><br>
-
 				      </div>
 						</div>
 						<div class="line-100 member-card-box">
 							<div class="line-100">
 								<p class="p-up p-gray">tdc afilidas</p>
 							</div>
-							<div class="line-100">
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-								<div class="pillar-30p member-card">
-									<div class="pillar-30px">
-										<div class="neeru-checkbox-1">
-											<input type="radio" name="tdc-member">
-											<span></span>
-										</div>
-									</div>
-									<div class="pillar-100p">
-										<div class="line-100">
-											<p>**** **** **** 5544</p>
-										</div>
-										<div class="line-100">
-											<p class="p-up p-gray p-500 p-small">Visa - Exp 2022</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</section>
-				<section style="width: 40%; text-align: -webkit-center;">
+				<section style="width: 40%; text-align: -webkit-center; position: relative; left:40%;">
 					<div class="line-100 aux-1-R" onclick="primeAppVar.showResumePanel()">
 						<div class="pillar-100p tab-box tab-off" style="width: 350px;">
 							<img src="images/icoResumen.png">
