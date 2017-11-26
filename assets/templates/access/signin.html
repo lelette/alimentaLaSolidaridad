@@ -7,14 +7,8 @@
             {{authError | translate}}
         </div>
         <div class="list-group list-group-sm" style="margin-top: 45px">
-          <div class="text-center" style="margin-bottom: 10px;">
-            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Facebook" | translate}}</a>
-          </div>
-          <div class="text-center" style="margin-bottom: 10px;">
-            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://localhost:9002/plataform/user/signinGoogle" ><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Google" | translate}}</a>
-          </div>
           <div class="pillar-auto" style="margin-top: 45px">
-            <input data-hide-3 type="email" placeholder="{{ 'std.Email' | translate }}" name="user.login" ng-model="user.login" required>
+            <input data-hide-3 type="email" placeholder='{{ "std.Email" | translate }}' name="user.login" ng-model="user.login" required>
           </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
               <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
@@ -38,22 +32,20 @@
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
         </div>
-        <div class="access-signup">
-          <div class="pillar-30px">
-            <div class="neeru-checkbox-1">
-              <input type="checkbox" name="">
-              <span></span>
-            </div>
-          </div>
-          <p-gray style="font-family: neeru; color: gray"> Recordarme</p-gray>
-        </div>
         <div style="margin-top:51px; justify-content:center; display:flex; padding-left: 0px">
           <button type="submit" style="font-family: neeru; width:60%" data-standard class="btn-green" ng-click="signin()" >{{'Iniciar_Sesion' | translate}}</button>
         </div>
         <div class="text-center m-t m-b" style="margin-top:15px">
           <a ui-sref="access.forgotpwd" style="font-family:neeru; color:gray; font-weight:200px">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>
         </div>
-
+        <div style="position:relative; top: 55px;">
+          <div class="text-center" style="margin-bottom: 10px;">
+            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Facebook" | translate}}</a>
+          </div>
+          <div class="text-center" style="margin-bottom: 10px;">
+            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://localhost:9002/plataform/user/signinGoogle" ><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Google" | translate}}</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
