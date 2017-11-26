@@ -151,6 +151,9 @@ app.controller('tdcCtrl',
       var month = parseInt(date.split("/")[0]);
       var year = parseInt(date.split("/")[1]);
 
+      console.log('month', month);
+      console.log('year', year);
+
       if(month > 12 || month <= 0){
         $scope.checkDate = false;
       }

@@ -266,7 +266,7 @@
 
 /* Funciones complementarias de cambio de estado */
   primeAppVar.complemetaryFunction1 = function(){
-    $('.selecting-box-R').css('display','none')
+    $('.selecting-internal-box-R').css('display','none')
     $('.pay-box').css('display','flex')
     $('.aux-1-R > .tab-box:first-child')
       .removeClass('tab-on')
@@ -280,7 +280,7 @@
       .attr('src','images/icoPagoVrd.png')
   }
   primeAppVar.complemetaryFunction2 = function(){
-    $('.selecting-box-R, .pay-box').removeAttr('style')
+    $('.selecting-internal-box-R, .pay-box').removeAttr('style')
     $('.aux-1-R > .tab-box:last-child')
       .removeClass('tab-on')
       .addClass('tab-off')

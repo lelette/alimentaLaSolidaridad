@@ -4,272 +4,38 @@
 * @description :: define toda la interaccion de las vistas relacionadas al perfil       *
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
-
-app.controller('GetContratoController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge','$translate', '$stateParams',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
-    //recibir parametros de homepage
-    $scope.loader='mostrar';
-    $scope.cuerpo='ocultar';
-
-
-    $http.get('/plataform/sales/getshoppingCart')
-    .then(function (res) {
-      console.log('Hola mundo!!!! ',res.data);
-    }, function (error) {
-      console.log('Hola ERROR!!!! ',error.data);
-    });
-
-    $scope.detailRecharge = function () {
-      // Consulta el detalle de una recarga
-        $http.get('/plataform/sale/getTransactions?id='+$scope.idTransaction)
-        .then(function(res){
-          $scope.loader='ocultar';
-          $scope.cuerpo='mostrar';
-          //$scope.tr = res.data;
-          console.log('transaccion', res.data);
-          //orgOfertas($scope.ofertas);
-        }, function(res){
-          $scope.loader='ocultar';
-          $scope.cuerpo='mostrar';
-          console.log(res);
-        });
-      ////////////////////////////////
-    }
-
-
-    $scope.ofertas = [];
-    $scope.recharge = {};
-
-    $scope.porPais = {};
-
-    function orgOfertas(ofertas){
-      ofertas.forEach(function(oferta){
-        if (!$scope.porPais[oferta.pais.phone_code] )
-          $scope.porPais[oferta.pais.phone_code] = [];
-        oferta.pais.urlimg = '/images/banderas-flat/Flags_PNG/'+oferta.pais.name.replace(/[\s]+/g,'-')+'.png';
-        $scope.porPais[oferta.pais.phone_code].push(oferta);
-      });
-    };
-
-    $scope.currentPhoneCode = '---';
-
-    $scope.updatePC = function(code){
-      $scope.currentPhoneCode = '+' + code;
-      $scope.proveedores = [];
-      $scope.porPais[code].forEach(function(oferta){
-        $scope.proveedores.push(oferta);
-      });
-    }
-
-    /****************************************************
-    * continuar                                         *
-    *   @descripcion :: agrega el contrato a la recarga *
-    *                   en curso y asa al siguiente     *
-    *                   formulario                      *
-    *****************************************************/
-    $scope.continuar = function(){
-      Recharge.info.contrato = $scope.currentPhoneCode.replace(/[ \+]/g,'') + $scope.recharge.contrato;
-      Recharge.info.oferta = $scope.recharge.proveedor;
-      $state.go('app.page.recharge.cal_amount');
-    }
-
-}]);
-
-app.controller('CalAmountController',
-  ['$rootScope', '$scope', '$http', '$state' , 'Recharge', '$translate',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate) {
-
-    if (!Recharge.info.contrato || !Recharge.info.oferta) {
-      Recharge.reset();
-      $state.go('app.page.recharge.get_contrato');
-    };
-
-    $scope.medios = [];
-
-    if (Recharge.info.oferta.medios.length > 1) {
-      Recharge.info.oferta.medios.forEach(function(medio){
-
-        var restricciones = JSON.parse(medio.restricciones);
-        var medio = {
-          medio: medio
-        };
-
-        if (restricciones.uniqueAmountExpected) {
-          medio.amountExpected = restricciones.uniqueAmountExpected;
-        };
-
-        $scope.medios.push(medio);
-      });
-    }else{
-      $scope.restricciones = JSON.parse(Recharge.info.oferta.medios[0].restricciones);
-      $scope.medios = Recharge.info.oferta.medios;
-    };
-
-    $scope.currencyExpected = Recharge.info.oferta.pais.iso_currency;
-    $scope.recharge = {
-      amountExpected : 0,
-      amountCharge: 0
-    }
-
-    /****************************************************
-    * update                                            *
-    *   @descripcion :: actualiza los datos del usuario *
-    *****************************************************/
-    $scope.getTasa = function(){
-      $scope.loader='mostrar';
-      $scope.cuerpo='ocultar';
-      Recharge.getTasa($scope.recharge.amountExpected, function(err, amountCharge){
-        if (err) {
-          $scope.loader='ocultar';
-          $scope.cuerpo='mostrar';
-          console.log(err)
-        }else{
-          $scope.loader='ocultar';
-          $scope.cuerpo='mostrar';
-          console.log(amountCharge);
-          $scope.recharge.amountCharge = amountCharge;
-        };
-      });
-
-
-    };
-
-    /****************************************************
-    * update                                            *
-    *   @descripcion :: actualiza los datos del usuario *
-    *****************************************************/
-    $scope.continuar = function(){
-      Recharge.info.amountCharge = $scope.recharge.amountCharge;
-      $scope.medios.length >1 ? Recharge.info.amountExpected =  $scope.recharge.amountExpected.monto
-        : Recharge.info.amountExpected = $scope.recharge.amountExpected;
-      $scope.medios.length > 1 ? Recharge.info.medio =  $scope.recharge.amountExpected.medio.id
-        : Recharge.info.medio = $scope.medios[0].id;
-        console.log(Recharge.info);
-      $state.go('app.page.recharge.get_token_stripe');
-    }
-
-}]);
-
-app.controller('GetTokenStripeController',
-  ['$rootScope', '$scope', '$http', '$state' , 'Recharge', '$translate',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate) {
-
-    if (!Recharge.info.contrato
-      || !Recharge.info.oferta
-      || !Recharge.info.amountCharge) {
-      Recharge.reset();
-      $state.go('app.page.recharge.get_contrato');
-    };
-
-    // Cargamos el arreglo de años que usara el campo fecha de vencimiento de la tdc
-    $scope.years = [];
-
-    $scope.recharge = {};
-
-    $scope.Amount = Recharge.info.amountCharge;
-
-    var fechaActual = new Date();
-
-    for (var i = 0; i < 15; i++) {
-      $scope.years.push( '' + ("" + (fechaActual.getFullYear()+i)).substring(2,4) );
-    };
-
-    $scope.$on('pay', function(){
-
-      Recharge.info.stripe = {
-        token : $scope.recharge.tokenStripe,
-      }
-
-      $state.go('app.page.recharge.confirm');
-    });
-}]);
-
-app.controller('ConfirmController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge', 'Sales', '$translate',
-  function($rootScope,  $scope, $http, $state, Recharge, Sales, $translate) {
-
-    if (!Recharge.info.contrato
-      || !Recharge.info.oferta
-      || !Recharge.info.amountCharge
-      || !Recharge.info.stripe) {
-      Recharge.reset();
-      $state.go('app.page.recharge.get_contrato');
-    };
-
-    $scope.recharge = Recharge.info;
-
-    /****************************************************
-    * update                                            *
-    *   @descripcion :: actualiza los datos del usuario *
-    *****************************************************/
-    $scope.continuar = function(){
-      $scope.loader='mostrar';
-      $scope.cuerpo='ocultar';
-      Recharge.apply(function(err, result){
-        $scope.loader='ocultar';
-        $scope.cuerpo='mostrar';
-        Sales.refreshResumenSales(function(){});
-        $state.go('app.page.recharge.result');
-      });
-    }
-
-}]);
-
-app.controller('ResultController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate) {
-
-    $scope.recharge = Recharge.info;
-
-     if (!Recharge.info.contrato
-      || !Recharge.info.oferta
-      || !Recharge.info.amountCharge
-      || !Recharge.info.stripe) {
-      Recharge.reset();
-      $state.go('app.page.recharge.get_contrato');
-    };
-
-    /****************************************************
-    * update                                            *
-    *   @descripcion :: actualiza los datos del usuario *
-    *****************************************************/
-    $scope.continuar = function(){
-      $state.go('app.page.recharge.get_contrato');
-    }
-
-}]);
-
-
 app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     console.log('Recharge', Recharge);
+    console.log('Recharge.cart.details.length', Recharge.cart.details.length);
 
-    $scope.btnClass = "btn-off";
-    $scope.error_msj_oferta = false;
-    $scope.cart = [];
-    $scope.datos = {
-      cod: 'Pais',
-      contrato: '',
-      operadora: ''
-    };
+  Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
+  $scope.btnClassRecarga = "btn-off";
+  $scope.btnClassModePay = "btn-off";
+  $scope.error_msj_oferta = false;
+  $scope.cart = [];
+  $scope.datos = {
+    cod: 'Pais',
+    contrato: '',
+    operadora: ''
+  };
 
-    $scope.typePay = ""; // Tipo de pago a elegir (Pago con tdc nueva o Tarjetas afiliadas)
-    $scope.cardSelected = ""; // Token de la tarjeta seleccionada
+  $scope.typePay = ""; // Tipo de pago a elegir (Pago con tdc nueva o Tarjetas afiliadas)
+  $scope.cardSelected = ""; // Token de la tarjeta seleccionada
 
-    $scope.pais = {}
-    $scope.loader = 'mostrar';
-    $scope.cuerpo = 'ocultar';
-    $scope.cards = [];
+  $scope.pais = {}
+  $scope.loader = 'mostrar';
+  $scope.cuerpo = 'ocultar';
+  $scope.cards = [];
 
-    // Variables fijas del Header
-    $rootScope.header = {};
-    $rootScope.header.icono = "images/icoOrdenGrs.png"; // Icono del Sub-Header
-    $rootScope.header.namePage = "Enviar Recarga"; // Titulo del Sub-Header
-    $scope.showOffers   = false;
-    $scope.showOperator = false;
-    $scope.showCountry = false;
+  // Variables fijas del Header
+  $rootScope.header = {};
+  $rootScope.header.icono = "images/icoOrdenGrs.png"; // Icono del Sub-Header
+  $rootScope.header.namePage = "Enviar Recarga"; // Titulo del Sub-Header
+  $scope.showOffers   = false;
+  $scope.showOperator = false;
+  $scope.showCountry = false;
 
   //   if (($stateParams.cod!='')&&($stateParams.contrato!='')){
   //     console.log("$stateParams");
@@ -281,21 +47,57 @@ app.controller('ReloadController',
   $scope.loader='mostrar';
   $scope.cuerpo='ocultar';
   $http.get('platform/stripe/getCards')
-    .then(function(response){
-      $scope.loader='ocultar';
-      $scope.cuerpo='mostrar';
-      $scope.cards = response.data.data;
-    }, function(error){
-      $scope.loader='ocultar';
-      $scope.cuerpo='mostrar';
-    });
-
-  $http.get('plataform/sales/getshoppingCart')
-  .then(function (res) {
-    console.log('Hola mundo!!!! ',res.data);
-  }, function (error) {
-    console.log('Hola ERROR!!!! ',error.data);
+  .then(function(response){
+    $scope.loader='ocultar';
+    $scope.cuerpo='mostrar';
+    $scope.cards = response.data.data;
+  }, function(error){
+    $scope.loader='ocultar';
+    $scope.cuerpo='mostrar';
   });
+
+  if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
+    && Recharge.info.pais.operadora && Recharge.info.ofertas) {
+
+     $scope.ofertas = Recharge.info.ofertas;
+     $scope.pais.cod = Recharge.info.pais.codigo;
+     $scope.pais.url = Recharge.info.pais.url;
+     $scope.datos.contrato = Recharge.info.pais.numero
+     $scope.datos.operadora = Recharge.info.pais.operadora;
+     $scope.showCountry = true;
+     $scope.showOffers = true;
+     $scope.showOperator = true;
+     $scope.loader = 'ocultar';
+     $scope.cuerpo = 'mostrar';
+
+  }else {
+    $http.get('plataform/countries').then(function(response) {
+      $scope.countries = response.data.paises;
+      $scope.$emit('$resetAjax');
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+    }, function(res) {
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+      $scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);
+    });
+  }
+
+
+  setTimeout(function() {
+    if (Recharge.cart.details.length != 0) {
+      $scope.cart = Recharge.cart.details;
+      $scope.btnClassModePay = "btn-green-on";
+      $scope.totalCart = 0;
+      for (let item of $scope.cart) {
+        console.log('item', item);
+        $scope.totalCart =  $scope.totalCart + (parseFloat(item.fee)+ parseFloat(item.price_unit))
+      }
+      console.log('entre >>>>>>>>>', $scope.totalCart);
+    }
+    $scope.$apply(); //this triggers a $digest
+  }, 2000);
 
   /*************************************************************************************************
   *    function     :: Funcion que permite añadir con cual tarjeta afiliada se va realizar el pago *
@@ -307,97 +109,104 @@ app.controller('ReloadController',
     $scope.cardSelected = token;
   }
 
-
   $scope.agregarAlCarrito = function () {
-    $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
-    .then(function (res) {
-      Recharge.reset();
-      $state.reload();
-    }, function (error) {
-      console.log('Hola ERROR!!!! ',error.data);
-    });
-
+    if (Recharge.info.oferta) {
+      $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
+      .then(function (res) {
+        Recharge.cart.details.push(Recharge.info.oferta);
+        $scope.cart = Recharge.cart.details;
+        $scope.showCountry = false;
+        $scope.showOperator = false;
+        $scope.showOffers = false;
+        $scope.datos = {};
+        Recharge.reset();
+        //$state.reload();
+      }, function (error) {
+        console.log('Hola ERROR!!!! ',error.data);
+      });
+    }else {
+      console.log('oferta no seleccionada');
+    }
   }
 
   $scope.selectOffer = function (producto) {
-    console.log('producto', producto);
-    console.log('Recharge.info', Recharge.info);
-    console.log('Recharge.cart', Recharge.cart);
     Recharge.info.oferta = producto;
     Recharge.info.oferta.phone = Recharge.info.ofertas.telefono_destino;
     Recharge.info.oferta.operator = Recharge.info.ofertas.operadora;
-    $scope.btnClass = "btn-green-on";
+    $scope.btnClassRecarga = "btn-green-on";
   }
 
-  if (Recharge.cart) $scope.cart = Recharge.cart;
+  $scope.recharge = function () {
+     $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
 
-   $scope.recharge = function () {
-     $scope.loader='mostrar';
-     $scope.cuerpo='ocultar';
-     $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
-       $scope.loader='ocultar';
-       $scope.cuerpo='mostrar';
-       $scope.recharge = response.data.recharge;
-       $scope.$emit('$resetAjax');
-     }, function(res) {
-       $scope.loader ='ocultar';
-       $scope.cuerpo ='mostrar';
-       /*
-       $scope.$emit('$resetAjax');
-       $scope.$emit('$errorAjax',res.data);
-       */
-     });
-   }
+     // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
+     if($scope.fullCard.cardExpiry.substr(0,1) >= 1 && $scope.fullCard.cardExpiry.substr(0,1) <=9){
+       $scope.card.exp_month = '0'+$scope.fullCard.cardExpiry.substr(0,1);
+     }
+     else{
+       $scope.card.exp_month = $scope.fullCard.cardExpiry.substr(0,1);
+     }
 
-   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
-     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
+     $scope.card.exp_year = $scope.fullCard.cardExpiry.substr(3,7);
 
-      $scope.ofertas = Recharge.info.ofertas;
-      $scope.pais.cod = Recharge.info.pais.codigo;
-      $scope.pais.url = Recharge.info.pais.url;
-      $scope.datos.contrato = Recharge.info.pais.numero
-      $scope.datos.operadora = Recharge.info.pais.operadora;
-      $scope.showCountry = true;
-      $scope.showOffers = true;
-      $scope.showOperator = true;
-      $scope.loader = 'ocultar';
-      $scope.cuerpo = 'mostrar';
-
-   }else {
-     $http.get('plataform/countries').then(function(response) {
-       $scope.countries = response.data.paises;
-       $scope.$emit('$resetAjax');
-       $scope.loader = 'ocultar';
-       $scope.cuerpo = 'mostrar';
-     }, function(res) {
-       $scope.loader = 'ocultar';
-       $scope.cuerpo = 'mostrar';
-       $scope.$emit('$resetAjax');
-       $scope.$emit('$errorAjax',res.data);
-     });
-   }
-
-   $scope.countrySelected = function (country) {
-     $scope.showCountry = true;
-     $scope.pais = {
-       url: 'images/banderas/'+country.name+'.png',
-       cod: '+'+country.phone_code
-     };
-     $scope.datos.cod = country.phone_code;
-     Recharge.info.pais.codigo = country.phone_code;
-   };
-
-   $scope.obtenerOfertas = function (){
-     $scope.showOffers = false;
+     // Creo el token de seguridad de la tarjeta
      $scope.loader = 'mostrar';
      $scope.cuerpo = 'ocultar';
 
-     var numero = $scope.datos.contrato;
-     var cod = $scope.datos.cod;
+     Stripe.card.createToken($scope.card,function(status, res){
+       if(res.error){
+         console.log("Ocurrio un error ....");
+           $scope.loader='ocultar';
+           $scope.cuerpo='mostrar';
+       }else{
 
-     if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
+         var card_customer = {
+           token: res.id,
+           email: $scope.fullCard.email,
+           description: $scope.fullCard.description,
+         }
+
+         console.log('card_customer', card_customer);
+
+         $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+           $scope.loader='ocultar';
+           $scope.cuerpo='mostrar';
+           $scope.recharge = response.data.recharge;
+           $scope.$emit('$resetAjax');
+         }, function(res) {
+           $scope.loader ='ocultar';
+           $scope.cuerpo ='mostrar';
+           /*
+           $scope.$emit('$resetAjax');
+           $scope.$emit('$errorAjax',res.data);
+           */
+         });
+       }
+     });
+
+   }
+
+  $scope.countrySelected = function (country) {
+   $scope.showCountry = true;
+   $scope.pais = {
+     url: 'images/banderas/'+country.name+'.png',
+     cod: '+'+country.phone_code
+   };
+   $scope.datos.cod = country.phone_code;
+   Recharge.info.pais.codigo = country.phone_code;
+ };
+
+  $scope.obtenerOfertas = function (){
+
+   var numero = $scope.datos.contrato;
+   var cod = $scope.datos.cod;
+
+   if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
 
     if (cod && numero) {
+      $scope.showOffers = false;
+      $scope.loader = 'mostrar';
+      $scope.cuerpo = 'ocultar';
       $http.post('plataform/offers',{
             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
             "phone":  cod+numero,
@@ -427,38 +236,68 @@ app.controller('ReloadController',
         $scope.$emit('$errorAjax',res.data);*/
       });
     }
+  }
+
+ /*********************************************************************************************
+ *    function     :: Funcion que permite saber que tipo de tarjeta va utilizar dinámicamente *
+ *    @description :: Permite adivinar que tipo de TDC es con los primeros dígitos de la TDC  *
+ *    @autor       :: Javier Stifano <jstifano@transamovil.com>                               *
+ **********************************************************************************************/
+
+ $scope.showType = function(card){
+
+   if(!card){
+     $scope.cardType = 'Not found';
+     return $scope.cardType;
+   }
+   else if(card[0] == '4'){
+     $scope.cardType = 'Visa';
+     return $scope.cardType;
+   }
+   else if(card[0]+card[1] == '51' || card[0]+card[1] == '52' || card[0]+card[1] == '53' || card[0]+card[1] == '54' ||
+   card[0]+card[1] == '55' || card[0]+card[1] == '22' || card[0]+card[1] == '23' || card[0]+card[1] == '24' || card[0]+card[1] == '25' ||
+   card[0]+card[1] == '26' || card[0]+card[1] == '27'){
+     $scope.cardType = 'Mastercard';
+     return $scope.cardType;
+   }
+   else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
+     $scope.cardType = 'AmericanExpress';
+     return $scope.cardType;
+   }
+   else{
+     $scope.cardType = 'Not found';
+     return $scope.cardType;
+   }
+ }
+
+ /***************************************************************************************************
+ *    function     :: Funcion que permite validar si la fecha de expiración es válida               *
+ *    @description :: Permite adivinar si el mes ingresado es válido y si el año es mayor al actual *
+ *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                     *
+ ****************************************************************************************************/
+
+ $scope.verifyDate = function(date){
+   var current_date = new Date();
+   var current_year = current_date.getFullYear();
+   var current_month = current_date.getMonth()+1;
+
+   var month = parseInt(date.split("/")[0]);
+   var year = parseInt(date.split("/")[1]);
+
+   if(month > 12 || month <= 0){
+     $scope.checkDate = false;
+   }
+   else if(year < current_year){
+     $scope.checkDate = false;
+   }
+   else if(month <= current_month && year <= current_year){
+     $scope.checkDate = false;
+   }
+   else{
+     $scope.checkDate = true;
+     return $scope.checkDate;
    }
 
-   /*********************************************************************************************
-   *    function     :: Funcion que permite saber que tipo de tarjeta va utilizar dinámicamente *
-   *    @description :: Permite adivinar que tipo de TDC es con los primeros dígitos de la TDC  *
-   *    @autor       :: Javier Stifano <jstifano@transamovil.com>                               *
-   **********************************************************************************************/
-
-   $scope.showType = function(card){
-
-     if(!card){
-       $scope.cardType = 'Not found';
-       return $scope.cardType;
-     }
-     else if(card[0] == '4'){
-       $scope.cardType = 'Visa';
-       return $scope.cardType;
-     }
-     else if(card[0]+card[1] == '51' || card[0]+card[1] == '52' || card[0]+card[1] == '53' || card[0]+card[1] == '54' ||
-     card[0]+card[1] == '55' || card[0]+card[1] == '22' || card[0]+card[1] == '23' || card[0]+card[1] == '24' || card[0]+card[1] == '25' ||
-     card[0]+card[1] == '26' || card[0]+card[1] == '27'){
-       $scope.cardType = 'Mastercard';
-       return $scope.cardType;
-     }
-     else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
-       $scope.cardType = 'AmericanExpress';
-       return $scope.cardType;
-     }
-     else{
-       $scope.cardType = 'Not found';
-       return $scope.cardType;
-     }
-   }
+ };
 
 }]);

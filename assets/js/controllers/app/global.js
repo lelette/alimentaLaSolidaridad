@@ -152,11 +152,12 @@ app.controller('ErrorCtrl', [
 *****************************************************************************************/
 
 app.controller('GlobalCtrl',
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
-
+  ['$rootScope', '$scope', '$http', '$state', 'User', 'Recharge', '$translate',
+  function($rootScope,  $scope, $http, $state, User, Recharge, $translate) {
+    console.log('Recharge GlobalCtrl', Recharge);
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
+    $scope.cart = [];
     var element = angular.element('.main-content');
     var name = element.attr('ui-view'); // 'content-one'
     //$rootScope.header = {}
@@ -173,7 +174,7 @@ app.controller('GlobalCtrl',
       if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
       else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       $rootScope.usernombre = $scope.user.nombres;
-      console.log($rootScope.usernombre);
+      // console.log($rootScope.usernombre);
       // Variables fijas del SUBHeader
       // if ($state.current.name=='app.page.home')
       // { $rootScope.header = {}
@@ -198,8 +199,47 @@ app.controller('GlobalCtrl',
 
     $scope.logout = function(){
       $http.post('plataform/user/logout').then(function (res){
-        console.log("logout");
+        Recharge.reset();
+        Recharge.cart = {
+          token: null,
+          details: []
+        };
+        // console.log("logout");
         $state.go('access.signin');
       });
     }
+
+    if (Recharge.cart && Recharge.cart.details.length != 0){
+      $scope.cart = Recharge.cart.details;
+    }else {
+      $http.get('plataform/sales/getshoppingCart')
+      .then(function(response){
+          var res = response.data;
+          if (res.carrito.length == 0) {
+            Recharge.cart.details = [];
+            Recharge.cart.token = null;
+          }else {
+            var cart = [];
+            for (let value of res.carrito) {
+
+              cart.push({
+                id: value.idProduct,
+                fee: value.serviceFee,
+                operator: value.operator,
+                phone: value.phone,
+                price_local_unit: value.expectedAmount,
+                price_unit: value.realAmount
+              });
+            }
+            Recharge.cart.details = cart;
+            $scope.cart = cart;
+          }
+
+          $scope.loader = 'ocultar'; $scope.cuerpo = 'mostrar';
+
+      }, function(error){
+        $scope.loader='ocultar';$scope.cuerpo='mostrar';
+      });
+    }
+
 }]);
