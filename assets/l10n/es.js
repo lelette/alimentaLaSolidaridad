@@ -165,5 +165,10 @@
   "Informacion de todas las transacciones que haz realizado en el sistema":"Información de todas las transacciones realizadas por el usuario en el sistema",
   "Bienvenido" : "Bienvenido, "
   "Iniciar_Sesion_Facebook": "Inicia sesión con facebook",
-  "Iniciar_Sesion_Google": "Inicia sesión con google"
+  "Iniciar_Sesion_Google": "Inicia sesión con google",
+  "Add_card": "Añadir tarjeta",
+  "holder_name": "Nombre del titular",
+  "country": "País",
+  "address": "Dirección",
+  "description": "Descripción"
 }

@@ -111,13 +111,13 @@
 
   "header": {
     "perfil": "Profile",
-    "enviar_recarga" : "Send recharge",
+    "enviar_recarga" : "Send topup",
     "mi_cuenta" : "My account",
     "cuenta_select": {
       "numero_frecuente": "Frequent numbers",
       "movimiento": "Movements",
       "tdc_afiliada": "Affiliate Cards",
-      "perfil": "My profile"
+      "perfil": "Profile"
     }
   },
 
@@ -167,5 +167,10 @@
   "Informacion sobre los usuarios activos del sistema": "Information about active users of the system",
   "Informacion sobre las transacciones realizadas en el sistema":"Information about transactions performed in the system",
   "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system",
-  "Bienvenido": "Welcome."
+  "Bienvenido": "Welcome.",
+  "Add_card": "Add card",
+  "holder_name": "Card holder name",
+  "country": "Country",
+  "address": "Address",
+  "description": "Description"
 }

@@ -266,7 +266,7 @@ app.controller('ReloadController',
     // Variables fijas del Header
     $rootScope.header = {};
     $rootScope.header.icono = "images/icoOrdenGrs.png"; // Icono del Sub-Header
-    $rootScope.header.namePage = "Enviar Recarga"; // Titulo del Sub-Header
+    $rootScope.header.namePage = "Enviar recarga"; // Titulo del Sub-Header
     $scope.showOffers   = false;
     $scope.showOperator = false;
     $scope.showCountry = false;
