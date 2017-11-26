@@ -224,7 +224,7 @@
   primeAppVar.validateInputAlias = function(e){
     var valueInputPhone = $(e).val();
     var reg = /^[a-zA-Z0-9]*$/;
-    
+
     if (reg.test(valueInputPhone)) {
       $(e).css('border','1.5px solid #0DB731');
     }else {

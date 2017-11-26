@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*::-webkit-input-placeholder { color: white; }
 
 :-moz-placeholder { color: white; }
@@ -5,6 +6,18 @@
 ::-moz-placeholder { color: white; }
 
 :-ms-input-placeholder { color: white; }*/
+=======
+
+.placeholder-blanco {
+  ::-webkit-input-placeholder { color: white; }
+
+  :-moz-placeholder { /* Firefox 18- */ color: white; }
+
+  ::-moz-placeholder { /* Firefox 19+ */ color: white; }
+
+  :-ms-input-placeholder { color: white; }
+}
+>>>>>>> feature/Ajustando_flujo_de_recarga_frontend
 
 a:hover, a:link, a:active {
   color: white;

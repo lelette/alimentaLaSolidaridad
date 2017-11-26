@@ -299,6 +299,7 @@ app.controller('ReloadController',
     *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                   *
     **************************************************************************************************/
 
+<<<<<<< HEAD
     $scope.updateSelected = function(token){
       $scope.cardSelected = token;
     }
@@ -307,6 +308,104 @@ app.controller('ReloadController',
        $scope.loader='mostrar';
        $scope.cuerpo='ocultar';
        $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
+=======
+  $scope.agregarAlCarrito = function () {
+    $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
+    .then(function (res) {
+      Recharge.reset();
+      $state.reload();
+    }, function (error) {
+      console.log('Hola ERROR!!!! ',error.data);
+    });
+
+  }
+
+  $scope.selectOffer = function (producto) {
+    console.log('producto', producto);
+    console.log('Recharge.info', Recharge.info);
+    console.log('Recharge.cart', Recharge.cart);
+    Recharge.info.oferta = producto;
+    Recharge.info.oferta.phone = Recharge.info.ofertas.telefono_destino;
+    Recharge.info.oferta.operator = Recharge.info.ofertas.operadora;
+    $scope.btnClass = "btn-green-on";
+  }
+
+  if (Recharge.cart) $scope.cart = Recharge.cart;
+
+   $scope.recharge = function () {
+     $scope.loader='mostrar';
+     $scope.cuerpo='ocultar';
+     $http.post('plataform/sales/recharge', Recharge.info).then(function(response) {
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
+       $scope.recharge = response.data.recharge;
+       $scope.$emit('$resetAjax');
+     }, function(res) {
+       $scope.loader ='ocultar';
+       $scope.cuerpo ='mostrar';
+       /*
+       $scope.$emit('$resetAjax');
+       $scope.$emit('$errorAjax',res.data);
+       */
+     });
+   }
+
+   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
+     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
+
+      $scope.ofertas = Recharge.info.ofertas;
+      $scope.pais.cod = Recharge.info.pais.codigo;
+      $scope.pais.url = Recharge.info.pais.url;
+      $scope.datos.contrato = Recharge.info.pais.numero
+      $scope.datos.operadora = Recharge.info.pais.operadora;
+      $scope.showCountry = true;
+      $scope.showOffers = true;
+      $scope.showOperator = true;
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+
+   }else {
+     $http.get('plataform/countries').then(function(response) {
+       $scope.countries = response.data.paises;
+       $scope.$emit('$resetAjax');
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
+     }, function(res) {
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
+       $scope.$emit('$resetAjax');
+       $scope.$emit('$errorAjax',res.data);
+     });
+   }
+
+   $scope.countrySelected = function (country) {
+     $scope.showCountry = true;
+     $scope.pais = {
+       url: 'images/banderas/'+country.name+'.png',
+       cod: '+'+country.phone_code
+     };
+     $scope.datos.cod = country.phone_code;
+     Recharge.info.pais.codigo = country.phone_code;
+   };
+
+   $scope.obtenerOfertas = function (){
+     $scope.showOffers = false;
+     $scope.loader = 'mostrar';
+     $scope.cuerpo = 'ocultar';
+
+     var numero = $scope.datos.contrato;
+     var cod = $scope.datos.cod;
+
+     if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
+
+    if (cod && numero) {
+      $http.post('plataform/offers',{
+            // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
+            "phone":  cod+numero,
+            "currency": "EUR",
+       }).then(function(res){
+         $scope.error_msj_oferta = false;
+>>>>>>> feature/Ajustando_flujo_de_recarga_frontend
          $scope.loader='ocultar';
          $scope.cuerpo='mostrar';
          $scope.recharge = response.data.recharge;
