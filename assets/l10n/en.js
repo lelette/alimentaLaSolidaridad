@@ -78,7 +78,8 @@
     "successfp.msg":"A password restitution link was sent to your email.",
     "err": "Invalid password recovery data",
     "successapplyfp.msg": "Your password was successfully updated",
-    "successapplyfp.subtitulo": "Password recovery: Successful"
+    "successapplyfp.subtitulo": "Password recovery: Successful",
+    "enviar": "Send"
   },
 
   "signup": {
@@ -150,6 +151,8 @@
   "Iniciar_Sesion": "Sign in",
   "Iniciar_Sesion_Facebook": "Sign in with Facebook",
   "Iniciar_Sesion_Google": "Sign in with Google",
+  "Registrarse_Facebook": "Sign up with facebook",
+  "Registrarse_Google": "Sign up with google",
   "Cerrar_Sesion": "Logout",
   "Registrarse": "Sign up",
   "¿Ya_tienes_una_cuenta?": "Already have an account?",
