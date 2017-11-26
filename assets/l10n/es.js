@@ -110,7 +110,15 @@
   },
 
   "header": {
-    "perfil": "Perfil"
+    "perfil": "Perfil",
+    "enviar_recarga": "Enviar recarga",
+    "mi_cuenta": "Mi cuenta",
+    "cuenta_select": {
+      "numero_frecuente": "Números frecuentes",
+      "movimiento": "Movimientos",
+      "tdc_afiliada": "Tarjetas afiliadas",
+      "perfil": "Mi perfil"
+    }
   },
 
   "menu" : {
