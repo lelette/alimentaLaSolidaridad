@@ -10,7 +10,13 @@ app.service('Recharge', [
   '$http',
   function ($http) {
 
-    // Información de la recarga a realizar
+    // Información permanente de las recargas pendientes
+    this.cart = {
+      token: null,
+      details: []
+    };
+
+    // Información temporal de la recarga a realizar
     this.info = {};
 
     /*******************************************************

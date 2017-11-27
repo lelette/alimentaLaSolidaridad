@@ -36,11 +36,46 @@
           </div>
         </div>
       </div>
-      <!--
-        <div onclick="primeAppVar.notifyBox(this)">
-          <img src="images/icoCartEmpty.png">
+      <div class="">
+        <p>cantidad >>> {{cart.length}}</p>
+      </div>
+      <!-- Shopping Car -->
+      <div uib-dropdown uib-dropdown-toggle>
+        <img src="images/icoCartEmpty.png">
+        <div class="uib-dropdown-menu header-neeru-car-box animated fadeInUp">
+          <div class="line-100" style="flex-direction: column; padding: 4px 8px;">
+            <!-- SALES -->
+            <div ng-if="cart.length">
+              <div ng-repeat="item in cart" class="pillar-100p notify">
+                <div class="pillar-auto">
+                  <div class="line-100">
+                    <p class="p-black p-300">{{item.phone}}</p>
+                  </div>
+                  <div class="line-100">
+                    <p class="p-black p-300"><span class="p-short">USD</span> {{item.realAmount}}</p>
+                  </div>
+                </div>
+                <div class="pillar-auto">
+                  <img src="images/icoEliminar.png">
+                </div>
+              </div>
+              <!-- SALES OPTIONS -->
+              <div class="line-100" style="margin: 5px 0;">
+                <button car-select class="btn-green-on">
+                  <p>realizar el pago</p>
+                </button>
+              </div>
+            </div>
+
+            <div ui-sref="app.page.recharge" class="line-100">
+              <button car-select class="btn-gray-on">
+                <p>añadir recarga</p>
+              </button>
+            </div>
+          </div>
         </div>
-      -->
+      </div>
+
     </nav>
     <div data-aux-1>
       <div>
@@ -68,7 +103,14 @@
   <section>
     <div>
       <img ng-src="{{header.icono}}">
-      <p class="p-5 p-300">{{header.namePage | translate}}</p>
+      <p class="p-5 p-300" ng-if="!header.home">
+        <span ng-if="header.namePage == 'Movimientos'">{{'header.cuenta_select.movimiento' | translate}}</span>
+        <span ng-if="header.namePage == 'Números frecuentes'">{{'header.cuenta_select.numero_frecuente' | translate}}</span>
+        <span ng-if="header.namePage == 'Tarjetas afiliadas'">{{'header.cuenta_select.tdc_afiliada' | translate}}</span>
+        <span ng-if="header.namePage == 'Perfil'">{{'header.cuenta_select.perfil' | translate}}</span>
+        <span ng-if="header.namePage == 'Enviar recarga'">{{'header.enviar_recarga' | translate}}</span>
+      </p>
+      <p class="p-5 p-300" ng-if="header.home">{{"Bienvenido" | translate}} {{header.namePage}}</p>
     </div>
     <div>
       <!--
