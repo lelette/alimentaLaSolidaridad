@@ -14,7 +14,7 @@ app.controller('tdcCtrl',
     // Variables fijas del Header
     $rootScope.header = {};
     $rootScope.header.icono = "images/icoTDCAfiliada.png"; // Icono del Sub-Header
-    $rootScope.header.namePage = "Tarjetas Afiliadas"; // Titulo del Sub-Header
+    $rootScope.header.namePage = "Tarjetas afiliadas"; // Titulo del Sub-Header
     $scope.cardType = ""
     $scope.checkDate = "";
 

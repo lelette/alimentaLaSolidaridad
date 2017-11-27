@@ -78,7 +78,8 @@
     "successfp.msg":"Se envió un enlace de restitución de contraseña a su correo electrónico.",
     "err": "Datos de recuperación de contraseña inválidos",
     "successapplyfp.msg": "La actualización de la contraseña se realizó de forma exitosa",
-    "successapplyfp.subtitulo": "Recuperación de contraseña: exitosa"
+    "successapplyfp.subtitulo": "Recuperación de contraseña: exitosa",
+    "enviar": "Enviar"
   },
 
   "signup": {
@@ -164,6 +165,13 @@
   "Informacion sobre las transacciones realizadas en el sistema": "Información sobre las transacciones realizadas en el sistema",
   "Informacion de todas las transacciones que haz realizado en el sistema":"Información de todas las transacciones realizadas por el usuario en el sistema",
   "Bienvenido" : "Bienvenido, "
-  "Iniciar_Sesion_Facebook": "Inicia sesión con facebook",
-  "Iniciar_Sesion_Google": "Inicia sesión con google"
+  "Iniciar_Sesion_Facebook": "Iniciar sesión con facebook",
+  "Iniciar_Sesion_Google": "Iniciar sesión con google",
+  "Registrarse_Facebook": "Registrarse con facebook",
+  "Registrarse_Google": "Registrarse con google",
+  "Add_card": "Añadir tarjeta",
+  "holder_name": "Nombre del titular",
+  "country": "País",
+  "address": "Dirección",
+  "description": "Descripción"
 }

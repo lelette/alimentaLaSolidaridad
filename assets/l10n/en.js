@@ -78,7 +78,8 @@
     "successfp.msg":"A password restitution link was sent to your email.",
     "err": "Invalid password recovery data",
     "successapplyfp.msg": "Your password was successfully updated",
-    "successapplyfp.subtitulo": "Password recovery: Successful"
+    "successapplyfp.subtitulo": "Password recovery: Successful",
+    "enviar": "Send"
   },
 
   "signup": {
@@ -111,13 +112,13 @@
 
   "header": {
     "perfil": "Profile",
-    "enviar_recarga" : "Send recharge",
+    "enviar_recarga" : "Send topup",
     "mi_cuenta" : "My account",
     "cuenta_select": {
       "numero_frecuente": "Frequent numbers",
       "movimiento": "Movements",
       "tdc_afiliada": "Affiliate Cards",
-      "perfil": "My profile"
+      "perfil": "Profile"
     }
   },
 
@@ -150,6 +151,8 @@
   "Iniciar_Sesion": "Sign in",
   "Iniciar_Sesion_Facebook": "Sign in with Facebook",
   "Iniciar_Sesion_Google": "Sign in with Google",
+  "Registrarse_Facebook": "Sign up with facebook",
+  "Registrarse_Google": "Sign up with google",
   "Cerrar_Sesion": "Logout",
   "Registrarse": "Sign up",
   "¿Ya_tienes_una_cuenta?": "Already have an account?",
@@ -167,5 +170,10 @@
   "Informacion sobre los usuarios activos del sistema": "Information about active users of the system",
   "Informacion sobre las transacciones realizadas en el sistema":"Information about transactions performed in the system",
   "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system",
-  "Bienvenido": "Welcome."
+  "Bienvenido": "Welcome.",
+  "Add_card": "Add card",
+  "holder_name": "Card holder name",
+  "country": "Country",
+  "address": "Address",
+  "description": "Description"
 }

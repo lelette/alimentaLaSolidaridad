@@ -103,7 +103,13 @@
   <section>
     <div>
       <img ng-src="{{header.icono}}">
-      <p class="p-5 p-300" ng-if="!header.home">{{header.namePage | translate}}</p>
+      <p class="p-5 p-300" ng-if="!header.home">
+        <span ng-if="header.namePage == 'Movimientos'">{{'header.cuenta_select.movimiento' | translate}}</span>
+        <span ng-if="header.namePage == 'Números frecuentes'">{{'header.cuenta_select.numero_frecuente' | translate}}</span>
+        <span ng-if="header.namePage == 'Tarjetas afiliadas'">{{'header.cuenta_select.tdc_afiliada' | translate}}</span>
+        <span ng-if="header.namePage == 'Perfil'">{{'header.cuenta_select.perfil' | translate}}</span>
+        <span ng-if="header.namePage == 'Enviar recarga'">{{'header.enviar_recarga' | translate}}</span>
+      </p>
       <p class="p-5 p-300" ng-if="header.home">{{"Bienvenido" | translate}} {{header.namePage}}</p>
     </div>
     <div>

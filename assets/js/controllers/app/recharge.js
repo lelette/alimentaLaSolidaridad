@@ -8,7 +8,6 @@ app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
     console.log('Recharge', Recharge);
-    console.log('Recharge.cart.details.length', Recharge.cart.details.length);
 
   Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-off";
