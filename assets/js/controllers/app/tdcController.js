@@ -14,7 +14,7 @@ app.controller('tdcCtrl',
     // Variables fijas del Header
     $rootScope.header = {};
     $rootScope.header.icono = "images/icoTDCAfiliada.png"; // Icono del Sub-Header
-    $rootScope.header.namePage = "TDC Afiliadas"; // Titulo del Sub-Header
+    $rootScope.header.namePage = "Tarjetas afiliadas"; // Titulo del Sub-Header
     $scope.cardType = ""
     $scope.checkDate = "";
 
@@ -78,7 +78,7 @@ app.controller('tdcCtrl',
       // Creo el token de seguridad de la tarjeta
       $scope.loader='mostrar';
       $scope.cuerpo='ocultar';
-      console.log("CARD >>>>", $scope.card);
+
       Stripe.card.createToken($scope.card,function(status, res){
         if(res.error){
           console.log("Ocurrio un error ....");
@@ -127,10 +127,10 @@ app.controller('tdcCtrl',
         $scope.cardType = 'Mastercard';
         return $scope.cardType;
       }
-      /*else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
+      else if(card[0]+card[1] == '34' || card[0]+card[1] == '37'){
         $scope.cardType = 'AmericanExpress';
         return $scope.cardType;
-      }*/
+      }
       else{
         $scope.cardType = 'Not found';
         return $scope.cardType;
@@ -150,6 +150,9 @@ app.controller('tdcCtrl',
 
       var month = parseInt(date.split("/")[0]);
       var year = parseInt(date.split("/")[1]);
+
+      console.log('month', month);
+      console.log('year', year);
 
       if(month > 12 || month <= 0){
         $scope.checkDate = false;
@@ -189,7 +192,6 @@ app.controller('tdcCtrl',
           }else {
             $scope.loader='ocultar';
             $scope.cuerpo='mostrar';
-            console.log("NO SE DESAFILIO LA TARJETA");
           }
         }, function(error){
           $scope.loader='ocultar';
