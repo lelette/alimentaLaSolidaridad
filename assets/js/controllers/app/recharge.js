@@ -35,6 +35,8 @@ app.controller('ReloadController',
   $scope.showOffers   = false;
   $scope.showOperator = false;
   $scope.showCountry = false;
+  $scope.card = {}
+  $scope.fullCard = {}
 
   //   if (($stateParams.cod!='')&&($stateParams.contrato!='')){
   //     console.log("$stateParams");
@@ -112,6 +114,7 @@ app.controller('ReloadController',
     if (Recharge.info.oferta) {
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
+        Recharge.info.oferta.idSales = res.data.venta.id
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
         $scope.showCountry = false;
