@@ -37,6 +37,7 @@ app.controller('ReloadController',
   $scope.showCountry = false;
   $scope.card = {}
   $scope.fullCard = {}
+  $scope.resumenRecarga = false;
 
   //   if (($stateParams.cod!='')&&($stateParams.contrato!='')){
   //     console.log("$stateParams");
@@ -47,15 +48,22 @@ app.controller('ReloadController',
   // Consulta las tarjetas afiliadas del usuario
   $scope.loader='mostrar';
   $scope.cuerpo='ocultar';
+
   $http.get('platform/stripe/getCards')
   .then(function(response){
-    $scope.loader='ocultar';
-    $scope.cuerpo='mostrar';
     $scope.cards = response.data.data;
   }, function(error){
-    $scope.loader='ocultar';
-    $scope.cuerpo='mostrar';
+    console.log('Error >>>', error);
   });
+
+  $http.get('plataform/user/searchFrecuente')
+  .then(function(response){
+    $scope.frecuentes = response.data;
+    console.log('response.data', response.data);
+  }, function(error){
+    console.log('Error >>>', error);
+  });
+
 
   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
@@ -68,9 +76,6 @@ app.controller('ReloadController',
      $scope.showCountry = true;
      $scope.showOffers = true;
      $scope.showOperator = true;
-     $scope.loader = 'ocultar';
-     $scope.cuerpo = 'mostrar';
-
   }else {
     $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
@@ -87,6 +92,7 @@ app.controller('ReloadController',
 
 
   setTimeout(function() {
+    console.log('Recharge.cart.details', Recharge.cart.details);
     if (Recharge.cart.details.length != 0) {
       $scope.cart = Recharge.cart.details;
       $scope.btnClassModePay = "btn-green-on";
@@ -105,6 +111,15 @@ app.controller('ReloadController',
   *    @description :: Permite saber cual tarjeta afiliada fue seleccionada mediante el checkbox   *
   *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                   *
   **************************************************************************************************/
+  $scope.removeRecharge = function (idSale) {
+    $http.get('plataform/sales/deleteShoppingCart', {id: idSale})
+    .then(function(response){
+      $scope.cards = response.data.data;
+    }, function(error){
+      console.log('Error >>>', error);
+    });
+
+  }
 
   $scope.updateSelected = function(token){
     $scope.cardSelected = token;
@@ -114,7 +129,7 @@ app.controller('ReloadController',
     if (Recharge.info.oferta) {
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
-        Recharge.info.oferta.idSales = res.data.venta.id
+        Recharge.info.oferta.idSale = res.data.venta.id
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
         $scope.showCountry = false;
@@ -154,12 +169,13 @@ app.controller('ReloadController',
      // Creo el token de seguridad de la tarjeta
      $scope.loader = 'mostrar';
      $scope.cuerpo = 'ocultar';
-
+     console.log('$scope.card', $scope.card);
      Stripe.card.createToken($scope.card,function(status, res){
        if(res.error){
+         console.log('res.error', res.error);
          console.log("Ocurrio un error ....");
-           $scope.loader='ocultar';
-           $scope.cuerpo='mostrar';
+           $scope.loader = 'ocultar';
+           $scope.cuerpo = 'mostrar';
        }else{
 
          var card_customer = {
@@ -170,12 +186,18 @@ app.controller('ReloadController',
 
          console.log('card_customer', card_customer);
 
+         Recharge.cart.token = res.id;
+
          $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-           $scope.loader='ocultar';
-           $scope.cuerpo='mostrar';
+           $scope.loader = 'ocultar';
+           $scope.cuerpo = 'mostrar';
+           console.log('response.data >> http'. response.data);
            $scope.recharge = response.data.recharge;
+           $scope.resumenRecarga = true;
            $scope.$emit('$resetAjax');
          }, function(res) {
+           $scope.resumenRecarga = true;
+            console.log('response.data >> error'. response.error);
            $scope.loader ='ocultar';
            $scope.cuerpo ='mostrar';
            /*
@@ -196,47 +218,54 @@ app.controller('ReloadController',
    };
    $scope.datos.cod = country.phone_code;
    Recharge.info.pais.codigo = country.phone_code;
- };
+  };
 
-  $scope.obtenerOfertas = function (){
+  $scope.obtenerOfertas = function (telef){
 
    var numero = $scope.datos.contrato;
    var cod = $scope.datos.cod;
+   var telefono = undefined;
 
    if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
 
-    if (cod && numero) {
+   if (cod && numero) {
+     telefono = cod+numero;
+   }else if (telef) {
+     telefono = telef;
+   }
+
+   if (telefono) {
+    $scope.showOffers = false;
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
+    $http.post('plataform/offers',{
+          // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
+          "phone":  telefono,
+          "currency": "EUR",
+     }).then(function(res){
+       $scope.error_msj_oferta = false;
+       $scope.loader='ocultar';
+       $scope.cuerpo='mostrar';
+       var ofertas = res.data;
+       var operadora = ofertas.operadora;
+       Recharge.info.ofertas = ofertas;
+       Recharge.info.pais = {
+         codigo: cod,
+         numero: numero,
+         operadora: operadora
+       }
+      $scope.datos.operadora = operadora;
+      $scope.ofertas = Recharge.info.ofertas;
+      $scope.showOffers = true; $scope.showOperator = true;
+    }, function(res){
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.showOffers = false;
-      $scope.loader = 'mostrar';
-      $scope.cuerpo = 'ocultar';
-      $http.post('plataform/offers',{
-            // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
-            "phone":  cod+numero,
-            "currency": "EUR",
-       }).then(function(res){
-         $scope.error_msj_oferta = false;
-         $scope.loader='ocultar';
-         $scope.cuerpo='mostrar';
-         var ofertas = res.data;
-         var operadora = ofertas.operadora;
-         Recharge.info.ofertas = ofertas;
-         Recharge.info.pais = {
-           codigo: cod,
-           numero: numero,
-           operadora: operadora
-         }
-        $scope.datos.operadora = operadora;
-        $scope.ofertas = Recharge.info.ofertas;
-        $scope.showOffers = true; $scope.showOperator = true;
-      }, function(res){
-        $scope.loader = 'ocultar';
-        $scope.cuerpo = 'mostrar';
-        $scope.showOffers = false;
-        $scope.error_msj_oferta = true;
-        console.log(res);
-        /*$scope.$emit('$resetAjax');
-        $scope.$emit('$errorAjax',res.data);*/
-      });
+      $scope.error_msj_oferta = true;
+      console.log(res);
+      /*$scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);*/
+    });
     }
   }
 

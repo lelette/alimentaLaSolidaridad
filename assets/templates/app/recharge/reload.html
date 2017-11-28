@@ -27,11 +27,11 @@
 		</div>
 	</div>
 	<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
-		<form id= "formTDC" name="formTDC">
-		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px" >
-			<div class="reload-master-box">
+		<form id= "formTDC" name="formTDC" ng-hide="resumenRecarga">
+			<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px" >
+			<div class="reload-master-box" style="width:100%">
 				<section style="width: 90%; text-align: -webkit-center">
-					<div class="line-100 aux-1-R" style="justify-content: space-evenly;">
+					<div class="line-100 aux-1-R" style="justify-content: space-around;">
 						<div id="tab1" class="pillar-45p tab-box tab-on" style="width: 350px;" data-active-tab="1" onclick="primeAppVar.changeStateMW(this)">
 							<img src="images/icoOrdenVrd.png">
 							<p>Orden</p>
@@ -70,6 +70,9 @@
 										<input onblur="primeAppVar.validateInputPhone(this)" ng-blur="obtenerOfertas()" type="text" name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="Inserte Número" maxlength="11" minlength="8" style="height: 40px">
 
 									</div>
+								</div>
+								<div class="">
+									<p>{{cart}}</p>
 								</div>
 								<div class="pillar-45p btn" style="cursor:none !important" ng-show="showOperator">
 									<img src="images/icoOperadoraVrd.png">
@@ -232,99 +235,19 @@
 									<p class="p-gray p-300">Números Frecuentes</p>
 								</div>
 								<div class="line-100 aux-4-R">
-									<div class="pillar-25p frecuency-phone">
+									<div ng-repeat="item in frecuentes" class="pillar-25p frecuency-phone">
 										<div class="pillar-50px">
 											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
+												<input type="radio" ng-click="obtenerOfertas(item.frecuente.numero)" name="Frecuente">
 												<span></span>
 											</div>
 										</div>
 										<div class="pillar-100p">
 											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
+												<p class="p-1">{{item.frecuente.numero}}</p>
 											</div>
 											<div class="line-100">
-												<p class="p-small p-gray">Movistar</p>
-											</div>
-										</div>
-									</div>
-									<div class="pillar-25p frecuency-phone">
-										<div class="pillar-50px">
-											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
-												<span></span>
-											</div>
-										</div>
-										<div class="pillar-100p">
-											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
-											</div>
-											<div class="line-100">
-												<p class="p-small p-gray">Digitel</p>
-											</div>
-										</div>
-									</div>
-									<div class="pillar-25p frecuency-phone">
-										<div class="pillar-50px">
-											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
-												<span></span>
-											</div>
-										</div>
-										<div class="pillar-100p">
-											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
-											</div>
-											<div class="line-100">
-												<p class="p-small p-gray">Telcel</p>
-											</div>
-										</div>
-									</div>
-									<div class="pillar-25p frecuency-phone">
-										<div class="pillar-50px">
-											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
-												<span></span>
-											</div>
-										</div>
-										<div class="pillar-100p">
-											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
-											</div>
-											<div class="line-100">
-												<p class="p-small p-gray">Movistar</p>
-											</div>
-										</div>
-									</div>
-									<div class="pillar-25p frecuency-phone">
-										<div class="pillar-50px">
-											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
-												<span></span>
-											</div>
-										</div>
-										<div class="pillar-100p">
-											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
-											</div>
-											<div class="line-100">
-												<p class="p-small p-gray">Digitel</p>
-											</div>
-										</div>
-									</div>
-									<div class="pillar-25p frecuency-phone">
-										<div class="pillar-50px">
-											<div class="neeru-checkbox-1">
-												<input type="checkbox" name="">
-												<span></span>
-											</div>
-										</div>
-										<div class="pillar-100p">
-											<div class="line-100">
-												<p class="p-1">+58 111-2222</p>
-											</div>
-											<div class="line-100">
-												<p class="p-small p-gray">Telcel</p>
+												<p class="p-small p-gray">{{item.alias}}</p>
 											</div>
 										</div>
 									</div>
@@ -609,7 +532,7 @@
 										</div>
 									</div>
 									<div class="line-100">
-										<div class="pillar-auto">
+										<div ng-click="removeRecharge(item.idSales)" class="pillar-auto">
 											<p class="p-salmon p-short p-300">Eliminar</p>
 										</div>
 										<div class="pillar-auto">
@@ -662,6 +585,12 @@
 			</div>
 			</div>
 		</div>
-	</form>
+		</form>
+
+		<div ng-show="resumenRecarga">
+			<div class="">
+				<h2>Resumen de Recarga</h2>
+			</div>
+		</div>
 	</div>
 </div>

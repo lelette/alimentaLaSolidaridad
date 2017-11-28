@@ -223,6 +223,7 @@ app.controller('GlobalCtrl',
             for (let value of res.carrito) {
 
               cart.push({
+                idSale: value.id,
                 id: value.idProduct,
                 fee: value.serviceFee,
                 operator: value.operator,
