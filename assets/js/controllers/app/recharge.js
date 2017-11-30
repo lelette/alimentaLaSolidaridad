@@ -5,13 +5,14 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 app.controller('ReloadController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams) {
+  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams', '$uibModal',
+  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
     console.log('Recharge', Recharge);
 
   Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-off";
   $scope.btnClassModePay = "btn-off";
+  $scope.disabledNumberCountry = true;
   $scope.error_msj_oferta = false;
   $scope.cart = [];
   $scope.datos = {
@@ -24,6 +25,7 @@ app.controller('ReloadController',
   $scope.cardSelected = ""; // Token de la tarjeta seleccionada
 
   $scope.pais = {}
+  $scope.loaderRecharge = 'ocultar';
   $scope.loader = 'mostrar';
   $scope.cuerpo = 'ocultar';
   $scope.cards = [];
@@ -32,22 +34,16 @@ app.controller('ReloadController',
   $rootScope.header = {};
   $rootScope.header.icono = "images/icoOrdenGrs.png"; // Icono del Sub-Header
   $rootScope.header.namePage = "Enviar Recarga"; // Titulo del Sub-Header
+  $scope.btnOfertas = true;
+  $scope.showFrecuent = false;
   $scope.showOffers   = false;
   $scope.showOperator = false;
   $scope.showCountry = false;
   $scope.card = {}
   $scope.fullCard = {}
   $scope.resumenRecarga = false;
-
-  //   if (($stateParams.cod!='')&&($stateParams.contrato!='')){
-  //     console.log("$stateParams");
-  //    $scope.datos.cod = $stateParams.cod;
-  //    $scope.datos.contrato = $stateParams.contrato;
-  //  }
-
-  // Consulta las tarjetas afiliadas del usuario
-  $scope.loader='mostrar';
-  $scope.cuerpo='ocultar';
+  console.log("$stateParams",$stateParams);
+  console.log("$scope.datos",$scope.datos);
 
   $http.get('platform/stripe/getCards')
   .then(function(response){
@@ -80,11 +76,7 @@ app.controller('ReloadController',
     $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
       $scope.$emit('$resetAjax');
-      $scope.loader = 'ocultar';
-      $scope.cuerpo = 'mostrar';
     }, function(res) {
-      $scope.loader = 'ocultar';
-      $scope.cuerpo = 'mostrar';
       $scope.$emit('$resetAjax');
       $scope.$emit('$errorAjax',res.data);
     });
@@ -103,6 +95,8 @@ app.controller('ReloadController',
       }
       console.log('entre >>>>>>>>>', $scope.totalCart);
     }
+    $scope.loader = 'ocultar';
+    $scope.cuerpo = 'mostrar';
     $scope.$apply(); //this triggers a $digest
   }, 2000);
 
@@ -127,11 +121,13 @@ app.controller('ReloadController',
 
   $scope.agregarAlCarrito = function () {
     if (Recharge.info.oferta) {
+      Recharge.info.oferta.price_unit = 10;
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
         Recharge.info.oferta.idSale = res.data.venta.id
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
+        $scope.btnClassModePay = "btn-green-on";
         $scope.showCountry = false;
         $scope.showOperator = false;
         $scope.showOffers = false;
@@ -189,21 +185,29 @@ app.controller('ReloadController',
          Recharge.cart.token = res.id;
 
          $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-           $scope.loader = 'ocultar';
-           $scope.cuerpo = 'mostrar';
-           console.log('response.data >> http'. response.data);
-           $scope.recharge = response.data.recharge;
-           $scope.resumenRecarga = true;
-           $scope.$emit('$resetAjax');
-         }, function(res) {
-           $scope.resumenRecarga = true;
-            console.log('response.data >> error'. response.error);
-           $scope.loader ='ocultar';
-           $scope.cuerpo ='mostrar';
-           /*
-           $scope.$emit('$resetAjax');
-           $scope.$emit('$errorAjax',res.data);
-           */
+           $scope.result = response;
+
+           $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+             $scope.result = response;
+             $scope.$emit('$resetAjax');
+             $scope.loader = 'ocultar';
+             $scope.cuerpo = 'mostrar';
+             var modalInstance = $uibModal.open({
+               templateUrl: 'templates/modals/modalResultRecharge.html',
+               controller: 'modalResultRecharge',
+               backdrop: 'static',
+               resolve: {
+                 dataScope:function() {
+                   return {
+                     dataScope: {
+                       result: $scope.result,
+                       data: $scope
+                     }
+                   }
+                 }
+               }
+             });
+           });
          });
        }
      });
@@ -212,6 +216,7 @@ app.controller('ReloadController',
 
   $scope.countrySelected = function (country) {
    $scope.showCountry = true;
+   $scope.disabledNumberCountry = false;
    $scope.pais = {
      url: 'images/banderas/'+country.name+'.png',
      cod: '+'+country.phone_code
@@ -225,10 +230,18 @@ app.controller('ReloadController',
    var numero = $scope.datos.contrato;
    var cod = $scope.datos.cod;
    var telefono = undefined;
+   var validacionTelef = true;
 
    if (Recharge.info.pais && Recharge.info.pais.codigo) cod = Recharge.info.pais.codigo;
+   if (!cod || cod == 'Pais'){$scope.error_msj_offer = "Introduzca el codigo de Pais";return}
+   if (!numero) {$scope.error_msj_offer = "Introduzca el numero a recargar";return}
 
    if (cod && numero) {
+     if (numero.toString().length < 5 || numero.toString().length > 12){
+       $scope.error_msj_offer = "El numero debe ser mayor a cuatro (4) y menor a doce(12) digitos";
+       return;
+     }
+     $scope.error_msj_offer = "";
      telefono = cod+numero;
    }else if (telef) {
      telefono = telef;
@@ -236,16 +249,14 @@ app.controller('ReloadController',
 
    if (telefono) {
     $scope.showOffers = false;
-    $scope.loader = 'mostrar';
-    $scope.cuerpo = 'ocultar';
+    $scope.loaderRecharge = 'mostrar';
     $http.post('plataform/offers',{
           // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
           "phone":  telefono,
           "currency": "EUR",
      }).then(function(res){
        $scope.error_msj_oferta = false;
-       $scope.loader='ocultar';
-       $scope.cuerpo='mostrar';
+       $scope.loaderRecharge = 'ocultar';
        var ofertas = res.data;
        var operadora = ofertas.operadora;
        Recharge.info.ofertas = ofertas;
@@ -258,8 +269,7 @@ app.controller('ReloadController',
       $scope.ofertas = Recharge.info.ofertas;
       $scope.showOffers = true; $scope.showOperator = true;
     }, function(res){
-      $scope.loader = 'ocultar';
-      $scope.cuerpo = 'mostrar';
+      $scope.loaderRecharge = 'ocultar';
       $scope.showOffers = false;
       $scope.error_msj_oferta = true;
       console.log(res);
@@ -331,4 +341,39 @@ app.controller('ReloadController',
 
  };
 
+
+ if (($stateParams.code != '')&&($stateParams.url != '')){
+    console.log("$stateParams");
+    $scope.showCountry = true;
+    $scope.pais.cod = $stateParams.code;
+    $scope.pais.url = $stateParams.url;
+    if (($stateParams.number != '')) {
+      $scope.datos.contrato = $stateParams.number;
+      var telefono = $scope.pais.cod+$scope.datos.contrato;
+      console.log('telefono', telefono);
+      $scope.obtenerOfertas(telefono)
+    }
+ }
+
 }]);
+
+app.controller('modalResultRecharge',[
+ '$scope',
+ '$state',
+ '$modalInstance',
+ '$uibModal',
+ 'dataScope',
+ '$http',
+ function($scope, $state, $modalInstance, $uibModal, dataScope, $http) {
+   console.log('dataScope', dataScope);
+   $scope.result = dataScope.result;
+
+   $scope.confirmar = function() {
+      $modalInstance.close($scope.datos.alias);
+   };
+
+   $scope.cancel = function() {
+     $modalInstance.dismiss('cancel');
+   };
+  }
+]);
