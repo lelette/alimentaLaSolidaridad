@@ -185,30 +185,28 @@ app.controller('ReloadController',
          Recharge.cart.token = res.id;
 
          $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-           $scope.result = response;
-
-           $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-             $scope.result = response;
-             $scope.$emit('$resetAjax');
-             $scope.loader = 'ocultar';
-             $scope.cuerpo = 'mostrar';
-             var modalInstance = $uibModal.open({
-               templateUrl: 'templates/modals/modalResultRecharge.html',
-               controller: 'modalResultRecharge',
-               backdrop: 'static',
-               resolve: {
-                 dataScope:function() {
-                   return {
-                     dataScope: {
-                       result: $scope.result,
-                       data: $scope
-                     }
-                   }
-                 }
-               }
-             });
-           });
+           Recharge.result = response;
+           $scope.$emit('$resetAjax');
+           $scope.loader = 'ocultar';
+           $scope.cuerpo = 'mostrar';
+           $state.go('app.page.rechargeResult');
+          //  var modalInstance = $uibModal.open({
+          //    templateUrl: 'templates/modals/modalResultRecharge.html',
+          //    controller: 'modalResultRecharge',
+          //    backdrop: 'static',
+          //    resolve: {
+          //      dataScope:function() {
+          //        return {
+          //          dataScope: {
+          //            result: $scope.result,
+          //            data: $scope
+          //          }
+          //        }
+          //      }
+          //    }
+          //  });
          });
+        //});
        }
      });
 

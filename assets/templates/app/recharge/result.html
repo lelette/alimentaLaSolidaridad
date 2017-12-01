@@ -1,21 +1,61 @@
-<div class="col-sm-5 pull-none m-a" ng-controller="ResultController">
+<div class="col-sm-5 pull-none m-a" ng-controller="rechargeResultCtrl">
   <div class="panel panel-default">
     <div class="panel-body">
+      Recarga --> {{result}}
+      <table border="1">
+        <th>Resumen de Recargas</th>
+        <tr>
+          <td>Referencia</td>
+          <td>Telefono</td>
+          <td>Monto</td>
+          <td>Estatus</td>
+          <td>Descripcion</td>
+        </tr>
 
-      <div>
-        <h4>Descripción</h4>
-        <p>{{'Recarga' | translate}} {{recharge.oferta.proveedor.nombre}}</p>
-        <p>Cuenta:{{recharge.contrato}}</p>
-        <p>Monto a recargar: {{recharge.amountExpected}} {{recharge.oferta.pais.iso_currency}}</p>
-        <p>Monto a cobrar: {{recharge.amountCharge}} USD</p>
-        <h4>Resultado</h4>
-        <p>{{recharge.result.recharge ? 'Recarga Exitosa' : 'Recarga Anulada'}}</p>
-        <p ng-if="recharge.result.recharge ">
-          Referencia: {{recharge.result.referencia}}
-        </p>
-      </div>
+        <tr>
+          <td>1600001</td>
+          <td>+581111111</td>
+          <td>EUR/. 5 - 10 USD</td>
+          <td>Rechazado</td>
+          <td>Probando</td>
+        </tr>
+
+        <tr>
+          <td>1600001</td>
+          <td>+581111111</td>
+          <td>EUR/. 5 - 10 USD</td>
+          <td>Aprobado</td>
+          <td>Probando</td>
+        </tr>
+
+        <tr>
+          <td>1600001</td>
+          <td>+581111111</td>
+          <td>EUR/. 5 - 10 USD</td>
+          <td>Rechazado</td>
+          <td>Probando</td>
+        </tr>
+
+        <tr>
+          <td>1600001</td>
+          <td>+581111111</td>
+          <td>EUR/. 5 - 10 USD</td>
+          <td>Aprobado</td>
+          <td>Probando</td>
+        </tr>
+
+
+        <tr>
+          <td>1600001</td>
+          <td>+581111111</td>
+          <td>EUR/. 5 - 10 USD</td>
+          <td>Rechazado</td>
+          <td>Probando</td>
+        </tr>
+
+      </table>
       <div class="col-sm-12">
-        <button type="submit" ng-click="continuar()" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
+        <button type="submit" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
       </div>
     </div>
   </div>

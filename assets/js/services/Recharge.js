@@ -10,6 +10,9 @@ app.service('Recharge', [
   '$http',
   function ($http) {
 
+    // Resultadode las recargas realizadas
+    this.result = {};
+
     // Información permanente de las recargas pendientes
     this.cart = {
       token: null,
