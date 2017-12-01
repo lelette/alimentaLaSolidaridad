@@ -1356,7 +1356,7 @@ transform: scaleX(1);
     padding: 0px 5px;
 	}
 	.pay-plans-box{
-    height: 100%;
+    /*height: 100%;*/
     align-self: center;
 	}
 	.promo{
@@ -1468,7 +1468,7 @@ transform: scaleX(1);
 		align-items: flex-end;
 	}
 	.record > .line-100{
-		border-bottom: 1.5px solid #E5EBE6;
+		/*border-bottom: 1.5px solid #E5EBE6;*/
     margin-bottom: 1pc;
     padding-bottom: 0.5pc;
 	}
@@ -2066,7 +2066,7 @@ transform: scaleX(1);
 		}
 		.aux-2-R,
 		.aux-3-R {
-		  height: 40px;
+		  /*height: 40px;*/
 		}
 		.aux-3-R {
 		  margin: 1pc 0pc;
@@ -2102,7 +2102,7 @@ transform: scaleX(1);
 		}
 		.aux-2-R,
 		.aux-3-R {
-		  height: 40px;
+		  /*height: 40px;*/
 		}
 		.aux-3-R {
 		  margin: 1pc 0pc;
@@ -2138,7 +2138,7 @@ transform: scaleX(1);
 		}
 		.aux-2-R,
 		.aux-3-R {
-		  height: 40px;
+		  /*height: 40px;*/
 		}
 		.aux-3-R {
 		  margin: 1pc 0pc;
