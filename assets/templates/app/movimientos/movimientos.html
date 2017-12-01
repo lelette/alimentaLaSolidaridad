@@ -5,18 +5,18 @@
       <div class="empty-activity-box" style="margin-top:120px">
           <div class="line-100">
               <img src="images/carita2.png">
-              <p class="p-green p-300 p-5">No posees movimientos...</p>
+              <p class="p-green p-300 p-5">{{"movements.sin" | translate}}</p>
           </div>
           <div class="line-100">
-              <p class="p-gray">¿Quieres hacer una recarga o añadir saldo a tu cuenta ahora?</p>
+              <p class="p-gray">{{"movements.question" | translate}}</p>
           </div>
           <div class="line-100">
               <button data-standard class="btn-green-on">
-                  <p>enviar recarga</p>
+                  <p>{{"movements.enviar_recarga"}}</p>
               </button>
-              <button data-standard class="btn-green-on">
+              <!-- <button data-standard class="btn-green-on">
                   <p>añadir saldo</p>
-              </button>
+              </button> -->
           </div>
       </div>
   </div>
@@ -35,8 +35,8 @@
             search: 'Buscar',
             lengthMenu: 'Mostrar _MENU_ registros',
             emptyTable: 'Ningún dato disponible en esta tabla',
-            info: '<span class=p-100>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</span>',
-            infoEmpty: 'Mostrando registros del 0 al 0 de un total de 0 registros',
+            info: '<span class=p-100>_START_ - _END_ / _TOTAL_ </span>',
+            infoEmpty: '0 registros',
             infoFiltered: '(filtrado de un total de _MAX_ registros)',
             zeroRecords: 'No se encontraron resultados',
             loadingRecords: 'Cargando...',
@@ -61,17 +61,17 @@
           ],
           aaData: {{datos.sales}}
         }">
-        <thead>
+        <thead >
           <tr>
-            <th class="p-tiny" style="width:16.6%">FECHA</th>
-            <th class="p-tiny" style="width:16.6%">REFERENCIA</th>
-            <th class="p-tiny" style="width:16.6%">NÚMERO</th>
-            <th class="p-tiny" style="width:16.6%">RECARGA DE</th>
-            <th class="p-tiny" style="width:16.6%">TOTAL</th>
+            <th class="p-tiny" style="width:16.6%; text-align:center;">{{"fecha" | translate}}</th>
+            <th class="p-tiny" style="width:16.6%; text-align:center;">{{"referencia" | translate}}</th>
+            <th class="p-tiny" style="width:16.6%; text-align:center;">{{"numero" | translate}}</th>
+            <th class="p-tiny" style="width:16.6%; text-align:center;">{{"Amount" | translate}}</th>
+            <th class="p-tiny" style="width:16.6%; text-align:center;">TOTAL</th>
             <th  style="width:16.6%"></th>
           </tr>
         </thead>
-        <tbody class="p-small">
+        <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
         </tbody>
       </table>
     </div>
@@ -81,44 +81,44 @@
   <!-- Movimiento Detallado -->
   <div ng-if="tableMovDetails" class="center" style="width:40%">
     <div class="bg-light lter b-b wrapper-md text-center">
-      <h1 class="m-n font-thin h3">Transacción Nro. {{datos.sales.reference}}</h1>
+      <h1 class="m-n font-thin h3">{{"transaccion" | translate}} No. {{datos.sales.reference}}</h1>
     </div>
     <div class="min-w-lg form-center">
       <div class="panel panel-default form-md">
         <div class="panel panel-heading text-center title-letters">
-          <b>Detalle</b>
+          <b>{{"detalle" | translate}}</b>
         </div>
         <div class="table-responsive">
           <table class="table b-t b-light" >
             <tbody>
               <tr>
                 <td>
-                  <b>Fecha:</b>  {{datos.sales.date}}
+                  <b>{{"fecha" | translate}}:</b>  {{datos.sales.date}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Referencia:</b> {{datos.sales.reference}}
+                  <b>{{"referencia" | translate}}:</b> {{datos.sales.reference}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Telefono:</b> {{datos.sales.phone}}
+                  <b>{{"phoneNumber" | translate}}:</b> {{datos.sales.phone}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Estado:</b> {{datos.sales.status}}
+                  <b>{{"Status" | translate}}:</b> {{datos.sales.status}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Recarga De:</b> {{datos.sales.rechargeOf}}
+                  <b>{{"Amount" | translate}}:</b> {{datos.sales.rechargeOf}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Total:</b> {{datos.sales.total}}
+                  <b>TOTAL:</b> {{datos.sales.total}}
                 </td>
               </tr>
             </tbody>
@@ -126,9 +126,9 @@
         </div>
         <footer class="panel-footer text-right bg-light lter">
           <!--<button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}}-->
-          <button style="float: left" class="btn btn-link" ng-click="goBack()">Regresar</button>
-          <button class="btn-green-on" data-standard="" ng-click="enviarComprobante()"><p>Enviar por Correo</p></button>
-          <button class="btn-green-on" data-standard=""><p>Descargar en PDF</p></button>
+          <button style="float: left" class="btn btn-link" ng-click="goBack()">{{"go_back" | translate}}</button>
+          <button class="btn-green-on" data-standard="" ng-click="enviarComprobante()"><p>{{"movements.send_email"}}</p></button>
+          <button class="btn-green-on" data-standard=""><p>{{"movements.descargar_pdf" | translate}}</p></button>
         </footer>
       </div>
     </div>

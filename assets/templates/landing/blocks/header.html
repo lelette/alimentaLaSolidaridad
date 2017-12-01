@@ -3,28 +3,45 @@
     <div class="imgNeeru">
       <img src="images/logoNeeru2.png">
     </div>
-    <div class="headerTxt">
+    <nav>
+      <div ui-sref="#item1" class="">
+        <p>{{"como_funciona" | translate}}</p>
+      </div>
+      <div ui-sref="#item2" class="">
+        <p>{{"seguridad" | translate}}</p>
+      </div>
+      <div ui-sref="#item3" class="">
+        <p>{{"contactanos" | translate}}</p>
+      </div>
+    <!-- <div class="headerTxt">
       <div class="pillar-30p">
-        <p class="p-small p-500"><a href="#item1">CÓMO FUNCIONA</a></p>
+        <p class="p-small p-500"><a href="#item1"></a></p>
       </div>
       <div class="pillar-25p">
-        <p class="p-small p-500"><a href="#item2">SEGURIDAD</a></p>
+        <p class="p-small p-500"><a href="#item2">{{"seguridad" | translate}}</a></p>
       </div>
       <div class="pillar-25p">
-        <p class="p-small p-500"><a href="#item3">CONTÁCTAMOS</a></p>
+        <p class="p-small p-500"><a href="#item3">{{"contactanos" | translate}}</a></p>
       </div>
-    </div>
-    <div data-aux-1 class="headerSignin">
-      <div>
-        <a href="access/signup"><p class="p-tiny p-500">Registrate</p></a>
+    </div> -->
+      </nav>
+      <nav>
+      <div ui-sref="access.signup" class="">
+        <p>{{"Registrarse" | translate}}</p>
       </div>
-      <div>
-        <a href="access/signin"><p class="p-tiny p-500">Inicia Sesión</p></a>
+      <div ui-sref="access.signin" class="">
+        <p>{{"signin.subtitulo" | translate}}</p>
       </div>
-      <div class="aux-1-SA">
+      <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
         <div class="vertical-line"></div>
-        <p class="p-tiny p-500">ES</p>
+        <p style="cursor: pointer;">{{selectLang}}</p>
+        <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
+          <div ng-repeat="(langKey, label) in langs">
+            <p ng-click="setLang(langKey, $event)">{{label}}</p>
+          </div>
+        </div>
       </div>
-    </div>
+      </nav>
+
   </section>
 </header>
