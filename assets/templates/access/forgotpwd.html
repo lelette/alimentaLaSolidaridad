@@ -8,7 +8,7 @@
       <p style="margin-top: 5pc">{{ "forgotpwd.subtitulo" | translate}}</p>
       <form id="form" name="form" class="form-validation" autocomplete="off">
         <div class="pillar-auto " style="justify-content:center;margin-top: 4pc">
-          <input name="email" ng-model="user.email" class="form-control" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" data-hide-3 type="text" placeholder="{{'std.Email' | translate}}" style="width:70%; text-align: center;" maxlength="254" required>
+          <input name="email" ng-model="user.email" class="form-control" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,3})$" data-hide-3 type="text" placeholder="{{'std.Email' | translate}}" style="width:100%; text-align: center;" maxlength="254" required>
         </div>
         <!-- ERRORES EN CAMPO DE EMAIL -->
         <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">

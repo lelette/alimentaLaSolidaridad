@@ -44,7 +44,7 @@
     </section>
     <section>
       <div class="tab-home">
-        <img src="images/menuNumFrecGrs.png"><p>NUMEROS FRECUENTES</p>
+        <img src="images/menuNumFrecGrs.png"><p>{{"numeros_frecuentes" | translate}}</p>
       </div>
       </br>
       <div class="tab-dynamic-home">
@@ -52,12 +52,12 @@
       </div>
     </br>
     <div class="tab-home" style="cursor:pointer;" ui-sref="app.page.frequent">
-      <p-1>+ Añadir Número</p-1> <img src="images/icoVer.png">
+      <p-1>+ {{"add_number" | translate}}</p-1> <img src="images/icoVer.png">
     </div>
     </section>
     <section>
       <div class="tab-home">
-        <img src="images/menuTDCGrs.png">  <p>TDC AFILIADAS</p>
+        <img src="images/menuTDCGrs.png">  <p>{{"tdc_afiliada" | translate}}</p>
       </div>
       </br>
       <div class="tab-dynamic-home">
@@ -65,15 +65,15 @@
       </div>
     </br>
     <div class="tab-home" style="cursor:pointer;" ui-sref="app.page.tdc_afiliadas">
-      <p-1>+ Añadir Tarjeta</p-1> <img src="images/icoVer.png">
+      <p-1>+ {{"add_card" | translate}}</p-1> <img src="images/icoVer.png">
     </div>
     </section>
   </div>
   </br>
   <div class="home-box" style="display:flex;">
-<div>
+<div style="width:50%">
   <div style="width: 100%;" class="home1">
-     <p>¿Desea realizar una recarga?</p>
+     <p>{{"desea_realizar_recarga" | translate}}</p>
    </div>
   <div class="line-100 selecting-box-R" style="margin-bottom: 2pc">
     <div class="selecting-internal-box-R">
@@ -86,7 +86,7 @@
               <div class="country-selected">
                 <div style="display: flex;" ng-hide="showCountry">
                   <img src="images/icoSelectPais.png" style="width: 100%">
-                  <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
+                  <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">{{"country" | translate}}</p>
                 </div>
                 <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
                   <img src="{{pais.url}}">
@@ -102,7 +102,7 @@
             </div>
           </div>
       <div class="pillar-70p" style="width:60%">
-        <input style="height: 40px;" onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número" maxlength="11" minlength="8" ng-blur="obtenerOfertas()">
+        <input style="height: 40px;" onblur="primeAppVar.validateInputPhone(this)" type="text" name="contrato" ng-model="contrato" data-mode-1 placeholder="{{'inserte_numero' | translate}}" maxlength="11" minlength="8" ng-blur="obtenerOfertas()">
       </div>
         </div>
       </div>
@@ -112,11 +112,11 @@
 <div>
   <div style="width: 100%;text-align:-webkit-center;" class="home1">
     <div>
-     <p>¿Quieres añadir una tarjeta?</p>
+     <p>{{"desea_anadir_tarjeta" | translate}}</p>
      <div class="tab-home" ng-if="datos.tdc_afiliadas != 0" style="display:block; padding-top: 10px; margin-right: 0">
-       <p-2>No tienes tarjetas registradas</p-2>
+       <p-2>{{"no_registered_cards" | translate}}</p-2>
        <br>
-       <p-3 ui-sref="app.page.tdc_afiliadas">+ Añadir tarjeta</p-3>
+       <p-3 ui-sref="app.page.tdc_afiliadas">+ {{"add_card" | translate}}</p-3>
      </div>
      </div>
    </div>

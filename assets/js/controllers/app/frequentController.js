@@ -18,7 +18,7 @@ app.controller('FrequentController',
     // Variables fijas del Header
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoNumFrec.png";
-    $rootScope.header.namePage = "Números frecuentes";
+    $rootScope.header.namePage = "Números Frecuentes";
 
 
     $scope.recarga = false;
