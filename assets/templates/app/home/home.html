@@ -95,7 +95,7 @@
               </div>
               <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 110px !important; margin-top: 2px; border: 0;">
                 <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
-                  <img src="images/banderas/{{country.name}}.png">
+                  <img src="Flags PNG/{{country.name}}.png" alt="{{country.name}}">
                   <p class="p-gray" style="color: #747474; font-size: 1.1em;">{{'+'+country.phone_code}}</p>
                 </div>
               </div>
@@ -110,16 +110,40 @@
   </div>
 </div>
 <div>
-  <div style="width: 100%;text-align:-webkit-center;" class="home1">
+  <div style="width: 100%;text-align:-webkit-center;" class="home1" ng-if="!tdc">
     <div>
      <p>{{"desea_anadir_tarjeta" | translate}}</p>
-     <div class="tab-home" ng-if="datos.tdc_afiliadas != 0" style="display:block; padding-top: 10px; margin-right: 0">
+     <div class="tab-home" ng-if="datos.tdc_afiliadas == 0" style="display:block; padding-top: 10px; margin-right: 0">
        <p-2>{{"no_registered_cards" | translate}}</p-2>
        <br>
        <p-3 ui-sref="app.page.tdc_afiliadas">+ {{"add_card" | translate}}</p-3>
      </div>
      </div>
    </div>
+   <div style="width: 100%;text-align:-webkit-center;" class="home1" ng-if="tdc">
+     <div>
+      <p style="padding-bottom: 10px">{{"header.cuenta_select.tdc_afiliada" | translate}}</p>
+      <div style="display:flex; justify-content:space-between;">
+        <div ng-if="cards.length != 0" class="pillar-16p member-card" style="width: 65%; display:flex; justify-content:center; margin-left:5%" ng-repeat="card in cards | limitTo: 2">
+          <div class="pillar-100p" style="position:relative; padding-top:0.5pc; padding-bottom: 0.5pc; padding-left:10%; display:flex; justify-content:space-between; ">
+            <div class="line-100">
+              <p style="font-size: 0.9pc; color: #747474;"><small>**** **** **** {{card.last4}}</small></p>
+            </div>
+            <div class="line-100">
+              <p ng-if="card.exp_month <10" style="font-size: 0.9pc; color: #747474;"><small> {{card.brand}} - Exp: {{card.exp_year}}</small></p>
+            </div>
+            <!-- <div class="pillar-70px" style="justify-content:center; align-items: center;position: relative;right: 90px;">
+              <span ng-show="card.brand == 'Visa'"><img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center; top:5px; height: 53%; width: 100%;"></span>
+              <span ng-show="card.brand == 'MasterCard'"><img src="../../images/master.png" style="position: relative;left: 87px;display: flex;justify-content: center; height: 53%; width: 100%;"></span>
+              <span ng-show="card.brand == 'American Express'"><img src="../../images/american-express.png" style="position: relative;left: 87px;display: flex;justify-content: center; height: 53%; width: 100%;"></span>
+            </div> -->
+          </div>
+        </div>
+        <div style="margin-left:5px">
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- FIN DE SECCION DE HOMEPAGE DE NEERU -->

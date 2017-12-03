@@ -20,7 +20,7 @@
         <section>
           <div>
             <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
-              Cargando
+              {{"Cargando" | translate}}
             </p>
           </div>
         </section>
@@ -34,9 +34,9 @@
 <div class="dynamic-content-box" onload="primeAppVar.init()"  style="margin-top: 20px; justify-content: space-between; height: 100%">
   <div class="frequent-master-box">
     <section>
-      <div class="dynamic-content-box">
+      <div class="dynamic-content-box" style="display:block; width:100%; overflow:hidden; whitespace: nowrap;">
 
-        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:20px;position: relative;right: 85px;">
   				<div class="line-100">
   					<img src="../../images/carita4.png">
   					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
@@ -46,27 +46,26 @@
   				</div>
     		</div>
 
-        <div ng-if="cards.length != 0" class="pillar-16p member-card" style="margin-top:120px; margin-left:87px; width: 25%;" ng-repeat="card in cards">
-          <div class="pillar-100p" style="position:relative; padding-top:1pc; padding-bottom: 1pc; padding-left:10%">
+        <div ng-if="cards.length != 0" class="pillar-16p member-card" style="margin-top:20px; margin-left:50px; width: 23%; position:relative; display:inline-block;" ng-repeat="card in cards">
+          <div class="pillar-100p" style="position:relative; padding-top:0.5pc; padding-bottom: 0.5pc; padding-left:10%; display:flex; justify-content:space-between;">
             <div class="line-100">
               <p>**** **** **** {{card.last4}}</p>
             </div>
             <div class="line-100">
               <p class="p-up p-gray p-500 p-small" ng-if="card.exp_month <10"> Exp: {{card.exp_month}}/{{card.exp_year}}</p>
             </div>
-            <div class="pillar-70px" style="justify-content:center; align-items: center; padding: 7px;position: relative;right: 90px;">
-              <span ng-show="card.brand == 'Visa'"><img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center; top:5px;"></span>
+            <div class="pillar-70px" style="justify-content:space-between; display:flex; align-items: center; padding: 7px;position: relative;right: 90px; top:5px;">
+              <span ng-show="card.brand == 'Visa'"><img src="../../images/visa.png" style="position: relative;left: 87px;display: flex;justify-content: center; "></span>
               <span ng-show="card.brand == 'MasterCard'"><img src="../../images/master.png" style="position: relative;left: 87px;display: flex;justify-content: center;"></span>
               <span ng-show="card.brand == 'American Express'"><img src="../../images/american-express.png" style="position: relative;left: 87px;display: flex;justify-content: center;"></span>
               <span style="display: flex; justify-content: flex-end; position: relative; left: 175px;"><a style="cursor:pointer" ng-click="desafiliarTarjeta(card.id)"><img src="../../images/icoEliminar.png"></a></span>
             </div>
           </div>
         </div>
-
       </div>
     </section>
     <section>
-      <div class="frequent-add" style="margin-right:40px">
+      <div class="frequent-add" style="margin-right:90px; margin-top:20px">
         <form id= "formTDC" name="formTDC">
           <div class="line-100">
             <div class="pillar-25p">

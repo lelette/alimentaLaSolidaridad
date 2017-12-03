@@ -14,6 +14,8 @@ app.controller('HomeCtrl',
       frecuentes: 0,
       recargas: 0
     };
+    $scope.cards;
+    $scope.tdc=false;
 
 
 
@@ -50,8 +52,10 @@ app.controller('HomeCtrl',
 
     $scope.countrySelected = function (country) {
       $scope.showCountry = true;
+      console.log('Flags PNG/'+country.name+'.png');
       $scope.pais = {
-        url: 'images/banderas/'+country.name+'.png',
+
+        url: 'Flags PNG/'+country.name+'.png',
         ext: '+'+country.phone_code
       };
     };
@@ -106,8 +110,11 @@ app.controller('HomeCtrl',
     .then(function(res){
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
-      console.log("hello");
       $scope.datos.tdcAfiliadas = res.data.data.length;
+      $scope.cards=res.data.data;
+      if ($scope.datos.tdcAfiliadas != 0){
+        $scope.tdc=true;
+      }
     }, function(error){
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
