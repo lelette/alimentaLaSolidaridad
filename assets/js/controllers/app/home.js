@@ -17,8 +17,6 @@ app.controller('HomeCtrl',
     $scope.cards;
     $scope.tdc=false;
 
-
-
     User.refresh(function(err){
       if (err) {
         return $state.go('access.signin');
@@ -37,8 +35,8 @@ app.controller('HomeCtrl',
       $rootScope.header.namePage = $scope.user.nombres;
     });
 
-
     $scope.pais = {}
+    $scope.disabledNumberCountry = true;
 
     $scope.showCountry = false;
 
@@ -52,7 +50,7 @@ app.controller('HomeCtrl',
 
     $scope.countrySelected = function (country) {
       $scope.showCountry = true;
-      console.log('Flags PNG/'+country.name+'.png');
+      $scope.disabledNumberCountry = false;
       $scope.pais = {
 
         url: 'Flags PNG/'+country.name+'.png',
@@ -61,30 +59,34 @@ app.controller('HomeCtrl',
     };
 
     $scope.obtenerOfertas = function (){
-      var numero = $scope.contrato;
-      var cod = $scope.pais.ext;
+      console.log('$scope.contrato', $scope.contrato);
+      var number = $scope.contrato;
+      var code = $scope.pais.ext;
       var url = $scope.pais.url;
-     if (cod && numero) {
-       $http.post('plataform/offers',{
-             // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
-             "phone":  cod+numero,
-             "currency": "EUR",
-        }).then(function(res){
-         var ofertas = res.data;
-         var operadora = ofertas.operadora;
-         Recharge.info.ofertas = ofertas;
-         Recharge.info.pais = {
-           codigo: cod,
-           numero: numero,
-           url: url,
-           operadora: operadora
-         }
-        $state.go('app.page.recharge');
-       }, function(res){
-         $scope.ShowOffers = false;
-         console.log(res);
-       });
-     }
+
+      $state.go('app.page.recharge', {code: code, number: number, url:url});
+
+    //  if (cod && numero) {
+    //    $http.post('plataform/offers',{
+    //          // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
+    //          "phone":  cod+numero,
+    //          "currency": "EUR",
+    //     }).then(function(res){
+    //      var ofertas = res.data;
+    //      var operadora = ofertas.operadora;
+    //      Recharge.info.ofertas = ofertas;
+    //      Recharge.info.pais = {
+    //        codigo: cod,
+    //        numero: numero,
+    //        url: url,
+    //        operadora: operadora
+    //      }
+    //     $state.go('app.page.recharge');
+    //    }, function(res){
+    //      $scope.ShowOffers = false;
+    //      console.log(res);
+    //    });
+    //  }
     }
 
     $http.post('plataform/sale/getSalesAmount')
