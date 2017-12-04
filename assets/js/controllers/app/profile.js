@@ -15,10 +15,16 @@ app.controller('BasicController',
       'F',
       'M'
     ];
+    // Variables fijas del SUBHeader
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoInicio.png";
+    $rootScope.header.home = false;
+    $rootScope.header.namePage = "Perfil";
     $scope.load = true;
     // refrescamos la data que tenemos del user
     $scope.loader='mostrar';
     $scope.cuerpo='ocultar';
+
   $scope.refreshUser = function () {
     User.refresh(function(err){
       if (err) {

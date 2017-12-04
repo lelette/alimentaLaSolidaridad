@@ -7,7 +7,7 @@
       <div ui-sref="app.page.home">
         <i class="fa fa-home" aria-hidden="true"></i>
       </div>
-      <div ui-sref="app.page.recharge">
+      <div ui-sref="app.page.recharge" class="">
         <p>{{"header.enviar_recarga" | translate}}</p>
       </div>
       <!--
@@ -28,7 +28,7 @@
           </div>
           <div class="header-option-neeru" ui-sref="app.page.tdc_afiliadas">
             <img onmouseover="this.src = 'images/menuTDCVrd.png'" onmouseout="this.src = 'images/menuTDCGrs.png'" src="images/menuTDCGrs.png">
-            <p>{{"header.cuenta_select.tdc_afiliada" | translate}}</p>
+            <p>{{"tdc_afiliada" | translate}}</p>
           </div>
           <div class="header-option-neeru" ui-sref="app.page.profile">
             <img onmouseover="this.src = 'images/menuPerfilVrd.png'" onmouseout="this.src = 'images/menuPerfilGrs.png'"  src="images/menuPerfilGrs.png">
@@ -36,11 +36,43 @@
           </div>
         </div>
       </div>
-      <!--
-        <div onclick="primeAppVar.notifyBox(this)">
-          <img src="images/icoCartEmpty.png">
+      <!-- Shopping Car -->
+      <div uib-dropdown uib-dropdown-toggle>
+        <img src="images/icoCartEmpty.png">
+        <div class="uib-dropdown-menu header-neeru-car-box animated fadeInUp">
+          <div class="line-100" style="flex-direction: column; padding: 4px 8px;">
+            <!-- SALES -->
+            <div ng-if="cart.length">
+              <div ng-repeat="item in cart" class="pillar-100p notify">
+                <div class="pillar-auto">
+                  <div class="line-100">
+                    <p class="p-black p-300">{{item.phone}}</p>
+                  </div>
+                  <div class="line-100">
+                    <p class="p-black p-300"><span class="p-short">USD</span> {{item.realAmount}}</p>
+                  </div>
+                </div>
+                <div class="pillar-auto">
+                  <img src="images/icoEliminar.png" ng-click="removeRecharge(item.idSales)">
+                </div>
+              </div>
+              <!-- SALES OPTIONS -->
+              <div class="line-100" style="margin: 5px 0;">
+                <button car-select class="btn-green-on">
+                  <p>{{"realizar_pago" | translate}}</p>
+                </button>
+              </div>
+            </div>
+
+            <div ui-sref="app.page.recharge" class="line-100">
+              <button car-select class="btn-gray-on">
+                <p>{{"anadir_recarga" | translate}}</p>
+              </button>
+            </div>
+          </div>
         </div>
-      -->
+      </div>
+
     </nav>
     <div data-aux-1>
       <div>
@@ -68,7 +100,14 @@
   <section>
     <div>
       <img ng-src="{{header.icono}}">
-      <p class="p-5 p-300">{{header.namePage | translate}}</p>
+      <p class="p-5 p-300" ng-if="!header.home">
+        <span ng-if="header.namePage == 'Movimientos'">{{'header.cuenta_select.movimiento' | translate}}</span>
+        <span ng-if="header.namePage == 'Números Frecuentes'">{{'header.cuenta_select.numero_frecuente' | translate}}</span>
+        <span ng-if="header.namePage == 'Tarjetas Afiliadas'">{{'header.cuenta_select.tdc_afiliada' | translate}}</span>
+        <span ng-if="header.namePage == 'Perfil'">{{'header.cuenta_select.perfil' | translate}}</span>
+        <span ng-if="header.namePage == 'Enviar Recarga'">{{'header.enviar_recarga' | translate}}</span>
+      </p>
+      <p class="p-5 p-300" ng-if="header.home">{{"Bienvenido" | translate}} {{header.namePage}}</p>
     </div>
     <div>
       <!--

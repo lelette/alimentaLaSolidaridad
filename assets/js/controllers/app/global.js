@@ -152,11 +152,18 @@ app.controller('ErrorCtrl', [
 *****************************************************************************************/
 
 app.controller('GlobalCtrl',
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate, spinnerService) {
-
+  ['$rootScope', '$scope', '$http', '$state', 'User', 'Recharge', '$translate',
+  function($rootScope,  $scope, $http, $state, User, Recharge, $translate) {
+    console.log('Recharge GlobalCtrl', Recharge);
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
+    $scope.cart = [];
+    var element = angular.element('.main-content');
+    var name = element.attr('ui-view'); // 'content-one'
+    //$rootScope.header = {}
+    //   $rootScope.header.icono = "";
+    //   $rootScope.header.home = true;
+    //   $rootScope.header.namePage = '';
     User.refresh(function(err){
       if (err) {
         return $state.go('access.signin');
@@ -166,12 +173,23 @@ app.controller('GlobalCtrl',
       $scope.user.pin = User.info.pin;
       if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
       else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
-
-      // Variables fijas del Header
-      $rootScope.header = {}
-      $rootScope.header.icono = "images/icoInicio.png";
-      $rootScope.header.namePage = "Bienvenido "+$scope.user.nombres+'...';
-
+      $rootScope.usernombre = $scope.user.nombres;
+      // console.log($rootScope.usernombre);
+      // Variables fijas del SUBHeader
+      // if ($state.current.name=='app.page.home')
+      // { $rootScope.header = {}
+      //   $rootScope.header.icono = "images/icoInicio.png";
+      //   $rootScope.header.home = true;
+      //   $rootScope.header.namePage = $scope.user.nombres;
+      //   console.log($state.current.name);
+      // }else {
+      //   if($state.current.name=='app.page.transactions'){
+      //     $rootScope.header = {}
+      //     $rootScope.header.icono = "images/icoMovimientos.png";
+      //     $rootScope.header.namePage = "Movimientos";
+      //   }
+      //   console.log($state.current.name);
+      // }
 
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
@@ -181,8 +199,49 @@ app.controller('GlobalCtrl',
 
     $scope.logout = function(){
       $http.post('plataform/user/logout').then(function (res){
-        console.log("logout");
+        Recharge.reset();
+        Recharge.cart = {
+          token: null,
+          details: []
+        };
+        // console.log("logout");
         $state.go('access.signin');
       });
     }
+
+    if (Recharge.cart && Recharge.cart.details.length != 0){
+      $scope.cart = Recharge.cart.details;
+    }else {
+      $http.get('plataform/sales/getshoppingCart')
+      .then(function(response){
+          var res = response.data;
+          if (res.carrito.length == 0) {
+            Recharge.cart.details = [];
+            Recharge.cart.token = null;
+          }else {
+            var cart = [];
+            for (let value of res.carrito) {
+
+              cart.push({
+                idSale: value.id,
+                id: value.idProduct,
+                fee: value.serviceFee,
+                operator: value.operator,
+                phone: value.phone,
+                price_local_unit: value.expectedAmount,
+                price_unit: value.realAmount
+              });
+            }
+            Recharge.cart.details = cart;
+            $scope.cart = cart;
+
+          }
+
+          $scope.loader = 'ocultar'; $scope.cuerpo = 'mostrar';
+
+      }, function(error){
+        $scope.loader='ocultar';$scope.cuerpo='mostrar';
+      });
+    }
+
 }]);

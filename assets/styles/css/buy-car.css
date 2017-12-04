@@ -8,6 +8,28 @@
     border-radius: .5rem;
     max-width: 700px;
   }
+
+  .header-neeru-car-box {
+    position: absolute;
+  	width: 100%;
+  	border: 1.5px solid #5fc963;
+  	border-radius: .5rem;
+  	max-height: 145px;
+  	min-width: 215px;
+  	display: none;
+  	overflow: auto;
+  	background: white;
+  	z-index: 1001;
+  	top: 45px;
+    left: -60px;
+  }
+
+  .synopsis-box {
+    width: 350px;
+    display: block;
+    border: 1.5px solid #E5EBE6;
+    border-radius: .5rem; 
+  }
 /* Boxes */
 
 /* Aux */

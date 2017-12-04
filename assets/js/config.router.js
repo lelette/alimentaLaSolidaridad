@@ -54,6 +54,7 @@ angular.module('app')
         $httpProvider.interceptors.push(apiInterceptor);
 				$urlRouterProvider.when('/', '/landing/home');
         $urlRouterProvider.when('/landing', '/landing/home');
+        $urlRouterProvider.when('/app/page/recharge', '/app/page/recharge/contract')
         $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
@@ -105,7 +106,7 @@ angular.module('app')
           .state('app.page.recharge', {
             url: '/recharge',
             templateUrl: 'templates/app/recharge/reload.html',
-            params: {'cod': '', 'contrato': ''},
+            params: {'code': '', 'number': '', 'url': ''},
             resolve: load([
               'js/controllers/app/recharge.js',
               'js/directives/stripe.js',
