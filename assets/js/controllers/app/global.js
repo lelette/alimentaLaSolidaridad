@@ -234,6 +234,7 @@ app.controller('GlobalCtrl',
             }
             Recharge.cart.details = cart;
             $scope.cart = cart;
+
           }
 
           $scope.loader = 'ocultar'; $scope.cuerpo = 'mostrar';

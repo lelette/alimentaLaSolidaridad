@@ -54,6 +54,7 @@ angular.module('app')
         $httpProvider.interceptors.push(apiInterceptor);
 				$urlRouterProvider.when('/', '/landing/home');
         $urlRouterProvider.when('/landing', '/landing/home');
+        $urlRouterProvider.when('/app/page/recharge', '/app/page/recharge/contract')
         $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
