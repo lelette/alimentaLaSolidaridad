@@ -537,14 +537,22 @@
 						</div>
 					</div>
 				</section>
+				<!-- onclick="primeAppVar.showResumePanel()" -->
 				<section style="width: 40%; text-align: -webkit-center;">
-					<div class="line-100 aux-1-R" onclick="primeAppVar.showResumePanel()">
+					<div class="line-100 aux-1-R">
 						<div class="pillar-100p tab-box tab-off" style="width: 350px;">
 							<img src="images/icoResumen.png">
 							<p>Resumen / Envío</p>
 						</div>
 					</div>
-					<div class="line-100 synopsis-box" style="width: 350px;">
+					<div class="line-100 synopsis-box" ng-hide="resumenRecarga" style="width: 350px;">
+						<div class="line-100 balance-box">
+							<div style="color:red;">
+								No hay recargas
+							</div>
+						</div>
+					</div>
+					<div class="line-100 synopsis-box" ng-show="resumenRecarga" style="width: 350px;">
 						<div class="line-100 balance-box">
 							<div ng-repeat="item in cart" style="border-bottom: 1.5px solid #E5EBE6;" class="line-100 record">
 								<div class="line-100">

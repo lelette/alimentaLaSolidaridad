@@ -64,6 +64,7 @@ app.controller('ReloadController',
   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
 
+     $scope.resumenRecarga = true;
      $scope.ofertas = Recharge.info.ofertas;
      $scope.pais.cod = Recharge.info.pais.codigo;
      $scope.pais.url = Recharge.info.pais.url;
@@ -344,8 +345,10 @@ app.controller('ReloadController',
 
  if (($stateParams.code != '')&&($stateParams.url != '')){
     console.log("$stateParams");
+    $scope.disabledNumberCountry = false;
     $scope.showCountry = true;
     $scope.pais.cod = $stateParams.code;
+    $scope.datos.cod = $scope.pais.cod;
     $scope.pais.url = $stateParams.url;
     if (($stateParams.number != '')) {
       $scope.datos.contrato = $stateParams.number;
