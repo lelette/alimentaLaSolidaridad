@@ -1259,14 +1259,7 @@ transform: scaleX(1);
 	.member-card-box{
 		flex-wrap: wrap;
 	}
-	.reload-master-box > section:last-child > div:last-child,
-	.selecting-internal-box-R,
-	.pay-plans-box,
-	.promo,
-	.popular-plan,
-	.pay-box{
-		justify-content: space-between;
-	}
+
 	.reload-master-box > section:last-child > div:last-child,
 	.selecting-internal-box-R,
 	.operator,
@@ -1276,11 +1269,7 @@ transform: scaleX(1);
 	.pay-box{
 		flex-direction: column;
 	}
-	.selecting-box-R,
-	.selecting-internal-box-R,
-	.reload-master-box > section:last-child > div:last-child{
-    height: calc(100% - (40px + 1pc));
-	}
+
 	.regular-plan,
 	.popular-plan,
 	.promo,
@@ -1343,18 +1332,24 @@ transform: scaleX(1);
     margin: 0pc 1pc;
 	}
 	.total-box{
-    padding-top: 10px;
+    padding: 5px;
     border-top: 1.5px solid #E5EBE6;
     height: 82px;
 	}
 	.balance-box{
-    height: calc(100% - 82px);
-    overflow-y: auto;
+		padding: 5px;
 	}
 	.record{
     flex-shrink: 0;
     padding: 0px 5px;
+		border-bottom: 2px solid #dddddd;
+		margin-top: 5px;
 	}
+
+	.record:last-child {
+		border: 0;
+	}
+
 	.pay-plans-box{
     /*height: 100%;*/
     align-self: center;

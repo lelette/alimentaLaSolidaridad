@@ -36,9 +36,6 @@
           </div>
         </div>
       </div>
-      <div class="">
-        <p>cantidad >>> {{cart.length}}</p>
-      </div>
       <!-- Shopping Car -->
       <div uib-dropdown uib-dropdown-toggle>
         <img src="images/icoCartEmpty.png">
@@ -56,7 +53,7 @@
                   </div>
                 </div>
                 <div class="pillar-auto">
-                  <img src="images/icoEliminar.png">
+                  <img src="images/icoEliminar.png" ng-click="removeRecharge(item.idSales)">
                 </div>
               </div>
               <!-- SALES OPTIONS -->

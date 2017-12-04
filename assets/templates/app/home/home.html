@@ -79,7 +79,7 @@
     <div class="selecting-internal-box-R">
       <div class="line-100 aux-3-R">
         <div class="pillar-45p" style="width: 100%;">
-          <div class="pillar-30p">
+          <div style="padding-right: 2%" class="pillar-30p">
             <!-- onclick="primeAppVar.openOptionBox()"  ng-click="abrirSelectCountry()"-->
 
             <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: 40px;" required>
@@ -103,9 +103,7 @@
           </div>
       <div class="pillar-70p" style="width:100%;">
         <input style="height: 40px; border-right:0; border-bottom-right-radius: 0;border-top-right-radius: 0;" onblur="primeAppVar.validateInputPhone(this)" ng-disabled="disabledNumberCountry" type="number" name="contrato" ng-model="contrato" data-mode-1 placeholder="Inserte Número">
-      </div>
-      <div class="pillar-70p">
-        <button class="btnGo" ng-click="obtenerOfertas()" type="button" name="button"><i class="fa fa-angle-right"></i></button>
+        <button class="btn-go" ng-disabled="disabledNumberCountry" ng-click="obtenerOfertas()" type="button" name="button"><i class="fa fa-angle-right"></i></button>
       </div>
         </div>
       </div>
