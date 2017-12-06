@@ -1,0 +1,80 @@
+  <div class="row m-t-lg" ng-controller="BasicController">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <!-- <div class="panel-heading font-bold">Basic form</div> -->
+        <div class="panel-body">
+          <form name="formNA" role="formNA">
+            <div class="form-group">
+              <label>{{ 'std.Nombres' | translate}}</label>
+              <input type="text" name="nombres" ng-model="user.nombres" class="form-control" placeholder="{{ 'std.Nombres' | translate}}" maxlength="40" string-std required>
+              <!-- ERRORES EN CAMPO DE NOMBRES -->
+              <div class="text-center" ng-if="formNA.nombres.$dirty && (formNA.nombres.$invalid || formNA.nombres.$touched)">
+                <span ng-if="formNA.nombres.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="formNA.nombres.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 40
+                </span>
+                <span ng-if="formNA.nombres.$error.stringStd" class="error-input-msj" >
+                  {{"err.stringStd" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE NOMBRES -->
+            </div>
+            <div class="form-group">
+              <label>{{ 'std.Apellidos' | translate}}</label>
+              <input type="text" class="form-control" name="apellidos" ng-model="user.apellidos" placeholder="{{ 'std.Apellidos' | translate}}" maxlength="40" string-std required>
+              <!-- ERRORES EN CAMPO DE APELLIDOS -->
+              <div class="text-center" ng-if="formNA.apellidos.$dirty && (formNA.apellidos.$invalid || formNA.apellidos.$touched)">
+                <span ng-if="formNA.apellidos.$error.required" class="error-input-msj" >
+                   {{"err.required" | translate}}
+                </span>
+                <span ng-if="formNA.apellidos.$error.maxlength" class="error-input-msj" >
+                  {{"err.maxlength" | translate}} 40
+                </span>
+                <span ng-if="formNA.apellidos.$error.stringStd" class="error-input-msj" >
+                  {{"err.stringStd" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE APELLIDOS -->
+            </div>
+            <button type="submit" ng-disabled="formNA.$invalid" ng-click="update()" class="btn btn-sm btn-success">{{'std.update' | translate}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+       <!--  <div class="panel-heading font-bold">Basic form</div> -->
+        <div class="panel-body">
+          <form name="formFE" role="formFE">
+            <div class="form-group">
+              <label>{{'std.Fecha_Nacimiento' | translate}}</label>
+              <input type="date"  class="form-control" name="fecha_nacimiento" ng-model="user.fecha_nacimiento"  placeholder="{{'std.Fecha_Nacimiento' | translate}}"  required>
+              <!-- ERRORES EN CAMPO DE FECHA DE NACIMIENTO -->
+              <div class="text-center" ng-if="formFE.fecha_nacimiento.$dirty && (formFE.fecha_nacimiento.$invalid || formFE.fecha_nacimiento.$touched)">
+                <span ng-if="formFE.fecha_nacimiento.$error.required" class="error-input-msj" >
+                   {{"err.required" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE FECHAS DE NACIMIENTO -->
+            </div>
+            <div class="form-group">
+              <label>{{'std.sexo' | translate}}</label>
+              <select class="form-control" name="sexo" ng-model="user.sexo" ng-options="sexo as 'sexo.'+sexo | translate for sexo in sexos" required>
+                <option value="">----</option>
+              </select>
+              <!-- ERRORES EN CAMPO DE SEXO -->
+              <div class="text-center" ng-if="formFE.sexo.$dirty && (formFE.sexo.$invalid || formFE.sexo.$touched)">
+                <span ng-if="formFE.sexo.$error.required" class="error-input-msj" >
+                   {{"err.required" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE SEXO -->
+            </div>
+            <button type="submit" ng-disabled="formFE.$invalid"  ng-click="update()" class="btn btn-sm btn-success">{{'std.update' | translate}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

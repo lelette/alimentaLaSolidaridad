@@ -1,0 +1,31 @@
+<div class="col-sm-5 pull-none m-a" ng-controller="rechargeResultCtrl">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table border="1">
+        <th>Resumen de Recargas</th>
+        <tr>
+          <td>Referencia</td>
+          <td>Telefono</td>
+          <td>Monto</td>
+          <td>Estatus</td>
+          <td>Descripcion</td>
+        </tr>
+        <tr ng-repeat="item in result.data.recargas">
+          <td>{{item.referencia}}</td>
+          <td>+{{item.phone}}</td>
+          <td>Falta Moneda origen/. {{item.price_local_unit}} - {{price_unit}} USD</td>
+          <td>{{ item.status || "Anulada" }}</td>
+          <td>{{error.msj}}</td>
+        </tr>
+      </table>
+      <div class="col-sm-12">
+        <button  ui-sref="app.page.recharge" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="">
+    Recarga --> {{ result | json }}
+  </div>
+</div>

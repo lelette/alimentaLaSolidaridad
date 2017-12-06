@@ -1,0 +1,105 @@
+
+		<div ng-controller="FrequentController" class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px; justify-content: space-between; height: 100%">
+			<div class="frequent-master-box" >
+				<section>
+          <div class="dynamic-content-box">
+              <div ng-show="frecuentes.length == 0" class="empty-activity-box" style="margin-top:120px">
+                  <div class="line-100">
+                      <img src="images/carita2.png">
+                      <p class="p-green p-300 p-5">No posees números registrados...</p>
+                  </div>
+                  <div class="line-100">
+                    <p class="p-gray">Añade un contacto y enviale una recarga!</p>
+                  </div>
+              </div>
+							<div ng-show="frecuentes.length != 0" class="container" style="width: 90%; margin-top: 120px;">
+								<table datatable="ng" cellpadding="2" cellspacing="2" border="2" class="table" style="width: 100%; border: solid white; margin: auto">
+							    <thead style="border-bottom: 2px solid #cfd5d1;">
+								    <tr class="odd gradeA">
+											<th style="text-align: center;">ALIAS</th>
+											<th style="text-align: center;">{{'numero' | translate}}</th>
+							        <th></th>
+											<th></th>
+											<th></th>
+											<th style="text-align: center;">{{"seleccionar_para_recargar" | translate}}</th>
+								    </tr>
+							    </thead>
+							    <tbody>
+						    		<tr ng-repeat="frecuente in frecuentes" style="border-bottom:2px solid #cfd5d1;">
+											<td>
+												<p style="text-align:center;">{{frecuente.alias}}</p>
+											</td>
+											<td>
+												<p style="text-align:center;">{{frecuente.frecuente.numero}}</p>
+
+											</td>
+
+							        <td>
+												<div class="pillar-30px" style="margin-left: 20%">
+													<img ng-click="eliminarFrecuente(frecuente.frecuente.numero)" src="images/icoEliminar.png" alt="">
+												</div>
+											</td>
+							        <td>
+												<div class="pillar-30px" style="margin-left: 20%">
+													<img ng-click="modificarFrecuente(frecuente)" src="images/icoEdit.png" alt="">
+												</div>
+											</td>
+
+											<td></td>
+											<td style="text-align: center">
+												<div class="pillar-30px" style="margin-left: 50%">
+													<div class="neeru-checkbox-1">
+														<input type="checkbox" name="" ng-click=agregarRecarga(frecuente)>
+														<span></span>
+													</div>
+												</div>
+											</td>
+								    </tr>
+							    </tbody>
+								</table>
+								<div class="tab-box tab-off" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px; " ng-show="recarga">
+									<img src="images/icoOrdenVrd.png">
+									<p >{{"movements.enviar_recarga" | translate}}</p>
+								</div>
+							</div>
+
+          	</div>
+				</section>
+				<section>
+          <form id="form" name="form" class="form-validation frequent-add" autocomplete="off" style="width: 90%">
+            <div class="pillar-30p" style="padding-bottom: 10px; width: 90%; float: right;">
+              <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 40px; padding: 0;" required>
+                <div class="country-selected">
+									<div style="display: flex; " ng-hide="showCountry">
+										<img src="images/icoSelectPais.png" style="width: 100%">
+										<p style="margin-top: 3px; color: #AEB7B3; font-family: neeru;" class="p-small">{{"country" | translate}}</p>
+									</div>
+									<div ng-show="showCountry" data-country-code="+58" style="display: flex; margin-left: 5px;">
+	                  <img src="{{pais.url}}">
+	                  <p class="p-gray" style="font-size: 1em; color: #AEB7B3; margin-top: -2px;">{{pais.ext}}</p>
+	                </div>
+                </div>
+								<div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
+		              <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
+		                <img src="images/banderas/{{country.name}}.png">
+		                <p style="color: #AEB7B3">{{'+'+country.phone_code}}</p>
+		              </div>
+		            </div>
+              </div>
+              <div class="pillar-70p" style="width: 75%; padding-left: 5px; display: grid">
+                <input  numero class="form-control" style="height: 40px; color:#747474;" type="text" name="phone" data-mode-1 placeholder="{{'inserte_numero' | translate}}" maxlength="15" minlength="4" ng-model="auxNumero" required>
+								<!-- <div style="text-align: center">
+									<img src="images/logos/movistar.png" style="width:60%;">
+								</div> -->
+              </div>
+            </div>
+            <div style="float: right;">
+              <button data-standard class="btn-green-on" style="display: flex" ng-click="agregarFrecuentes();" ng-disabled='form.$invalid'>
+                <img src="images/icoAddNumero.png">
+                <p style="margin-left: 10px;">{{"add_number" | translate}}</p>
+              </button>
+            </div>
+          </form>
+				</section>
+			</div>
+		</div>
