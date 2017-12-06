@@ -38,6 +38,7 @@ app.controller('movController',
       $http.get('plataform/sale/getTransactions?page='+page+'&limit=10')
       .then(function(res){
         var ventas = res.data.sales;
+        console.log('ventas', ventas);
         if (ventas.length == 0) {
           $scope.msjmov = true;
           $scope.tablemov = false;
@@ -56,8 +57,8 @@ app.controller('movController',
             newSale.date = fecha.substring(0,10);//sale.createdAt.getDate()+"/"+ (sale.createdAt.getMonth()+1)+"/"+ sale.createdAt.getFullYear();
             newSale.reference = "<span style='cursor:pointer' onclick=verMovDetalle("+sale.id+")>"+sale.referencia+"</span>";
             newSale.phone = sale.phone;
-            newSale.recharge = "EUR /. 5 - 10 USD ";
-            newSale.total = "10,28 USD";//sale.realAmountUSD + sale.serviceFee,
+            newSale.recharge = sale.localCurrency +" /. "+ sale.expectedAmount +" - "+ sale.realAmount +" USD ";
+            newSale.total = parseFloat(sale.realAmount) + parseFloat(sale.serviceFee),
             newSale.action = "<img style='cursor:pointer' src='images/icoEliminar.png' />";
             $scope.datos.sales.push(newSale);
           });

@@ -54,6 +54,7 @@ angular.module('app')
         $httpProvider.interceptors.push(apiInterceptor);
 				$urlRouterProvider.when('/', '/landing/home');
         $urlRouterProvider.when('/landing', '/landing/home');
+        $urlRouterProvider.when('/app/page/recharge', '/app/page/recharge/contract')
         $urlRouterProvider.otherwise('/access/404');
 
         $stateProvider
@@ -112,26 +113,26 @@ angular.module('app')
               'js/services/Sales.js'
               ])
           })
-          // .state('app.page.recharge.get_contrato', {
-          //   url: '/contract',
-          //   templateUrl: 'templates/app/recharge/getContrato.html',
-          //   resolve: load([])
-          // })
-          // .state('app.page.recharge.cal_amount', {
-          //   url: '/amount',
-          //   templateUrl: 'templates/app/recharge/calAmount.html',
-          //   resolve: load([])
-          // })
-          // .state('app.page.recharge.get_token_stripe', {
-          //   url: '/tdc',
-          //   templateUrl: 'templates/app/recharge/getTokenStripe.html',
-          //   resolve: load(['js/stripe/stripe.js'])
-          // })
-          // .state('app.page.recharge.confirm', {
-          //   url: '/confirm',
-          //   templateUrl: 'templates/app/recharge/confirm.html',
-          //   resolve: load([])
-          // })
+          .state('app.page.recharge.get_contrato', {
+            url: '/contract',
+            templateUrl: 'templates/app/recharge/getContrato.html',
+            resolve: load([])
+          })
+          .state('app.page.recharge.cal_amount', {
+            url: '/amount',
+            templateUrl: 'templates/app/recharge/calAmount.html',
+            resolve: load([])
+          })
+          .state('app.page.recharge.get_token_stripe', {
+            url: '/tdc',
+            templateUrl: 'templates/app/recharge/getTokenStripe.html',
+            resolve: load(['js/stripe/stripe.js'])
+          })
+          .state('app.page.recharge.confirm', {
+            url: '/confirm',
+            templateUrl: 'templates/app/recharge/confirm.html',
+            resolve: load([])
+          })
           .state('app.page.rechargeResult', {
             url: '/rechargeResult',
             templateUrl: 'templates/app/recharge/result.html',

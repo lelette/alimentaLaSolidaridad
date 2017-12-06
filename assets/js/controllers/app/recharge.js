@@ -10,7 +10,8 @@ app.controller('ReloadController',
     console.log('Recharge', Recharge);
 
   Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
-  $scope.btnClassRecarga = "btn-off";
+  $scope.btnClassRecarga = "btn-green-off";
+  $scope.btnPayment = "btn-green-off"
   $scope.btnClassModePay = "btn-off";
   $scope.disabledNumberCountry = true;
   $scope.error_msj_oferta = false;
@@ -42,8 +43,6 @@ app.controller('ReloadController',
   $scope.card = {}
   $scope.fullCard = {}
   $scope.resumenRecarga = false;
-  console.log("$stateParams",$stateParams);
-  console.log("$scope.datos",$scope.datos);
 
   $http.get('platform/stripe/getCards')
   .then(function(response){
@@ -55,9 +54,8 @@ app.controller('ReloadController',
   $http.get('plataform/user/searchFrecuente')
   .then(function(response){
     $scope.frecuentes = response.data;
-    console.log('response.data', response.data);
   }, function(error){
-    console.log('Error >>>', error);
+
   });
 
 
@@ -85,16 +83,15 @@ app.controller('ReloadController',
 
 
   setTimeout(function() {
-    console.log('Recharge.cart.details', Recharge.cart.details);
+
     if (Recharge.cart.details.length != 0) {
       $scope.cart = Recharge.cart.details;
       $scope.btnClassModePay = "btn-green-on";
       $scope.totalCart = 0;
       for (let item of $scope.cart) {
-        console.log('item', item);
         $scope.totalCart =  $scope.totalCart + (parseFloat(item.fee)+ parseFloat(item.price_unit))
       }
-      console.log('entre >>>>>>>>>', $scope.totalCart);
+
     }
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
@@ -107,11 +104,11 @@ app.controller('ReloadController',
   *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                   *
   **************************************************************************************************/
   $scope.removeRecharge = function (idSale) {
-    $http.get('plataform/sales/deleteShoppingCart', {id: idSale})
+    $http.post('plataform/sales/deleteShoppingCart', {id: idSale})
     .then(function(response){
       $scope.cards = response.data.data;
     }, function(error){
-      console.log('Error >>>', error);
+
     });
 
   }
@@ -121,8 +118,8 @@ app.controller('ReloadController',
   }
 
   $scope.agregarAlCarrito = function () {
+    console.log('Recharge.info.oferta', Recharge.info.oferta);
     if (Recharge.info.oferta) {
-      Recharge.info.oferta.price_unit = 10;
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
         Recharge.info.oferta.idSale = res.data.venta.id
@@ -134,12 +131,10 @@ app.controller('ReloadController',
         $scope.showOffers = false;
         $scope.datos = {};
         Recharge.reset();
-        //$state.reload();
+        $state.reload();
       }, function (error) {
-        console.log('Hola ERROR!!!! ',error.data);
+
       });
-    }else {
-      console.log('oferta no seleccionada');
     }
   }
 
@@ -148,9 +143,11 @@ app.controller('ReloadController',
     Recharge.info.oferta.phone = Recharge.info.ofertas.telefono_destino;
     Recharge.info.oferta.operator = Recharge.info.ofertas.operadora;
     $scope.btnClassRecarga = "btn-green-on";
+    //$scope.btnPayment = "btn-green-on";
   }
 
-  $scope.recharge = function () {
+  $scope.recharge = function (Validacion) {
+    console.log('Validacion', Validacion);
      $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
 
      // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
@@ -166,25 +163,19 @@ app.controller('ReloadController',
      // Creo el token de seguridad de la tarjeta
      $scope.loader = 'mostrar';
      $scope.cuerpo = 'ocultar';
-     console.log('$scope.card', $scope.card);
      Stripe.card.createToken($scope.card,function(status, res){
        if(res.error){
-         console.log('res.error', res.error);
-         console.log("Ocurrio un error ....");
+
            $scope.loader = 'ocultar';
            $scope.cuerpo = 'mostrar';
        }else{
 
          var card_customer = {
            token: res.id,
-           email: $scope.fullCard.email,
            description: $scope.fullCard.description,
          }
 
-         console.log('card_customer', card_customer);
-
          Recharge.cart.token = res.id;
-
          $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
            Recharge.result = response;
            $scope.$emit('$resetAjax');
@@ -271,7 +262,6 @@ app.controller('ReloadController',
       $scope.loaderRecharge = 'ocultar';
       $scope.showOffers = false;
       $scope.error_msj_oferta = true;
-      console.log(res);
       /*$scope.$emit('$resetAjax');
       $scope.$emit('$errorAjax',res.data);*/
     });
@@ -351,7 +341,6 @@ app.controller('ReloadController',
     if (($stateParams.number != '')) {
       $scope.datos.contrato = $stateParams.number;
       var telefono = $scope.pais.cod+$scope.datos.contrato;
-      console.log('telefono', telefono);
       $scope.obtenerOfertas(telefono)
     }
  }

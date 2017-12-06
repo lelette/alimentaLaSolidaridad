@@ -23,6 +23,13 @@
   	top: 45px;
     left: -60px;
   }
+
+  .synopsis-box {
+    width: 350px;
+    display: block;
+    border: 1.5px solid #E5EBE6;
+    border-radius: .5rem; 
+  }
 /* Boxes */
 
 /* Aux */
