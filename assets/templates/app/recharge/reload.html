@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}">
+	<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}"  style="position:relative; top:0px; z-index:1;">
 		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px" >
 			<!-- <div class="reload-master-box pillar-100p"> -->
 				<div class="pillar-100p" style="display: block;">
@@ -37,7 +37,8 @@
 								<p>Orden</p>
 							</div>
 							<!-- onclick="primeAppVar.changeStateMW(this)" style="cursor:none;"-->
-							<div  id="tab2" class="pillar-45p tab-box tab-off" ui-sref="app.page.recharge.get_token_stripe"  style="width: 350px;" data-active-tab="2" onclick="primeAppVar.changeStateMW(this)">
+							<!-- ui-sref="app.page.recharge.get_token_stripe"  style="width: 350px;" data-active-tab="2" onclick="primeAppVar.changeStateMW(this)" -->
+							<div  id="tab2" class="pillar-45p tab-box tab-off" data-active-tab="2" style="cursor:none; width: 350px;">
 								<img src="images/icoPagoGrs.png">
 								<p>Pago</p>
 							</div>

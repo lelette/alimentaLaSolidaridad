@@ -1333,7 +1333,7 @@ transform: scaleX(1);
 	}
 	.total-box{
     padding: 5px;
-    border-top: 1.5px solid #E5EBE6;
+    /*border-top: 1.5px solid #E5EBE6;*/
     height: 82px;
 	}
 	.balance-box{
