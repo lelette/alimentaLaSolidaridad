@@ -11,7 +11,8 @@ app.controller('ReloadController',
 
   Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-green-off";
-  $scope.btnPayment = "btn-green-off"
+  $scope.btnPayment = "btn-green-off";
+  $scope.btnClassPay = "btn-green-off";
   $scope.btnClassModePay = "btn-off";
   $scope.disabledNumberCountry = true;
   $scope.error_msj_oferta = false;
@@ -41,6 +42,7 @@ app.controller('ReloadController',
   $scope.showOffers   = false;
   $scope.showOperator = false;
   $scope.showCountry = false;
+  $scope.formTDC = false;
   $scope.card = {}
   $scope.fullCard = {}
   $scope.resumenRecarga = false;
@@ -122,6 +124,17 @@ app.controller('ReloadController',
       console.log('Error >>>', error);
     });
 
+  }
+
+  $scope.changeBtnPay = function (cambio) {
+    console.log('cambio', cambio);
+    if (cambio) {
+      $scope.formTDC = cambio;
+      $scope.btnClassPay = "btn-green-on";
+    }else {
+      $scope.formTDC = cambio;
+      $scope.btnClassPay = "btn-green-off";
+    }
   }
 
   $scope.updateSelected = function(token){

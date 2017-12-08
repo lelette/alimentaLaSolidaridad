@@ -11,7 +11,7 @@ app.controller('rechargeResultCtrl',
     console.log('Recharge.result', Recharge.result);
     var result = [];
 
-    if (typeof(Recharge.result) == "object") {
+    if (typeof(Recharge.result) == "object" && Recharge.result.length < 1) {
       result.push(Recharge.result);
     }else {
       result = Recharge.result;
