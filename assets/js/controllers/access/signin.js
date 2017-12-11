@@ -30,7 +30,7 @@ app.controller('SigninFormController',
       password: $scope.user.password
     };
 
-    $http.post('plataform/user/signin', datos)
+    $http.post('/plataform/user/signin', datos)
     .then(function(response) {
       $state.go('app.page.home');
     }, function(res) {
@@ -40,7 +40,7 @@ app.controller('SigninFormController',
 
   $scope.FBLogin = function (fb) {
     console.log('INICIO CON FACEBOOK', fb);
-    $http.get('plataform/user/signinFacebook')
+    $http.get('/plataform/user/signinFacebook')
     .then(function (response) {
       console.log(response.data);
     },function (x) {

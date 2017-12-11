@@ -84,7 +84,7 @@ app.controller('SignupFormController',
   //************* Verifica si el correo ya fue registrado **********************//
   $scope.consultaCorreo = function() {
     if ($scope.user.email !== undefined) {
-      $http.post('plataform/consultaRapida',{email: $scope.user.email.toLowerCase()})
+      $http.post('/plataform/consultaRapida',{email: $scope.user.email.toLowerCase()})
       .then(function(res) {  // success
         if (res.data.msj === false) {
           $scope.correoval = "El correo ingresado ya está registrado";
@@ -126,10 +126,10 @@ app.controller('SignupFormController',
       recaptcha: recaptcha
     };
 
-    $http.post('plataform/user/signup', datos)
+    $http.post('/plataform/user/signup', datos)
     .then(function(response) {
 
-      $http.post('plataform/validation/generate',{
+      $http.post('/plataform/validation/generate',{
         data_target: "email"
       })
       .then(function(resonse){

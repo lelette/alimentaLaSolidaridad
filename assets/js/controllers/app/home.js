@@ -27,7 +27,7 @@ app.controller('HomeCtrl',
       if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
       else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       $rootScope.usernombre = $scope.user.nombres;
-      console.log($rootScope.usernombre);
+      // console.log($rootScope.usernombre);
       // Variables fijas del SUBHeader
       $rootScope.header = {}
       $rootScope.header.icono = "images/icoInicio.png";
@@ -40,7 +40,7 @@ app.controller('HomeCtrl',
 
     $scope.showCountry = false;
 
-    $http.get('plataform/countries').then(function(response) {
+    $http.get('/plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
       $scope.$emit('$resetAjax');
     }, function(res) {
@@ -59,7 +59,7 @@ app.controller('HomeCtrl',
     };
 
     $scope.obtenerOfertas = function (){
-      console.log('$scope.contrato', $scope.contrato);
+      // console.log('$scope.contrato', $scope.contrato);
       var number = $scope.contrato;
       var code = $scope.pais.ext;
       var url = $scope.pais.url;
@@ -89,7 +89,7 @@ app.controller('HomeCtrl',
     //  }
     }
 
-    $http.post('plataform/sale/getSalesAmount')
+    $http.post('/plataform/sale/getSalesAmount')
     .then(function(res){
       $scope.datos.recargas = res.data.ventas;
     }, function(error){
@@ -98,7 +98,7 @@ app.controller('HomeCtrl',
 
 
     //Consultando cantidad de frecuentes del usuario
-    $http.get('plataform/user/searchFrecuente')
+    $http.get('/plataform/user/searchFrecuente')
     .then(function(res){
       $scope.datos.frecuentes = res.data.length;
     } , function(error){
@@ -108,7 +108,7 @@ app.controller('HomeCtrl',
     //Consultando cantidad de TDC afiliadas del usuario en Stripe
     $scope.loader='mostrar';
     $scope.cuerpo='ocultar';
-    $http.get('platform/stripe/getCards')
+    $http.get('/platform/stripe/getCards')
     .then(function(res){
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';

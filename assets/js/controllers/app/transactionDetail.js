@@ -17,7 +17,7 @@ app.controller('movDetailsController',
     * consultar                                                               *
     * @descripcion :: consulta las transacciones realizadas en el sistema     *
     ***************************************************************************/
-    $http.get('plataform/sale/getTransactions?id='+$stateParams.id)
+    $http.get('/plataform/sale/getTransactions?id='+$stateParams.id)
     .then(function(res){
       var venta = res.data.sales;
       if (venta.length == 0 || venta.length != 1) {

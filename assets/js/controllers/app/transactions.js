@@ -34,7 +34,7 @@ app.controller('movController',
         return;
       };
 
-      $http.get('plataform/sale/getTransactions?page='+page+'&limit=10')
+      $http.get('/plataform/sale/getTransactions?page='+page+'&limit=10')
       .then(function(res){
         var ventas = res.data.sales;
         if (ventas.length == 0) {
