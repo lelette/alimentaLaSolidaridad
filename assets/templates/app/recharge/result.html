@@ -1,22 +1,47 @@
-<div class="col-sm-5 pull-none m-a" ng-controller="ResultController">
-  <div class="panel panel-default">
-    <div class="panel-body">
+<main onload="primeAppVar.init()" ng-controller="rechargeResultCtrl">
 
-      <div>
-        <h4>Descripción</h4>
-        <p>{{'Recarga' | translate}} {{recharge.oferta.proveedor.nombre}}</p>
-        <p>Cuenta:{{recharge.contrato}}</p>
-        <p>Monto a recargar: {{recharge.amountExpected}} {{recharge.oferta.pais.iso_currency}}</p>
-        <p>Monto a cobrar: {{recharge.amountCharge}} USD</p>
-        <h4>Resultado</h4>
-        <p>{{recharge.result.recharge ? 'Recarga Exitosa' : 'Recarga Anulada'}}</p>
-        <p ng-if="recharge.result.recharge ">
-          Referencia: {{recharge.result.referencia}}
-        </p>
-      </div>
-      <div class="col-sm-12">
-        <button type="submit" ng-click="continuar()" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
+  <!-- Movimiento Detallado -->
+  <div class="center" style="width:70%">
+    <div class="bg-light lter b-b wrapper-md text-center">
+      <h1 class="m-n font-thin h3">Resumen de Recargas</h1>
+    </div>
+    <div class="min-w-lg form-center">
+      <div class="panel panel-default form-md">
+        <div class="panel panel-heading text-center title-letters">
+          <b>Detalles</b>
+        </div>
+        <div class="table-responsive">
+          <table class="table b-t b-light" >
+            <tbody>
+              <tr style="font-weight:500;">
+                <td>Referencia</td>
+                <td>Telefono</td>
+                <td>Monto</td>
+                <td>Estatus</td>
+                <td>Descripcion</td>
+              </tr>
+              <tr ng-repeat="item in result">
+                <td>{{item.referencia}}</td>
+                <td>+{{item.phone}}</td>
+                <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
+                <td>{{ item.status || "Anulada" }}</td>
+                <td>{{item.error.msj}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="panel-footer text-right bg-light lter" style="text-align:center">
+          <!--<button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}}-->
+          <button  ui-sref="app.page.recharge" class="btn-green-on" data-standard="">{{'Nueva Recarga' | translate}}</button>
+          <button class="btn-green-on" data-standard=""><p>Enviar por Correo</p></button>
+          <button class="btn-green-on" data-standard=""><p>Descargar en PDF</p></button>
+        </footer>
       </div>
     </div>
   </div>
-</div>
+  <!-- Fin de Movimiento Detallado -->
+
+</main>
+<script src="js/ui-load.js"></script>
+<script src="js/ui-jp.config.js"></script>
+<script src="js/ui-jp.js"></script>

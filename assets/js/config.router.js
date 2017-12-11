@@ -133,10 +133,12 @@ angular.module('app')
             templateUrl: 'templates/app/recharge/confirm.html',
             resolve: load([])
           })
-          .state('app.page.recharge.result', {
-            url: '/result',
+          .state('app.page.rechargeResult', {
+            url: '/rechargeResult',
             templateUrl: 'templates/app/recharge/result.html',
-            resolve: load([])
+            resolve: load([
+              'js/controllers/app/rechargeResult.js'
+            ])
           })
           // fin recharge #######################################
 

@@ -1,6 +1,6 @@
-<div ng-controller="ReloadController" ng-init="loader='mostrar';cuerpo='ocultar'" style="text-align: -webkit-center;">
-
-    <div class="line-100 pay-box">
+<div style="text-align: -webkit-center; margin-top:20px;">
+<!-- ng-controller="ReloadController" ng-init="loader='mostrar';cuerpo='ocultar'"  -->
+    <div class="line-100 pay-box" style="display:flex;">
       <div class="line-100" style="width: 750px;">
         <div class="lindatose-100 pay-type-box" style="display: -webkit-inline-box;">
           <div class="pillar-auto">
@@ -176,7 +176,7 @@
               </div><br>
 
                 <div class="line-100">
-                    <input type="text" name="holder_name" data-hide-2 placeholder="Nombre del titular" maxlength="40" ng-model="card.name" string-std required>
+                    <input type="text" name="holder_name" ng-change="changeBtnPay(formTDC.$valid)" data-hide-2 placeholder="Nombre del titular" maxlength="40" ng-model="card.name" string-std required>
                 </div>
                 <!--ERRORES EN CAMPO DE NOMBRE DEL TITULAR -->
                 <div class="text-center" ng-if="formTDC.holder_name.$dirty && (formTDC.holder_name.$invalid || formTDC.holder_name.$touched)">
@@ -189,7 +189,7 @@
                 </div>
                 <!-- ERRORES EN CAMPO DEL NOMBRE DEL TITULAR -->
                 <div class="line-100">
-                    <input type="text" name="country" data-hide-2 placeholder="Pais" maxlength="40" ng-model="fullCard.country" required string-std>
+                    <input type="text" name="country" ng-change="changeBtnPay(formTDC.$valid)" data-hide-2 placeholder="Pais" maxlength="40" ng-model="fullCard.country" required string-std>
                 </div>
                 <!--ERRORES EN CAMPO DEL PAIS -->
                 <div class="text-center" ng-if="formTDC.country.$dirty && (formTDC.country.$invalid || formTDC.country.$touched)">
@@ -204,9 +204,8 @@
                   </span>
                 </div>
                 <!-- ERRORES EN CAMPO DEL PAIS -->
-
                 <div class="line-100">
-                    <input type="text" name="address" data-hide-2 placeholder="Dirección" ng-model="fullCard.address" maxlength="40" required>
+                    <input type="text" name="address" ng-change="changeBtnPay(formTDC.$valid)" data-hide-2 placeholder="Dirección" ng-model="fullCard.address" maxlength="40" required>
                 </div>
                 <!--ERRORES EN CAMPO DE LA DIRECCION -->
                 <div class="text-center" ng-if="formTDC.address.$dirty && (formTDC.address.$invalid || formTDC.address.$touched)">
@@ -223,9 +222,9 @@
                     <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
                 </div>
                 <br><br>
-                <button data-standard class="btn-green-on">
+                <!-- <button data-standard ng-click="recharge(formTDC.$valid)" class="btn-green-on">
                   <p>Pagar</p>
-                </button>
+                </button> -->
             </div>
           </div>
         </form><br>
