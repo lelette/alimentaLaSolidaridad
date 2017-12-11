@@ -54,7 +54,7 @@ app.controller('ReloadController',
     console.log('Error >>>', error);
   });
 
-  $http.get('/plataform/user/searchFrecuente')
+  $http.get('plataform/user/searchFrecuente')
   .then(function(response){
     $scope.frecuentes = response.data;
   }, function(error){
@@ -75,7 +75,7 @@ app.controller('ReloadController',
      $scope.showOffers = true;
      $scope.showOperator = true;
   }else {
-    $http.get('/plataform/countries').then(function(response) {
+    $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
       $scope.$emit('$resetAjax');
     }, function(res) {
@@ -107,7 +107,7 @@ app.controller('ReloadController',
   *    @autor       :: Javier Stifano <jstifano@transamovil.com>                                   *
   **************************************************************************************************/
   $scope.removeRecharge = function (idSale) {
-    $http.post('/plataform/sales/deleteShoppingCart', {id: idSale})
+    $http.post('plataform/sales/deleteShoppingCart', {id: idSale})
     .then(function(response){
       var cart = Recharge.cart.details;
       var data = response.data[0];
@@ -143,7 +143,7 @@ app.controller('ReloadController',
 
   $scope.agregarAlCarrito = function () {
     if (Recharge.info.oferta) {
-      $http.post('/plataform/sales/shoppingCartRegister', Recharge.info.oferta)
+      $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
         Recharge.info.oferta.idSale = res.data.venta.id
         Recharge.cart.details.push(Recharge.info.oferta);
@@ -203,7 +203,7 @@ app.controller('ReloadController',
           }
 
           Recharge.cart.token = res.id;
-          $http.post('/plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+          $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
             Recharge.result = response.data.recargas;
             $scope.$emit('$resetAjax');
             $scope.loader = 'ocultar';
@@ -251,7 +251,7 @@ app.controller('ReloadController',
    if (telefono) {
     $scope.showOffers = false;
     $scope.loaderRecharge = 'mostrar';
-    $http.post('/plataform/offers',{
+    $http.post('plataform/offers',{
           // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
           "phone":  telefono
      }).then(function(res){

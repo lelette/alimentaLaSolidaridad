@@ -40,7 +40,7 @@ app.controller('HomeCtrl',
 
     $scope.showCountry = false;
 
-    $http.get('/plataform/countries').then(function(response) {
+    $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
       $scope.$emit('$resetAjax');
     }, function(res) {
@@ -89,7 +89,7 @@ app.controller('HomeCtrl',
     //  }
     }
 
-    $http.post('/plataform/sale/getSalesAmount')
+    $http.post('plataform/sale/getSalesAmount')
     .then(function(res){
       $scope.datos.recargas = res.data.ventas;
     }, function(error){
@@ -98,7 +98,7 @@ app.controller('HomeCtrl',
 
 
     //Consultando cantidad de frecuentes del usuario
-    $http.get('/plataform/user/searchFrecuente')
+    $http.get('plataform/user/searchFrecuente')
     .then(function(res){
       $scope.datos.frecuentes = res.data.length;
     } , function(error){

@@ -282,7 +282,7 @@ app.controller('ImgChangeCtrl', [
     }
 
     var uploader = $scope.uploader = new FileUploader({
-       url: $rootScope.apiUrl+'/plataform/user/changeImage',
+       url: $rootScope.apiUrl+'plataform/user/changeImage',
        alias: 'imagen_perfil',
        autoUpload: false,
        withCredentials: true,

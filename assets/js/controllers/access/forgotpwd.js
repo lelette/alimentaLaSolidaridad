@@ -26,7 +26,7 @@ app.controller('ForgotpwdController',
       email: $scope.user.email
     };
 
-    $http.post('/plataform/forgotpwd/generate', datos)
+    $http.post('plataform/forgotpwd/generate', datos)
     .then(function(response) {
         // $state.go('access.applyForgotPwd');
 
@@ -151,7 +151,7 @@ app.controller('applyFPController',
       codigo: datos.code
     };
 
-    $http.post('/plataform/forgotpwd/apply', datosE)
+    $http.post('plataform/forgotpwd/apply', datosE)
     .then(function(response) {
         $state.go('access.successappplyfp');
     }, function(res) {

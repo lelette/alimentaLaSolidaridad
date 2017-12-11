@@ -31,7 +31,7 @@ app.controller('FrequentController',
     $scope.auxNumero = '';
     $scope.showCountry = false;
 
-    $http.get('/plataform/countries').then(function(response) {
+    $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
       $scope.$emit('$resetAjax');
     }, function(res) {
@@ -49,7 +49,7 @@ app.controller('FrequentController',
 
 
     $scope.consultarFrecuentes = function () {
-      $http.get('/plataform/user/searchFrecuente')
+      $http.get('plataform/user/searchFrecuente')
       .then(function (response) {
         console.log('Frecuentes',response.data);
         $scope.frecuentes = response.data;
@@ -83,7 +83,7 @@ app.controller('FrequentController',
       modalInstance.result
       .then(function (result) {
         $scope.newFrequent.alias = result;
-        $http.post('/plataform/user/addFrecuente', $scope.newFrequent)
+        $http.post('plataform/user/addFrecuente', $scope.newFrequent)
         .then(function (response) {
 
           $scope.auxNumero = '';
@@ -104,7 +104,7 @@ app.controller('FrequentController',
     };
 
     $scope.eliminarFrecuente = function (frecuente) {
-      $http.post('/plataform/user/removeFrecuente', {numero: frecuente})
+      $http.post('plataform/user/removeFrecuente', {numero: frecuente})
       .then(function (response) {
         console.log(response.data);
         $scope.consultarFrecuentes();
@@ -133,7 +133,7 @@ app.controller('FrequentController',
 
       modalInstance.result
       .then(function (result) {
-        $http.post('/plataform/user/updateFrecuente', result)
+        $http.post('plataform/user/updateFrecuente', result)
         .then(function (response) {
 
           console.log(response.data);

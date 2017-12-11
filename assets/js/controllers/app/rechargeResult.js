@@ -8,7 +8,7 @@
 app.controller('rechargeResultCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', 'User',
   function($rootScope, $scope, $http, $state, Recharge, $translate, User) {
-    console.log('Recharge.result', Recharge.result);
+    // console.log('Recharge.result', Recharge.result);
     var result = [];
 
     if (typeof(Recharge.result) == "object" && Recharge.result.length < 1) {

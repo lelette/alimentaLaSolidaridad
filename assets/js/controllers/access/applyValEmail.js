@@ -21,7 +21,7 @@ app.controller('applyValEmailController',
   else $scope.val = 'error';
 
   if ($scope.val != 'error') {
-    var urlVal = '/plataform/validation/apply?code='+datos.code +'&rel='+datos.rel+'&data='+datos.data;
+    var urlVal = 'plataform/validation/apply?code='+datos.code +'&rel='+datos.rel+'&data='+datos.data;
 
     $http.get(urlVal)
     .then(function(response){

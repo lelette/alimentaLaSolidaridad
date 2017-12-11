@@ -198,7 +198,7 @@ app.controller('GlobalCtrl',
 
 
     $scope.logout = function(){
-      $http.post('/plataform/user/logout').then(function (res){
+      $http.post('plataform/user/logout').then(function (res){
         Recharge.reset();
         Recharge.cart = {
           token: null,
@@ -212,7 +212,7 @@ app.controller('GlobalCtrl',
     if (Recharge.cart && Recharge.cart.details.length != 0){
       $scope.cart = Recharge.cart.details;
     }else {
-      $http.get('/plataform/sales/getshoppingCart')
+      $http.get('plataform/sales/getshoppingCart')
       .then(function(response){
           var res = response.data;
           if (res.carrito.length == 0) {
