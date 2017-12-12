@@ -6,7 +6,7 @@
           <div class="pillar-auto">
             <div class="pillar-30px">
               <div class="neeru-checkbox-1">
-                <input type="radio" name="type-pay" ng-model="typePay" value="tdcnueva">
+                <input type="radio" name="type-pay" ng-model="typePay" ng-checked='true' value="tdcnueva">
                 <span></span>
               </div>
             </div>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="dynamic-content-box" ng-if="typePay == 'afiliadas'" style="position: relative; right:11%; bottom:70px">
-          <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+          <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;">
             <div class="line-100">
               <img src="../../images/carita4.png">
               <p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
@@ -36,7 +36,7 @@
           <div ng-if="cards.length != 0" class="pillar-30p member-card" style="margin-top:120px; margin-left:87px; width:200px" ng-repeat="card in cards">
             <div class="pillar-30px">
               <div class="neeru-checkbox-1">
-                <input type="radio" name="tdc-member" ng-model="cardSelected" value="{{card.id}}">
+                <input type="radio" name="tdc-member" ng-click="selectCardTdc(card.id)" ng-model="cardSelected" value="{{card.id}}">
                 <span></span>
               </div>
             </div>
