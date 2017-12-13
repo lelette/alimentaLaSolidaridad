@@ -32,7 +32,7 @@ app.controller('SigninFormController',
 
     $http.post('plataform/user/signin', datos)
     .then(function(response) {
-      $state.go('app.page.home');
+      $state.go('app.page.recharge');
     }, function(res) {
       $scope.authError = res.data.error.msjUser;
     });
