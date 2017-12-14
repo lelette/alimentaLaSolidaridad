@@ -58,6 +58,8 @@ i {
 	Social Media Profile
 */
 
+.box-profile
+
 .profile-default-view {
 	display: flex;
 	width: 100%;
@@ -288,6 +290,12 @@ i {
 	flex-wrap: wrap;
 	display: flex;
 	width: 30%
+}
+
+.frequent-input {
+	height: 40px !important;
+	color:#747474;
+	width: 250px !important;
 }
 
 th {
@@ -560,11 +568,16 @@ tr:last-child{
 	    width: 100%;
 	    background: white;
 	    overflow: auto;
-	    /*height: calc(100% - 150px);*/
 	    box-sizing: border-box;
 	    z-index: 10;
       transition: .45s;
 			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
 		}
 	}
 	@media screen and (min-width: 301px) and (max-width: 400px){
@@ -696,11 +709,16 @@ tr:last-child{
 	    width: 100%;
 	    background: white;
 	    overflow: auto;
-	    /*height: calc(100% - 150px);*/
 	    box-sizing: border-box;
 	    z-index: 10;
       transition: .45s;
 			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
 		}
 	}
 	@media screen and (min-width: 401px) and (max-width: 500px){
@@ -821,11 +839,16 @@ tr:last-child{
 	    width: 100%;
 	    background: white;
 	    overflow: auto;
-	    /*height: calc(100% - 150px);*/
 	    box-sizing: border-box;
 	    z-index: 10;
       transition: .45s;
 			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
 		}
 	}
 	@media screen and (min-width: 501px) and (max-width: 767px){
@@ -917,7 +940,6 @@ tr:last-child{
 		.boxSecFunciona{
 			width: 66.6666% !important;
 			padding: 10px 10px !important;
->>>>>>> landing_page_original
 		}
 
 		.frequent-master-box{
@@ -944,14 +966,68 @@ tr:last-child{
 	    width: 100%;
 	    background: white;
 	    overflow: auto;
-	    /*height: calc(100% - 125px);*/
 	    box-sizing: border-box;
 	    z-index: 10;
       transition: .45s;
 			text-align: -webkit-center;
 		}
 
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
 	}
+
+	@media screen and (min-width: 500px) and (max-width: 709px)  {
+		.social-box {
+			width: 60%;
+			height: 42%;
+		}
+
+		.profile-default-view {
+			display: block;
+			margin-top: 120px;
+		}
+
+
+	}
+
+	@media screen and (min-width: 710) and (max-width: 767px){
+		.social-box {
+			width: 60%;
+			height: 42%;
+			margin-bottom: 10px;
+		}
+
+	 .profile-default-view {
+			display: block !important;
+		}
+
+		.leftSpace {
+			margin-top: 170px !important;
+		}
+
+		#background {
+			display: block !important;
+			text-align: -webkit-center !important;
+		}
+
+	}
+
+	@media screen and (min-width: 767px) and (max-width: 790px){
+		.social-box {
+			width: 48%;
+		}
+	}
+
+	@media screen and (min-width: 791px) and (max-width: 991px) {
+		.social-box {
+			width: 45%;
+		}
+	}
+
 	@media screen and (min-width: 768px) and (max-width: 992px){
 
 		.access-content{
@@ -1037,7 +1113,6 @@ tr:last-child{
 
 		.w-img-table{
 			height: 500px;
->>>>>>> landing_page_original
 		}
 
 		.frequent-master-box{
@@ -1066,11 +1141,25 @@ tr:last-child{
 	    width: 100%;
 	    background: white;
 	    overflow: auto;
-	    /*height: calc(100% - 125px);*/
 	    box-sizing: border-box;
 	    z-index: 10;
       transition: .45s;
 			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 40%;
+		}
+
+		.profile-default-view {
+			display: flex;
+			margin-top: 120px;
 		}
 	}
 	@media screen and (min-width: 993px) and (max-width: 1200px){
@@ -1165,6 +1254,16 @@ tr:last-child{
 		.frequent-master-box > section{
 	    padding: 0px 2.5%;
 		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 35%;
+		}
 	}
 	@media screen and (min-width: 1201px) and (max-width: 1499px){
 
@@ -1241,6 +1340,16 @@ tr:last-child{
 			padding-left: 15%;
 		}
 
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 30% !important;
+		}
+
 	}
 
 	@media screen and (min-width: 1501px){
@@ -1314,10 +1423,15 @@ tr:last-child{
 			padding-top: 50px;
 			padding-left: 15%;
 		}
->>>>>>> landing_page_original
 
 		.frequent-master-box > section{
 	    padding: 0px 2.5%;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 290px !important;
 		}
 	}
 /* Responsive */

@@ -27,6 +27,24 @@
             <!-- ERRORES EN CAMPO DE NOMBRES -->
 
           <div class="pillar-auto">
+            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="Apellido" required name="apellidos" ng-model="user.apellidos">
+          </div>
+
+          <!-- ERRORES EN CAMPO DE NOMBRES -->
+          <div class="text-center" ng-if="form.apellidos.$dirty && (form.apellidos.$invalid || form.apellidos.$touched)">
+            <span ng-if="form.nombres.$error.required" class="error-input-msj" >
+              {{"err.required" | translate}}
+            </span>
+            <span ng-if="form.apellidos.$error.minlength" class="error-input-msj" >
+              {{"err.minlength" | translate}} 4
+            </span>
+            <span ng-if="form.apellidos.$error.stringStd" class="error-input-msj" >
+              {{"err.stringStd" | translate}}
+            </span>
+          </div>
+          <!-- ERRORES EN CAMPO DE NOMBRES -->
+
+          <div class="pillar-auto">
             <input data-hide-3 type="email" maxLength="256" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required ng-blur="consultaCorreo()">
           </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
