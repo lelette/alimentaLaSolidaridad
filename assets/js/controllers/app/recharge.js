@@ -287,13 +287,17 @@ app.controller('ReloadController',
     if (Recharge.cart.details.length > 0) $scope.btnClassPassPay = "btn-green-on";
 
     $scope.showOffers = false;
-    $scope.loaderRecharge = 'mostrar';
+    //$scope.loaderRecharge = 'mostrar';
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
     $http.post('plataform/offers',{
           // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
           "phone":  telefono
      }).then(function(res){
        $scope.error_msj_oferta = false;
-       $scope.loaderRecharge = 'ocultar';
+      //  $scope.loaderRecharge = 'ocultar';
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
        var ofertas = res.data;
        var operadora = ofertas.operadora;
        console.log('ofertas', ofertas);
@@ -307,7 +311,9 @@ app.controller('ReloadController',
       $scope.ofertas = Recharge.info.ofertas;
       $scope.showOffers = true; $scope.showOperator = true;
     }, function(res){
-      $scope.loaderRecharge = 'ocultar';
+      //$scope.loaderRecharge = 'ocultar';
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.showOffers = false;
       $scope.error_msj_oferta = true;
       /*$scope.$emit('$resetAjax');
