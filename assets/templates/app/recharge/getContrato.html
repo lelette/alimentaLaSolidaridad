@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="pillar-50p">
-          <input ng-disabled="disabledNumberCountry" onblur="primeAppVar.validateInputPhone(this)" type="text" numero name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="{{ 'top-up.order.phone_input' | translate }}" ng-maxlength="12" style="margin-left:0.5pc;height: 40px;border-right:0; border-bottom-right-radius: 0;border-top-right-radius: 0; border-right:0;">
+          <input ng-disabled="disabledNumberCountry" onblur="primeAppVar.validateInputPhone(this)" type="text" numero name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="{{ 'top-up.order.phone_input' | translate }}" minlength="4" maxlength="15" style="margin-left:0.5pc;height: 40px;border-right:0; border-bottom-right-radius: 0;border-top-right-radius: 0; border-right:0;">
           <button class="btn-go" ng-disabled="disabledNumberCountry" ng-click="obtenerOfertas()" type="button" name="button"><i class="fa fa-angle-right"></i></button>
         </div>
       </div>
@@ -188,7 +188,7 @@
             <div class="pillar-auto">
               <div class="pillar-30px">
                 <div class="neeru-checkbox-1">
-                  <input type="radio" ng-click="selectOffer(producto)"  name="option">
+                  <input type="radio" ng-click="selectOffer(producto)" name="option">
                   <span></span>
                 </div>
               </div>
