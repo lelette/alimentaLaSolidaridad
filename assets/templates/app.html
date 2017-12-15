@@ -20,7 +20,7 @@
           <section>
             <div>
               <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
-              Cargando
+              {{"Cargando" | translate}}
               </p>
             </div>
           </section>
@@ -44,7 +44,7 @@
       <div class="app-content">
         <div ui-butterbar></div>
         <!-- <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a> -->
-        <div class="app-content-body fade-in-up" ui-view></div>
+        <div class="app-content-body fade-in-up" style="margin-bottom: 69px;" ui-view></div>
       </div>
       <!-- /content -->
 
@@ -59,8 +59,8 @@
 
 
       <!-- footer -->
-      <div class="footer" align="center" role="footer">
-        <span class="pull-right">{{app.version}}</span>
+      <div class="footer" align="center" style="z-index:1;">
+        <span class="pull-right">{{app.version}}</span> <a href ui-scroll-to="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
         &copy; Copyright 2016 | Celupago C.A. RIF.: J-31727952-2 | Reservados todos los derechos. <u><b><i><a href="/Terms-and-Conditions" ui-sref="app.condiciones">Leer términos y condiciones</a></i></b></u>
       </div>
       <!-- / footer -->
