@@ -143,7 +143,13 @@ app.controller('ReloadController',
     }
   }
 
+  $scope.changeNewTDC = function () {
+    $scope.newTDC = false;
+    $scope.btnClassPay = 'btn-green-off';
+  }
+
   $scope.selectCardTdc = function (tokenTdc) {
+    $rootScope.newTDC = false;
     if (tokenTdc) {
       Recharge.cart.token = tokenTdc;
       $scope.formTDC = true;
@@ -171,7 +177,7 @@ app.controller('ReloadController',
     if (Recharge.info.oferta) {
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
-        Recharge.info.oferta.idSale = res.data.venta.id
+        Recharge.info.oferta.idSale = res.data.venta.id;
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
         $scope.btnClassModePay = "btn-green-on";
