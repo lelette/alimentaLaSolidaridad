@@ -15,6 +15,7 @@
             <th class="p-tiny" style="width:20%; text-align:center;">Monto</th>
             <th class="p-tiny" style="width:20%; text-align:center;">Estatus</th>
             <th class="p-tiny" style="width:20%; text-align:center;">Descripcion</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">Frecuente</th>
           </tr>
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
@@ -24,6 +25,9 @@
             <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
             <td>{{item.status || "Anulada" }}</td>
             <td>{{item.error.msj}}</td>
+            <td>
+              <input type="checkbox" style="cursor:pointer;">
+            </td>
           </tr>
         </tbody>
       </table>
