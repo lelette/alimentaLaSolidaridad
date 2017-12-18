@@ -15,6 +15,7 @@ app.service('Recharge', [
 
     // Información permanente de las recargas pendientes
     this.cart = {
+      checkAfiliacionTDC: false,
       token: null,
       details: []
     };

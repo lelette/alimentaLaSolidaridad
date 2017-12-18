@@ -5,6 +5,11 @@ app.controller('getTokenStripeCtrl',[
  function($scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
    //Stripe.setPublishableKey('pk_test_BR7HShIv2kTdYnhQeUw1xwLp');
    $scope.newTDC = true;
+   $scope.checkAfiliacionTDC = false;
+
+   $scope.$watch("checkAfiliacionTDC",function(newValue,oldValue) {
+    Recharge.cart.checkAfiliacionTDC = newValue;
+   });
    $scope.changeNewTDC1 = function (cambio) {
      if (!cambio) $scope.fullCard = {}
      $scope.newTDC = cambio;
