@@ -1,4 +1,4 @@
-<div style="text-align: -webkit-center; margin-top:20px;" ng-controller="getTokenStripeCtrl">
+<div style="text-align: -webkit-center;" ng-controller="getTokenStripeCtrl">
 <!-- ng-controller="ReloadController" ng-init="loader='mostrar';cuerpo='ocultar'"  -->
     <div class="line-100 pay-box" style="display:flex;">
       <div class="line-100">
@@ -6,19 +6,19 @@
           <p class="p-2" >Tarjetas Afiliadas</p>
         </div>
         <div class="dynamic-content-box" style="display: flex;justify-content: space-around;">
-          <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;">
+          <div ng-if="cards.length == 0" class="empty-activity-box">
             <div class="line-100">
               <img src="../../images/carita4.png">
               <p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
             </div>
-            <div class="line-100">
+            <!-- <div class="line-100">
               <p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
-            </div>
+            </div> -->
           </div>
           <div ng-if="cards.length != 0" class="pillar-30p member-card" ng-repeat="card in cards">
             <div class="pillar-30px">
               <div class="neeru-checkbox-1">
-                <input type="radio" name="tdc-member" ng-click="selectCardTdc(card.id);changeNewTDC1(false)" ng-model="cardSelected" value="{{card.id}}">
+                <input type="radio" name="tdc-member" ng-click="selectCardTdc(card);changeNewTDC1(false)" ng-model="cardSelected" value="{{card.id}}">
                 <span></span>
               </div>
             </div>
@@ -224,7 +224,7 @@
                 <div class="pillar-auto">
                   <div class="pillar-30px">
                     <div class="neeru-checkbox-1">
-                      <input type="checkbox" name="option" class="ng-click-active">
+                      <input type="checkbox" ng-model="checkAfiliacionTDC" name="option" class="ng-click-active">
                       <span></span>
                     </div>
                   </div>
@@ -232,7 +232,6 @@
                     <p class="ng-binding"><span class="p-500 ng-binding">Afiliar TDC a Frecuentes</span></p>
                   </div>
                 </div>
-
             </div>
           </div>
         </form>
