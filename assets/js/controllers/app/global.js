@@ -171,8 +171,6 @@ app.controller('GlobalCtrl',
       $scope.user = User.info;
       $scope.user.imagen_perfil = User.info.imagen_perfil;
       $scope.user.pin = User.info.pin;
-      if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
-      else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       $rootScope.usernombre = $scope.user.nombres;
       // console.log($rootScope.usernombre);
       // Variables fijas del SUBHeader

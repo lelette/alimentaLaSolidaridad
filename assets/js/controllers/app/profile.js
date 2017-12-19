@@ -42,8 +42,6 @@ app.controller('BasicController',
           email: User.info.login.email.email,
           imagen_perfil: User.info.imagen_perfil,
         };
-        if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
-        else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       }
     });
   };
@@ -160,6 +158,7 @@ app.controller('SecurityController',
         if (err) {
           console.log(err);
         };
+        $state.go('app.page.profile')
       });
     }
 
@@ -289,7 +288,6 @@ app.controller('ImgChangeCtrl', [
      });
 
     var handleFileSelect = function(evt) {
-      console.log($scope);
       var file = evt.currentTarget.files[0];
       var reader = new FileReader();
 
@@ -356,6 +354,7 @@ app.controller('ImgChangeCtrl', [
           if (err) {
             console.log(err);
           }
+          $state.reload()
         });
         // $modalInstance.dismiss();
         $scope.loader = 'ocultar';

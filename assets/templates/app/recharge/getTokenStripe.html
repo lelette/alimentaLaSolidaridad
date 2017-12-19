@@ -1,42 +1,24 @@
-<div style="text-align: -webkit-center; margin-top:20px;">
+<div style="text-align: -webkit-center;" ng-controller="getTokenStripeCtrl">
 <!-- ng-controller="ReloadController" ng-init="loader='mostrar';cuerpo='ocultar'"  -->
     <div class="line-100 pay-box" style="display:flex;">
-      <div class="line-100" style="width: 750px;">
-        <div class="lindatose-100 pay-type-box" style="display: -webkit-inline-box;">
-          <div class="pillar-auto">
-            <div class="pillar-30px">
-              <div class="neeru-checkbox-1">
-                <input type="radio" name="type-pay" ng-model="typePay" value="tdcnueva">
-                <span></span>
-              </div>
-            </div>
-            <p class="p-500 p-gray">Pagar con TDC Nueva</p>
-          </div>
-          <div class="pillar-auto">
-            <div class="pillar-30px">
-              <div class="neeru-checkbox-1">
-                <input type="radio" name="type-pay" ng-model="typePay" value="afiliadas">
-                <span></span>
-              </div>
-            </div>
-            <p class="p-500 p-gray">Pagar con tarjetas afiliadas</p>
-          </div>
+      <div class="line-100">
+        <div class="line-100" style="padding: 20px 0px;">
+          <p class="p-2" >Tarjetas Afiliadas</p>
         </div>
-        <div class="dynamic-content-box" ng-if="typePay == 'afiliadas'" style="position: relative; right:11%; bottom:70px">
-          <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:120px;position: relative;right: 85px;">
+        <div class="dynamic-content-box" style="display: flex;justify-content: space-around;">
+          <div ng-if="cards.length == 0" class="empty-activity-box">
             <div class="line-100">
               <img src="../../images/carita4.png">
               <p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
             </div>
-            <div class="line-100">
+            <!-- <div class="line-100">
               <p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
-            </div>
+            </div> -->
           </div>
-
-          <div ng-if="cards.length != 0" class="pillar-30p member-card" style="margin-top:120px; margin-left:87px; width:200px" ng-repeat="card in cards">
+          <div ng-if="cards.length != 0" class="pillar-30p member-card" ng-repeat="card in cards">
             <div class="pillar-30px">
               <div class="neeru-checkbox-1">
-                <input type="radio" name="tdc-member" ng-model="cardSelected" value="{{card.id}}">
+                <input type="radio" name="tdc-member" ng-click="selectCardTdc(card);changeNewTDC1(false)" ng-model="cardSelected" value="{{card.id}}">
                 <span></span>
               </div>
             </div>
@@ -54,9 +36,26 @@
               </div>
             </div>
           </div>
+          <div ng-if="cards.length != 0" class="pillar-30p member-card">
+            <div class="pillar-30px">
+              <div class="neeru-checkbox-1">
+                <input type="radio" name="tdc-member" ng-click="changeNewTDC();changeNewTDC1(true);" ng-checked="true">
+                <span></span>
+              </div>
+            </div>
+            <div class="pillar-100p">
+              <div class="line-100">
+                <p class="p-up p-gray p-500 p-small"> Nueva TDC </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <form id= "formTDC" name="formTDC">
-          <div class="frequent-add" style="margin-top:40px" ng-if="typePay == 'tdcnueva'">
+
+        <form id= "formTDC" name="formTDC" ng-show="newTDC">
+          <div class="line-100">
+            <p class="p-2">Otra Tarjeta</p>
+          </div>
+          <div class="frequent-add" style="margin-top:40px">
             <div style="width: 50%;">
               <div class="line-100">
                 <div class="pillar-25p">
@@ -221,13 +220,21 @@
                 <div class="line-100">
                     <input type="text" data-hide-2 placeholder="Descripción" ng-model="fullCard.description">
                 </div>
-                <br><br>
-                <!-- <button data-standard ng-click="recharge(formTDC.$valid)" class="btn-green-on">
-                  <p>Pagar</p>
-                </button> -->
+                <br>
+                <div class="pillar-auto">
+                  <div class="pillar-30px">
+                    <div class="neeru-checkbox-1">
+                      <input type="checkbox" ng-model="checkAfiliacionTDC" name="option" class="ng-click-active">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="pillar-auto">
+                    <p class="ng-binding"><span class="p-500 ng-binding">Afiliar TDC a Frecuentes</span></p>
+                  </div>
+                </div>
             </div>
           </div>
-        </form><br>
+        </form>
       </div>
     </div>
 

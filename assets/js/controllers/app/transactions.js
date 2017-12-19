@@ -4,8 +4,9 @@
 * @description :: define la interaccion necesaria para realizar el registro de usuarios *
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
-
-
+ function verMovDetalle(id) {
+  window.location.assign("http://localhost:9000/app/page/transactionDetail/"+id)
+}
 
 app.controller('movController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
@@ -20,9 +21,6 @@ app.controller('movController',
     $scope.currentPage = 1;
     $scope.pageSize = 10;
 
-    $scope.verMovDetalle= function(id) {
-      window.location.assign("http://localhost:9000/app/page/transactionDetail/"+id)
-    }
     /**************************************************************************
     * consultar                                                               *
     * @descripcion :: consulta las transacciones realizadas en el sistema     *

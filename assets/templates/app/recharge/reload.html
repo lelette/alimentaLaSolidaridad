@@ -18,7 +18,7 @@
 					<section>
 					<div>
 						<p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
-							Cargando
+							{{"Cargando" | translate}}
 						</p>
 					</div>
 				</section>
@@ -26,21 +26,20 @@
 			</div>
 		</div>
 	</div>
-
-	<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}"  style="position:relative; top:0px; z-index:1;">
+	<div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}"  style="position:relative; top:0px; z-index:1; margin-left: 15%; margin-right: 15%;">
 		<div class="dynamic-content-box" onload="primeAppVar.init()" style="margin-top: 20px" >
 			<!-- <div class="reload-master-box pillar-100p"> -->
 				<div class="pillar-100p" style="display: block;">
 						<div class="line-100 aux-1-R" style="justify-content: space-around;">
 							<div id="tab1" class="pillar-45p tab-box tab-on"  ui-sref="app.page.recharge" style="width: 350px;" data-active-tab="1" onclick="primeAppVar.changeStateMW(this)">
 								<img src="images/icoOrdenVrd.png">
-								<p>Orden</p>
+								<p>{{ "top-up.tabs.orden" | translate }}</p>
 							</div>
 							<!-- onclick="primeAppVar.changeStateMW(this)" style="cursor:none;"-->
 							<!-- ui-sref="app.page.recharge.get_token_stripe"  style="width: 350px;" data-active-tab="2" onclick="primeAppVar.changeStateMW(this)" -->
 							<div  id="tab2" class="pillar-45p tab-box tab-off" data-active-tab="2" style="cursor:none; width: 350px;">
 								<img src="images/icoPagoGrs.png">
-								<p>Pago</p>
+								<p>{{ "top-up.tabs.pago" | translate }}</p>
 							</div>
 						</div>
 					<div class="pillar-100p" ui-view></div>
@@ -49,7 +48,7 @@
 					<div class="line-100 aux-1-R" onclick="primeAppVar.showResumePanel()">
 						<div class="pillar-100p tab-box tab-off" style="width: 350px; display: flex;">
 							<img src="images/icoResumen.png">
-							<p>Resumen / Envío</p>
+							<p>{{ "top-up.tabs.resumen" | translate }}</p>
 						</div>
 					</div>
 					<div class="line-100 synopsis-box">
@@ -60,7 +59,7 @@
 								<div class="line-100">
 									<div class="line-100">
 										<div class="pillar-auto">
-											<p class="p-up p-gray p-small">Número</p>
+											<p class="p-up p-gray p-small">{{ "top-up.summary.numero" | translate }}</p>
 										</div>
 										<div class="pillar-auto">
 											<p>+{{item.phone}}</p>
@@ -68,7 +67,7 @@
 									</div>
 									<div class="line-100">
 										<div ng-click="removeRecharge(item.idSale)" class="pillar-auto">
-											<p class="p-salmon p-short p-300">Eliminar</p>
+											<p class="p-salmon p-short p-300">{{ "top-up.summary.eliminar" | translate }}</p>
 										</div>
 										<div class="pillar-auto">
 											<p class="p-up p-gray p-300 p-short">{{item.operator}}</p>
@@ -79,7 +78,7 @@
 								<div class="line-100">
 									<div class="line-100">
 										<div class="pillar-auto">
-											<p class="p-up p-gray p-small">Monto</p>
+											<p class="p-up p-gray p-small">{{ "top-up.summary.monto" | translate }}</p>
 										</div>
 										<div class="pillar-auto">
 											<p class="p-tiny aux-text-2-R">USD</p>
@@ -88,7 +87,7 @@
 									</div>
 									<div class="line-100">
 										<div class="pillar-auto">
-											<p class="p-up p-gray p-small">Tasa</p>
+											<p class="p-up p-gray p-small">{{ "top-up.summary.tasa" | translate }}</p>
 										</div>
 										<div class="pillar-auto">
 											<p class="p-tiny aux-text-2-R">USD</p>
@@ -102,7 +101,7 @@
 						<div class="line-100 total-box">
 							<div class="line-100">
 								<div class="pillar-auto">
-									<p class="p-up p-300 p-gray p-tiny">Total</p>
+									<p class="p-up p-300 p-gray p-tiny">{{ "top-up.summary.total" | translate }}</p>
 								</div>
 								<div class="pillar-auto">
 									<p class="p-tiny aux-text-2-R">USD</p>
@@ -111,7 +110,7 @@
 							</div>
 							<div class="line-100">
 								<button data-standard ng-class="btnClassPay" ng-click="recharge(formTDC)">
-									<p>Send top-up</p>
+									<p>{{ "top-up.enviar_recarga" | translate }}</p>
 								</button>
 							</div>
 						</div>
@@ -120,5 +119,4 @@
 			<!-- </div> -->
 		</div>
 	</div>
-
 </div>
