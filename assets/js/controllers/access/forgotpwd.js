@@ -10,7 +10,7 @@ app.controller('ForgotpwdController',
   function($rootScope,  $scope, $http, $state, $translate) {
 
   $rootScope.header = {}
-  $rootScope.header.icono = "images/icoCVV.png";
+  $rootScope.header.icono = "images/icoPasswrd.png";
   $rootScope.header.namePage = "forgotpwd.successfp.subtitulo";
 
   $scope.authError = undefined;

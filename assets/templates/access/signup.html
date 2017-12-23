@@ -10,7 +10,7 @@
             {{authError  | translate}}
         </div>
           <div class="pillar-auto">
-            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="Nombre" required name="nombres" ng-model="user.nombres">
+            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.name_input' | translate }}" required name="nombres" ng-model="user.nombres">
           </div>
             <!-- ERRORES EN CAMPO DE NOMBRES -->
             <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
@@ -27,7 +27,7 @@
             <!-- ERRORES EN CAMPO DE NOMBRES -->
 
           <div class="pillar-auto">
-            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="Apellido" required name="apellidos" ng-model="user.apellidos">
+            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.surname_input' | translate }}" required name="apellidos" ng-model="user.apellidos">
           </div>
 
           <!-- ERRORES EN CAMPO DE NOMBRES -->

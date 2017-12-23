@@ -3,18 +3,18 @@
   <!-- Movimiento Detallado -->
   <div class="center" style="width:70%">
     <div class="bg-light lter b-b wrapper-md text-center">
-      <h1 class="m-n font-thin h5">Resumen de Recargas</h1>
+      <h1 class="m-n font-thin h5">{{ "result_transaction.result_header" | translate }}</h1>
     </div>
     <div class="wrapper-md center w-100">
       <div class="panel-body">
       <table class="table table-hover table-responsive b-t b-b" >
         <thead>
           <tr style="font-weight:500;">
-            <th class="p-tiny" style="width:20%; text-align:center;">Referencia</th>
-            <th class="p-tiny" style="width:20%; text-align:center;">Telefono</th>
-            <th class="p-tiny" style="width:20%; text-align:center;">Monto</th>
-            <th class="p-tiny" style="width:20%; text-align:center;">Estatus</th>
-            <th class="p-tiny" style="width:20%; text-align:center;">Descripcion</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.reference_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.phone_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.amount_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.status_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.description_label" | translate }}</th>
           </tr>
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
@@ -31,8 +31,6 @@
     <footer class="text-right bg-light lter" style="text-align:center">
       <!-- <button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}} -->
       <button  ui-sref="app.page.recharge" class="btn-green-on" data-standard="">{{'Nueva Recarga' | translate}}</button>
-      <button class="btn-green-on" data-standard=""><p>Enviar por Correo</p></button>
-      <button class="btn-green-on" data-standard=""><p>Descargar en PDF</p></button>
     </footer>
   </div>
     </div>

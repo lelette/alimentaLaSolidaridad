@@ -1,11 +1,11 @@
-<div class="m-t-lg" ng-controller="applyValEmailController">
+<div class="" ng-controller="applyValEmailController">
+    <div style="text-align: -webkit-center; margin: 10px 0;" >
+      <p>{{"signup.applyValEmail.subtitulo" | translate }}</p>
+    </div>
     <div class="line-101">
-      <div class="pillar-auto">
-        <strong>{{"signup.applyValEmail.subtitulo" | translate }}</strong>
-      </div>
 
       <div ng-if="!val" class="m-t">
-        <div class="alert alert-info">
+        <div class="alert alert-info" style="cursor: pointer;" ui-sref="access.signin">
           <p class="text-center">
             {{"signup.applyValEmail.exec" | translate }}
           </p>
@@ -13,7 +13,7 @@
       </div>
 
       <div ng-if="val == 'error'">
-        <div class="panel-red">
+        <div class="panel-red" style="cursor: pointer;" ui-sref="access.signin">
           <p class="text-center">
             {{"signup.applyValEmail.error" | translate }}
           </p>
@@ -21,13 +21,11 @@
       </div>
 
       <div ng-if="val == true" class="pillar-auto">
-        <div class="panel-green">
+        <div class="panel-green" style="cursor: pointer;" ui-sref="access.signin">
           <p style="color:white;">
             {{"signup.applyValEmail.success" | translate }}
           </p>
         </div>
       </div>
-
-      <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">{{'Iniciar_Sesion' | translate}}</a>
     </div>
 </div>
