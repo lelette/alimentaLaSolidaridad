@@ -34,7 +34,7 @@
 <div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
 <div class="select-operator-box">
   <div class="line-100" style="margin-top: 50px;">
-    <p class="p-green modal-title">Cambiar foto de perfil...</p>
+    <p class="p-green modal-title">{{ "change_image" | translate }}...</p>
   </div>
   <div class="wrapper-md">
     <div class="hbox hbox-auto-xs modal-body" style="text-align: -webkit-center" ng-show="!selectPreview">
@@ -55,7 +55,7 @@
         <div class="line-100">
           <input class="btn-file" type="file" id="fileInput" accept="image/png, image/jpeg"  data-standard ng-model="files"/>
           <img src="images/conectar.png" style="width: auto; height: auto;">
-          <p style="margin-left: 20px;">Subir Foto</p>
+          <p style="margin-left: 20px;">{{ "landing.subir_imagen" | translate }}</p>
         </div>
       </div>
     </div>
@@ -65,15 +65,15 @@
           <img style="width: 40%; height: 70%;" ng-src="{{myCroppedImage}}" />
           <div class="" style="text-align: left;">
             <p>{{imageName}}</p>
-            <a ng-click="btnCambiar()" data-standard class="btn-change">Cambiar</a>
+            <a ng-click="btnCambiar()" data-standard class="btn-change">{{ "std.change" | translate }}</a>
           </div>
         </div>
       </div>
     </div>
     <div style="margin-bottom: 100px; margin-top: 40px;">
-      <button type="button" data-standard class="btn-gray-on" style="float: left; width: 160px; margin-left: 10%; border-radius: 1rem;" ng-click="cancel()"><p>Cancelar</p></button>
-      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-hide="!selectPreview" ng-click="upload()"><p>Aceptar</p></button>
-      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-show="!selectPreview" ng-disabled="!imageFile" ng-click="selectPreview = true;"><p>Aceptar</p></button>
+      <button type="button" data-standard class="btn-gray-on" style="float: left; width: 160px; margin-left: 10%; border-radius: 1rem;" ng-click="cancel()"><p>{{ "std.Cancelar" | translate }}</p></button>
+      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-hide="!selectPreview" ng-click="upload()"><p>{{ "std.Aceptar" | translate }}</p></button>
+      <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;" ng-show="!selectPreview" ng-disabled="!imageFile" ng-click="selectPreview = true;"><p>{{ "std.Aceptar" | translate }}</p></button>
     </div>
   </div>
 </div>

@@ -15,6 +15,7 @@ app.controller('SigninFormController',
   $scope.fbLogin = '';
   $scope.user = {};
   $scope.authError = null;
+  $scope.loading = false;
 
 
   /****************************************************
@@ -24,7 +25,7 @@ app.controller('SigninFormController',
   *****************************************************/
   $scope.signin = function() {
     $scope.authError = null;
-
+    $scope.loading = true;
     var datos = {
       login: $scope.user.login,
       password: $scope.user.password
@@ -32,8 +33,10 @@ app.controller('SigninFormController',
 
     $http.post('plataform/user/signin', datos)
     .then(function(response) {
+      $scope.loading = false;
       $state.go('app.page.recharge');
     }, function(res) {
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
     });
   };

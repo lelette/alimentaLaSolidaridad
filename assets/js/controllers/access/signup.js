@@ -11,6 +11,7 @@ app.controller('SignupFormController',
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoMiPerfil.png";
     $rootScope.header.namePage = "signup.subtitulo";
+    $scope.loading = false;
 
   /*****************************************************
   * Validaciond e password dinamica                    *
@@ -111,10 +112,12 @@ app.controller('SignupFormController',
   *****************************************************/
   $scope.signup = function() {
     $scope.authError = null;
+    $scope.loading = true;
 
     var recaptcha = $scope.$getValRecaptcha();
 
     if (!recaptcha) {
+      $scope.loading = false;
       $scope.authError = 'err.recaptcha.required';
       return false;
     };
@@ -133,13 +136,15 @@ app.controller('SignupFormController',
         data_target: "email"
       })
       .then(function(resonse){
+        $scope.loading = false;
         $state.go('access.emitValEmail');
       },function(res){
+        $scope.loading = false;
         $scope.authError = res.data.error.msjUser;
       });
 
     }, function(res) {
-
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
 
     });
@@ -156,7 +161,7 @@ app.controller('SuccessController',
 
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoMiPerfil.png";
-    $rootScope.header.namePage = "Registro";
+    $rootScope.header.namePage = "signup.subtitulo";
 
     $scope.redirect = function () {
         $state.go('access.signin');

@@ -33,6 +33,18 @@ i {
 	outline: 0;
 }
 
+a {
+	outline: 0;
+}
+
+p {
+	outline: 0;
+}
+
+b {
+	color: #8c9590;
+}
+
 /*
 	FOOTER
 */

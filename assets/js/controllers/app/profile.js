@@ -28,7 +28,6 @@ app.controller('BasicController',
   $scope.refreshUser = function () {
     User.refresh(function(err){
       if (err) {
-        console.log(err);
         $scope.loader = 'ocultar';
         $scope.cuerpo = 'mostrar';
       }else{
@@ -70,7 +69,6 @@ app.controller('BasicController',
     $scope.update = function(){
       User.update($scope.user, function(err){
         if (err) {
-          console.log(err);
         };
 
       });
@@ -89,7 +87,9 @@ app.controller('SecurityController',
     $scope.popoverContrasena = {
       contenido: '',
       titulo: 'signup.popover.password.titulo'
-    }
+    };
+
+    $scope.loading = false;
 
     // Reiniciar los datos del popover
     $scope.validaciones = validarPassword.inicializarData();
@@ -154,10 +154,12 @@ app.controller('SecurityController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.changePwd = function(){
+      $scope.loading = true;
       User.changePwd($scope.user, function(err){
         if (err) {
-          console.log(err);
+          $scope.loading = false;
         };
+        $scope.loading = false;
         $state.go('app.page.profile')
       });
     }

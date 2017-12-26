@@ -42,8 +42,9 @@ app.controller('applyFPController',
   ['$rootScope', '$scope', '$http', '$state', '$translate', '$location', 'validarPassword',
   function($rootScope,  $scope, $http, $state, $translate, $location, validarPassword) {
     $rootScope.header = {}
-    $rootScope.header.icono = "images/icoCVV.png";
-    $rootScope.header.namePage = "Cambiar Contraseña";
+    $rootScope.header.icono = "images/icoPasswrd.png";
+    $rootScope.header.namePage = "forgotpwd.applyForgotPwd.header";
+    $scope.loading = false;
 /*****************************************************
   * Validaciond e password dinamica                    *
   *****************************************************/
@@ -120,7 +121,7 @@ app.controller('applyFPController',
   *****************************************************/
   $scope.forgotpwd = function() {
     $scope.authError = null;
-
+    $scope.loading = true;
     var datos = {};
 
     if($location.search().rel)
@@ -153,9 +154,10 @@ app.controller('applyFPController',
 
     $http.post('plataform/forgotpwd/apply', datosE)
     .then(function(response) {
+      $scope.loading = false;
         $state.go('access.successappplyfp');
     }, function(res) {
-
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
 
     });
@@ -168,8 +170,8 @@ app.controller('SuccessController',
   function($rootScope,  $scope, $http, $state, $translate) {
 
     $rootScope.header = {}
-    $rootScope.header.icono = "images/icoCVV.png";
-    $rootScope.header.namePage = "Cambiar Contraseña";
+    $rootScope.header.icono = "images/icoPasswrd.png";
+    $rootScope.header.namePage = "forgotpwd.applyForgotPwd.header";
 
     $scope.redirect = function () {
         $state.go('access.signin');

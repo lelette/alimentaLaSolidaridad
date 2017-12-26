@@ -17,7 +17,7 @@
             {{"err.required" | translate}}
           </span>
           <span ng-if="form.previo_password.$error.password" class="error-input-msj" >
-            Caracteres invalidos
+            {{ "err.stringStd" | translate }}
           </span>
         </div>
         <!-- ERRORES EN CAMPO DE PREVIO PASSWORD -->
@@ -27,7 +27,7 @@
         data-hide-3 type="password"
         placeholder="{{ 'std.Password' | translate }}"
         style="text-align: center; margin-bottom: 20px;"
-        maxlength="8" maxlength="16"
+        minlength="8" maxlength="16"
         ng-model="user.password"
         ng-keyup="testPassword()"
         uib-popover-html="popoverContrasena.contenido"
@@ -42,7 +42,7 @@
             {{"err.required" | translate}}
           </span>
           <span ng-if="form.password.$error.password" class="error-input-msj" >
-            Caracteres invalidos
+            {{ "err.stringStd" | translate }}
           </span>
         </div>
 
@@ -62,7 +62,7 @@
             {{"err.required" | translate}}
           </span>
           <span ng-if="form.confirm_password.$error.password" class="error-input-msj" >
-            Caracteres invalidos
+            {{ "err.stringStd" | translate }}
           </span>
           <span ng-if="form.confirm_password.$error.maxlength" class="error-input-msj" >
             {{"err.maxlength" | translate}} 16
@@ -72,8 +72,8 @@
           </span>
         </div>
         <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
-        <button style="margin-top: 20px;" data-standard class="btn-green-on" ng-disabled="form.$invalid" ng-click="changePwd()">
-          <p>Aceptar</p>
+        <button style="margin-top: 20px;" data-standard class="btn-green-on" ng-disabled="form.$invalid" ng-click="changePwd()" ladda="loading" data-style="expand-right">
+          <p>{{ "std.Aceptar" | translate }}</p>
         </button>
       </form>
     </div>
