@@ -67,14 +67,14 @@
       </div>
       <div class="rightSpace">
         <div class="profile">
-          <div class="pad20"><a href="#"><img src="{{user.imagen_perfil}}"></a></div>
-          <p class="profile-p" ng-click="imageChange()" style="cursor: pointer;">CAMBIAR FOTO <br>DE PERFIL</p>
+          <div class="pad20"><a href="#" ng-click="imageChange()"><img src="{{user.imagen_perfil}}"></a></div>
+          <p class="profile-p" ng-click="imageChange()" style="cursor: pointer;">{{ "profile.image_label" | translate }}</p>
         </div>
         <div class="pad20">
-          <p class="profile-p">EMAIL</p>
+          <p class="profile-p">{{ "profile.email_label" | translate }}</p>
           <p class="profile-email">{{user.email}}</p>
           <div class="click" ui-sref="app.page.profile.security">
-            <p class="profile-p">CAMBIAR CONTRASEÑA</p>
+            <p class="profile-p">{{ "profile.password_label" | translate }}</p>
           </div>
         </div>
       </div>

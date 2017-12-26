@@ -143,9 +143,15 @@ app.controller('ReloadController',
     }
   }
 
-  $scope.selectCardTdc = function (tokenTdc) {
-    if (tokenTdc) {
-      Recharge.cart.token = tokenTdc;
+  $scope.changeNewTDC = function () {
+    $scope.newTDC = false;
+    $scope.btnClassPay = 'btn-green-off';
+  }
+
+  $scope.selectCardTdc = function (card) {
+    $rootScope.newTDC = false;
+    if (card) {
+      Recharge.cart.card = card;
       $scope.formTDC = true;
       $scope.btnClassPay = "btn-green-on";
     }else {
@@ -171,7 +177,7 @@ app.controller('ReloadController',
     if (Recharge.info.oferta) {
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
-        Recharge.info.oferta.idSale = res.data.venta.id
+        Recharge.info.oferta.idSale = res.data.venta.id;
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
         $scope.btnClassModePay = "btn-green-on";
@@ -199,10 +205,21 @@ app.controller('ReloadController',
     $scope.btnClassRecarga = "btn-green-on";
   }
 
+  $scope.afiliarTarjeta = function(card_customer){
+    $http.post('platform/stripe/affiliateCard', card_customer)
+      .then(function(response){
+        console.log('response card_customer', response);
+      }, function(error){
+        console.log('error card_customer', error);
+      });
+  };
+
   $scope.recharge = function (valid) {
     console.log('valid', valid);
-    console.log('Recharge.cart.token', Recharge.cart.token);
-    if (Recharge.cart.token) {
+    console.log('Recharge.cart', Recharge.cart);
+    if (Recharge.cart.card) {
+      Recharge.cart.token = Recharge.cart.card.id;
+      Recharge.cart.customer = Recharge.cart.card.customer;
       $scope.loader = 'mostrar';
       $scope.cuerpo = 'ocultar';
       $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
@@ -236,6 +253,16 @@ app.controller('ReloadController',
               $scope.cuerpo = 'mostrar';
           }else{
             Recharge.cart.token = res.id;
+
+            if (Recharge.cart.checkAfiliacionTDC) {
+              var card_customer = {
+                token: res.id,
+                email: $scope.fullCard.email,
+                description: $scope.fullCard.description,
+              }
+              $scope.afiliarTarjeta(card_customer);
+            }
+
             $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
               Recharge.result = response.data.recargas;
               $scope.$emit('$resetAjax');

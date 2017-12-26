@@ -30,6 +30,16 @@ app.controller('SigninFormController',
       password: $scope.user.password
     };
 
+    if (!$scope.user.login) {
+        $scope.authError = "Introduzca un correo";
+        return
+    }
+
+    if (!$scope.user.password) {
+        $scope.authError = "Introduzca la contraseña";
+        return
+    }
+
     $http.post('plataform/user/signin', datos)
     .then(function(response) {
       $state.go('app.page.recharge');
