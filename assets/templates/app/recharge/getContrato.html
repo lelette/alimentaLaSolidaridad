@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="line-100 aux-3-R" ng-show="error_msj_oferta">
-      <p style="color:red;">No se obtuvieron ofertas para el numero ingresado.</p>
+      <p style="color:red;">{{ "err.not_found_offers" | translate }}</p>
     </div>
     <div ng-class="{ocultarLoader: loaderRecharge === 'ocultar', mostrarLoader: loaderRecharge === 'mostrar'}" style="display:flex; justify-content:center">
       <div class="line-102">

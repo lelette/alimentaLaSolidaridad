@@ -49,7 +49,7 @@
 											<td style="text-align: center">
 												<div class="pillar-30px" style="margin-left: 50%">
 													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="" ng-click=agregarRecarga(frecuente)>
+														<input type="radio" name="radio" ng-click=changeArray(frecuente.frecuente.numero)>
 														<span></span>
 													</div>
 												</div>
@@ -57,7 +57,7 @@
 								    </tr>
 							    </tbody>
 								</table>
-								<div class="tab-box tab-off" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px; " ng-show="recarga">
+								<div class="tab-box tab-off" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px; " ng-show="recarga" ng-click="sendTopUp()">
 									<img src="images/icoOrdenVrd.png">
 									<p >{{"movements.enviar_recarga" | translate}}</p>
 								</div>
