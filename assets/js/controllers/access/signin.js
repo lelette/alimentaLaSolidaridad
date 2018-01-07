@@ -7,7 +7,7 @@
 
 app.controller('SigninFormController',
   ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
-  function($rootScope,  $scope, $http, $state, validarPassword, $translate) {
+  function($rootScope, $scope, $http, $state, validarPassword, $translate) {
 
   $rootScope.header = {}
   $rootScope.header.icono = "images/icoMiPerfil.png";
@@ -30,6 +30,16 @@ app.controller('SigninFormController',
       login: $scope.user.login,
       password: $scope.user.password
     };
+
+    if (!$scope.user.login) {
+        $scope.authError = "Introduzca un correo";
+        return
+    }
+
+    if (!$scope.user.password) {
+        $scope.authError = "Introduzca la contraseña";
+        return
+    }
 
     $http.post('plataform/user/signin', datos)
     .then(function(response) {

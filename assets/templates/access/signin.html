@@ -22,7 +22,7 @@
               <!-- ERRORES EN CAMPO DE EMAIL -->
 
             <div class="pillar-auto">
-              <input data-hide-3 type="password" name="user.password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+              <input data-hide-3 type="password" name="user.password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" required>
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
             <div class="text-center" ng-if="form.password.$dirty && (form.password.$invalid || form.password.$touched)">
@@ -32,8 +32,8 @@
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
         </div>
-        <div style="margin-top:51px; justify-content:center; display:flex; padding-left: 0px">
-          <button type="submit" style="font-family: neeru; width:60%" data-standard class="btn-green" ng-click="signin()" ladda="loading" data-style="expand-right">{{'Iniciar_Sesion' | translate}}</button>
+        <div style="margin-top:51px; justify-content:center; display:flex;">
+          <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="signin()" ladda="loading" data-style="expand-right">{{'Iniciar_Sesion' | translate}}</button>
         </div>
         <div class="text-center m-t m-b" style="margin-top:15px">
           <a ui-sref="access.forgotpwd" style="font-family:neeru; color:gray; font-weight:200px">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>

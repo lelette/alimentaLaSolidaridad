@@ -109,7 +109,7 @@ angular.module('app')
             params: {'code': '', 'number': '', 'url': ''},
             resolve: load([
               'js/controllers/app/recharge.js',
-              'js/directives/stripe.js',
+              // 'js/directives/stripe.js',
               'js/services/Sales.js'
               ])
           })
@@ -126,7 +126,7 @@ angular.module('app')
           .state('app.page.recharge.get_token_stripe', {
             url: '/tdc',
             templateUrl: 'templates/app/recharge/getTokenStripe.html',
-            resolve: load(['js/stripe/stripe.js'])
+            // resolve: load(['js/stripe/stripe.js'])
           })
           .state('app.page.recharge.confirm', {
             url: '/confirm',

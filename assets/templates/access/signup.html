@@ -2,116 +2,146 @@
 <!-- #### No puede cargarse desde el router, supongo por problemas de actualizacion de recursos ####-->
 <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 
-  <div class="access-container" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
-    <div class="line-101">
+<div ng-init="loader='ocultar';cuerpo='mostrar';app.settings.container = false;" ng-controller="SignupFormController">
 
-      <form name="form" class="form-validation" style="margin-top: 40px">
-        <div style="color:red; font-family: neeru;" ng-show="authError">
+  <div ng-class="{ocultarLoader: loader === 'ocultar', mostrarLoader: loader === 'mostrar'}" style="display:flex; justify-content:center">
+    <!-- <div class="overlay"></div>
+      <div class="spinner" id="loaderBody"  style="position: fixed; top:30%; left:45%;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div> -->
+    <div class="line-102">
+      <div class="panel-green" style=" margin-top:20%; padding: 0.5pc 2pc; width: 25%; opacity:0.8">
+      <div class="line-103">
+        <section>
+          <div class="lds-css ng-scope" style="float:left; display:flex;">
+            <div style="width:100%;height:100%" class="lds-rolling">
+              <div></div>
+            </div>
+          </div>
+        </section>
+        <section>
+        <div>
+          <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
+            {{"Cargando" | translate}}
+          </p>
+        </div>
+      </section>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
+
+    <div class="access-container">
+      <div class="line-101">
+        <div style="color:red; font-family: neeru; text-align:center;" ng-show="authError">
             {{authError  | translate}}
         </div>
-          <div class="pillar-auto">
-            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.name_input' | translate }}" required name="nombres" ng-model="user.nombres">
-          </div>
+        <form name="form" class="form-validation" style="margin-top: 40px">
+            <div class="pillar-auto">
+              <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.name_input' | translate }}" required name="nombres" ng-model="user.nombres">
+            </div>
+              <!-- ERRORES EN CAMPO DE NOMBRES -->
+              <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
+                <span ng-if="form.nombres.$error.required" class="error-input-msj" >
+                  {{"err.required" | translate}}
+                </span>
+                <span ng-if="form.nombres.$error.minlength" class="error-input-msj" >
+                  {{"err.minlength" | translate}} 4
+                </span>
+                <span ng-if="form.nombres.$error.stringStd" class="error-input-msj" >
+                  {{"err.stringStd" | translate}}
+                </span>
+              </div>
+              <!-- ERRORES EN CAMPO DE NOMBRES -->
+
+            <div class="pillar-auto">
+              <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.surname_input' | translate }}" required name="apellidos" ng-model="user.apellidos">
+            </div>
+
             <!-- ERRORES EN CAMPO DE NOMBRES -->
-            <div class="text-center" ng-if="form.nombres.$dirty && (form.nombres.$invalid || form.nombres.$touched)">
+            <div class="text-center" ng-if="form.apellidos.$dirty && (form.apellidos.$invalid || form.apellidos.$touched)">
               <span ng-if="form.nombres.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
               </span>
-              <span ng-if="form.nombres.$error.minlength" class="error-input-msj" >
+              <span ng-if="form.apellidos.$error.minlength" class="error-input-msj" >
                 {{"err.minlength" | translate}} 4
               </span>
-              <span ng-if="form.nombres.$error.stringStd" class="error-input-msj" >
+              <span ng-if="form.apellidos.$error.stringStd" class="error-input-msj" >
                 {{"err.stringStd" | translate}}
               </span>
             </div>
             <!-- ERRORES EN CAMPO DE NOMBRES -->
 
-          <div class="pillar-auto">
-            <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.surname_input' | translate }}" required name="apellidos" ng-model="user.apellidos">
-          </div>
+            <div class="pillar-auto">
+              <input data-hide-3 type="email" maxLength="256" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required ng-blur="consultaCorreo()">
+            </div>
+                <!-- ERRORES EN CAMPO DE EMAIL -->
+                <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
+                  <span ng-if="!(form.email.$error.required)" class="error-input-msj">
+                    {{correoval}}
+                  </span>
+                  <span ng-if="form.email.$error.required" class="error-input-msj" >
+                    {{"err.required" | translate}}
+                  </span>
+                  <span ng-if="form.email.$error.email" class="error-input-msj" >
+                    {{"err.email.format" | translate}}
+                  </span>
+                </div>
+                <!-- ERRORES EN CAMPO DE EMAIL -->
 
-          <!-- ERRORES EN CAMPO DE NOMBRES -->
-          <div class="text-center" ng-if="form.apellidos.$dirty && (form.apellidos.$invalid || form.apellidos.$touched)">
-            <span ng-if="form.nombres.$error.required" class="error-input-msj" >
-              {{"err.required" | translate}}
-            </span>
-            <span ng-if="form.apellidos.$error.minlength" class="error-input-msj" >
-              {{"err.minlength" | translate}} 4
-            </span>
-            <span ng-if="form.apellidos.$error.stringStd" class="error-input-msj" >
-              {{"err.stringStd" | translate}}
-            </span>
-          </div>
-          <!-- ERRORES EN CAMPO DE NOMBRES -->
-
-          <div class="pillar-auto">
-            <input data-hide-3 type="email" maxLength="256" placeholder="{{ 'std.Email' | translate }}" name="email" ng-model="user.email" required ng-blur="consultaCorreo()">
-          </div>
-              <!-- ERRORES EN CAMPO DE EMAIL -->
-              <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
-                <span ng-if="!(form.email.$error.required)" class="error-input-msj">
-                  {{correoval}}
-                </span>
-                <span ng-if="form.email.$error.required" class="error-input-msj" >
+            <div class="pillar-auto">
+              <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" minlength="8" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+            </div>
+            <div class="pillar-auto">
+              <input data-hide-3 type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" name="confirm_password" ng-model="user.confirm_password" maxlength="16" minlength="8" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
+            </div>
+              <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
+              <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
+                <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
                   {{"err.required" | translate}}
                 </span>
-                <span ng-if="form.email.$error.email" class="error-input-msj" >
-                  {{"err.email.format" | translate}}
+                <span ng-if="form.confirm_password.$error.minlength" class="error-input-msj" >
+                  {{"err.minlength" | translate}} 8
+                </span>
+                <span ng-if="!form.confirm_password.$error.required && form.confirm_password.$error.equalsPassword" class="error-input-msj" >
+                  {{"err.password.passwordConfirm" | translate}}
                 </span>
               </div>
-              <!-- ERRORES EN CAMPO DE EMAIL -->
 
-          <div class="pillar-auto">
-            <input data-hide-3 type="password" name="password"   placeholder="{{ 'std.Password' | translate }}" minlength="8" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
+              <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
+
+
+          <!-- recaptcha de Google -->
+          <div class="recaptcha">
+            <div class="g-recaptcha wrapper" data-sitekey="6LeAHx8UAAAAAJ6cuHZl5SfPX28plzZ9rhOaBGah" insert-recaptcha data-callback="recaptchaCallback"></div>
           </div>
-          <div class="pillar-auto">
-            <input data-hide-3 type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" name="confirm_password" ng-model="user.confirm_password" maxlength="16" minlength="8" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
-          </div>
-            <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
-            <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
-              <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
-                {{"err.required" | translate}}
-              </span>
-              <span ng-if="form.confirm_password.$error.minlength" class="error-input-msj" >
-                {{"err.minlength" | translate}} 8
-              </span>
-              <span ng-if="!form.confirm_password.$error.required && form.confirm_password.$error.equalsPassword" class="error-input-msj" >
-                {{"err.password.passwordConfirm" | translate}}
-              </span>
+          <!-- Fin de recaptcha de Google -->
+          <div class="access-signup">
+            <div class="pillar-30px">
+              <div class="neeru-checkbox-1">
+                <input type="checkbox" ng-model="user.terminos" name="">
+                <span></span>
+              </div>
             </div>
-
-            <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
-
-
-        <!-- recaptcha de Google -->
-        <div class="recaptcha">
-          <div class="g-recaptcha wrapper" data-sitekey="6LeAHx8UAAAAAJ6cuHZl5SfPX28plzZ9rhOaBGah" insert-recaptcha data-callback="recaptchaCallback"></div>
-        </div>
-        <!-- Fin de recaptcha de Google -->
-        <div class="access-signup">
-          <div class="pillar-30px">
-            <div class="neeru-checkbox-1">
-              <input type="checkbox" name="">
-              <span></span>
-            </div>
+            <p-black style="font-family: neeru">{{'Acepto_los' | translate}} <a ui-sref="access.terminos" style="color: #0DB731">{{'terminos_y_condiciones' | translate}}</a></p-black>
           </div>
-          <p-black style="font-family: neeru">{{'Acepto_los' | translate}} <a ui-sref="access.terminos" style="color: #0DB731">{{'terminos_y_condiciones' | translate}}</a></p-black>
-        </div>
         </form>
         <div style="justify-content:center; display:flex; margin-top: 25px;">
-          <button type="submit" style="font-family: neeru" data-standard class="btn-green" ng-click="signup()" ladda="loading" data-style="expand-right">{{'Registrarse' | translate}}</button>
+          <button type="submit" style="font-family: neeru; width: 100%; " data-standard class="btn-green" ng-click="signup()" ladda="loading" data-style="expand-right">{{'Registrarse' | translate}}</button>
         </div>
         <div style="position: relative;top: 50px;">
           <div class="text-center" style="margin-bottom: 10px;">
             <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{'Registrarse_Facebook' | translate}}</a>
           </div>
           <div class="text-center" style="margin-bottom: 10px;">
-            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>{{'Registrarse_Google' | translate}}</a>
+            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button"><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>{{'Registrarse_Google' | translate}} &nbsp;&nbsp;&nbsp;</a>
           </div>
         </div>
-        <!-- <div style="justify-content:center; display: grid; text-align:center;">
-          <p><small>{{"¿Ya_tienes_una_cuenta?" | translate }}</small></p>
-          <a ui-sref="access.signin">{{'Iniciar_Sesion' | translate}}</a>
-        </div> -->
+      </div>
     </div>
   </div>
+
+</div>
