@@ -39,11 +39,12 @@
   color: white;
   border: 0px;
   border-radius: 8px;
-  padding: 15px 30px;
-  width: 370px;
+  padding: 11px 34px;
+  width: 272px;
   margin-left: 0px;
+  margin-bottom: -30px;
   font-family: neeru;
-  font-size: 1.1em;
+  font-size: small;
   font-weight: 400;
   cursor: pointer;
 }
@@ -243,10 +244,10 @@ box-shadow:none;
 
 .txt2 {
   font-family: neeru;
-  font-size: 1.0em;
+  font-size: 1.01em;
   font-weight: 300;
   line-height: 1.7;
-  color: #8d918f;
+  color: #000000;
 }
 
 .txt3 {
@@ -254,7 +255,7 @@ box-shadow:none;
   font-size: 0.9em;
   font-weight: 300;
   line-height: 1.8;
-  color: #8d918f;
+  color: #000000;
   text-align: justify;
   margin: 15px 20px 40px 30px;
 }
@@ -277,6 +278,9 @@ box-shadow:none;
 
 .white {
   background-color: white;
+}
+.prueba1{
+  margin-top: 50px;
 }
 
 header > section > nav > div > div:hover{

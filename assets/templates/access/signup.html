@@ -2,7 +2,7 @@
 <!-- #### No puede cargarse desde el router, supongo por problemas de actualizacion de recursos ####-->
 <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 
-<div ng-init="loader='ocultar';cuerpo='mostrar';app.settings.container = false;" ng-controller="SignupFormController">
+<div ng-init="loader='ocultar';cuerpo='mostrar';app.settings.container = false;" ng-controller="SignupFormController" style="top:30%">
 
   <div ng-class="{ocultarLoader: loader === 'ocultar', mostrarLoader: loader === 'mostrar'}" style="display:flex; justify-content:center">
     <!-- <div class="overlay"></div>
@@ -130,7 +130,7 @@
           </div>
           </form>
           <div style="justify-content:center; display:flex; margin-top: 25px;">
-            <button type="submit" style="font-family: neeru; width: 100%;" data-standard class="btn-green" ng-click="signup()" >{{'Registrarse' | translate}}</button>
+            <button type="submit" style="font-family: neeru; width: 79%;" data-standard class="btn-green" ng-click="signup()" >{{'Registrarse' | translate}}</button>
           </div>
           <div style="position: relative;top: 50px;">
             <div class="text-center" style="margin-bottom: 10px;">
