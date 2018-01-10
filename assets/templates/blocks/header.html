@@ -81,7 +81,7 @@
       </div>
 
 
-      <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
+      <!-- <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
         <div class="vertical-line"></div>
         <p style="cursor: pointer;">{{selectLang}}</p>
         <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
@@ -89,7 +89,12 @@
             <p ng-click="setLang(langKey, $event)">{{label}}</p>
           </div>
         </div>
+      </div> -->
+      <div class="aux-1-SA" ng-repeat="(langKey, label) in langs">
+        <img ng-if="label === 'ES'" width="35%" src="/images/spain.jpeg" ng-click="setLang(langKey, $event)">
+        <img ng-if="label === 'EN'" width="30%" src="/images/uk.jpeg" ng-click="setLang(langKey, $event)">
       </div>
+    </div>
 
 
     </div>
