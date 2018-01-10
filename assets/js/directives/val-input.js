@@ -368,7 +368,7 @@ app.directive('password', function() {
 
 // ################### Directiva Caracteres validos ####################
 
-var PASSWORD_REGEXPE = /^[\*]*$/;
+var PASSWORD_REGEXP = /^[0-9A-Za-z@ñÑ\.\,\_\$#\-]*$/;
 
 app.directive('caracteresValidos', function() {
   return {
@@ -519,3 +519,32 @@ app.directive('minAmount', function() {
 });
 
 // ################ Fin de direcriva minAmount #########################
+// app.directive('validFile', function() {
+//   console.log('Hola mundo');
+//   return {
+//     require: 'ngModel',
+//     link: function(scope, el, attrs, ctrl) {
+//       console.log(ctrl);
+//       // var model = attrs.ctrl
+//       // var modelSetter = model.assign;
+//       var maxSize = 2*1024*1024; //2*1024*1024 B
+//       ctrl.$validators.validFile = function (modelValue, viewValue) {
+//         console.log(modelValue);
+//         if (ctrl.$isEmpty(modelValue)) {
+//           return true;
+//         }
+//
+//         return false;
+//         // if (el[0].files.length > 1) {
+//         //     modelSetter(scope, el[0].files);
+//         // } else {
+//         //     modelSetter(scope, el[0].files[0]);
+//         // }
+//         // var fileSize = el[0].files[0].size;
+//         // if (fileSize > maxSize) {
+//         //     scope.ebook.maxSizeError = true;
+//         // }
+//       };
+//     }
+//   };
+// });

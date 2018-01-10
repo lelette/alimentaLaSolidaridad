@@ -3,15 +3,247 @@
 	background-color: #00B814;
 }
 
+.btn-go{
+	background-color: #ffffff;
+	width: 15%;
+	height: 40px;
+	border-top-right-radius: .8rem;
+	border-bottom-right-radius: .8rem;
+	border: 2px solid rgb(207, 213, 209);
+	border-left: 0;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.btn-go i {
+	color: #59b833;
+	font-size: 30px;
+}
+
 
 .app-header .bold{
 	font-weight: bold;
 }
 
-/*tamano de contenido access*/
-.access-content{
-
+button {
+	outline: 0;
 }
+
+i {
+	outline: 0;
+}
+
+a {
+	outline: 0;
+}
+
+p {
+	outline: 0;
+}
+
+b {
+	color: #8c9590;
+}
+
+/*
+	FOOTER
+*/
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	margin-top: 5pc;
+	width: 100%;
+	text-align: center;
+	color: #58666e;
+  background-color: #f3f5f3;
+	padding: 15px;
+	border-top: 1px solid #dee5e7;
+}
+
+/*
+	FOOTER
+*/
+
+
+/*
+	Social Media Profile
+*/
+
+.box-profile
+
+.profile-default-view {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+}
+
+.social-box {
+	border-radius: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px 0pc;
+	border: 1.5px solid #CFD5D1;
+	cursor: pointer;
+	width: 25%;
+	height: 35%;
+}
+
+.social-image-box {
+	width: 30%;
+ 	margin-left: 10px;
+ 	border-right: 2px solid #cfd5d1;
+}
+
+.vertical-line-separate {
+	height: 65px;
+}
+.vertical-line-separate img{
+	width: auto !important;
+	height: auto !important;
+	margin: 25% 20%;
+}
+
+.social-description-box {
+	width: 90%;
+  margin-left: 10px;
+  display: block;
+}
+
+.social-description-box p{
+	color: black;
+	margin-left: 0;
+}
+
+.social-section-box {
+	display: flex;
+	margin-top: 5%;
+}
+
+.social-section-box img {
+	width: auto !important;
+	height: auto !important;
+}
+
+.social-section-box small{
+	color: #969e9a;
+	margin-left: 10px;
+}
+
+/*
+	Social Media Profile
+*/
+
+/*
+	Input control
+*/
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border: 1px solid #ccc;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+	border-color: #5fc963;
+  outline: 0;
+}
+
+/*
+	Input Control
+*/
+
+/*
+	HEADER
+*/
+
+.header-neeru-select-box{
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	border: 1.5px solid #5fc963;
+	border-radius: .5rem;
+	max-height: 164px;
+	min-width: 220px;
+	display: none;
+	overflow: auto;
+	background: white;
+	z-index: 10;
+	top: 45px;
+	left: -90%;
+}
+
+.header-option-neeru{
+	padding: 5px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+}
+
+.header-option-neeru p{
+	margin-left: 1pc;
+	color: #AEB7B3;
+	text-transform: uppercase;
+}
+
+.header-option-neeru img{
+	width: 16px;
+}
+
+.header-option-neeru:hover{
+	background-color: white;
+}
+
+.header-option-neeru:hover p {
+	color: #5fc963;
+}
+
+.header-language-select-box {
+    position: absolute;
+    width: 100%;
+    /*top: 100%;*/
+    border: 1.5px solid #5fc963;
+    border-radius: .5rem;
+    max-height: 300px;
+    min-width: 65px;
+    display: none;
+    overflow: auto;
+    background: white;
+    z-index: 10;
+    top: 40px;
+    left: 0%;
+		text-align: -webkit-center;
+}
+
+.header-language-select-box div:focus{
+	outline: 0;
+}
+
+.header-language-select-box p {
+	color: #aeb7b1
+}
+
+.header-language-select-box p:hover{
+	color: #5fc963;
+}
+
+.header-language-select-box p:focus{
+	outline: 0;
+}
+
+/*
+	HEADER
+*/
+
+
 
 /* *** estilo para los mensajes de error de inputs *** */
 .error-input-msj {
@@ -26,7 +258,1192 @@
   text-align: justify;
 }
 
+.app-content {
+	height: 100%;
+}
+
+.app-content-body {
+	height: 100%;
+}
+
+.fade-in-down {
+	height: 100%;
+}
+
+
 .w-h-xs-i {
 	width: 250px !important;
 	height: 100px !important;
 }
+
+.frequent-master-box {
+	width: 100%;
+	display: flex;
+	height: 100%;
+}
+
+.frequent-add {
+	border: 0;
+	margin-top: 120px;
+}
+
+.frequent-master-box > section{
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.frequent-master-box > section:first-child {
+	flex-wrap: wrap;
+	display: flex;
+	width: 70%
+}
+
+.frequent-master-box > section:last-child {
+	flex-wrap: wrap;
+	display: flex;
+	width: 30%
+}
+
+.frequent-input {
+	height: 40px !important;
+	color:#747474;
+	width: 250px !important;
+}
+
+th {
+	color: #989898;
+}
+table {
+	/*border-collapse: separate;*/
+}
+/*td {
+	border: solid 1px white;
+}
+tr:first-child td:first-child {
+	border-top-left-radius: 10px;
+}
+tr:first-child td:last-child {
+	border-top-right-radius: 10px;
+}
+tr:last-child td:first-child {
+	border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child {
+	border-bottom-right-radius: 10px;
+}*/
+tr:first-child{
+    -moz-border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+}
+tr:last-child{
+    -moz-border-radius:0 10px 10px 0;
+    -webkit-border-radius:0 10px 10px 0;
+}
+
+/* MOVIMIENTOS */
+
+#tablaMovimientos tbody td {
+	padding: 16px !important;
+}
+
+
+/* PROFILE VIEW */
+
+#background {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#background img {
+    border-radius: 5px;
+    width: 60px;
+    height: 60px;
+}
+
+ .profile-p {
+    margin: 0px;
+    color: #88918c;
+    font-size: 0.8em;
+}
+
+.profile-p button {
+    color: #fff;
+}
+
+.profile-p:focus {
+	outline: 0;
+}
+
+.profile-p button:active {
+    color: #0DB731;
+}
+
+.profile-a {
+    margin: 0px;
+    color: #88918c;
+    font-size: 0.8em;
+}
+
+.profile-email {
+    color: #0db731;
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.pass-change {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.pass-change input {
+    border: 0px solid;
+    border-bottom: .15rem #cfd5d1 solid;
+    width: 250px;
+    margin-top: 5px;
+}
+
+.pass-change button {
+    margin-top: 30px;
+}
+
+.leftSpace {
+    width: 70%;
+    display: flex;
+    /*justify-content: center;*/
+		margin-left: 5%;
+}
+
+.rightSpace {
+    width: 30%;
+    border-left: .2rem #cfd5d1 solid;
+}
+
+.leftBorder {
+    width: .25rem;
+    height: 100%;
+    background-color: #cfd5d1;
+}
+
+.pad20 {
+    padding: 20px;
+}
+
+.pad10 {
+    padding: 10px;
+}
+
+.pad5 {
+    padding: 5px;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.l-height-2 {
+	line-height: 2.0;
+}
+
+/* Responsive */
+	@media screen and (max-width: 300px){
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
+		.boxSecFunciona{
+			width: 95% !important;
+			padding: 10px 10px !important;
+		}
+
+		.btnContactos{
+			width: inherit !important;
+			padding: 0px 0px  !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
+		}
+
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.hTxt1{
+			font-size: 2em !important;
+			padding: 25px 5px !important;
+		}
+
+		.input-contactos{
+			flex-wrap: wrap !important;
+		}
+
+		.btnHome{
+			padding: 5px 21px !important;
+			width: inherit !important;
+			font-size: 1.1em !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 7% !important;
+		}
+
+		.w-45p {
+			width: 100% !important;
+		}
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc .5pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+	}
+	@media screen and (min-width: 301px) and (max-width: 400px){
+
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
+		.boxSecFunciona{
+			width: 95% !important;
+			padding: 10px 10px !important;
+		}
+
+		.btnContactos{
+			width: inherit !important;
+			padding: 0px 0px  !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
+		}
+
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.hTxt1{
+			font-size: 2em !important;
+			padding: 25px 5px !important;
+		}
+
+		.input-contactos{
+			flex-wrap: wrap !important;
+		}
+
+		.btnHome{
+			padding: 5px 21px !important;
+			width: inherit !important;
+			font-size: 1.1em !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+			width: 100% !important;
+		}
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 7% !important;
+		}
+
+		.w-45p {
+			width: 100% !important;
+		}
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+	}
+	@media screen and (min-width: 401px) and (max-width: 500px){
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
+		.boxSecFunciona{
+			width: 66.6666% !important;
+			padding: 10px 10px !important;
+		}
+
+		.btnHome{
+				margin: 0 auto;
+		}
+
+		.btnSeguridad{
+			margin-left: 9% !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
+		}
+
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+			width: 100% !important;
+		}
+
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+	}
+	@media screen and (min-width: 501px) and (max-width: 767px){
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
+		.btnHome{
+				margin: 0 auto;
+		}
+
+		.homeLeft{
+				width: auto !important;
+				position: static !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+		}
+
+		.img-center{
+			left: 0% !important;
+			top: 15% !important;
+			font-size: 15px !important;
+			padding-left: 40px;
+			padding-right: 40px;
+			width: 100% !important;
+
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
+		}
+
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: wrap;
+		}
+
+		.pillar-ajust-funciona{
+			width: 100% !important;
+		}
+
+		.secSeguridad{
+			width: auto !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			height: inherit !important;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: auto !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.boxSecFunciona{
+			width: 66.6666% !important;
+			padding: 10px 10px !important;
+		}
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+			width: 70%;
+		}
+
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+
+		.frequent-master-box > section:first-child{
+			width: 100%;
+		}
+
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+	}
+
+	@media screen and (min-width: 500px) and (max-width: 709px)  {
+		.social-box {
+			width: 60%;
+			height: 42%;
+		}
+
+		.profile-default-view {
+			display: block;
+			margin-top: 120px;
+		}
+
+
+	}
+
+	@media screen and (min-width: 710) and (max-width: 767px){
+		.social-box {
+			width: 60%;
+			height: 42%;
+			margin-bottom: 10px;
+		}
+
+	 .profile-default-view {
+			display: block !important;
+		}
+
+		.leftSpace {
+			margin-top: 170px !important;
+		}
+
+		#background {
+			display: block !important;
+			text-align: -webkit-center !important;
+		}
+
+	}
+
+	@media screen and (min-width: 767px) and (max-width: 790px){
+		.social-box {
+			width: 48%;
+		}
+	}
+
+	@media screen and (min-width: 791px) and (max-width: 991px) {
+		.social-box {
+			width: 45%;
+		}
+	}
+
+	@media screen and (min-width: 768px) and (max-width: 992px){
+
+		.access-content{
+			margin-top: 180px !important;
+		}
+
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.headerTxt{
+			width: 20% !important;
+			display: none !important;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 100px;
+		}
+
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+			width: 95% !important;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 100% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 5%;
+		}
+
+		.w-img-table{
+			height: 500px;
+		}
+
+		.frequent-master-box{
+			padding-bottom: 70px;
+			display: block;
+		}
+
+		.frequent-add {
+			margin-top: 0;
+			width: 50%;
+		}
+
+		.frequent-master-box > section:first-child{
+			padding: 2pc 10%;
+		}
+
+		.frequent-master-box > section:first-child{
+	    width: 100%;
+		}
+		.frequent-master-box > section {
+	    padding: 1pc;
+		}
+		.frequent-master-box > section:last-child{
+	    display: block;
+	    position: fixed;
+	    width: 100%;
+	    background: white;
+	    overflow: auto;
+	    box-sizing: border-box;
+	    z-index: 10;
+      transition: .45s;
+			text-align: -webkit-center;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 40%;
+		}
+
+		.profile-default-view {
+			display: flex;
+			margin-top: 120px;
+		}
+	}
+	@media screen and (min-width: 993px) and (max-width: 1200px){
+
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.headerTxt{
+			width: 55% !important;
+		}
+
+		.headerSignin{
+			width: 30%;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeru {
+			width: 35% !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 100px;
+		}
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+			width: 95% !important;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 5%;
+		}
+
+		.w-img-table{
+			height: 500px;
+		}
+
+		.frequent-master-box > section{
+	    padding: 0px 2.5%;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 35%;
+		}
+	}
+	@media screen and (min-width: 1201px) and (max-width: 1499px){
+
+		.boxSecFunciona{
+			width: 33.3333% !important;
+			padding: 0px 10px !important;
+		}
+
+		.btnHome{
+				margin: 0 auto;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+		  flex-wrap: nowrap;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 250px !important;
+		}
+
+		.social-box {
+			width: 30% !important;
+		}
+
+	}
+
+	@media screen and (min-width: 1501px){
+
+		.btnHome{
+				margin: 0 auto;
+		}
+
+		.homeLeft{
+				width: 40% !important;
+				position: static !important;
+				margin-left: 90px;
+		}
+
+		.hTxt1{
+			padding: 40px 5px !important;
+		}
+
+		.imgHome{
+			position: static !important;
+			width: auto !important;
+		}
+
+		.img{
+			height: 819px !important;
+		}
+
+		.imgNeeruContactos{
+			margin: 0 auto !important;
+			padding-bottom: 20px;
+			width: 80%;
+		}
+
+		.img-center{
+			left: 0% !important;
+			padding-left: 20%;
+			padding-right: 20%;
+			width: 100% !important;
+		}
+
+		.imgSeguridad{
+			position: static !important;
+			padding-top: 15px;
+		}
+
+		.flex-wrap{
+			flex-wrap: nowrap !important;
+		}
+
+		.paddingContactos{
+			padding: 0px 0px 24px;
+		}
+
+		.pillar-ajust-funciona{
+			width: 70% !important;
+		  flex-wrap: nowrap;
+		}
+
+		.footer-home{
+			top: -100px !important;
+			flex-wrap: nowrap;
+		}
+
+		.secFunciona{
+			height: auto !important;
+		}
+
+		.seguridadLeft{
+			width: 50% !important;
+			position: static !important;
+			padding-top: 50px;
+			padding-left: 15%;
+		}
+
+		.frequent-master-box > section{
+	    padding: 0px 2.5%;
+		}
+
+		.frequent-input {
+			height: 40px !important;
+			color:#747474;
+			width: 290px !important;
+		}
+	}
+/* Responsive */

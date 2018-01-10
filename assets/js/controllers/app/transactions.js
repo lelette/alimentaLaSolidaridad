@@ -4,12 +4,17 @@
 * @description :: define la interaccion necesaria para realizar el registro de usuarios *
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
+ function verMovDetalle(id) {
+  window.location.assign("http://localhost:9000/app/page/transactionDetail/"+id)
+}
 
-app.controller('IndexController',
+app.controller('movController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
   function($rootScope,  $scope, $http, $state, $translate) {
-
-    $scope.datos = { sales : []} ;
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoMovimientos.png";
+    $rootScope.header.namePage = "Movimientos";
+    $scope.datos = { sales : [] };
 
     // variables para control de paginacion
     $scope.techo = undefined;
@@ -22,24 +27,56 @@ app.controller('IndexController',
     ***************************************************************************/
     $scope.consultar = function(page){
       if ( ($scope.techo && ($scope.currentPage >= $scope.techo) ) || page == 0) {
-        return ;
+        $scope.msjmov = true;
+        $scope.tablemov = false;
+        return;
       };
 
-      $http.get('plataform/sale/getTransactions?page='+page+'&limit='+$scope.pageSize)
+      $http.get('plataform/sale/getTransactions?page='+page+'&limit=10')
       .then(function(res){
-        if (res.data.sales.length == 0 && (page) > 1) {
-            $scope.techo = page-1;
-            $scope.consultar(page-1);
+        var ventas = res.data.sales;
+        if (ventas.length == 0) {
+          $scope.msjmov = true;
+          $scope.tablemov = false;
+          $scope.tableMovDetails = false;
         }else{
-          $scope.datos.sales.splice(0,$scope.datos.sales.length);
+          $scope.msjmov = false;
+          $scope.tablemov = true;
+          $scope.tableMovDetails = false;
+          //$scope.datos.sales.splice(0,$scope.datos.sales.length);
+          var newSale;
+          var fecha;
           $scope.currentPage = page;
-          res.data.sales.forEach(function(sale){
-            // detectamos el email principal
-            $scope.datos.sales.push(sale);
+          ventas.forEach(function(sale){
+            var  status;
+            switch (sale.status) {
+              case 'A': status = "Anulada";
+              break;
+              case 'R': status = "Rechazada";
+              break;
+              case 'P': status = "Pediente";
+              break;
+              case 'PC': status = "Por Cobrar";
+              break;
+              case 'C': status = "Completada";
+              break;
+              default: status = "A";
+            }
+            newSale = {};
+            fecha = sale.createdAt;
+            newSale.date = fecha.substring(0,10);//sale.createdAt.getDate()+"/"+ (sale.createdAt.getMonth()+1)+"/"+ sale.createdAt.getFullYear();
+            newSale.reference = "<span style='cursor:pointer' onclick=verMovDetalle("+sale.id+")>"+sale.referencia+"</span>";
+            newSale.phone = sale.phone;
+            newSale.status = status;
+            newSale.recharge = sale.localCurrency +" /. "+ sale.expectedAmount +" - "+ sale.realAmount +" USD ";
+            newSale.total = parseFloat(sale.realAmount) + parseFloat(sale.serviceFee);
+            $scope.datos.sales.push(newSale);
           });
+
         };
       }, function(res){
-        console.log(res.data);
+        $scope.msjmov = false;$scope.tablemov = true;
+        $scope.$emit('$errorAjax',res.data);
       });
     }
 

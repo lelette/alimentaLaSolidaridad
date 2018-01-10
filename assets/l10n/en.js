@@ -8,22 +8,22 @@
     "Fecha_Nacimiento": "Birthdate",
     "Apellidos": "Lastnames",
     "Password": "Password",
-    "ConfirmPassword": "Confirm Password",
+    "ConfirmPassword": "Confirm password",
     "Transaction": "Transactions",
     "enviar": "Send",
     "update": "Update",
-    "previopwd": "Current Password",
+    "previopwd": "Current password",
     "change": "Change",
     "add":"Add",
     "Validado":"Validated",
-    "phoneNumber": "Phone Number",
+    "phoneNumber": "Phone number",
     "Continuar": "Continue",
     "proveedor": "Provider",
     "operadora": "Operator",
     "Cancelar": "Cancel",
     "Amount":"Amount",
-    "zone.postal": "ZIP Code",
-    "fecha_vencimiento": "Expiration Date",
+    "zone.postal": "ZIP code",
+    "fecha_vencimiento": "Expiration date",
     "year":"Year",
     "Mes":"Month",
     "Enero":"January",
@@ -52,8 +52,8 @@
 
   "sales": {
     "referencia": "Reference",
-    "expectedAmount": "Recharge Amount",
-    "realAmount": "Charged Amount",
+    "expectedAmount": "Recharge amount",
+    "realAmount": "Charged amount",
     "cuenta": "Account",
     "status": {
       "confirmado":"Confirmed",
@@ -74,23 +74,24 @@
   "forgotpwd": {
     "subtitulo":"Enter your email to reset your password",
     "msg": "A reset link was sent to your email address.",
-    "successfp.subtitulo": "Password Recovery",
+    "successfp.subtitulo": "Password recovery",
     "successfp.msg":"A password restitution link was sent to your email.",
     "err": "Invalid password recovery data",
     "successapplyfp.msg": "Your password was successfully updated",
-    "successapplyfp.subtitulo": "Password Recovery: Successful"
+    "successapplyfp.subtitulo": "Password recovery: Successful",
+    "enviar": "Send"
   },
 
   "signup": {
-    "subtitulo": "Signup to Recharge!",
+    "subtitulo": "Signup to recharge!",
     "emitValEmail": {
-      "subtitulo":"Validate Your Email",
+      "subtitulo":"Validate your email",
       "msg": "A link has been sent to your mail, you have one hour to use it."
     },
 
     "applyValEmail": {
-      "subtitulo":"Data Validation",
-      "exec": "Validating Data",
+      "subtitulo":"Data validation",
+      "exec": "Validating data",
       "error": "Validation data is incorrect",
       "success": "Your data was successfully validated"
     },
@@ -110,7 +111,15 @@
   },
 
   "header": {
-    "perfil": "Profile"
+    "perfil": "Profile",
+    "enviar_recarga" : "Send topup",
+    "mi_cuenta" : "My account",
+    "cuenta_select": {
+      "numero_frecuente": "Frequent numbers",
+      "movimiento": "Movements",
+      "tdc_afiliada": "Affiliate Cards",
+      "perfil": "Profile"
+    }
   },
 
   "menu" : {
@@ -140,6 +149,10 @@
   "Acepto_los": "I Agree the",
   "terminos_y_condiciones": "Terms and Policies",
   "Iniciar_Sesion": "Sign in",
+  "Iniciar_Sesion_Facebook": "Sign in with Facebook",
+  "Iniciar_Sesion_Google": "Sign in with Google",
+  "Registrarse_Facebook": "Sign up with facebook",
+  "Registrarse_Google": "Sign up with google",
   "Cerrar_Sesion": "Logout",
   "Registrarse": "Sign up",
   "¿Ya_tienes_una_cuenta?": "Already have an account?",
@@ -149,12 +162,18 @@
   "Masculino":"Male",
   "Femenino":"Female",
   "Cambiar_Contraseña": "Change Password",
-  "Enviar enlace de validacion": "Send Validation Link",
-  "Elige la Operadora": "Select the Operator",
-  "Amount to Charge":"Amount to Charge",
-  "Amount to Recharge":"Amount to Recharge",
-  "Nueva Recarga": "Another Recharge",
+  "Enviar enlace de validacion": "Send validation link",
+  "Elige la Operadora": "Select the operator",
+  "Amount to Charge":"Amount to charge",
+  "Amount to Recharge":"Amount to recharge",
+  "Nueva Recarga": "Another recharge",
   "Informacion sobre los usuarios activos del sistema": "Information about active users of the system",
   "Informacion sobre las transacciones realizadas en el sistema":"Information about transactions performed in the system",
-  "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system"
+  "Informacion de todas las transacciones que haz realizado en el sistema": "Information about all transactions you made in the system",
+  "Bienvenido": "Welcome.",
+  "Add_card": "Add card",
+  "holder_name": "Card holder name",
+  "country": "Country",
+  "address": "Address",
+  "description": "Description"
 }

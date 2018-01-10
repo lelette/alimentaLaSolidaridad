@@ -1,27 +1,55 @@
-
-<div class="m-t-lg">
-  <div class="container w-xxl w-auto-xs" ng-controller="applyFPController" ng-init="app.settings.container = false;">
-    <div class="m-b-lg">
-      <div class="wrapper text-center">
-        <strong>{{"forgotpwd.successfp.subtitulo" | translate }}</strong>
-      </div>
+<div class="m-t-lg" ng-controller="applyFPController" ng-init="app.settings.container = false;">
+  <div class="line-100" style="display:block">
+    <div class="pillar-auto" style="justify-content:center;margin-top: 4.5pc">
+        <p>{{ "forgotpwd.applyForgotPwd.subtitulo" | translate }}</p>
+    </div>
+    <div class="pillar-auto" style="margin-top: 4pc; justify-content:center">
       <form name="form" class="form-validation">
-        <div class="text-danger wrapper text-center" ng-show="authError">
+        <!-- <div style="color: #FFB92E; font-family:neeru; font-weight:300px; font-size: small;" ng-show="authError">
             {{authError  | translate}}
-        </div>
-        <div class="list-group list-group-sm">
+        </div> -->
 
-          <div class="list-group-item">
-            <input type="password" name="password" placeholder="{{ 'std.Password' | translate }}" class="form-control no-border" maxlength="16" ng-model="user.password" ng-keyup="testPassword()" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" validar-password required>
-          </div>
-          
-          <div class="list-group-item">
-            <input type="password" placeholder="{{ 'std.ConfirmPassword' | translate }}" class="form-control no-border" name="confirm_password" ng-model="user.confirm_password" maxlength="16" required ui-validate="{equalsPassword: 'isEquals($value,user.password)'}" ui-validate-watch=" 'user.password' ">
+            <input type="password" data-hide-3
+            name="password"
+            placeholder="{{ 'std.Password' | translate }}"
+            minLength = "8"
+            maxlength="16"
+            ng-model="user.password"
+            ng-keyup="testPassword()"
+            uib-popover-html="popoverContrasena.contenido"
+            style=""
+            title="Contraseña"
+            popover-title="{{popoverContrasena.titulo | translate}}"
+            popover-trigger="focus"
+            popover-placement="bottom" validar-password>
+
+             <!-- ERRORES EN CAMPO DE PREVIO  PASSWORD -->
+             <div style="display: grid;" class="text-center" ng-if="form.password.$dirty && (form.password.$touched || form.password.$invalid)">
+               <span ng-if="form.password.$error.required" class="error-input-msj" >
+                 {{"err.required" | translate}}
+               </span>
+               <span ng-if="form.password.$error.password" class="error-input-msj" >
+                 {{ "err.stringStd" | translate }}
+               </span>
+             </div>
+             <!-- ERRORES EN CAMPO DE PREVIO PASSWORD -->
+
+            <input type="password" data-hide-3
+            placeholder="{{ 'std.ConfirmPassword' | translate }}"
+            name="confirm_password"
+            ng-model="user.confirm_password"
+            minLength = "8"
+            maxlength="16"
+            ui-validate="{equalsPassword: 'isEquals($value,user.password)'}"
+            ui-validate-watch=" 'user.password' ">
 
             <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
-            <div class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
+            <div style="display: grid;" class="text-center" ng-if="form.confirm_password.$dirty && (form.confirm_password.$touched || form.confirm_password.$invalid)">
               <span ng-if="form.confirm_password.$error.required" class="error-input-msj" >
                 {{"err.required" | translate}}
+              </span>
+              <span ng-if="form.confirm_password.$error.password" class="error-input-msj" >
+                {{ "err.stringStd" | translate }}
               </span>
               <span ng-if="form.confirm_password.$error.maxlength" class="error-input-msj" >
                 {{"err.maxlength" | translate}} 16
@@ -31,19 +59,11 @@
               </span>
             </div>
             <!-- ERRORES EN CAMPO DE CONFIRMACION DE PASSWORD -->
-          </div>
-        
-        </div>
 
-        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="forgotpwd()" ng-disabled='form.$invalid'>{{'std.update' | translate}}</button>
+            <div class="pillar-auto" style="justify-content:center; margin-top: 4pc;">
+              <button type="submit" style="font-family: neeru" data-standard class="btn-green-uno" ng-click="forgotpwd()" ladda="loading" data-style="expand-right"><p>{{ "std.Aceptar" | translate }}</p></button>
+            </div>
       </form>
     </div>
-
   </div>
 </div>
-
-<!-- footer -->
-<div class="text-center" ng-include="'templates/blocks/page_footer.html'">
-  {% include 'blocks/page_footer.html' %}
-</div>
-<!-- / footer -->

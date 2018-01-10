@@ -1,0 +1,38 @@
+<header>
+  <section>
+    <div style="max-width: 100px;">
+      <a href="landing/home"><img src="images/logo-neeru-blanco.png" width="200px"></a>
+    </div>
+    <div data-aux-1>
+      <div>
+        <a href="access/signup"><p class="">{{"Registrarse" | translate}}</p></a>
+      </div>
+      <div>
+        <a href="access/signin"><p class="">{{"Iniciar_Sesion" | translate}}</p></a>
+      </div>
+
+
+      <!-- <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
+        <div class="vertical-line"></div>
+        <p style="cursor: pointer;">{{selectLang}}</p>
+        <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
+          <div ng-repeat="(langKey, label) in langs">
+            <p ng-click="setLang(langKey, $event)">{{label}}</p>
+          </div>
+        </div>
+      </div> -->
+      <div class="" style="display: flex;">
+        <div class="" ng-repeat="(langKey, label) in langs" style="margin-right: -4pc;">
+          <img ng-if="label === 'ES'" width="35%" src="/images/spain.jpeg" ng-click="setLang(langKey, $event)">
+          <img ng-if="label === 'EN'" width="30%" src="/images/uk.jpeg" ng-click="setLang(langKey, $event)">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="access">
+      <img src="{{header.icono}}">
+      <p>{{header.namePage | translate}}</p>
+    </div>
+  </section>
+</header>

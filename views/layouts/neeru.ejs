@@ -14,29 +14,40 @@
 
   <!-- cambios particulares a los estilos para neeru -->
   <link rel="stylesheet" href="/styles/css/app_neeru.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/css/landing.css" type="text/css">
+  <!-- <link rel="stylesheet" href="/styles/css/app_before.css" type="text/css" /> -->
+  <link rel="stylesheet" href="/styles/css/grid-system.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/css/buy-car.css" type="text/css">
+  <link rel="stylesheet" href="/styles/css/profile.css" type="text/css">
+  <!-- Ladda Styles -->
+  <link rel="stylesheet" href="/libs/ladda/ladda/dist/ladda-themeless.min.css">
+  <link rel="stylesheet" href="/libs/ladda/ladda/dist/ladda.min.css">
   <!-- build:css css/app.min.css -->
   <link rel="stylesheet" href="styles/css/font.css" type="text/css" />
+  <link rel="stylesheet" href="global/css/global.css" type="text/css" />
   <link rel="stylesheet" href="styles/css/app.css" type="text/css" />
   <!-- endbuild -->
-
 </head>
 
-<body ng-controller="AppCtrl">
+<body style="font-family:neeru;" ng-controller="AppCtrl">
   <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
     <%-body%>
   </div>
-
+  <input type="hidden" api-url value="http://test.neeru.io:9002">
   <!-- LIBRERIAS -->
 
   <!-- jQuery -->
   <script src="libs/jquery/jquery/dist/jquery.js"></script>
   <!-- Angular -->
   <script src="libs/angular/angular/angular.js"></script>
+  <!-- Ladda -->
+  <script src="libs/ladda/ladda/dist/spin.min.js"></script>
+  <script src="libs/ladda/ladda/dist/ladda.min.js"></script>
+  <script src="libs/ladda/angular-ladda/dist/angular-ladda.min.js"></script>
+  <script src="libs/ladda/ladda/dist/ladda.jquery.min.js"></script>
+
   <!-- Bootstrap -->
   <script src="libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
-
-
   <script src="libs/angular/angular-animate/angular-animate.js"></script>
   <script src="libs/angular/angular-aria/angular-aria.js"></script>
   <script src="libs/angular/angular-cookies/angular-cookies.js"></script>
@@ -48,7 +59,6 @@
   <script src="libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="libs/angular/ngstorage/ngStorage.js"></script>
   <script src="libs/angular/angular-ui-utils/ui-utils.js"></script>
-
   <!-- bootstrap -->
   <script src="libs/angular/angular-bootstrap-0-14/ui-bootstrap-tpls-0.14.0.min.js"></script>
   <!-- lazyload -->
@@ -76,8 +86,14 @@
   <script src="js/directives/ui-nav.js"></script>
   <script src="js/directives/ui-scroll.js"></script>
   <script src="js/directives/ui-shift.js"></script>
+  <script src="js/directives/html.js"></script>
   <script src="js/directives/ui-toggleclass.js"></script>
   <script src="js/controllers/bootstrap.js"></script>
+  <script src="js/custom-js/global.js"></script>
+  <script src="js/custom-js/structure-app.js"></script>
+  <script src="js/custom-js/reload.js"></script>
+  <!--<script src="js/custom-js/jquery-3.2.1.min.js"></script>-->
+  <script src="js/custom-js/buy-car.js"></script>
   <!-- endbuild -->
   <!-- Lazy loading -->
 

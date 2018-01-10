@@ -1,41 +1,31 @@
-<div class="m-t-lg" ng-controller="applyValEmailController">
-  <div class="container w-xxl w-auto-xs" ng-init="app.settings.container = false;">
-    <div class="m-b-lg">
-      <div class="wrapper text-center">
-        <strong>{{"signup.applyValEmail.subtitulo" | translate }}</strong>
-      </div>
+<div class="" ng-controller="applyValEmailController">
+    <div style="text-align: -webkit-center; margin: 10px 0;" >
+      <p>{{"signup.applyValEmail.subtitulo" | translate }}</p>
+    </div>
+    <div class="line-101">
 
       <div ng-if="!val" class="m-t">
-        <div class="alert alert-info">
+        <div class="alert alert-info" style="cursor: pointer;" ui-sref="access.signin">
           <p class="text-center">
             {{"signup.applyValEmail.exec" | translate }}
           </p>
         </div>
       </div>
 
-      <div ng-if="val == 'error'" class="m-t">
-        <div class="alert alert-danger">
+      <div ng-if="val == 'error'">
+        <div class="panel-red" style="cursor: pointer;" ui-sref="access.signin">
           <p class="text-center">
             {{"signup.applyValEmail.error" | translate }}
           </p>
         </div>
       </div>
 
-      <div ng-if="val == true" class="m-t">
-        <div class="alert alert-success">
-          <p class="text-center">
+      <div ng-if="val == true" class="pillar-auto">
+        <div class="panel-green" style="cursor: pointer;" ui-sref="access.signin">
+          <p style="color:white;">
             {{"signup.applyValEmail.success" | translate }}
           </p>
         </div>
       </div>
-
-      <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">{{'Iniciar_Sesion' | translate}}</a>
     </div>
-  </div>
 </div>
-
-<!-- footer -->
-<div class="text-center" ng-include="'templates/blocks/page_footer.html'">
-  {% include 'blocks/page_footer.html' %}
-</div>
-<!-- / footer -->

@@ -1,0 +1,16 @@
+<div class="select-operator-box">
+	<div class="line-100" style="margin-top: 50px;">
+		<p class="p-green p-3">Resumen de Recargas</p>
+	</div>
+	<div class="line-100">
+		{{result}}
+	</div>
+	<div class="" style="margin-bottom: 100px; margin-top: 30px;">
+		<button data-standard class="btn-gray-on"  style="float: left; margin-left: 10%; width: 140px;" ng-click="cancel()">
+			<p>Cancelar</p>
+		</button>
+		<button data-standard class="btn-green-on" style="float: right; margin-right: 10%; width: 140px;" ng-click="confirmar()" ng-disabled='form.$invalid'>
+			<p>Aceptar</p>
+		</button>
+	</div>
+</div>

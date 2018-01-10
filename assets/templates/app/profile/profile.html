@@ -1,144 +1,83 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
-  <div class="col">
-    <div style="background:url(images/c4.jpg) center center; background-size:cover">
-      <div class="wrapper-lg bg-white-opacity">
-        <div class="row m-t">
-          <div class="col-sm-7">
-            <a href class="thumb-lg pull-left m-r">
-              <img src="images/a0.jpg" class="img-circle">
-            </a>
-            <div class="clear m-b">
-              <div class="m-b m-t-sm">
-                <span class="h3 text-black"> 
-                  {{ ( (user.nombres.split(' ')[0] ? user.nombres.split(' ')[0] +  " ":"") + user.apellidos.split(' ')[0] ) || user.login.email.email || 'User'}}
-                </span>
+<div ng-init="loader='mostrar';cuerpo='ocultar'" ng-controller="BasicController">
+
+    <div ng-class="{ocultarLoader: loader === 'ocultar', mostrarLoader: loader === 'mostrar'}" style="display:flex; justify-content:center">
+      <!-- <div class="overlay"></div>
+        <div class="spinner" id="loaderBody"  style="position: fixed; top:30%; left:45%;">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+      </div> -->
+      <div class="line-102">
+        <div class="panel-green" style=" margin-top:20%; padding: 0.5pc 2pc; width: 25%; opacity:0.8">
+        <div class="line-103">
+          <section>
+            <div class="lds-css ng-scope" style="float:left; display:flex;">
+              <div style="width:100%;height:100%" class="lds-rolling">
+                <div></div>
               </div>
-              <p class="m-b">
-              <!--   <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
-                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
-                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a> -->
-              </p>
-              <a href class="btn btn-sm btn-success btn-rounded">Update</a>
             </div>
+          </section>
+          <section>
+          <div>
+            <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
+              {{"Cargando" | translate}}
+            </p>
           </div>
-          <div class="col-sm-5">
-            <div class="pull-right pull-none-xs text-center">
-             <!--  <a href class="m-b-md inline m">
-                <span class="h3 block font-bold">2k</span>
-                <small>Followers</small>
-              </a>
-              <a href class="m-b-md inline m">
-                <span class="h3 block font-bold">250</span>
-                <small>Following</small>
-              </a> -->
-            </div>
-          </div>
+        </section>
         </div>
       </div>
     </div>
-    <div class="wrapper bg-white b-b">
-      <ul class="nav nav-pills nav-sm">
-        <li class="active">
-          <a ui-sref="app.page.profile.update_datos">
-            {{'profile.basicos' | translate}}
-          </a>
-        </li>
-        <li>
-          <a ui-sref="app.page.profile.contacto">
-            {{'profile.contacto' | translate}}
-          </a>
-        </li>
-        <li>
-          <a ui-sref="app.page.profile.security">
-            {{'profile.seguridad' | translate}}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="padder">      
-      <!-- contenido -->
-      <div ui-view class="fade-in-right-big smooth"></div>
-      <!-- / contenido -->
-    </div>
-
   </div>
 
-  <!-- <div class="col w-lg bg-light lter b-l bg-auto">
-    <div class="wrapper">
-      <div class="">
-        <h4 class="m-t-xs m-b-xs">Who to follow</h4>
-        <ul class="list-group no-bg no-borders pull-in">
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="images/a4.jpg" alt="..." class="img-circle">
-              <i class="on b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Chris Fox</a></div>
-              <small class="text-muted">Designer, Blogger</small>
+
+  <div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
+    <div id="background" class="box-profile">
+      <div class="fade-in-right-big smooth leftSpace" ui-view>
+        <div class="profile-default-view">
+          <div class="social-box">
+            <div class="social-image-box">
+              <div class="vertical-line-separate">
+                <img src="images/facebook.png">
+              </div>
             </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="images/a5.jpg" alt="..." class="img-circle">
-              <i class="on b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Mogen Polish</a></div>
-              <small class="text-muted">Writter, Mag Editor</small>
+            <div class="social-description-box" >
+              <p>Desconectado</p>
+              <a class="social-section-box" href="http://test.neeru.io:9002/plataform/user/syncUpFacebook">
+                <img src="images/conectar.png" alt="">
+                <small>{{ "Iniciar_Sesion_Facebook" | translate}}</small>
+              </a>
             </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="images/a6.jpg" alt="..." class="img-circle">
-              <i class="busy b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Joge Lucky</a></div>
-              <small class="text-muted">Art director, Movie Cut</small>
+          </div>
+          <div class="social-box">
+            <div class="social-image-box">
+              <div class="vertical-line-separate">
+                <img src="images/google.png">
+              </div>
             </div>
-          </li>
-          <li class="list-group-item">
-            <a herf class="pull-left thumb-sm avatar m-r">
-              <img src="images/a7.jpg" alt="..." class="img-circle">
-              <i class="away b-white bottom"></i>
-            </a>
-            <div class="clear">
-              <div><a href>Folisise Chosielie</a></div>
-              <small class="text-muted">Musician, Player</small>
+            <div class="social-description-box" >
+              <p>Desconectado</p>
+              <a class="social-section-box" href="http://test.neeru.io:9002/plataform/user/syncUpGoogle">
+                <img src="images/conectar.png" alt="">
+                <small>{{ "Iniciar_Sesion_Google" | translate}}</small>
+              </a>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+
+
       </div>
-      <div class="panel b-a">
-        <h4 class="font-thin padder">Latest Tweets</h4>
-        <ul class="list-group">
-          <li class="list-group-item">
-              <p>Wellcome <a href class="text-info">@Drew Wllon</a> and play this web application template, have fun1 </p>
-              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
-          </li>
-          <li class="list-group-item">
-              <p>Morbi nec <a href class="text-info">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
-              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
-          </li>
-          <li class="list-group-item">                     
-              <p><a href class="text-info">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-              <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
-          </li>
-        </ul>
-      </div>
-      <div class="panel b-light clearfix">
-        <div class="panel-body">
-          <a href class="thumb pull-left m-r">
-            <img src="images/a0.jpg" class="img-circle">
-          </a>
-          <div class="clear">
-            <a href class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
-            <small class="block text-muted">2,415 followers / 225 tweets</small>
-            <a href class="btn btn-xs btn-success m-t-xs">Follow</a>
+      <div class="rightSpace">
+        <div class="profile">
+          <div class="pad20"><a href="#" ng-click="imageChange()"><img src="{{user.imagen_perfil}}"></a></div>
+          <p class="profile-p" ng-click="imageChange()" style="cursor: pointer;">{{ "profile.image_label" | translate }}</p>
+        </div>
+        <div class="pad20">
+          <p class="profile-p">{{ "profile.email_label" | translate }}</p>
+          <p class="profile-email">{{user.email}}</p>
+          <div class="click" ui-sref="app.page.profile.security">
+            <p class="profile-p">{{ "profile.password_label" | translate }}</p>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>

@@ -1,0 +1,47 @@
+<header>
+  <section id="idHeader">
+    <div class="imgNeeru" style="max-width: 100px;">
+      <img src="images/logo-neeru-blanco.png" width="200px;">
+    </div>
+    <nav>
+      <div class="">
+        <p><a href="#item1">{{"landing.como_funciona" | translate}}</a></p>
+      </div>
+      <div class="">
+        <p><a href="#item2">{{"landing.seguridad" | translate}}</a></p>
+      </div>
+      <div class="">
+        <p><a href="#item3">{{"landing.contactanos" | translate}}</a></p>
+      </div>
+    <!-- <div class="headerTxt">
+      <div class="pillar-30p">
+        <p class="p-small p-500"><a href="#item1"></a></p>
+      </div>
+      <div class="pillar-25p">
+        <p class="p-small p-500"><a href="#item2">{{"seguridad" | translate}}</a></p>
+      </div>
+      <div class="pillar-25p">
+        <p class="p-small p-500"><a href="#item3">{{"contactanos" | translate}}</a></p>
+      </div>
+    </div> -->
+      </nav>
+      <nav>
+      <div ui-sref="access.signup" class="">
+        <p>{{"Registrarse" | translate}}</p>
+      </div>
+      <div ui-sref="access.signin" class="">
+        <p>{{"signin.subtitulo" | translate}}</p>
+      </div>
+      <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
+        <div class="vertical-line"></div>
+        <p style="cursor: pointer;">{{selectLang}}</p>
+        <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
+          <div ng-repeat="(langKey, label) in langs">
+            <p ng-click="setLang(langKey, $event)">{{label}}</p>
+          </div>
+        </div>
+      </div>
+      </nav>
+
+  </section>
+</header>

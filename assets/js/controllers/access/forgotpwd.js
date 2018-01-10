@@ -9,6 +9,10 @@ app.controller('ForgotpwdController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
   function($rootScope,  $scope, $http, $state, $translate) {
 
+  $rootScope.header = {}
+  $rootScope.header.icono = "images/icoPasswrd.png";
+  $rootScope.header.namePage = "forgotpwd.successfp.subtitulo";
+
   $scope.authError = undefined;
   $scope.user = {};
   /****************************************************
@@ -18,27 +22,17 @@ app.controller('ForgotpwdController',
   *****************************************************/
   $scope.forgotpwd = function() {
     $scope.authError = null;
-
-
-    var recaptcha = $scope.$getValRecaptcha();
-
-    if (!recaptcha) {
-      $scope.authError = 'err.recaptcha.required';
-      return false;
-    };
-
     var datos = {
-      email: $scope.user.email,
-      recaptcha: recaptcha
+      email: $scope.user.email
     };
 
     $http.post('plataform/forgotpwd/generate', datos)
     .then(function(response) {
-        $state.go('access.successforgotpwd');
+        // $state.go('access.applyForgotPwd');
+
     }, function(res) {
-
       $scope.authError = res.data.error.msjUser;
-
+      //CASO DE ERROR QUE EL CORREO NO ESTE REGISTRADO
     });
   };
 
@@ -47,7 +41,10 @@ app.controller('ForgotpwdController',
 app.controller('applyFPController',
   ['$rootScope', '$scope', '$http', '$state', '$translate', '$location', 'validarPassword',
   function($rootScope,  $scope, $http, $state, $translate, $location, validarPassword) {
-
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoPasswrd.png";
+    $rootScope.header.namePage = "forgotpwd.applyForgotPwd.header";
+    $scope.loading = false;
 /*****************************************************
   * Validaciond e password dinamica                    *
   *****************************************************/
@@ -124,7 +121,7 @@ app.controller('applyFPController',
   *****************************************************/
   $scope.forgotpwd = function() {
     $scope.authError = null;
-
+    $scope.loading = true;
     var datos = {};
 
     if($location.search().rel)
@@ -157,12 +154,26 @@ app.controller('applyFPController',
 
     $http.post('plataform/forgotpwd/apply', datosE)
     .then(function(response) {
+      $scope.loading = false;
         $state.go('access.successappplyfp');
     }, function(res) {
-
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
 
     });
   };
 
 }]);
+
+app.controller('SuccessController',
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
+
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoPasswrd.png";
+    $rootScope.header.namePage = "forgotpwd.applyForgotPwd.header";
+
+    $scope.redirect = function () {
+        $state.go('access.signin');
+    }
+  }]);

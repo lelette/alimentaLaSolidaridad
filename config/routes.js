@@ -44,6 +44,17 @@ module.exports.routes = {
   *                                                                         *
   **************************************************************************/
 
+
+  /**************************************************************************
+  * Ruta para home de la pagina                                             *
+  **************************************************************************/
+  '/landing/*': {
+    view: 'home',
+    locals: {
+      layout: 'layouts/neeru'
+    }
+  },
+
   /**************************************************************************
   * Ruta para home de la pagina                                             *
   **************************************************************************/
@@ -69,19 +80,22 @@ module.exports.routes = {
   * Rutas del cliente web                                                   *
   **************************************************************************/
   '/app/*' : {
-    controller: 'ClienteWebController',
-    action: 'auth',
+    //controller: 'ClienteWebController',
+    //action: 'auth',
+    view: 'home',
     locals: {
       layout: 'layouts/neeru'
     }
   },
 
+
+
   /**************************************************************************
   * Rutas del cliente web admin                                             *
   **************************************************************************/
   '/admin/*' : {
-    controller: 'ClienteWebController',
-    action: 'admin',
+    //controller: 'ClienteWebController',
+    //action: 'admin',
     locals: {
       layout: 'layouts/neeru'
     }
