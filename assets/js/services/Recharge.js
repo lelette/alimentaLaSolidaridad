@@ -11,7 +11,9 @@ app.service('Recharge', [
   function ($http) {
 
     // Resultadode las recargas realizadas
-    this.result = {};
+    this.result = {
+      checkAsFrequent: false
+    };
 
     // Información permanente de las recargas pendientes
     this.cart = {
@@ -76,5 +78,8 @@ app.service('Recharge', [
 
     };
 
+    this.setCheckFrequent = function(){
+      this.result.checkAsFrequent = true
+    }
 
 }]);
