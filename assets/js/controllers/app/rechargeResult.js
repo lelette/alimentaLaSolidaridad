@@ -28,6 +28,22 @@ app.controller('rechargeResultCtrl',
     $scope.disabledNumberCountry = true;
     $scope.showCountry = false;
     $scope.array_frequent = [] // Guardo todos los seleccionados como frecuente para abrir modal
+    $scope.frecuentes = []
+
+    $http.get('plataform/user/searchFrecuente')
+    .then(function(response){
+      $scope.frecuentes = response.data
+      for (var i = 0; i < $scope.result.length; i++) {
+        for (var j = 0; j < $scope.frecuentes.length; i++) {
+          if($scope.result[i].phone == $scope.frecuentes[j].frecuente.numero){
+            $scope.result[i].checkAsFrequent = true
+          }
+        }
+      }
+    }, function(error){
+      // console.log("ERROR >>>>", error)
+    })
+
 
     /*********************************************************************
     * @description :: Actualiza el checkbox por cada numero seleccionado *
@@ -112,7 +128,6 @@ app.controller('AddFrequentModalCtrl', [
         $scope.frecuentes.splice($scope.counter-1, 1)
         $scope.counter-- // Resto el contador ya que borre
         $scope.alias = "" // Reseteo el alias del frecuente
-        Recharge.setCheckFrequent()
       }, function(error){
         //console.log("ERROR >>>", error)
       })
