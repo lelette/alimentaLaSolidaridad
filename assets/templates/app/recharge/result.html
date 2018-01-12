@@ -15,7 +15,7 @@
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.amount_label" | translate }}</th>
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.status_label" | translate }}</th>
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.description_label" | translate }}</th>
-            <th class="p-tiny" style="width:20%; text-align:center;">Frecuente</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "std.frequent" | translate }}</th>
           </tr>
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
@@ -38,7 +38,7 @@
     <footer class="text-right bg-light lter" style="text-align:center">
       <!-- <button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}} -->
       <button  ui-sref="app.page.recharge" class="btn-green-on" data-standard="">{{'Nueva Recarga' | translate}}</button>
-      <button ng-hide="array_frequent.length == 0" class="btn-green-on" data-standard="" ng-click="handleFrequent()"><p>Añadir a frecuente</p></button>
+      <button ng-hide="array_frequent.length == 0" class="btn-green-on" data-standard="" ng-click="handleFrequent()"><p>{{ "add_frequent" | translate }}</p></button>
     </footer>
   </div>
   <!-- </div> -->

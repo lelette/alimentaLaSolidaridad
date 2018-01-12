@@ -46,6 +46,7 @@
   .empty-activity-box > .line-100:last-child,
   .empty-activity-box > .line-100:nth-child(2){
     justify-content: space-evenly;
+    margin-bottom: 30px;
   }
   .empty-activity-box > .line-100:nth-child(2){
     margin: 2pc 0pc;

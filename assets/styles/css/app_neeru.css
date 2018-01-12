@@ -321,7 +321,7 @@ b {
 .frequent-master-box > section:last-child {
 	flex-wrap: wrap;
 	display: flex;
-	width: 30%
+	width: 40%
 }
 
 .frequent-input {
