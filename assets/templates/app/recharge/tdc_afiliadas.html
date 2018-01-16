@@ -36,13 +36,13 @@
     <section>
       <div class="dynamic-content-box" style="display:block; width:100%; overflow:hidden; whitespace: nowrap;">
 
-        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:20px;position: relative;right: 85px;">
-  				<div class="line-100">
-  					<img src="../../images/carita4.png">
-  					<p class="p-green p-300 p-5">No posees tarjetas registradas...</p>
+        <div ng-if="cards.length == 0" class="empty-activity-box" style="margin-top:20px;position: relative;margin-left: 10%;">
+  				<div class="line-100" style="margin-top: 20px;">
+  					<img src="images/carita4.png" style="margin-right: 1pc;">
+  					<p class="p-green p-300 p-5">{{ "card_section.empty_box_title" | translate }}</p>
   				</div>
   				<div class="line-100">
-  					<p class="p-gray">Agrega una tarjeta y añade saldo a tu cuenta!</p>
+  					<p class="p-gray">{{ "card_section.empty_box_subtitle" | translate }}</p>
   				</div>
     		</div>
 
@@ -81,7 +81,7 @@
             </div>&nbsp;&nbsp;
 
             <div class="pillar-25p">
-              <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength" style="text-align: center; letter-spacing: 5px;">
+              <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength" required numero style="text-align: center; letter-spacing: 5px;">
             </div>&nbsp;&nbsp;
 
             <span ng-show="cardType == 'Visa'" class="pillar-70px" style="justify-content:center; align-items: center;">

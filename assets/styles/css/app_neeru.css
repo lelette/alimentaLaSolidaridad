@@ -20,6 +20,26 @@
 	font-size: 30px;
 }
 
+.aux-1-SA:first-child {
+	margin-right: -4pc;
+	margin-left: 60px;
+}
+
+.aux-1-SA:last-child {
+	margin-right: -2.5pc;
+}
+
+.aux-1-SA::before {
+	background-color: transparent !important;
+}
+
+img{
+	outline: 0 !important;
+}
+
+.languege-box::before {
+	background-color: transparent !important;
+}
 
 .app-header .bold{
 	font-weight: bold;
@@ -301,7 +321,7 @@ b {
 .frequent-master-box > section:last-child {
 	flex-wrap: wrap;
 	display: flex;
-	width: 30%
+	width: 40%
 }
 
 .frequent-input {

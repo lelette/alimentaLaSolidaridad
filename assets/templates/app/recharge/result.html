@@ -15,17 +15,21 @@
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.amount_label" | translate }}</th>
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.status_label" | translate }}</th>
             <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.description_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "std.frequent" | translate }}</th>
           </tr>
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
           <tr ng-repeat="item in result">
-            <td>{{item.referencia}}</td>
+            <!-- <td>{{item.referencia}}</td> -->
             <td>+{{item.phone}}</td>
-            <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
+            <!-- <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
             <td>{{item.status || "Anulada" }}</td>
-            <td>{{item.error.msj}}</td>
+            <td>{{item.error.msj}}</td> -->
             <td>
-              <input type="checkbox" style="cursor:pointer;">
+              <div ng-if="!item.checkAsFrequent" class="neeru-checkbox-1" style="position: relative; left: 16px">
+                <input type="checkbox" style="cursor:pointer;" ng-model="checkFrequent" ng-change="updateSelectedFrecuent(checkFrequent, item)">
+                <span></span>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -34,9 +38,9 @@
     <footer class="text-right bg-light lter" style="text-align:center">
       <!-- <button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}} -->
       <button  ui-sref="app.page.recharge" class="btn-green-on" data-standard="">{{'Nueva Recarga' | translate}}</button>
+      <button ng-hide="array_frequent.length == 0" class="btn-green-on" data-standard="" ng-click="handleFrequent()"><p>{{ "add_frequent" | translate }}</p></button>
     </footer>
   </div>
-    </div>
   <!-- </div> -->
   <!-- Fin de Movimiento Detallado -->
 

@@ -32,7 +32,7 @@
   }
 
   .input-box {
-    margin-left: 50px !important;
+    margin-left: 30px !important;
   }
 /* Boxes */
 
@@ -46,6 +46,7 @@
   .empty-activity-box > .line-100:last-child,
   .empty-activity-box > .line-100:nth-child(2){
     justify-content: space-evenly;
+    margin-bottom: 30px;
   }
   .empty-activity-box > .line-100:nth-child(2){
     margin: 2pc 0pc;
@@ -210,15 +211,16 @@
     }
   }
 
-  @media screen and (min-width: 1641px) and (max-width: 1680){
+  @media screen and (min-width: 1641px) and (max-width: 1679){
     .input-box {
-      margin-left: 25px !important;
+      margin-left: 30px !important;
     }
   }
 
-  @media screen and (min-width: 1681px){
+  @media screen and (min-width: 1680px){
     .input-box {
-      margin-left: 30px !important;
+      margin-left: 65px !important;
+      width: 52% !important;
     }
   }
 /* Responsive */
