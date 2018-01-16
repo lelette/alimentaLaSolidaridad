@@ -155,7 +155,7 @@ app.controller('FrequentController',
       $state.go('app.page.recharge', $scope.topUpParams);
     };
 
-    $scope.changeArray = (frequent) => {
+    $scope.changeArray =  function(frequent) {
       $scope.recarga = true;
       $scope.countries.forEach(element => {
         var code = `+${element.phone_code}`;

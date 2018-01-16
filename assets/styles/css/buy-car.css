@@ -32,7 +32,7 @@
   }
 
   .input-box {
-    margin-left: 50px !important;
+    margin-left: 30px !important;
   }
 /* Boxes */
 
@@ -211,15 +211,16 @@
     }
   }
 
-  @media screen and (min-width: 1641px) and (max-width: 1680){
+  @media screen and (min-width: 1641px) and (max-width: 1679){
     .input-box {
-      margin-left: 25px !important;
+      margin-left: 30px !important;
     }
   }
 
-  @media screen and (min-width: 1681px){
+  @media screen and (min-width: 1680px){
     .input-box {
-      margin-left: 30px !important;
+      margin-left: 65px !important;
+      width: 52% !important;
     }
   }
 /* Responsive */
