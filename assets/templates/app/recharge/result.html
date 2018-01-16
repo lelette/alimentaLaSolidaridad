@@ -1,22 +1,108 @@
-<div class="col-sm-5 pull-none m-a" ng-controller="ResultController">
-  <div class="panel panel-default">
-    <div class="panel-body">
+<main onload="primeAppVar.init()" ng-controller="rechargeResultCtrl">
 
-      <div>
-        <h4>Descripción</h4>
-        <p>{{'Recarga' | translate}} {{recharge.oferta.proveedor.nombre}}</p>
-        <p>Cuenta:{{recharge.contrato}}</p>
-        <p>Monto a recargar: {{recharge.amountExpected}} {{recharge.oferta.pais.iso_currency}}</p>
-        <p>Monto a cobrar: {{recharge.amountCharge}} USD</p>
-        <h4>Resultado</h4>
-        <p>{{recharge.result.recharge ? 'Recarga Exitosa' : 'Recarga Anulada'}}</p>
-        <p ng-if="recharge.result.recharge ">
-          Referencia: {{recharge.result.referencia}}
-        </p>
-      </div>
-      <div class="col-sm-12">
-        <button type="submit" ng-click="continuar()" class="btn btn-lg btn-success w-full">{{'Nueva Recarga' | translate}}</button>
-      </div>
+  <!-- Movimiento Detallado -->
+  <div class="center" style="width:70%">
+    <div class="bg-light lter b-b wrapper-md text-center">
+      <h1 class="m-n font-thin h5">{{ "result_transaction.result_header" | translate }}</h1>
     </div>
+    <div class="wrapper-md center w-100">
+      <div class="panel-body">
+      <table class="table table-hover table-responsive b-t b-b" >
+        <thead>
+          <tr style="font-weight:500;">
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.reference_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.phone_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.amount_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.status_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "result_transaction.description_label" | translate }}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{ "std.frequent" | translate }}</th>
+          </tr>
+        </thead>
+        <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
+          <tr ng-repeat="item in result">
+            <!-- <td>{{item.referencia}}</td> -->
+            <td>+{{item.phone}}</td>
+            <!-- <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
+            <td>{{item.status || "Anulada" }}</td>
+            <td>{{item.error.msj}}</td> -->
+            <td>
+              <div ng-if="!item.checkAsFrequent" class="neeru-checkbox-1" style="position: relative; left: 16px">
+                <input type="checkbox" style="cursor:pointer;" ng-model="checkFrequent" ng-change="updateSelectedFrecuent(checkFrequent, item)">
+                <span></span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="text-right bg-light lter" style="text-align:center">
+      <!-- <button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}} -->
+      <button  ui-sref="app.page.recharge" class="btn-green-on" data-standard="">{{'Nueva Recarga' | translate}}</button>
+      <button ng-hide="array_frequent.length == 0" class="btn-green-on" data-standard="" ng-click="handleFrequent()"><p>{{ "add_frequent" | translate }}</p></button>
+    </footer>
   </div>
-</div>
+  <!-- </div> -->
+  <!-- Fin de Movimiento Detallado -->
+
+  <!-- Tabla de movimientos -->
+  <!-- <div class="wrapper-md center w-100">
+    <div class="panel-body">
+      <table id="tablaMovimientos" ui-jq="dataTable" class="table table-hover table-responsive b-t b-b" ui-options="{
+          paging: false,
+          autoWidth: true,
+          info:true,
+          searching: false,
+          processing: true,
+          language: {
+            processing: 'Progreso en Curso',
+            search: 'Buscar',
+            lengthMenu: 'Mostrar _MENU_ registros',
+            emptyTable: 'Ningún dato disponible en esta tabla',
+            info: '<span class=p-100>_START_ - _END_ / _TOTAL_ </span>',
+            infoEmpty: '0 registros',
+            infoFiltered: '(filtrado de un total de _MAX_ registros)',
+            zeroRecords: 'No se encontraron resultados',
+            loadingRecords: 'Cargando...',
+            paginate: {
+              first: 'Primero',
+              last: 'Último',
+              next: 'Siguiente',
+              previous: 'Anterior'
+            },
+            aria: {
+              sortAscending: ': Activar para ordenar la columna de manera ascendente',
+              sortDescending: ': Activar para ordenar la columna de manera descendente'
+            }
+          },
+          aoColumns: [
+            { mData: 'referencia' },
+            { mData: 'phone' },
+            { mData: 'monto' },
+            { mData: 'status' },
+            { mData: 'error.msj' },
+          ],
+          aaData: {{result}}
+
+          {{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
+        }">
+        <thead >
+          <tr>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{"referencia" | translate}}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{"telefono" | translate}}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{"monto" | translate}}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{"estado" | translate}}</th>
+            <th class="p-tiny" style="width:20%; text-align:center;">{{"descripcion" | translate}}</th>
+          </tr>
+        </thead>
+        <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+  <!-- Fin Tabla de movimientos -->
+
+
+</main>
+<script src="js/ui-load.js"></script>
+<script src="js/ui-jp.config.js"></script>
+<script src="js/ui-jp.js"></script>

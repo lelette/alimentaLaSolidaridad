@@ -6,8 +6,8 @@
 
 
  // Prefijo de URL para el Core de Servicios
- //var API_URL = 'http://localhost:9002/';
  var API_URL = 'http://localhost:9002/';
+ //var API_URL = 'http://192.168.3.66:8002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -109,7 +109,7 @@ angular.module('app')
             params: {'code': '', 'number': '', 'url': ''},
             resolve: load([
               'js/controllers/app/recharge.js',
-              'js/directives/stripe.js',
+              // 'js/directives/stripe.js',
               'js/services/Sales.js'
               ])
           })
@@ -126,17 +126,19 @@ angular.module('app')
           .state('app.page.recharge.get_token_stripe', {
             url: '/tdc',
             templateUrl: 'templates/app/recharge/getTokenStripe.html',
-            resolve: load(['js/stripe/stripe.js'])
+            // resolve: load(['js/stripe/stripe.js'])
           })
           .state('app.page.recharge.confirm', {
             url: '/confirm',
             templateUrl: 'templates/app/recharge/confirm.html',
             resolve: load([])
           })
-          .state('app.page.recharge.result', {
-            url: '/result',
+          .state('app.page.rechargeResult', {
+            url: '/rechargeResult',
             templateUrl: 'templates/app/recharge/result.html',
-            resolve: load([])
+            resolve: load([
+              'js/controllers/app/rechargeResult.js'
+            ])
           })
           // fin recharge #######################################
 

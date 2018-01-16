@@ -2,11 +2,11 @@
 <!-- Seccion del home -->
 <section class="pillar-100p flex-wrap" style="/*height:660px*/">
   <div class="homeLeft">
-    <p class="txt1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+    <p class="txt1">{{ "landing.title_label" | translate }}</p>
     <br>
     <hr class="hrHome">
     <br>
-    <p class="txt2 w-65p">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla.</p>
+    <p class="txt2 w-65p">{{ "landing.subtitle_label" | translate }}</p>
     <br><br><br>
     <div ui-sref="access.signup" class="btnHome" type="button" name="button">
       <img ng-src="images/icoEnviarRecarga.png" alt="">
@@ -14,10 +14,10 @@
     </div>
     <br><br>
     <div style="margin-bottom: 10px;">
-        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-untouched ng-valid" name="button" href="http://192.168.2.28:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{"Iniciar_Sesion_Facebook" | translate}}</a>
+        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-untouched ng-valid" name="button" href="http://test.neeru.io:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{"Iniciar_Sesion_Facebook" | translate}}</a>
     </div>
     <div style="margin-bottom: 1pc;">
-      <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://localhost:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left"></span>{{"Iniciar_Sesion_Google" | translate}}</a>
+      <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://test.neeru.io:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left"></span>{{"Iniciar_Sesion_Google" | translate}} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</a>
     </div>
   </div>
   <div class="imgHome">
@@ -32,7 +32,7 @@
   <h2 class="center hTxt1 color-verde">{{"landing.como_funciona" | translate}}</h2>
   <div class="pillar-ajust-funciona" style="margin:0 auto;">
     <div class="boxSecFunciona" style="margin-bottom:2.5pc">
-      <div class="white">
+      <div class="white" style="height: 340px;">
         <div class="img-central">
           <img src="images/landing/icoOrden.png" alt="" style="width: 30%;">
         </div>
@@ -40,14 +40,14 @@
           <h4 style="color: #0DB730;">1. {{"landing.orden" | translate}}</h4>
         </div>
         <div>
-          <p class="txt3">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
+          <p style="height: 88px;" class="txt3">{{ "landing.how_it_works_section.order_box" | translate }}</p>
         </div>
-        <div class="hrFunciona">
+        <div class="hrFunciona" style="position: relative;bottom: 30px;">
         </div>
       </div>
     </div>
     <div class="boxSecFunciona" style="margin-bottom:2.5pc">
-      <div class="white">
+      <div class="white" style="height: 340px;">
         <div class="img-central">
           <img src="images/landing/icoPago.png" alt="" style="width: 28%;">
         </div>
@@ -55,14 +55,14 @@
           <h4 style="color: #0DB730;">2. {{"landing.pago" | translate}}</h4>
         </div>
         <div>
-          <p class="txt3">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+          <p style="height: 88px;" class="txt3">{{ "landing.how_it_works_section.payment_box" | translate }}</p>
         </div>
-        <div class="hrFunciona">
+        <div class="hrFunciona" style="position: relative; bottom: 33px;">
         </div>
       </div>
     </div>
     <div class="boxSecFunciona" style="margin-bottom:2.5pc">
-      <div class="white">
+      <div class="white" style="height: 340px;">
         <div class="img-central">
           <img src="images/landing/icoRecarga.png" alt="" style="width: 29%;">
         </div>
@@ -70,9 +70,9 @@
           <h4 style="color: #0DB730;">3. {{"landing.recarga" | translate}}</h4>
         </div>
         <div>
-          <p class="txt3">Accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis.</p>
+          <p style="height: 88px;" class="txt3">{{ "landing.how_it_works_section.top_up_box" | translate }}</p>
         </div>
-        <div class="hrFunciona">
+        <div class="hrFunciona" style="position: relative;bottom: 33px;">
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@
       </div>
     </div>
     <br><br><br>
-    <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button" style="width:74%">
+    <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button" style="width:50%">
       <img ng-src="images/icoEnviarRecarga.png" alt="">
       <span style="margin-left:10px;"> {{"landing.registrate_recarga" | translate}}</span>
     </div>
@@ -128,7 +128,7 @@
       <img class="img" src="images/landing/bgContacto.png" style="width:100%; height:100%">
       <div class="img-center color-blanco" >
         <h2 class="center hTxt1 color-blanco"> {{"landing.contactanos" | translate}} </h2>
-        <p class="p-400 paddingContactos">Hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
+        <p class="p-400 paddingContactos">{{ "landing.contact_section.description_label" | translate }}</p>
         <div class="pillar-100p input-contactos">
           <div class="w-45p">
             <input class="input-text placeholder-blanco" type="text" name="" placeholder="{{'landing.nombre_completo' | translate}}">

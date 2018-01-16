@@ -7,10 +7,11 @@
 
 app.controller('SignupFormController',
   ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
-  function($rootScope,  $scope, $http, $state, validarPassword, $translate) {
+  function($rootScope, $scope, $http, $state, validarPassword, $translate) {
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoMiPerfil.png";
     $rootScope.header.namePage = "signup.subtitulo";
+    $scope.loading = false;
 
   /*****************************************************
   * Validaciond e password dinamica                    *
@@ -111,10 +112,37 @@ app.controller('SignupFormController',
   *****************************************************/
   $scope.signup = function() {
     $scope.authError = null;
+    $scope.loading = true;
 
     var recaptcha = $scope.$getValRecaptcha();
 
+    if (!$scope.user.nombres) {
+      $scope.authError = 'Falta campo nombre';
+      return false;
+    };
+
+    if (!$scope.user.apellidos) {
+      $scope.authError = 'Falta campo apellido';
+      return false;
+    };
+
+    if (!$scope.user.email) {
+      $scope.authError = 'Falta correo electronico';
+      return false;
+    };
+
+    if (!$scope.user.password) {
+      $scope.authError = 'Falta campo contraseña';
+      return false;
+    };
+
+    if (!$scope.user.terminos) {
+        $scope.authError = 'Debes aceptar los terminos y condiciones';
+        return false;
+    };
+
     if (!recaptcha) {
+      $scope.loading = false;
       $scope.authError = 'err.recaptcha.required';
       return false;
     };
@@ -126,6 +154,9 @@ app.controller('SignupFormController',
       recaptcha: recaptcha
     };
 
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
+
     $http.post('plataform/user/signup', datos)
     .then(function(response) {
 
@@ -133,18 +164,23 @@ app.controller('SignupFormController',
         data_target: "email"
       })
       .then(function(resonse){
+        $scope.loading = false;
         $state.go('access.emitValEmail');
       },function(res){
+        $scope.loading = false;
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
         $scope.authError = res.data.error.msjUser;
       });
 
     }, function(res) {
-
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
 
     });
   };
-
 
 }]);
 
@@ -156,7 +192,7 @@ app.controller('SuccessController',
 
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoMiPerfil.png";
-    $rootScope.header.namePage = "Registro";
+    $rootScope.header.namePage = "signup.subtitulo";
 
     $scope.redirect = function () {
         $state.go('access.signin');

@@ -1,19 +1,19 @@
 <div class="select-operator-box">
 	<div class="line-100" style="margin-top: 50px;">
-		<p class="p-green p-3">Modificar número frecuente...</p>
+		<p class="p-green p-3">{{ "modify_frequent" | translate }}...</p>
 	</div>
 	<div class="line-100">
 		<form id="form" name="form" class="form-validation modal-body text-center" style="display: flex; justify-content: center;">
-	    <label style="color: #989898; padding-right: inherit; margin-top: 5px; width: 70% !important;">Nuevo alias: </label>
-			<input class="form-control" stringExt data-mode-1  type="text" name="alias" ng-model="datos.alias" placeholder="Nuevo alias..." required>
+	    <label style="color: #989898; padding-right: inherit; margin-top: 5px; width: 70% !important;">{{ "new_alias" | translate }}: </label>
+			<input class="form-control" stringExt data-mode-1  type="text" name="alias" ng-model="datos.alias" placeholder="{{ 'new_alias' | translate }}..." required>
 		</form>
 	</div>
 	<div class="" style="margin-bottom: 100px; margin-top: 30px;">
 		<button data-standard class="btn-gray-on"  style="float: left; margin-left: 10%; width: 140px;" ng-click="cancel()">
-			<p>Cancelar</p>
+			<p>{{ "std.Cancelar" | translate }}</p>
 		</button>
 		<button data-standard class="btn-green-on" style="float: right; margin-right: 10%; width: 140px;" ng-click="confirmar()" ng-disabled='form.$invalid'>
-			<p>Aceptar</p>
+			<p>{{ "std.Aceptar" | translate }}</p>
 		</button>
 	</div>
 </div>

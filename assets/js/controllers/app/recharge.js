@@ -9,20 +9,24 @@ app.controller('ReloadController',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
     console.log('Recharge', Recharge);
 
-  Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
-  $scope.btnClassRecarga = "btn-off";
-  $scope.btnPayment = "btn-green-off"
+  // Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
+  $scope.btnClassRecarga = "btn-green-off";
+  $scope.btnPayment = "btn-green-off";
+  $scope.btnClassPay = "btn-green-off";
+  $scope.btnClassPassPay = "btn-green-off";
   $scope.btnClassModePay = "btn-off";
   $scope.disabledNumberCountry = true;
   $scope.error_msj_oferta = false;
   $scope.cart = [];
+  $scope.modo = null; // Si agrego oferta o no al carrito antes de pasar a pagar
+  $scope.totalCart = 0;
   $scope.datos = {
     cod: 'Pais',
     contrato: '',
     operadora: ''
   };
 
-  $scope.typePay = ""; // Tipo de pago a elegir (Pago con tdc nueva o Tarjetas afiliadas)
+  $scope.typePay = "tdcnueva"; // Tipo de pago a elegir (Pago con tdc nueva o Tarjetas afiliadas)
   $scope.cardSelected = ""; // Token de la tarjeta seleccionada
 
   $scope.pais = {}
@@ -40,15 +44,24 @@ app.controller('ReloadController',
   $scope.showOffers   = false;
   $scope.showOperator = false;
   $scope.showCountry = false;
+  $scope.formTDC = false;
   $scope.card = {}
   $scope.fullCard = {}
   $scope.resumenRecarga = false;
 
   $http.get('platform/stripe/getCards')
   .then(function(response){
-    $scope.cards = response.data.data;
+    console.log('response.data', response.data);
+    if (response.data.data.length > 0) {
+      $scope.typePay = "afiliadas";
+      $scope.cards = response.data.data;
+    }
+    $scope.loader = 'ocultar';
+    $scope.cuerpo = 'mostrar';
   }, function(error){
     console.log('Error >>>', error);
+    $scope.loader = 'ocultar';
+    $scope.cuerpo = 'mostrar';
   });
 
   $http.get('plataform/user/searchFrecuente')
@@ -61,7 +74,7 @@ app.controller('ReloadController',
 
   if (Recharge.info.pais && Recharge.info.pais.codigo && Recharge.info.pais.numero && Recharge.info.pais.url
     && Recharge.info.pais.operadora && Recharge.info.ofertas) {
-
+     $scope.resumenRecarga = true;
      $scope.ofertas = Recharge.info.ofertas;
      $scope.pais.cod = Recharge.info.pais.codigo;
      $scope.pais.url = Recharge.info.pais.url;
@@ -92,8 +105,6 @@ app.controller('ReloadController',
       }
 
     }
-    $scope.loader = 'ocultar';
-    $scope.cuerpo = 'mostrar';
     $scope.$apply(); //this triggers a $digest
   }, 2000);
 
@@ -105,23 +116,68 @@ app.controller('ReloadController',
   $scope.removeRecharge = function (idSale) {
     $http.post('plataform/sales/deleteShoppingCart', {id: idSale})
     .then(function(response){
-      $scope.cards = response.data.data;
-    }, function(error){
+      var cart = Recharge.cart.details;
+      var data = response.data[0];
+      cart.forEach(function (elemento, indice, array) {
+        if (elemento.idSale == data.id) {
+          cart.splice(indice,1);
+          $scope.totalCart = parseFloat($scope.totalCart) - (parseFloat(elemento.price_unit) + parseFloat(elemento.fee));
+        }
+      });
+      Recharge.cart.details = cart;
 
+      //$state.reload();
+    }, function(error){
+      console.log('Error >>>', error);
     });
 
+  }
+
+  $scope.changeBtnPay = function (cambio) {
+    if (cambio) {
+      $scope.formTDC = cambio;
+      $scope.btnClassPay = "btn-green-on";
+    }else {
+      $scope.formTDC = cambio;
+      $scope.btnClassPay = "btn-green-off";
+    }
+  }
+
+  $scope.changeNewTDC = function () {
+    $scope.newTDC = false;
+    $scope.btnClassPay = 'btn-green-off';
+  }
+
+  $scope.selectCardTdc = function (card) {
+    $rootScope.newTDC = false;
+    if (card) {
+      Recharge.cart.card = card;
+      $scope.formTDC = true;
+      $scope.btnClassPay = "btn-green-on";
+    }else {
+      $scope.formTDC = false;
+      $scope.btnClassPay = "btn-green-off";
+    }
   }
 
   $scope.updateSelected = function(token){
     $scope.cardSelected = token;
   }
 
+  $scope.procederAlPago = function (modo) {
+    if (modo == 'oferta') {
+      $scope.agregarAlCarrito();
+      $state.go('app.page.recharge.get_token_stripe');
+    }else {
+      $state.go('app.page.recharge.get_token_stripe');
+    }
+  }
+
   $scope.agregarAlCarrito = function () {
     if (Recharge.info.oferta) {
-
       $http.post('plataform/sales/shoppingCartRegister', Recharge.info.oferta)
       .then(function (res) {
-        Recharge.info.oferta.idSale = res.data.venta.id
+        Recharge.info.oferta.idSale = res.data.venta.id;
         Recharge.cart.details.push(Recharge.info.oferta);
         $scope.cart = Recharge.cart.details;
         $scope.btnClassModePay = "btn-green-on";
@@ -130,75 +186,94 @@ app.controller('ReloadController',
         $scope.showOffers = false;
         $scope.datos = {};
         Recharge.reset();
-        //$state.reload();
+        $state.reload();
       }, function (error) {
 
       });
-    }else {
-
     }
   }
 
   $scope.selectOffer = function (producto) {
+    // console.log('producto', producto);
+    // console.log('ofertas', Recharge.info.ofertas);
+    $scope.btnClassPassPay = "btn-green-on";
+    $scope.modo = 'oferta';
     Recharge.info.oferta = producto;
+    Recharge.info.oferta.localCurrency = Recharge.info.ofertas.moneda_local;
     Recharge.info.oferta.phone = Recharge.info.ofertas.telefono_destino;
     Recharge.info.oferta.operator = Recharge.info.ofertas.operadora;
-    $scope.btnClassRecarga = "btn-gray-on";
-    $scope.btnPayment = "btn-green-on";
+    $scope.btnClassRecarga = "btn-green-on";
   }
 
-  $scope.recharge = function () {
-     $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
+  $scope.afiliarTarjeta = function(card_customer){
+    $http.post('platform/stripe/affiliateCard', card_customer)
+      .then(function(response){
+        console.log('response card_customer', response);
+      }, function(error){
+        console.log('error card_customer', error);
+      });
+  };
 
-     // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
-     if($scope.fullCard.cardExpiry.substr(0,1) >= 1 && $scope.fullCard.cardExpiry.substr(0,1) <=9){
-       $scope.card.exp_month = '0'+$scope.fullCard.cardExpiry.substr(0,1);
-     }
-     else{
-       $scope.card.exp_month = $scope.fullCard.cardExpiry.substr(0,1);
-     }
+  $scope.recharge = function (valid) {
+    console.log('valid', valid);
+    console.log('Recharge.cart', Recharge.cart);
+    if (Recharge.cart.card) {
+      Recharge.cart.token = Recharge.cart.card.id;
+      Recharge.cart.customer = Recharge.cart.card.customer;
+      $scope.loader = 'mostrar';
+      $scope.cuerpo = 'ocultar';
+      $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+        Recharge.result = response.data.recargas;
+        $scope.$emit('$resetAjax');
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
+        $state.go('app.page.rechargeResult');
+      });
+    }else {
+      if (valid) {
+        $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
 
-     $scope.card.exp_year = $scope.fullCard.cardExpiry.substr(3,7);
+        // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
+        if($scope.fullCard.cardExpiry.substr(0,1) >= 1 && $scope.fullCard.cardExpiry.substr(0,1) <=9){
+          $scope.card.exp_month = '0'+$scope.fullCard.cardExpiry.substr(0,1);
+        }
+        else{
+          $scope.card.exp_month = $scope.fullCard.cardExpiry.substr(0,1);
+        }
 
-     // Creo el token de seguridad de la tarjeta
-     $scope.loader = 'mostrar';
-     $scope.cuerpo = 'ocultar';
-     Stripe.card.createToken($scope.card,function(status, res){
-       if(res.error){
+        $scope.card.exp_year = $scope.fullCard.cardExpiry.substr(3,7);
 
-           $scope.loader = 'ocultar';
-           $scope.cuerpo = 'mostrar';
-       }else{
-
-         var card_customer = {
-           token: res.id,
-           description: $scope.fullCard.description,
-         }
-
-         Recharge.cart.token = res.id;
-         $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-           $scope.result = response;
-           $scope.$emit('$resetAjax');
-           $scope.loader = 'ocultar';
-           $scope.cuerpo = 'mostrar';
-           var modalInstance = $uibModal.open({
-             templateUrl: 'templates/modals/modalResultRecharge.html',
-             controller: 'modalResultRecharge',
-             backdrop: 'static',
-             resolve: {
-               dataScope:function() {
-                 return {
-                   dataScope: {
-                     result: $scope.result,
-                     data: $scope
-                   }
-                 }
-               }
-             }
-           });
-         });
-       }
-     });
+        // Creo el token de seguridad de la tarjeta
+        $scope.loader = 'mostrar';
+        $scope.cuerpo = 'ocultar';
+        // Stripe.card.createToken($scope.card,function(status, res){
+        //   if(res.error){
+        //
+        //       $scope.loader = 'ocultar';
+        //       $scope.cuerpo = 'mostrar';
+        //   }else{
+        //     Recharge.cart.token = res.id;
+        //
+        //     if (Recharge.cart.checkAfiliacionTDC) {
+        //       var card_customer = {
+        //         token: res.id,
+        //         email: $scope.fullCard.email,
+        //         description: $scope.fullCard.description,
+        //       }
+        //       $scope.afiliarTarjeta(card_customer);
+        //     }
+        //
+        //     $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+        //       Recharge.result = response.data.recargas;
+        //       $scope.$emit('$resetAjax');
+        //       $scope.loader = 'ocultar';
+        //       $scope.cuerpo = 'mostrar';
+        //       $state.go('app.page.rechargeResult');
+        //     });
+        //   }
+        // });
+      }
+    }
 
    }
 
@@ -236,17 +311,23 @@ app.controller('ReloadController',
    }
 
    if (telefono) {
+    if (Recharge.cart.details.length > 0) $scope.btnClassPassPay = "btn-green-on";
+
     $scope.showOffers = false;
-    $scope.loaderRecharge = 'mostrar';
+    //$scope.loaderRecharge = 'mostrar';
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
     $http.post('plataform/offers',{
           // Telefono de reales --> España "34912509849" ; Argentina "5491127184499"
-          "phone":  telefono,
-          "currency": "EUR",
+          "phone":  telefono
      }).then(function(res){
        $scope.error_msj_oferta = false;
-       $scope.loaderRecharge = 'ocultar';
+      //  $scope.loaderRecharge = 'ocultar';
+       $scope.loader = 'ocultar';
+       $scope.cuerpo = 'mostrar';
        var ofertas = res.data;
        var operadora = ofertas.operadora;
+       console.log('ofertas', ofertas);
        Recharge.info.ofertas = ofertas;
        Recharge.info.pais = {
          codigo: cod,
@@ -257,7 +338,9 @@ app.controller('ReloadController',
       $scope.ofertas = Recharge.info.ofertas;
       $scope.showOffers = true; $scope.showOperator = true;
     }, function(res){
-      $scope.loaderRecharge = 'ocultar';
+      //$scope.loaderRecharge = 'ocultar';
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
       $scope.showOffers = false;
       $scope.error_msj_oferta = true;
       /*$scope.$emit('$resetAjax');
@@ -330,8 +413,10 @@ app.controller('ReloadController',
 
 
  if (($stateParams.code != '')&&($stateParams.url != '')){
+    $scope.disabledNumberCountry = false;
     $scope.showCountry = true;
     $scope.pais.cod = $stateParams.code;
+    $scope.datos.cod = $scope.pais.cod;
     $scope.pais.url = $stateParams.url;
     if (($stateParams.number != '')) {
       $scope.datos.contrato = $stateParams.number;

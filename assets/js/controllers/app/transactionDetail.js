@@ -23,6 +23,21 @@ app.controller('movDetailsController',
       if (venta.length == 0 || venta.length != 1) {
         $state.go('app.page.transactions');
       }else{
+        var  status;
+        switch (venta[0].status) {
+          case 'A': status = "Anulada";
+          break;
+          case 'R': status = "Rechazada";
+          break;
+          case 'P': status = "Pediente";
+          break;
+          case 'PC': status = "Por Cobrar";
+          break;
+          case 'C': status = "Completada";
+          break;
+          default: status = "A";
+        }
+
         $scope.tableMovDetails = true
         var newSale = {};
         var fecha = venta[0].createdAt;
@@ -30,15 +45,14 @@ app.controller('movDetailsController',
         newSale.date = fecha.substring(0,10);//sale.createdAt.getDate()+"/"+ (sale.createdAt.getMonth()+1)+"/"+ sale.createdAt.getFullYear();
         newSale.reference = venta[0].referencia;
         newSale.phone = venta[0].phone;
-        newSale.status = venta[0].status;
-        newSale.recharge = "EUR /. 5 - 10 USD ";
-        newSale.total = "10,28 USD";//sale.realAmountUSD + sale.serviceFee,
+        newSale.status = status;
+        newSale.recharge = parseFloat(venta[0].expectedAmount);
+        newSale.total = parseFloat(venta[0].realAmount) + parseFloat(venta[0].serviceFee);//sale.realAmountUSD + sale.serviceFee,
         newSale.action = "<img src='images/icoEliminar.png' />";
         $scope.datos.sale = newSale;
      }
 
     }, function(res){
-      console.log('res.data',res.data);
       $scope.msjmov = false;$scope.tablemov = true;
       $scope.$emit('$errorAjax',res.data);
     });

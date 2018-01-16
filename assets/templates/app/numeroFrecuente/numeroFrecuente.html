@@ -3,13 +3,13 @@
 			<div class="frequent-master-box" >
 				<section>
           <div class="dynamic-content-box">
-              <div ng-show="frecuentes.length == 0" class="empty-activity-box" style="margin-top:120px">
-                  <div class="line-100">
-                      <img src="images/carita2.png">
-                      <p class="p-green p-300 p-5">No posees números registrados...</p>
+              <div ng-show="frecuentes.length == 0" class="empty-activity-box" style="margin-top:120px; margin-left: 20%">
+                  <div class="line-100" style="margin-top: 20px;">
+                      <img src="images/carita2.png" style="margin-right: 1pc;">
+                      <p class="p-green p-300 p-5">{{ "frequent_section.empty_box_title" | translate }}</p>
                   </div>
                   <div class="line-100">
-                    <p class="p-gray">Añade un contacto y enviale una recarga!</p>
+                    <p class="p-gray">{{ "frequent_section.empty_box_subtitle" | translate }}</p>
                   </div>
               </div>
 							<div ng-show="frecuentes.length != 0" class="container" style="width: 90%; margin-top: 120px;">
@@ -49,7 +49,7 @@
 											<td style="text-align: center">
 												<div class="pillar-30px" style="margin-left: 50%">
 													<div class="neeru-checkbox-1">
-														<input type="checkbox" name="" ng-click=agregarRecarga(frecuente)>
+														<input type="radio" name="radio" ng-click=changeArray(frecuente.frecuente.numero)>
 														<span></span>
 													</div>
 												</div>
@@ -57,7 +57,7 @@
 								    </tr>
 							    </tbody>
 								</table>
-								<div class="tab-box tab-off" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px; " ng-show="recarga">
+								<div class="tab-box tab-off" style="display: flex; width: 25%; height: 36px; float: right; margin-top: 30px; " ng-show="recarga" ng-click="sendTopUp()">
 									<img src="images/icoOrdenVrd.png">
 									<p >{{"movements.enviar_recarga" | translate}}</p>
 								</div>
@@ -66,7 +66,7 @@
           	</div>
 				</section>
 				<section>
-          <form id="form" name="form" class="form-validation frequent-add" autocomplete="off" style="width: 90%">
+          <form id="form" name="form" class="form-validation frequent-add" autocomplete="off" style="width: 72%">
             <div class="pillar-30p" style="padding-bottom: 10px; width: 90%; float: right;">
               <div uib-dropdown uib-dropdown-toggle class="neeru-select form-control" style="width: 25%; height: 40px; padding: 0;" required>
                 <div class="country-selected">
@@ -87,7 +87,7 @@
 		            </div>
               </div>
               <div class="pillar-70p" style="width: 75%; padding-left: 5px; display: grid">
-                <input  numero class="form-control" style="height: 40px; color:#747474;" type="text" name="phone" data-mode-1 placeholder="{{'inserte_numero' | translate}}" maxlength="15" minlength="4" ng-model="auxNumero" required>
+                <input  numero class="form-control frequent-input" type="text" name="phone" data-mode-1 placeholder="{{'inserte_numero' | translate}}" maxlength="15" minlength="4" ng-model="auxNumero" required>
 								<!-- <div style="text-align: center">
 									<img src="images/logos/movistar.png" style="width:60%;">
 								</div> -->

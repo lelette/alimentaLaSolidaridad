@@ -17,6 +17,8 @@ app.controller('tdcCtrl',
     $rootScope.header.namePage = "Tarjetas Afiliadas"; // Titulo del Sub-Header
     $scope.cardType = ""
     $scope.checkDate = "";
+    $scope.loading = false;
+    console.log($scope);
 
     // Objeto que almacenara los datos de la tarjeta
     $scope.card = {
@@ -42,20 +44,24 @@ app.controller('tdcCtrl',
 
     // Tarjeta afiliadas del usuario
     $scope.cards = [];
-
-    // Consulta las tarjetas afiliadas del usuario
-    $scope.loader='mostrar';
-    $scope.cuerpo='ocultar';
-    $http.get('platform/stripe/getCards')
+    $scope.getCards = function () {
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
+      $http.get('platform/stripe/getCards')
       .then(function(response){
+        $scope.cards = response.data.data;
         $scope.loader='ocultar';
         $scope.cuerpo='mostrar';
-        $scope.cards = response.data.data;
       }, function(error){
         $scope.loader='ocultar';
         $scope.cuerpo='mostrar';
         console.log(error);
       });
+    };
+
+    // Consulta las tarjetas afiliadas del usuario
+    $scope.getCards();
+
 
     /****************************************************************************************
     *    function     :: Funcion que permite afiliar la tarjeta de credito                  *
@@ -64,6 +70,7 @@ app.controller('tdcCtrl',
     *****************************************************************************************/
 
     $scope.afiliarTarjeta = function(){
+      $scope.loading = true;
       $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
 
       // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
@@ -84,27 +91,36 @@ app.controller('tdcCtrl',
         console.log("ressssss ");
         console.log(res);
         if(res.error){
-          console.log("Ocurrio un error ....");
-            $scope.loader='ocultar';
-            $scope.cuerpo='mostrar';
+          $scope.card = {};
+          $scope.fullCard = {};
+          $scope.cardType = "";
+          $scope.formTDC.$setDirty();
+          $scope.formTDC.$setPristine();
+          $scope.loader='ocultar';
+          $scope.cuerpo='mostrar';
+          $scope.loading = false;
         }else{
           var card_customer = {
             token: res.id,
             email: $scope.fullCard.email,
             description: $scope.fullCard.description,
-          }
-          console.log(card_customer.description);
-          console.log(card_customer);
+          };
+          $scope.formTDC.$setDirty();
+          $scope.formTDC.$setPristine();
+          $scope.cardType = "";
           $http.post('platform/stripe/affiliateCard', card_customer)
-            .then(function(response){
-                $scope.loader='ocultar';
-                $scope.cuerpo='mostrar';
-              $state.reload();
-            }, function(error){
-              console.log(error);
-                $scope.loader='ocultar';
-                $scope.cuerpo='mostrar';
-            });
+          .then(function(response){
+            $scope.getCards();
+              $scope.card = {};
+              $scope.fullCard = {};
+              $scope.loading = false;
+          }, function(error){
+              $scope.fullCard = {};
+              $scope.card = {};
+              $scope.loading = false;
+              $scope.loader='ocultar';
+              $scope.cuerpo='mostrar';
+          });
         }
       });
     };
@@ -156,9 +172,6 @@ app.controller('tdcCtrl',
       var month = parseInt(date.split("/")[0]);
       var year = parseInt(date.split("/")[1]);
 
-      console.log('month', month);
-      console.log('year', year);
-
       if(month > 12 || month <= 0){
         $scope.checkDate = false;
       }
@@ -191,9 +204,7 @@ app.controller('tdcCtrl',
       $http.post('platform/stripe/untieCard', data)
         .then(function(response){
           if(response.data.deleted){
-            $scope.loader='ocultar';
-            $scope.cuerpo='mostrar';
-            $state.reload();
+            $scope.getCards();
           }else {
             $scope.loader='ocultar';
             $scope.cuerpo='mostrar';
@@ -201,7 +212,6 @@ app.controller('tdcCtrl',
         }, function(error){
           $scope.loader='ocultar';
           $scope.cuerpo='mostrar';
-          console.log(error);
         });
     };
 

@@ -19,7 +19,7 @@
           <section>
           <div>
             <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
-              Cargando
+              {{"Cargando" | translate}}
             </p>
           </div>
         </section>
@@ -30,7 +30,7 @@
 
 
   <div ng-class="{ocultarLoader: cuerpo === 'ocultar', mostrarLoader: cuerpo === 'mostrar'}" style="position:relative; top:0px; z-index:1;">
-    <div id="background">
+    <div id="background" class="box-profile">
       <div class="fade-in-right-big smooth leftSpace" ui-view>
         <div class="profile-default-view">
           <div class="social-box">
@@ -39,12 +39,12 @@
                 <img src="images/facebook.png">
               </div>
             </div>
-            <div class="social-description-box">
-              <p>Desconectado</p>
-              <div class="social-section-box">
+            <div class="social-description-box" >
+              <p>{{ "std.offline" | translate }}</p>
+              <a class="social-section-box" href="http://test.neeru.io:9002/plataform/user/syncUpFacebook">
                 <img src="images/conectar.png" alt="">
-                <small>{{ "Iniciar_Sesion_Facebook" | translate}}</small>
-              </div>
+                <small>{{ "sincronizar_Facebook" | translate}}</small>
+              </a>
             </div>
           </div>
           <div class="social-box">
@@ -53,12 +53,12 @@
                 <img src="images/google.png">
               </div>
             </div>
-            <div class="social-description-box">
-              <p>Desconectado</p>
-              <div class="social-section-box">
+            <div class="social-description-box" >
+              <p>{{ "std.offline" | translate }}</p>
+              <a class="social-section-box" href="http://test.neeru.io:9002/plataform/user/syncUpGoogle">
                 <img src="images/conectar.png" alt="">
-                <small>{{ "Iniciar_Sesion_Google" | translate}}</small>
-              </div>
+                <small>{{ "sincronizar_Google" | translate}}</small>
+              </a>
             </div>
           </div>
         </div>
@@ -67,14 +67,14 @@
       </div>
       <div class="rightSpace">
         <div class="profile">
-          <div class="pad20"><a href="#"><img src="{{user.imagen_perfil}}"></a></div>
-          <p class="profile-p" ng-click="imageChange()" style="cursor: pointer;">CAMBIAR FOTO <br>DE PERFIL</p>
+          <div class="pad20"><a href="#" ng-click="imageChange()"><img src="{{user.imagen_perfil}}"></a></div>
+          <p class="profile-p" ng-click="imageChange()" style="cursor: pointer;">{{ "std.change" | translate }}<br>{{ "std.image" | translate }}</p>
         </div>
         <div class="pad20">
-          <p class="profile-p">EMAIL</p>
+          <p class="profile-p">{{ "profile.email_label" | translate }}</p>
           <p class="profile-email">{{user.email}}</p>
           <div class="click" ui-sref="app.page.profile.security">
-            <p class="profile-p">CAMBIAR CONTRASEÑA</p>
+            <p class="profile-p">{{ "profile.password_label" | translate }}</p>
           </div>
         </div>
       </div>

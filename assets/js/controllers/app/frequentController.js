@@ -19,7 +19,12 @@ app.controller('FrequentController',
     $rootScope.header = {}
     $rootScope.header.icono = "images/icoNumFrec.png";
     $rootScope.header.namePage = "Números Frecuentes";
-
+    $scope.topUpArray = [];
+    $scope.topUpParams = {
+      code: '',
+      number: '',
+      url: ''
+    };
 
     $scope.recarga = false;
     $scope.procesarRegarga = {};
@@ -145,6 +150,22 @@ app.controller('FrequentController',
 
       });
     };
+
+    $scope.sendTopUp = function () {
+      $state.go('app.page.recharge', $scope.topUpParams);
+    };
+
+    $scope.changeArray =  function(frequent) {
+      $scope.recarga = true;
+      $scope.countries.forEach(element => {
+        var code = `+${element.phone_code}`;
+        if (frequent.indexOf(code) >= 0) {
+          $scope.topUpParams.code = element.phone_code;
+          $scope.topUpParams.number = frequent.slice(code.length);
+          $scope.topUpParams.url = `images/banderas/${element.name}.png`;
+        }
+      })
+    }
 
     // Consultamos los numeros frecuentes asociados a la sesion
     $scope.consultarFrecuentes();

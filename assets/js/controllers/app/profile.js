@@ -28,7 +28,6 @@ app.controller('BasicController',
   $scope.refreshUser = function () {
     User.refresh(function(err){
       if (err) {
-        console.log(err);
         $scope.loader = 'ocultar';
         $scope.cuerpo = 'mostrar';
       }else{
@@ -42,8 +41,6 @@ app.controller('BasicController',
           email: User.info.login.email.email,
           imagen_perfil: User.info.imagen_perfil,
         };
-        if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
-        else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       }
     });
   };
@@ -72,7 +69,6 @@ app.controller('BasicController',
     $scope.update = function(){
       User.update($scope.user, function(err){
         if (err) {
-          console.log(err);
         };
 
       });
@@ -91,7 +87,9 @@ app.controller('SecurityController',
     $scope.popoverContrasena = {
       contenido: '',
       titulo: 'signup.popover.password.titulo'
-    }
+    };
+
+    $scope.loading = false;
 
     // Reiniciar los datos del popover
     $scope.validaciones = validarPassword.inicializarData();
@@ -156,10 +154,13 @@ app.controller('SecurityController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.changePwd = function(){
+      $scope.loading = true;
       User.changePwd($scope.user, function(err){
         if (err) {
-          console.log(err);
+          $scope.loading = false;
         };
+        $scope.loading = false;
+        $state.go('app.page.profile')
       });
     }
 
@@ -282,14 +283,13 @@ app.controller('ImgChangeCtrl', [
     }
 
     var uploader = $scope.uploader = new FileUploader({
-       url: $rootScope.apiUrl+'/plataform/user/changeImage',
+       url: $rootScope.apiUrl+'plataform/user/changeImage',
        alias: 'imagen_perfil',
        autoUpload: false,
        withCredentials: true,
      });
 
     var handleFileSelect = function(evt) {
-      console.log($scope);
       var file = evt.currentTarget.files[0];
       var reader = new FileReader();
 
@@ -356,6 +356,7 @@ app.controller('ImgChangeCtrl', [
           if (err) {
             console.log(err);
           }
+          $state.reload()
         });
         // $modalInstance.dismiss();
         $scope.loader = 'ocultar';

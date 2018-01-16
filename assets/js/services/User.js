@@ -7,8 +7,9 @@
 */
 
 app.service('User', [
+  '$rootScope',
   '$http',
-  function ($http) {
+  function ($rootScope,$http) {
 
     // Información por defecto del usuario
     this.info = {};
@@ -29,7 +30,8 @@ app.service('User', [
         aux.id= res.data.id;
         aux.emails= res.data.emails;
         aux.login= undefined;
-        aux.imagen_perfil = res.data.datos_basicos.imagen_perfil;
+        if (res.data.datos_basicos.imagen_perfil.match('http')) aux.imagen_perfil = res.data.datos_basicos.imagen_perfil;
+        else aux.imagen_perfil = $rootScope.apiUrl+'/'+res.data.datos_basicos.imagen_perfil;
         aux.pin= res.data.pin;
 
         res.data.emails.forEach(function(email){

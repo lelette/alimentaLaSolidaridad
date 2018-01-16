@@ -1,20 +1,20 @@
-<div ng-controller="ReloadController" ng-init="loader='mostrar';cuerpo='ocultar'" class="pillar-100p" onload="primeAppVar.init()">
+<div class="pillar-100p" onload="primeAppVar.init()">
   <div class="selecting-internal-box-R">
     <div class="line-100">
-      <div class="pillar-70p" style="margin-left: 8pc;">
-        <div style="padding-right: 2%" class="pillar-15p">
+      <div class="pillar-70p input-box">
+        <div class="pillar-20p">
           <div uib-dropdown  uib-dropdown-toggle class="neeru-select form-control" style="height: 40px;" required>
             <div class="country-selected">
               <div style="display: flex;" ng-hide="showCountry">
                 <img src="images/icoSelectPais.png" style="width: 100%">
-                <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">País</p>
+                <p style="margin-top: 3px; color: #747474; font-family: neeru; font-size: 0.9em;" class="p-small">{{ "top-up.order.select" | translate }}</p>
               </div>
               <div ng-show="showCountry" data-country-code="+58" style="display: flex;">
                 <img src="{{pais.url}}">
-                <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: -2px;">{{pais.cod}}</p>
+                <p class="p-gray" style="font-size: 1.1em; color: #747474; margin-top: 2px;">{{pais.cod}}</p>
               </div>
             </div>
-            <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 105px !important; margin-top: 2px; border: 0;">
+            <div id="options-neeru" class="options-neeru-select-box uib-dropdown-menu animated fadeInUp" role="menu" style="min-width: 115px !important; margin-top: 0px; border: 0;">
               <div ng-repeat="country in countries" ng-click="countrySelected(country)" class="option-neeru" data-country-code="+58" style="justify-content: start;">
                 <img src="images/banderas/{{country.name}}.png">
                 <p style="color: #747474; font-size: 1.1em;">{{'+'+country.phone_code}}</p>
@@ -22,21 +22,23 @@
             </div>
           </div>
         </div>
-        <div class="pillar-45p">
-          <input ng-disabled="disabledNumberCountry" onblur="primeAppVar.validateInputPhone(this)" type="number" name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="Inserte Número" ng-maxlength="12" style="height: 40px;border-right:0; border-bottom-right-radius: 0;border-top-right-radius: 0; border-right:0;">
+        <div class="pillar-50p">
+          <input ng-disabled="disabledNumberCountry" onblur="primeAppVar.validateInputPhone(this)" type="text" numero name="datos.contrato" ng-model="datos.contrato" data-mode-1 placeholder="{{ 'top-up.order.phone_input' | translate }}" minlength="4" maxlength="15" style="margin-left:0.5pc;height: 40px;border-right:0; border-bottom-right-radius: 0;border-top-right-radius: 0; border-right:0;">
           <button class="btn-go" ng-disabled="disabledNumberCountry" ng-click="obtenerOfertas()" type="button" name="button"><i class="fa fa-angle-right"></i></button>
         </div>
-      </div>
-      <div class="pillar-45p"  ng-show="showOperator">
-        <img src="images/icoOperadoraVrd.png" width="25px" height="25px">
-        <p class="p-gray" style="margin: 5px 10px 10px;">{{datos.operadora}}</p>
       </div>
     </div>
     <div class="line-100 aux-3-R">
       <p style="color:red;">{{error_msj_offer}}</p>
     </div>
+    <div class="line-100">
+      <div class="pillar-100p"  ng-show="showOperator" style="margin-left:6.5%;">
+        <img src="images/icoOperadoraVrd.png" width="25px" height="25px">
+        <span class="p-gray" style="margin: 5px 10px 10px;">{{datos.operadora}}</span>
+      </div>
+    </div>
     <div class="line-100 aux-3-R" ng-show="error_msj_oferta">
-      <p style="color:red;">No se obtuvieron ofertas para el numero ingresado.</p>
+      <p style="color:red;">{{ "err.not_found_offers" | translate }}</p>
     </div>
     <div ng-class="{ocultarLoader: loaderRecharge === 'ocultar', mostrarLoader: loaderRecharge === 'mostrar'}" style="display:flex; justify-content:center">
       <div class="line-102">
@@ -52,7 +54,7 @@
             <section>
               <div>
                 <p style="color: white; margin-left:0.5pc position: relative;margin-top: 12px;">
-                  Cargando
+                  {{"Cargando" | translate}}
                 </p>
               </div>
             </section>
@@ -181,12 +183,12 @@
           </div>
         -->
         <!-- Ofertas -->
-        <div class="line-100 plans-box" ng-show="showOffers">
+        <div class="line-100 plans-box" ng-show="showOffers" style="width: 80%;margin-left: 10%;">
           <div ng-repeat="producto in ofertas.productos" class="pillar-45p regular-plan" style="padding: 5px 50px;">
             <div class="pillar-auto">
               <div class="pillar-30px">
                 <div class="neeru-checkbox-1">
-                  <input type="radio" ng-click="selectOffer(producto)"  name="option">
+                  <input type="radio" ng-click="selectOffer(producto)" name="option">
                   <span></span>
                 </div>
               </div>
@@ -195,36 +197,39 @@
               </div>
             </div>
           </div>
-          <div class="line-100 aux-2-R" style="margin-top: 50px;">
+          <div class="line-100 aux-2-R" style="margin-top: 50px; justify-content: flex-start;">
             <div class="pillar-45p">
               <div class="pillar-30px">
                 <img src="images/icoPromo.png">
               </div>
               <div class="pillar-100p">
-                <input type="text" name="promo-code" placeholder="Inserte Código Promocional" data-hide>
+                <input type="text" name="promo-code" placeholder="{{ 'top-up.order.code_promotion_input' | translate }}" data-hide>
               </div>
             </div>
           </div>
           <div class="line-100 aux-5-R">
-            <div class="line-100" style="margin: 0 auto; width:50%;" >
-              <p>¡¡Avísale que recargaste!! Envía un mensaje...</p>
-              <input type="text" name="" data-mode-1 placeholder="Mensaje...">
+            <div class="line-100">
+              <div class="pillar-50p">
+                <p>{{ "top-up.order.notification_topup" | translate }}</p>
+              </div>
+              <div class="pillar-50p">
+                <input type="text" name="" data-mode-1 placeholder="{{ 'top-up.order.messaage_input' | translate }}">
+              </div>
             </div>
           </div>
           <div class="pillar-100p" style="justify-content: space-around;margin-top: 15px;">
               <button data-standard ng-class="btnClassRecarga" ng-click="agregarAlCarrito()">
-                <p>Añadir al Carrito</p>
+                <p>{{ "top-up.cart_button" | translate }}</p>
               </button>
-
-              <button name="button" data-standard  ui-sref="app.page.recharge.get_token_stripe" onclick="primeAppVar.changeStateMW(this);primeAppVar.payBox(this)" ng-class="btnPayment">
-                <p>proceed to payment</p>
+              <button name="button" ng-class="btnClassPassPay" data-standard  ng-click="procederAlPago(modo)" onclick="primeAppVar.changeStateMW(this);primeAppVar.payBox(this)" ng-class="btnPayment">
+                <p>{{ "top-up.payment_button" | translate }}</p>
               </button>
           </div>
         </div>
       </div>
       <div class="line-100	frecuency-phones-box" ng-show="showFrecuent">
         <div class="line-100">
-          <p class="p-gray p-300">Números Frecuentes</p>
+          <p class="p-gray p-300">{{ "top-up.frequent_lable" | translate }}</p>
         </div>
         <div class="line-100 aux-4-R">
           <div ng-repeat="item in frecuentes" class="pillar-25p frecuency-phone">

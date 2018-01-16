@@ -1,14 +1,11 @@
 <header>
   <section ng-controller="GlobalCtrl">
-    <div>
-      <img src="images/logoNeeru2.png">
+    <div style="max-width: 100px;">
+      <img src="images/logo-neeru-blanco.png" width="200px">
     </div>
     <nav>
-      <div ui-sref="app.page.home">
+      <div ui-sref="app.page.recharge">
         <i class="fa fa-home" aria-hidden="true"></i>
-      </div>
-      <div ui-sref="app.page.recharge" class="">
-        <p>{{"header.enviar_recarga" | translate}}</p>
       </div>
       <!--
       <div>
@@ -49,7 +46,7 @@
                     <p class="p-black p-300">{{item.phone}}</p>
                   </div>
                   <div class="line-100">
-                    <p class="p-black p-300"><span class="p-short">USD</span> {{item.realAmount}}</p>
+                    <p class="p-black p-300"><span class="p-short">USD</span> {{item.price_unit}}</p>
                   </div>
                 </div>
                 <div class="pillar-auto">
@@ -58,7 +55,7 @@
               </div>
               <!-- SALES OPTIONS -->
               <div class="line-100" style="margin: 5px 0;">
-                <button car-select class="btn-green-on">
+                <button car-select class="btn-green-on" ui-sref="app.page.recharge.get_token_stripe" onclick="primeAppVar.changeStateMW(this);primeAppVar.payBox(this)">
                   <p>{{"realizar_pago" | translate}}</p>
                 </button>
               </div>
@@ -77,14 +74,14 @@
     <div data-aux-1>
       <div>
         <p class="p-small">ID {{user.pin}}</p>
-        <p class="p-tiny" ng-click="logout()">{{"Cerrar_Sesion" | translate}}</p>
+        <p class="p-small" ng-click="logout()">{{"Cerrar_Sesion" | translate}}</p>
       </div>
       <div>
         <img class="aux-img-1-SA" src="{{user.imagen_perfil}}">
       </div>
 
 
-      <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
+      <!-- <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
         <div class="vertical-line"></div>
         <p style="cursor: pointer;">{{selectLang}}</p>
         <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
@@ -92,7 +89,14 @@
             <p ng-click="setLang(langKey, $event)">{{label}}</p>
           </div>
         </div>
+      </div> -->
+      <div class="languege-box" style="display: flex;">
+        <div class="aux-1-SA" ng-repeat="(langKey, label) in langs" >
+          <img ng-if="label === 'ES'" width="30%" src="/images/spain.png" ng-click="setLang(langKey, $event)">
+          <img ng-if="label === 'EN'" width="30%" src="/images/uk.png" ng-click="setLang(langKey, $event)">
+        </div>
       </div>
+    </div>
 
 
     </div>

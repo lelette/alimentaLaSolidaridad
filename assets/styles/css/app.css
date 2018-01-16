@@ -109,7 +109,7 @@
 .access-container {
 	width: 100%;
 	justify-content: center;
-	margin-top: 2.5pc;
+	margin-top: -4.5pc;
 }
 .recaptcha {
 	justify-content: center;
@@ -829,7 +829,7 @@ position: absolute;
 width: 30%;
 height: 2px;
 bottom: 0;
-left: 33%;
+left: 23px;
 background-color: #FFFF00;
 visibility: hidden;
 -webkit-transform: scaleX(0);
@@ -1333,7 +1333,7 @@ transform: scaleX(1);
 	}
 	.total-box{
     padding: 5px;
-    border-top: 1.5px solid #E5EBE6;
+    /*border-top: 1.5px solid #E5EBE6;*/
     height: 82px;
 	}
 	.balance-box{
@@ -2237,12 +2237,12 @@ transform: scaleX(1);
 }
 
 .faa {
-	padding: 20px;
-  font-size: 30px;
-  width: 23%;
-	height: 30%;
+	padding: 33px;
+  font-size: 23px;
+  width: 90px;
+	height: 90px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 2px;
+  /*margin: 2px 0;*/
   border-radius: 50%;
 }

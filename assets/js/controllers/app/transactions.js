@@ -4,8 +4,9 @@
 * @description :: define la interaccion necesaria para realizar el registro de usuarios *
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
-
-
+ function verMovDetalle(id) {
+  window.location.assign("http://localhost:9000/app/page/transactionDetail/"+id)
+}
 
 app.controller('movController',
   ['$rootScope', '$scope', '$http', '$state', '$translate',
@@ -19,11 +20,7 @@ app.controller('movController',
     $scope.techo = undefined;
     $scope.currentPage = 1;
     $scope.pageSize = 10;
-    console.log($rootScope.apiUrl);
 
-    $scope.verMovDetalle= function(id) {
-      window.location.assign("http://localhost:9000/app/page/transactionDetail/"+id)
-    }
     /**************************************************************************
     * consultar                                                               *
     * @descripcion :: consulta las transacciones realizadas en el sistema     *
@@ -51,20 +48,33 @@ app.controller('movController',
           var fecha;
           $scope.currentPage = page;
           ventas.forEach(function(sale){
+            var  status;
+            switch (sale.status) {
+              case 'A': status = "Anulada";
+              break;
+              case 'R': status = "Rechazada";
+              break;
+              case 'P': status = "Pediente";
+              break;
+              case 'PC': status = "Por Cobrar";
+              break;
+              case 'C': status = "Completada";
+              break;
+              default: status = "A";
+            }
             newSale = {};
             fecha = sale.createdAt;
             newSale.date = fecha.substring(0,10);//sale.createdAt.getDate()+"/"+ (sale.createdAt.getMonth()+1)+"/"+ sale.createdAt.getFullYear();
             newSale.reference = "<span style='cursor:pointer' onclick=verMovDetalle("+sale.id+")>"+sale.referencia+"</span>";
             newSale.phone = sale.phone;
-            newSale.recharge = "EUR /. 5 - 10 USD ";
-            newSale.total = "10,28 USD";//sale.realAmountUSD + sale.serviceFee,
-            newSale.action = "<img style='cursor:pointer' src='images/icoEliminar.png' />";
+            newSale.status = status;
+            newSale.recharge = sale.localCurrency +" /. "+ sale.expectedAmount +" - "+ sale.realAmount +" USD ";
+            newSale.total = parseFloat(sale.realAmount) + parseFloat(sale.serviceFee);
             $scope.datos.sales.push(newSale);
           });
 
         };
       }, function(res){
-        console.log('res.data',res.data);
         $scope.msjmov = false;$scope.tablemov = true;
         $scope.$emit('$errorAjax',res.data);
       });

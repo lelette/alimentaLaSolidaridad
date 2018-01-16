@@ -154,7 +154,7 @@ app.controller('ErrorCtrl', [
 app.controller('GlobalCtrl',
   ['$rootScope', '$scope', '$http', '$state', 'User', 'Recharge', '$translate',
   function($rootScope,  $scope, $http, $state, User, Recharge, $translate) {
-    console.log('Recharge GlobalCtrl', Recharge);
+    // console.log('Recharge GlobalCtrl', Recharge);
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
     $scope.cart = [];
@@ -171,8 +171,6 @@ app.controller('GlobalCtrl',
       $scope.user = User.info;
       $scope.user.imagen_perfil = User.info.imagen_perfil;
       $scope.user.pin = User.info.pin;
-      if (User.info.imagen_perfil.match('http')) $scope.user.imagen_perfil = User.info.imagen_perfil;
-      else $scope.user.imagen_perfil = $rootScope.apiUrl+'/'+User.info.imagen_perfil;
       $rootScope.usernombre = $scope.user.nombres;
       // console.log($rootScope.usernombre);
       // Variables fijas del SUBHeader
