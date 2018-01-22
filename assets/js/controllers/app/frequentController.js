@@ -157,7 +157,7 @@ app.controller('FrequentController',
 
     $scope.changeArray =  function(frequent) {
       $scope.recarga = true;
-      $scope.countries.forEach(element => {
+      $scope.countries.forEach(function(element) {
         var code = `+${element.phone_code}`;
         if (frequent.indexOf(code) >= 0) {
           $scope.topUpParams.code = element.phone_code;
