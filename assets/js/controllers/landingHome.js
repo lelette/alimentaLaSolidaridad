@@ -23,4 +23,33 @@ app.controller('LandingHomeCtrl',
      stringStd: 'Acepta solo letras'
     };
 
+    $scope.signin = function() {
+      $scope.authError = null;
+      $scope.loading = true;
+      var datos = {
+        login: $scope.user.login,
+        password: $scope.user.password
+      };
+
+      if (!$scope.user.login) {
+          $scope.authError = "Introduzca un correo";
+          return
+      }
+
+      if (!$scope.user.password) {
+          $scope.authError = "Introduzca la contraseña";
+          return
+      }
+
+      $http.post('plataform/user/signin', datos)
+      .then(function(response) {
+        $scope.loading = false;
+        $state.go('app.page.recharge');
+      }, function(res) {
+        $scope.loading = false;
+        $scope.authError = res.data.error.msjUser;
+      });
+    };
+
+
 }]);
