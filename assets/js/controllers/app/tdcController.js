@@ -55,6 +55,7 @@ app.controller('tdcCtrl',
       }, function(error){
         $scope.loader='ocultar';
         $scope.cuerpo='mostrar';
+        console.log(error);
       });
     };
 
@@ -87,6 +88,8 @@ app.controller('tdcCtrl',
       $scope.cuerpo='ocultar';
 
       Stripe.card.createToken($scope.card,function(status, res){
+        console.log("ressssss ");
+        console.log(res);
         if(res.error){
           $scope.card = {};
           $scope.fullCard = {};
@@ -122,6 +125,7 @@ app.controller('tdcCtrl',
       });
     };
 
+
     /*********************************************************************************************
     *    function     :: Funcion que permite saber que tipo de tarjeta va utilizar dinámicamente *
     *    @description :: Permite adivinar que tipo de TDC es con los primeros dígitos de la TDC  *
@@ -152,7 +156,7 @@ app.controller('tdcCtrl',
         $scope.cardType = 'Not found';
         return $scope.cardType;
       }
-    }
+    };
 
     /***************************************************************************************************
     *    function     :: Funcion que permite validar si la fecha de expiración es válida               *
