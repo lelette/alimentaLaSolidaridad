@@ -218,8 +218,7 @@ app.controller('GlobalCtrl',
             Recharge.cart.token = null;
           }else {
             var cart = [];
-            for (let value of res.carrito) {
-
+            res.carrito.forEach(function (value) {
               cart.push({
                 idSale: value.id,
                 id: value.idProduct,
@@ -229,7 +228,7 @@ app.controller('GlobalCtrl',
                 price_local_unit: value.expectedAmount,
                 price_unit: value.realAmount
               });
-            }
+            })
             Recharge.cart.details = cart;
             $scope.cart = cart;
 
