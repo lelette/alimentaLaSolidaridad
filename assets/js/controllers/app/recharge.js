@@ -100,9 +100,9 @@ app.controller('ReloadController',
       $scope.cart = Recharge.cart.details;
       $scope.btnClassModePay = "btn-green-on";
       $scope.totalCart = 0;
-      for (let item of $scope.cart) {
+      $scope.cart.forEach(function (item) {
         $scope.totalCart =  $scope.totalCart + (parseFloat(item.fee)+ parseFloat(item.price_unit))
-      }
+      })
 
     }
     $scope.$apply(); //this triggers a $digest
