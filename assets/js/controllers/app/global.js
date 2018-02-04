@@ -11,14 +11,13 @@ app.controller('ErrorCtrl', [
   'toaster',
   function($scope, $http, $state, $rootScope, $uibModal, $window, /*Usuario,*/ toaster) {
 
-  /*
     // Funcion para obtener/resetear el header csrf
     function getCSRF() {
       $http.get('csrfToken').success(function(data) {
         $http.defaults.headers.common['x-csrf-token'] = data._csrf;
       });
     };
-  */
+
 
 
   /*

@@ -514,6 +514,7 @@ tr:last-child{
 			padding: 5px 21px !important;
 			width: inherit !important;
 			font-size: 1.1em !important;
+			width: 55% !important;
 		}
 
 		.imgHome{
@@ -652,6 +653,7 @@ tr:last-child{
 			padding: 5px 21px !important;
 			width: inherit !important;
 			font-size: 1.1em !important;
+			width: 55% !important;
 		}
 
 		.imgHome{
@@ -766,10 +768,12 @@ tr:last-child{
 
 		.btnHome{
 				margin: 0 auto;
+				width: 55% !important;
 		}
 
 		.btnSeguridad{
 			margin-left: 9% !important;
+			width: 60% !important;
 		}
 
 		.headerTxt{
@@ -891,6 +895,11 @@ tr:last-child{
 
 		.btnHome{
 				margin: 0 auto;
+				width: 55% !important;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 
 		.homeLeft{
@@ -1023,6 +1032,9 @@ tr:last-child{
 			margin-top: 120px;
 		}
 
+		.btnSeguridad{
+			width: 60% !important;
+		}
 
 	}
 
@@ -1046,17 +1058,29 @@ tr:last-child{
 			text-align: -webkit-center !important;
 		}
 
+		.btnSeguridad{
+			width: 60% !important;
+		}
 	}
+
 
 	@media screen and (min-width: 767px) and (max-width: 790px){
 		.social-box {
 			width: 48%;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 	}
 
 	@media screen and (min-width: 791px) and (max-width: 991px) {
 		.social-box {
 			width: 45%;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 	}
 
@@ -1097,6 +1121,10 @@ tr:last-child{
 
 		.img{
 			height: 819px !important;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 
 		.imgNeeruContactos{
@@ -1254,6 +1282,10 @@ tr:last-child{
 			padding-top: 100px;
 		}
 
+		.btnSeguridad{
+			width: 60% !important;
+		}
+
 		.paddingContactos{
 			padding: 0px 0px 24px;
 		}
@@ -1306,6 +1338,11 @@ tr:last-child{
 
 		.btnHome{
 				margin: 0 auto;
+				width: 55% !important;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 
 		.flex-wrap{
@@ -1388,6 +1425,7 @@ tr:last-child{
 
 		.btnHome{
 				margin: 0 auto;
+				/*width: 55% !important;*/
 		}
 
 		.homeLeft{
@@ -1464,6 +1502,16 @@ tr:last-child{
 			height: 40px !important;
 			color:#747474;
 			width: 290px !important;
+		}
+	}
+
+	@media screen and (min-width: 1501px) and (max-width: 1599px){
+		.btnHome {
+			width: 55% !important;
+		}
+
+		.btnSeguridad{
+			width: 60% !important;
 		}
 	}
 /* Responsive */

@@ -621,7 +621,7 @@
 		align-items: center;
 	}
 	 header > section > nav{
-    margin: 0pc 2pc;
+    margin: 0pc;
 	}
 	 main{
 		box-sizing: border-box;
@@ -1116,7 +1116,7 @@ transform: scaleX(1);
 		}
 		 header > section:first-child > div:first-child,
 		 header > section:last-child{
-			padding: 0% 5%;
+			padding: 0% 2.5%;
 		}
 		 header > section > nav > div{
     	margin: 0pc 2pc;

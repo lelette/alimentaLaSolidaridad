@@ -8,6 +8,31 @@
   :-ms-input-placeholder { color: white; }
 }
 
+input[log-in]::placeholder {
+  color: white !important;
+}
+.language{
+  border-bottom-left-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  border-top-left-radius: 2.5rem;
+  border: solid #ffffff9c; /*#FFFF00*/
+  border-top-right-radius: 2.5rem;
+};
+
+.no-language {
+  border: solid transparent;
+}
+
+form[log-in]::before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  background-color: transparent;
+  visibility: hidden;
+};
 /*a:hover, a:link, a:active {
   color: white;
 }*/
@@ -52,10 +77,10 @@
 .btnSeguridad {
   background-color: #32c250;
   color: white;
+  width: 50%;
   border: 0px;
   border-radius: 8px;
   padding: 10px 18px;
-  width: 244px;
   font-size: 1.1em;
   font-weight: 400;
   cursor: pointer;
@@ -79,6 +104,7 @@
   left: 7%;
   top: 144px;
   margin-bottom: 2pc;
+  margin-top: 20px;
 }
 
 .hrFunciona {

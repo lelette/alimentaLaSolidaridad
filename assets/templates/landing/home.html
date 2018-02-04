@@ -3,21 +3,22 @@
 <section class="pillar-100p flex-wrap" style="/*height:660px*/">
   <div class="homeLeft">
     <p class="txt1">{{ "landing.title_label" | translate }}</p>
-    <br>
+
     <hr class="hrHome">
-    <br>
-    <p class="txt2 w-65p">{{ "landing.subtitle_label" | translate }}</p>
-    <br><br><br>
-    <div ui-sref="access.signup" class="btnHome" type="button" name="button">
-      <img ng-src="images/icoEnviarRecarga.png" alt="">
-      <span style="margin-left:10px;"> {{"landing.registrate_recarga" | translate}}</span>
-    </div>
-    <br><br>
-    <div style="margin-bottom: 10px;">
+
+    <p style="margin-top: 50px;" class="txt2 w-65p">{{ "landing.subtitle_label" | translate }}</p>
+    <div class="" style="margin-bottom: 20px; margin-top: 100px;">
+      <button ui-sref="access.signup" class="btnHome" name="button" style="margin-bottom: 20px;">
+        <img ng-src="images/icoEnviarRecarga.png" alt="">
+        <span style="margin-left:10px;"> {{"landing.registrate_recarga" | translate}}</span>
+      </button>
+
+      <div style="margin-bottom: 10px;">
         <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-facebook ng-pristine ng-untouched ng-valid" name="button" href="http://test.neeru.io:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)" aria-invalid="false"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{"Iniciar_Sesion_Facebook" | translate}}</a>
-    </div>
-    <div style="margin-bottom: 1pc;">
-      <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://test.neeru.io:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left"></span>{{"Iniciar_Sesion_Google" | translate}} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</a>
+      </div>
+      <div style="margin-bottom: 1pc;">
+        <a type="button" target="_parent" class="btn btn-primary btn-lg btn-block button-google" name="button" href="http://test.neeru.io:9002/plataform/user/signinGoogle"><span aria-hidden="true" class="fa fa-google pull-left"></span>{{"Iniciar_Sesion_Google" | translate}} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</a>
+      </div>
     </div>
   </div>
   <div class="imgHome">
@@ -105,7 +106,7 @@
       </div>
     </div>
     <br><br><br>
-    <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button" style="width:50%">
+    <div ui-sref="access.signup" class="btnSeguridad" type="button" name="button">
       <img ng-src="images/icoEnviarRecarga.png" alt="">
       <span style="margin-left:10px;"> {{"landing.registrate_recarga" | translate}}</span>
     </div>

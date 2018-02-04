@@ -6,8 +6,8 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'https://www.neeru.io:9002/';
- // var API_URL = 'http://localhost:9002/';
+ // var API_URL = 'https://www.neeru.io:9002/';
+ var API_URL = 'http://test.neeru.io:9002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -17,6 +17,11 @@
 
        // Se ignoran requests para templates
        if (url.substr(url.length - 5) == '.html') return config || $q.when(config);
+
+       if (url == 'l10n/en.js' || url == 'l10n/es.js') {
+          config.url = "http://test.neeru.io/"+ url;
+          return config || $q.when(config);
+        };
 
        // Se ingoran rutas de google
        if (regex.test(url)) return config || $q.when(config);
@@ -28,13 +33,13 @@
      }
    }
  };
-/*
- angular.module('app').run(function($http) {
-   $http.get('csrfToken').success(function(data) {
-     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
-   });
- });
- */
+ //
+ // angular.module('app').run(function($http) {
+ //   $http.get('csrfToken').success(function(data) {
+ //     $http.defaults.headers.common['x-csrf-token'] = data._csrf;
+ //   });
+ // });
+
 
 angular.module('app')
   .run(
@@ -46,16 +51,27 @@ angular.module('app')
     ]
   )
   .config(
-    [          '$stateProvider', '$urlRouterProvider', '$httpProvider', 'JQ_CONFIG', 'MODULE_CONFIG',
-      function ($stateProvider,   $urlRouterProvider, $httpProvider, JQ_CONFIG, MODULE_CONFIG) {
+    [          '$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider','JQ_CONFIG', 'MODULE_CONFIG',
+      function ($stateProvider,   $urlRouterProvider, $httpProvider, $locationProvider,JQ_CONFIG, MODULE_CONFIG) {
 
         // Configuración general del servicio $http
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push(apiInterceptor);
-				$urlRouterProvider.when('/', '/landing/home');
-        $urlRouterProvider.when('/landing', '/landing/home');
+				$urlRouterProvider.when('/', '/landing/home')
         $urlRouterProvider.when('/app/page/recharge', '/app/page/recharge/contract')
+        $urlRouterProvider.when('/app/page/home#', '/app/page/home')
         $urlRouterProvider.otherwise('/access/404');
+
+        // con esto nos deberiamos quitar el estorboso # de las urls
+        if (window.location.hash && (window.location.hash == '#_=_' || window.location.hash == '#')) {
+        if (window.history && history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+            $locationProvider.html5Mode({
+              enabled: true,
+              requireBase: false
+            });
+          }
+        }
 
         $stateProvider
           .state('landing', {

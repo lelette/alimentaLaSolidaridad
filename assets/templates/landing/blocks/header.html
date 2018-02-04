@@ -1,9 +1,9 @@
 <header>
   <section id="idHeader" ng-controller="LandingHomeCtrl">
-    <div class="imgNeeru" style="max-width: 100px;">
+    <div class="imgNeeru" style="max-width: 50px;">
       <img src="images/logo-neeru-blanco.png" width="200px;">
     </div>
-    <nav style="margin-left:10%">
+    <nav style="margin-left:10%; text-align: -webkit-center;">
       <div class="">
         <p><a href="#item1">{{"landing.como_funciona" | translate}}</a></p>
       </div>
@@ -13,52 +13,22 @@
       <div class="">
         <p><a href="#item3">{{"landing.contactanos" | translate}}</a></p>
       </div>
-    <!-- <div class="headerTxt">
-      <div class="pillar-30p">
-        <p class="p-small p-500"><a href="#item1"></a></p>
-      </div>
-      <div class="pillar-25p">
-        <p class="p-small p-500"><a href="#item2">{{"seguridad" | translate}}</a></p>
-      </div>
-      <div class="pillar-25p">
-        <p class="p-small p-500"><a href="#item3">{{"contactanos" | translate}}</a></p>
-      </div>
-    </div> -->
-      </nav>
-      <nav>
-
-      <!-- <div ui-sref="access.signin" class="">
-        <p>{{"signin.subtitulo" | translate}}</p>
-      </div> -->
-
-							<!-- <p id="errorCampo" class="field-error">Los campos son requeridos</p>
-							<p id="errorInput" class="field-error">Los datos son inválidos</p> -->
-								<!-- <input id="email" data-hide-3 style="background-color: #0db731; width:100%;" type="email" name="user.login" ng-model="user.login" placeholder="Email" maxlength="100">
-								<input id="password" data-hide-3 style="background-color: #0db731; width:100%; margin-left:5%;" type="password" name="user.password" ng-model="user.password" minlength="8" maxlength="16" placeholder="Contraseña">
-							<button id="btnIniciar" data-standard class="btn-neeru" style="font-size:10px; font-family:neeru; margin-left:5%; width:35%; font-weight: 5px;" type="submit" ng-click="signin()" ladda="loading"  tabindex = "3">
-								{{"signin.subtitulo" | translate}}
-							</button> -->
-
-      <!-- <div ui-sref="access.signup" class="">
-        <p>{{"Registrarse" | translate}}</p>
-      </div> -->
-      <!-- <div class="aux-1-SA" uib-dropdown uib-dropdown-toggle>
-        <div class="vertical-line"></div>
-        <p style="cursor: pointer;">{{selectLang}}</p>
-        <div class="uib-dropdown-menu header-language-select-box animated fadeInUp" is-open="lang.isopen">
-          <div ng-repeat="(langKey, label) in langs">
-            <p ng-click="setLang(langKey, $event)">{{label}}</p>
-          </div>
-        </div>
-      </div> -->
+    </nav>
+    <nav>
+      <form name="form" class="form-validation" log-in style="display: flex;">
+        <input id="email" data-hide-3 log-in style="background-color: #0db731; width:100%;" type="email" name="user.login" class="form-control" ng-model="user.login" placeholder="{{ 'std.Email' | translate }}" maxlength="100">
+        <input id="password" data-hide-3 log-in style="background-color: #0db731; width:100%; margin-left:5%;" type="password" name="user.password" class="form-control" ng-model="user.password" minlength="8" maxlength="16" placeholder="{{ 'std.Password' | translate }}">
+        <button id="btnIniciar" data-standard class="btn-neeru" style="margin-left: 5%; width:65%; background-color: #00000038; color: white; margin-top: 10px;" type="submit" ng-click="signin()" ng-disabled='form.$invalid' ladda="loading"  tabindex = "3">
+          <p style="color: white; font-size: 10px;">{{"signin.subtitulo" | translate}}</p>
+        </button>
+      </form>
 
       <div class="languege-box" style="display: flex;">
         <div class="aux-1-SA" ng-repeat="(langKey, label) in langs" >
-          <img ng-if="label === 'ES'" width="30%" src="/images/spain.png" ng-click="setLang(langKey, $event)">
-          <img ng-if="label === 'EN'" width="30%" src="/images/uk.png" ng-click="setLang(langKey, $event)" >
+          <img ng-class="{language: selectLang == 'ES'}" ng-if="label === 'ES'" width="30%" src="/images/spain.png" ng-click="setLang(langKey, $event)">
+          <img ng-class="{language: selectLang == 'EN'}" ng-if="label === 'EN'" width="30%" src="/images/uk.png" ng-click="setLang(langKey, $event)" >
         </div>
       </div>
-      </nav>
-
+    </nav>
   </section>
 </header>
