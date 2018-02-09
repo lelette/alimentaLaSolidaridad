@@ -3,7 +3,7 @@
 app.controller('getTokenStripeCtrl',[
  '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams', '$uibModal',
  function($scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
-   //Stripe.setPublishableKey('pk_test_BR7HShIv2kTdYnhQeUw1xwLp');
+   Stripe.setPublishableKey('pk_test_BR7HShIv2kTdYnhQeUw1xwLp');
    $scope.newTDC = true;
    $scope.checkAfiliacionTDC = false;
 

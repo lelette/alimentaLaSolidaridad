@@ -66,7 +66,7 @@
     </section>
     <section>
       <div class="frequent-add" style="margin-right:90px; margin-top:20px">
-        <form id= "formTDC" name="formTDC">
+        <form id= "formTDC" name="formTDC" autocomplete="off">
           <div class="line-100">
             <div class="pillar-25p">
               <input type="text" name="first_fourth" data-mode-1 placeholder="----" minlength="4" maxlength="4" ng-model="fullCard.firstEntry" ng-change="showType(fullCard.firstEntry)" required numero style="text-align: center; letter-spacing: 5px;">
@@ -151,7 +151,7 @@
                 <img src="../../images/icoVence.png">
               </div>
               <div class="pillar-200p">
-                <input type="text" name="exp_date" data-mode-1 placeholder="MM/AAAA" minlegth="6" maxlength="7" ng-model="fullCard.cardExpiry" ng-blur="verifyDate(fullCard.cardExpiry)" required>
+                <input type="text" name="exp_date" data-mode-1 placeholder="MM/AAAA" minlegth="6" maxlength="7" ng-model="fullCard.cardExpiry" ng-blur="verifyDate(fullCard.cardExpiry)" required autocomplete="off">
               </div>
               <div class="text-center" ng-if="formTDC.exp_date.$dirty && (formTDC.exp_date.$invalid || formTDC.exp_date.$touched)">
                 <span ng-if="formTDC.exp_date.$error.required && !formTDC.cvv.$error.required" class="error-input-msj" >
@@ -172,7 +172,7 @@
               </div>
               <p class="p-gray">CVV</p>
               <div class="pillar-50p">
-                <input minlength="3" maxlength="3" type="password" name="cvv" data-mode-1 ng-model="card.cvc" required numero>
+                <input minlength="3" maxlength="3" type="password" name="cvv" data-mode-1 ng-model="card.cvc" required numero autocomplete="off">
               </div><br>
               <div class="text-center" ng-if="formTDC.cvv.$dirty && (formTDC.cvv.$invalid || formTDC.cvv.$touched)">
                 <span ng-if="formTDC.cvv.$error.required && !!formTDC.exp_date.$error.required" class="error-input-msj" >

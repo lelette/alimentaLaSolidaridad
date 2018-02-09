@@ -86,6 +86,7 @@ app.controller('ReloadController',
   }else {
     $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
+      console.log($scope.countries);
       $scope.$emit('$resetAjax');
     }, function(res) {
       $scope.$emit('$resetAjax');
@@ -223,6 +224,7 @@ app.controller('ReloadController',
       $scope.loader = 'mostrar';
       $scope.cuerpo = 'ocultar';
       $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+        console.log(response.data);
         Recharge.result = response.data.recargas;
         $scope.$emit('$resetAjax');
         $scope.loader = 'ocultar';
@@ -389,25 +391,26 @@ app.controller('ReloadController',
 
  $scope.verifyDate = function(date){
    var current_date = new Date();
+   console.log(date);
    var current_year = current_date.getFullYear();
    var current_month = current_date.getMonth()+1;
 
-   var month = parseInt(date.split("/")[0]);
-   var year = parseInt(date.split("/")[1]);
+  //  var month = parseInt(date.split("/")[0]);
+  //  var year = parseInt(date.split("/")[1]);
 
-   if(month > 12 || month <= 0){
-     $scope.checkDate = false;
-   }
-   else if(year < current_year){
-     $scope.checkDate = false;
-   }
-   else if(month <= current_month && year <= current_year){
-     $scope.checkDate = false;
-   }
-   else{
-     $scope.checkDate = true;
-     return $scope.checkDate;
-   }
+  //  if(month > 12 || month <= 0){
+  //    $scope.checkDate = false;
+  //  }
+  //  else if(year < current_year){
+  //    $scope.checkDate = false;
+  //  }
+  //  else if(month <= current_month && year <= current_year){
+  //    $scope.checkDate = false;
+  //  }
+  //  else{
+  //    $scope.checkDate = true;
+  //    return $scope.checkDate;
+  //  }
 
  };
 

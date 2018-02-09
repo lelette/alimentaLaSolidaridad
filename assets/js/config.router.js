@@ -7,7 +7,7 @@
 
  // Prefijo de URL para el Core de Servicios
  // var API_URL = 'https://www.neeru.io:9002/';
- var API_URL = 'http://test.neeru.io:9002/';
+ var API_URL = 'http://localhost:9002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -19,7 +19,7 @@
        if (url.substr(url.length - 5) == '.html') return config || $q.when(config);
 
        if (url == 'l10n/en.js' || url == 'l10n/es.js') {
-          config.url = "http://test.neeru.io/"+ url;
+          config.url = "http://localhost:9000/"+ url;
           return config || $q.when(config);
         };
 
@@ -142,7 +142,7 @@ angular.module('app')
           .state('app.page.recharge.get_token_stripe', {
             url: '/tdc',
             templateUrl: 'templates/app/recharge/getTokenStripe.html',
-            // resolve: load(['js/stripe/stripe.js'])
+            resolve: load(['js/stripe/stripe.js'])
           })
           .state('app.page.recharge.confirm', {
             url: '/confirm',
