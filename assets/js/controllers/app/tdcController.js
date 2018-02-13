@@ -18,7 +18,7 @@ app.controller('tdcCtrl',
     $scope.cardType = ""
     $scope.checkDate = "";
     $scope.loading = false;
-    console.log($scope);
+    // console.log($scope);
 
     // Objeto que almacenara los datos de la tarjeta
     $scope.card = {
@@ -55,7 +55,7 @@ app.controller('tdcCtrl',
       }, function(error){
         $scope.loader='ocultar';
         $scope.cuerpo='mostrar';
-        console.log(error);
+        // console.log(error);
       });
     };
 
@@ -88,8 +88,8 @@ app.controller('tdcCtrl',
       $scope.cuerpo='ocultar';
 
       Stripe.card.createToken($scope.card,function(status, res){
-        console.log("ressssss ");
-        console.log(res);
+        // console.log("ressssss ");
+        // console.log(res);
         if(res.error){
           $scope.card = {};
           $scope.fullCard = {};

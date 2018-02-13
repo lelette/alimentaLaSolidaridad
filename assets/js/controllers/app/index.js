@@ -5,15 +5,15 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('IndexController', 
+app.controller('IndexController',
   ['$rootScope', '$scope', '$http', '$state', 'Sales', '$translate',
   function($rootScope,  $scope, $http, $state, Sales,$translate) {
-    
+
 
     $scope.datos = {sales : Sales.info.resumenSales}
 
     Sales.refreshResumenSales(function(){
-      console.log($scope.datos.sales);
+      // console.log($scope.datos.sales);
     });
 
 }]);

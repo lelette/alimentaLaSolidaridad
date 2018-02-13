@@ -180,7 +180,7 @@ app.controller('ContactController',
     // refrescamos la data que tenemos del user
     User.refresh(function(err){
       if (err) {
-        console.log(err);
+        // console.log(err);
       }else{
         var emails = [];
 
@@ -220,13 +220,13 @@ app.controller('AddEmailController',
     $scope.add = function(){
       User.addEmail($scope.user, function(err, result){
         if (err) {
-          console.log(err);
+          // console.log(err);
         }else{
 
           if ($scope.user.validate) {
             User.validateEmail({rel: result.rel}, function(err){
               if (err) {
-                console.log(err);
+                // console.log(err);
               }else{
                 $state.go('app.page.profile.contacto');
               };
@@ -354,7 +354,7 @@ app.controller('ImgChangeCtrl', [
         // refrescamos la data que tenemos del user
         User.refresh(function(err){
           if (err) {
-            console.log(err);
+            // console.log(err);
           }
           $state.reload()
         });

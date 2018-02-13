@@ -12,7 +12,7 @@ app.controller('HeaderController',
     $scope.logout = function(){
       User.logout(function(err){
         if (err) {
-          console.log(err);
+          // console.log(err);
           return fale;
         };
 

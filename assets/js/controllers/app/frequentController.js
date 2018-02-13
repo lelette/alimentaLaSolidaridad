@@ -56,10 +56,10 @@ app.controller('FrequentController',
     $scope.consultarFrecuentes = function () {
       $http.get('plataform/user/searchFrecuente')
       .then(function (response) {
-        console.log('Frecuentes',response.data);
+        // console.log('Frecuentes',response.data);
         $scope.frecuentes = response.data;
       }, function (x) {
-        console.log(x.data);
+        // console.log(x.data);
       })
     };
 
@@ -101,7 +101,7 @@ app.controller('FrequentController',
           $scope.form.phone.$pristine = false;
           $scope.consultarFrecuentes();
         }, function (x) {
-          console.log(x.data);
+          // console.log(x.data);
         });
       }, function () {
 
@@ -111,10 +111,10 @@ app.controller('FrequentController',
     $scope.eliminarFrecuente = function (frecuente) {
       $http.post('plataform/user/removeFrecuente', {numero: frecuente})
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         $scope.consultarFrecuentes();
       }, function (x) {
-        console.log(x.data);
+        // console.log(x.data);
       })
     };
 
@@ -141,10 +141,10 @@ app.controller('FrequentController',
         $http.post('plataform/user/updateFrecuente', result)
         .then(function (response) {
 
-          console.log(response.data);
+          // console.log(response.data);
           $scope.consultarFrecuentes();
         }, function (x) {
-          console.log(x.data);
+          // console.log(x.data);
         });
       }, function () {
 

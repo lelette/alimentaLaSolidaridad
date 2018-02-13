@@ -7,14 +7,14 @@ app.directive('actionStripe', function() {
 
       $(elm).on('click', function(){
         var $form = $('#payment-form');
-        
+
         // Disable the submit button to prevent repeated clicks:
         attrs['disabled'] = true;
         // Request a token from Stripe:
         Stripe.card.createToken($form, function(status, res){
           // Grab the form:
           var $form = $('#payment-form');
-            console.log(res);
+            // console.log(res);
           if (res.error) { // Problem!
             // Show the errors on the form:
             $form.find('.payment-errors').text(res.error.message);

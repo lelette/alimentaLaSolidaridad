@@ -207,8 +207,8 @@
   primeAppVar.validateInputPhone = function(e){
     var valueInputPhone = $(e).val();
     var reg = /[0-9]/;
-    console.log(valueInputPhone);
-    console.log(reg.test(valueInputPhone));
+    // console.log(valueInputPhone);
+    // console.log(reg.test(valueInputPhone));
     if (reg.test(valueInputPhone)) {
       primeAppVar.payPlansReloadBox();
       $(e).css('border','1.5px solid #0DB731');

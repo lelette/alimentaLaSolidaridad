@@ -192,7 +192,7 @@ app.directive('fechaNacSinDate', function($window) {
           if (angular.isDefined(fecha)) {
             // Garantizamos que la persona tiene mas de 16 años
             if ( (dia > 31) || (yearActual  - year) < 15 ) {
-              console.log('No cumple con el requisito de edad');
+              // console.log('No cumple con el requisito de edad');
               return false;
             }else {
               return true;
@@ -251,7 +251,7 @@ app.directive('cedulaVen', function() {
   return {
     require: 'ngModel',
     link: function(scope, elm, attrs, ctrl) {
-      console.log(elm);
+      // console.log(elm);
       ctrl.$validators.cedulaVen = function(modelValue, viewValue) {
 
         if (ctrl.$isEmpty(modelValue)) {

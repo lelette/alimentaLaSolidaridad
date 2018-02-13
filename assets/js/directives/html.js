@@ -30,7 +30,7 @@ app.directive('insertHtml', function() {
 
       var sepPunto = attrs.insertHtml.split('\.');
 
-      console.log(sepPunto);
+      // console.log(sepPunto);
       var html = scope;
 
       // reconstruimos el scope

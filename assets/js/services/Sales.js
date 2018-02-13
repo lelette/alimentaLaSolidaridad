@@ -31,7 +31,7 @@ app.service('Sales', [
         });
         return cb();
       }, function(res){
-        console.log(res.data);
+        // console.log(res.data);
         return cb();
       });
     }

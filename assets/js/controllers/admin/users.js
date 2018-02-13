@@ -23,7 +23,7 @@ app.controller('UsersController',
       $http.get('plataform/user/users?page='+page+'')
       .then(function(res){
         if (res.data.users.length == 0 && (page) > 1) {
-          console.log(page);
+          // console.log(page);
         $scope.techo = page-1;
           $scope.consultar(page-1);
         }else{
@@ -81,12 +81,12 @@ app.controller('UsersController',
         privilegio: privilegio,
         enable: actual
       };
-      console.log(datos);
+      // console.log(datos);
       $http.post('plataform/user/privilege/enable', datos)
       .then(function(res){
-        console.log(res);
+        // console.log(res);
       }, function(res){
-        console.log(res.data);
+        // console.log(res.data);
       });
     }
 
@@ -95,6 +95,6 @@ app.controller('UsersController',
     * @descripcion :: bloquea o desbloquea al usuario                  *
     ********************************************************************/
     $scope.lock_unlock = function(lock, userId){
-      console.log(lock,userId);
+      // console.log(lock,userId);
     }
 }]);

@@ -7,7 +7,7 @@
 app.controller('ReloadController',
   ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams', '$uibModal',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
-    console.log('Recharge', Recharge);
+    // console.log('Recharge', Recharge);
 
   // Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-green-off";
@@ -51,7 +51,7 @@ app.controller('ReloadController',
 
   $http.get('platform/stripe/getCards')
   .then(function(response){
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     if (response.data.data.length > 0) {
       $scope.typePay = "afiliadas";
       $scope.cards = response.data.data;
@@ -59,7 +59,7 @@ app.controller('ReloadController',
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
   }, function(error){
-    console.log('Error >>>', error);
+    // console.log('Error >>>', error);
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
   });
@@ -86,7 +86,7 @@ app.controller('ReloadController',
   }else {
     $http.get('plataform/countries').then(function(response) {
       $scope.countries = response.data.paises;
-      console.log($scope.countries);
+      // console.log($scope.countries);
       $scope.$emit('$resetAjax');
     }, function(res) {
       $scope.$emit('$resetAjax');
@@ -129,7 +129,7 @@ app.controller('ReloadController',
 
       //$state.reload();
     }, function(error){
-      console.log('Error >>>', error);
+      // console.log('Error >>>', error);
     });
 
   }
@@ -209,22 +209,22 @@ app.controller('ReloadController',
   $scope.afiliarTarjeta = function(card_customer){
     $http.post('platform/stripe/affiliateCard', card_customer)
       .then(function(response){
-        console.log('response card_customer', response);
+        // console.log('response card_customer', response);
       }, function(error){
-        console.log('error card_customer', error);
+        // console.log('error card_customer', error);
       });
   };
 
   $scope.recharge = function (valid) {
-    console.log('valid', valid);
-    console.log('Recharge.cart', Recharge.cart);
+    // console.log('valid', valid);
+    // console.log('Recharge.cart', Recharge.cart);
     if (Recharge.cart.card) {
       Recharge.cart.token = Recharge.cart.card.id;
       Recharge.cart.customer = Recharge.cart.card.customer;
       $scope.loader = 'mostrar';
       $scope.cuerpo = 'ocultar';
       $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         Recharge.result = response.data.recargas;
         $scope.$emit('$resetAjax');
         $scope.loader = 'ocultar';
@@ -329,7 +329,7 @@ app.controller('ReloadController',
        $scope.cuerpo = 'mostrar';
        var ofertas = res.data;
        var operadora = ofertas.operadora;
-       console.log('ofertas', ofertas);
+      //  console.log('ofertas', ofertas);
        Recharge.info.ofertas = ofertas;
        Recharge.info.pais = {
          codigo: cod,
@@ -391,7 +391,7 @@ app.controller('ReloadController',
 
  $scope.verifyDate = function(date){
    var current_date = new Date();
-   console.log(date);
+  //  console.log(date);
    var current_year = current_date.getFullYear();
    var current_month = current_date.getMonth()+1;
 
@@ -438,7 +438,7 @@ app.controller('modalResultRecharge',[
  'dataScope',
  '$http',
  function($scope, $state, $modalInstance, $uibModal, dataScope, $http) {
-   console.log('dataScope', dataScope);
+  //  console.log('dataScope', dataScope);
    $scope.result = dataScope.result;
 
    $scope.confirmar = function() {

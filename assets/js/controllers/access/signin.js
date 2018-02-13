@@ -51,14 +51,4 @@ app.controller('SigninFormController',
     });
   };
 
-  $scope.FBLogin = function (fb) {
-    // console.log('INICIO CON FACEBOOK', fb);
-    $http.get('plataform/user/signinFacebook')
-    .then(function (response) {
-      console.log(response.data);
-    },function (x) {
-      console.log(x.data);
-    })
-  };
-
 }]);
