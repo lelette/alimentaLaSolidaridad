@@ -2,7 +2,7 @@
 <!-- #### No puede cargarse desde el router, supongo por problemas de actualizacion de recursos ####-->
 <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 
-<div ng-init="loader='ocultar';cuerpo='mostrar';app.settings.container = false;" ng-controller="SignupFormController" style="top:30%">
+<div ng-init="loader='ocultar';cuerpo='mostrar';app.settings.container = false;" ng-controller="SignupFormController" style="top:50%">
 
   <div ng-class="{ocultarLoader: loader === 'ocultar', mostrarLoader: loader === 'mostrar'}" style="display:flex; justify-content:center">
     <!-- <div class="overlay"></div>
@@ -39,7 +39,7 @@
         <div style="color:red; font-family: neeru; text-align:center;" ng-show="authError">
             {{authError  | translate}}
         </div>
-        <form name="form" class="form-validation" style="margin-top: 40px">
+        <form name="form" class="form-validation" style="margin-top: 80px">
             <div class="pillar-auto">
               <input data-hide-3 type="text" minlength="4"  maxLength="40" string-std placeholder="{{ 'signup.name_input' | translate }}" required name="nombres" ng-model="user.nombres">
             </div>
