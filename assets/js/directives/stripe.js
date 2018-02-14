@@ -3,7 +3,7 @@ app.directive('actionStripe', function() {
   return {
     link: function(scope, elm, attrs, ctrl) {
 
-      Stripe.setPublishableKey('pk_test_BR7HShIv2kTdYnhQeUw1xwLp');
+      Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv');
 
       $(elm).on('click', function(){
         var $form = $('#payment-form');

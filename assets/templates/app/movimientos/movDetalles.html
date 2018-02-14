@@ -30,7 +30,7 @@
               </tr>
               <tr>
                 <td>
-                  <b>{{ "std.Status" | translate }}:</b> {{datos.sale.status}}
+                  <b>{{ "std.Status" | translate }}:</b> {{ ( (datos.sales.status == 'C') ? 'sales.status.confirmado' : ( (datos.sales.status == 'A') ? 'sales.status.anulada' : 'sales.status.pendiente' ) ) | translate}}
                 </td>
               </tr>
               <tr>
@@ -48,8 +48,8 @@
         </div>
         <footer class="panel-footer text-right bg-light lter">
           <!--<button class="btn btn-info" ng-click="descargarPDF(transaccion.id)">Descargar en PDF</button>{{transaccion.id}}-->
-          <button style="float: left" class="btn btn-link" ng-click="goBack()">Regresar</button>
-          <button class="btn-green-on" data-standard="" ng-click="enviarComprobante()"><p>Enviar por Correo</p></button>
+          <button style="float: left" class="btn btn-link" ng-click="goBack()">{{"go_back" | translate }}</button>
+          <button class="btn-green-on" data-standard="" ng-click="enviarComprobante()"><p>{{"movements.send_email" | translate }}</p></button>
         </footer>
       </div>
     </div>

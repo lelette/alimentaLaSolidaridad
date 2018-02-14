@@ -39,7 +39,7 @@
             infoEmpty: '0 registros',
             infoFiltered: '(filtrado de un total de _MAX_ registros)',
             zeroRecords: 'No se encontraron resultados',
-            loadingRecords: 'Cargando...',
+            loadingRecords: 'Loading...',
             paginate: {
               first: 'Primero',
               last: 'Último',
@@ -108,7 +108,7 @@
               </tr>
               <tr>
                 <td>
-                  <b>{{"Status" | translate}}:</b> {{datos.sales.status}}
+                  <b>{{"Status" | translate}}:</b> {{ ( (datos.sales.status == 'C') ? 'sales.status.confirmado' : ( (datos.sales.status == 'A') ? 'sales.status.anulada' : 'sales.status.pendiente' ) ) | translate}}
                 </td>
               </tr>
               <tr>

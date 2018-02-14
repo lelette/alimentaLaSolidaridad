@@ -9,7 +9,7 @@ app.controller('ReloadController',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
     // console.log('Recharge', Recharge);
 
-  // Stripe.setPublishableKey('pk_test_hsQOE82w7dCyZeKglL5mUzV5'); // Identificacion con Stripe
+  Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-green-off";
   $scope.btnPayment = "btn-green-off";
   $scope.btnClassPay = "btn-green-off";
@@ -66,7 +66,10 @@ app.controller('ReloadController',
 
   $http.get('plataform/user/searchFrecuente')
   .then(function(response){
-    $scope.frecuentes = response.data;
+    if (response.data.length > 0) {
+      $scope.frecuentes = response.data;
+      $scope.showFrecuent = true;
+    }
   }, function(error){
 
   });
@@ -248,32 +251,54 @@ app.controller('ReloadController',
         // Creo el token de seguridad de la tarjeta
         $scope.loader = 'mostrar';
         $scope.cuerpo = 'ocultar';
-        // Stripe.card.createToken($scope.card,function(status, res){
-        //   if(res.error){
-        //
-        //       $scope.loader = 'ocultar';
-        //       $scope.cuerpo = 'mostrar';
-        //   }else{
-        //     Recharge.cart.token = res.id;
-        //
-        //     if (Recharge.cart.checkAfiliacionTDC) {
-        //       var card_customer = {
-        //         token: res.id,
-        //         email: $scope.fullCard.email,
-        //         description: $scope.fullCard.description,
-        //       }
-        //       $scope.afiliarTarjeta(card_customer);
-        //     }
-        //
-        //     $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-        //       Recharge.result = response.data.recargas;
-        //       $scope.$emit('$resetAjax');
-        //       $scope.loader = 'ocultar';
-        //       $scope.cuerpo = 'mostrar';
-        //       $state.go('app.page.rechargeResult');
-        //     });
-        //   }
-        // });
+        Stripe.card.createToken($scope.card,function(status, res){
+          if(res.error){
+
+              $scope.loader = 'ocultar';
+              $scope.cuerpo = 'mostrar';
+          }else{
+            Recharge.cart.token = res.id;
+
+            if (Recharge.cart.checkAfiliacionTDC) {
+              var card_customer = {
+                token: res.id,
+                email: $scope.fullCard.email,
+                description: $scope.fullCard.description,
+              }
+              $scope.afiliarTarjeta(card_customer);
+            }
+
+            $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
+              console.log(response.data);
+              var recargas = response.data.recargas.details || response.data.recargas;
+              recargas.forEach(function (recarga) {
+                var  status;
+                switch (recarga.status) {
+                  case 'A': status = "Anulada";
+                  break;
+                  case 'R': status = "Rechazada";
+                  break;
+                  case 'P': status = "Pediente";
+                  break;
+                  case 'PC': status = "Por Cobrar";
+                  break;
+                  case 'C': status = "Completada";
+                  break;
+                  default: status = "Anulada";
+                };
+
+                recarga.status = status;
+                recargas.push(recarga);
+              });
+
+              Recharge.result = recargas;
+              $scope.$emit('$resetAjax');
+              $scope.loader = 'ocultar';
+              $scope.cuerpo = 'mostrar';
+              $state.go('app.page.rechargeResult');
+            });
+          }
+        });
       }
     }
 

@@ -20,11 +20,11 @@
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
           <tr ng-repeat="item in result">
-            <!-- <td>{{item.referencia}}</td> -->
+            <td>{{item.referencia}}</td>
             <td>+{{item.phone}}</td>
-            <!-- <td>{{item.localCurrency}} /. {{item.price_local_unit}} - {{item.price_unit}} USD</td>
-            <td>{{item.status || "Anulada" }}</td>
-            <td>{{item.error.msj}}</td> -->
+            <td>{{item.localCurrency}} /. {{item.expectedAmount}} - {{item.realAmount}} USD</td>
+            <td>{{ ( (item.status == 'C') ? 'sales.status.confirmado' : ( (item.status == 'A') ? 'sales.status.anulada' : 'sales.status.pendiente' ) ) | translate}}</td>
+            <td>{{item.error.msj}}</td>
             <td>
               <div ng-if="!item.checkAsFrequent" class="neeru-checkbox-1" style="position: relative; left: 16px">
                 <input type="checkbox" style="cursor:pointer;" ng-model="checkFrequent" ng-change="updateSelectedFrecuent(checkFrequent, item)">

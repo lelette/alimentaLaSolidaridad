@@ -50,17 +50,17 @@ app.controller('movController',
           ventas.forEach(function(sale){
             var  status;
             switch (sale.status) {
-              case 'A': status = "Anulada";
+              case 'A': status = "Cancelled";
               break;
-              case 'R': status = "Rechazada";
+              case 'R': status = "Rejected";
               break;
-              case 'P': status = "Pediente";
+              case 'P': status = "Pending";
               break;
-              case 'PC': status = "Por Cobrar";
+              case 'PC': status = "Pending";
               break;
-              case 'C': status = "Completada";
+              case 'C': status = "Complete";
               break;
-              default: status = "A";
+              default: status = "Cancelled";
             }
             newSale = {};
             fecha = sale.createdAt;
