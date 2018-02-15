@@ -6,8 +6,8 @@
 
 
  // Prefijo de URL para el Core de Servicios
- // var API_URL = 'https://www.neeru.io:9002/';
- var API_URL = 'http://localhost:9002/';
+ var API_URL = 'https://www.neeru.io:9002/';
+ // var API_URL = 'http://localhost:9002/';
 
  function apiInterceptor($q, $cookies) {
    return {
@@ -19,7 +19,7 @@
        if (url.substr(url.length - 5) == '.html') return config || $q.when(config);
 
        if (url == 'l10n/en.js' || url == 'l10n/es.js') {
-          config.url = "http://localhost:9000/"+ url;
+          config.url = "https:///neeru.io/"+ url;
           return config || $q.when(config);
         };
 
