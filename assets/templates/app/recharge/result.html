@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody class="p-small" style="border-bottom:2px solid #cfd5d1;">
-          <tr ng-repeat="item in result">
+          <tr ng-repeat="item in result track by item.id">
             <td>{{item.referencia}}</td>
             <td>+{{item.phone}}</td>
             <td>{{item.localCurrency}} /. {{item.expectedAmount}} - {{item.realAmount}} USD</td>

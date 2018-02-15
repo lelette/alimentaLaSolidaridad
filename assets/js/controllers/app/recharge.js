@@ -5,8 +5,8 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 app.controller('ReloadController',
-  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams', '$uibModal',
-  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal) {
+  ['$rootScope', '$scope', '$http', '$state', 'Recharge', '$translate', '$stateParams', '$uibModal', 'toaster',
+  function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal, toaster) {
     // console.log('Recharge', Recharge);
 
   Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv'); // Identificacion con Stripe
@@ -62,6 +62,7 @@ app.controller('ReloadController',
     // console.log('Error >>>', error);
     $scope.loader = 'ocultar';
     $scope.cuerpo = 'mostrar';
+    toaster.pop('error', 'Error', error.data.error.msjUser);
   });
 
   $http.get('plataform/user/searchFrecuente')
@@ -71,7 +72,7 @@ app.controller('ReloadController',
       $scope.showFrecuent = true;
     }
   }, function(error){
-
+    toaster.pop('error', 'Error', error.data.error.msjUser);
   });
 
 
@@ -94,6 +95,7 @@ app.controller('ReloadController',
     }, function(res) {
       $scope.$emit('$resetAjax');
       $scope.$emit('$errorAjax',res.data);
+      toaster.pop('error', 'Error', res.data.error.msjUser);
     });
   }
 
@@ -133,6 +135,7 @@ app.controller('ReloadController',
       //$state.reload();
     }, function(error){
       // console.log('Error >>>', error);
+      toaster.pop('error', 'Error', error.data.error.msjUser);
     });
 
   }
@@ -192,7 +195,7 @@ app.controller('ReloadController',
         Recharge.reset();
         $state.reload();
       }, function (error) {
-
+        toaster.pop('error', 'Error', error.data.error.msjUser);
       });
     }
   }
@@ -215,12 +218,20 @@ app.controller('ReloadController',
         // console.log('response card_customer', response);
       }, function(error){
         // console.log('error card_customer', error);
+        toaster.pop('error', 'Error', error.data.error.msjUser);
       });
   };
 
   $scope.recharge = function (valid) {
     // console.log('valid', valid);
     // console.log('Recharge.cart', Recharge.cart);
+    $scope.$$childHead.$$childTail.formTDC.$setDirty();
+    $scope.$$childHead.$$childTail.formTDC.$setPristine();
+    $scope.btnClassRecarga = "btn-green-off";
+    $scope.btnPayment = "btn-green-off";
+    $scope.btnClassPay = "btn-green-off";
+    $scope.btnClassPassPay = "btn-green-off";
+    $scope.btnClassModePay = "btn-off";
     if (Recharge.cart.card) {
       Recharge.cart.token = Recharge.cart.card.id;
       Recharge.cart.customer = Recharge.cart.card.customer;
@@ -233,6 +244,8 @@ app.controller('ReloadController',
         $scope.loader = 'ocultar';
         $scope.cuerpo = 'mostrar';
         $state.go('app.page.rechargeResult');
+      }, function (x) {
+        toaster.pop('error', 'Error', x.data.error.msjUser);
       });
     }else {
       if (valid) {
@@ -253,9 +266,10 @@ app.controller('ReloadController',
         $scope.cuerpo = 'ocultar';
         Stripe.card.createToken($scope.card,function(status, res){
           if(res.error){
-
-              $scope.loader = 'ocultar';
-              $scope.cuerpo = 'mostrar';
+            $scope.loader = 'ocultar';
+            $scope.cuerpo = 'mostrar';
+            console.log(res.error);
+            toaster.pop('error', 'Error', res.error);
           }else{
             Recharge.cart.token = res.id;
 
@@ -268,34 +282,24 @@ app.controller('ReloadController',
               $scope.afiliarTarjeta(card_customer);
             }
 
+            $scope.fullCard = undefined;
+            $scope.card = undefined;
             $http.post('plataform/sales/shoppingCart', Recharge.cart).then(function(response) {
-              console.log(response.data);
+              // console.log(response.data);
               var recargas = response.data.recargas.details || response.data.recargas;
-              recargas.forEach(function (recarga) {
-                var  status;
-                switch (recarga.status) {
-                  case 'A': status = "Anulada";
-                  break;
-                  case 'R': status = "Rechazada";
-                  break;
-                  case 'P': status = "Pediente";
-                  break;
-                  case 'PC': status = "Por Cobrar";
-                  break;
-                  case 'C': status = "Completada";
-                  break;
-                  default: status = "Anulada";
-                };
-
-                recarga.status = status;
-                recargas.push(recarga);
-              });
-
               Recharge.result = recargas;
               $scope.$emit('$resetAjax');
               $scope.loader = 'ocultar';
               $scope.cuerpo = 'mostrar';
               $state.go('app.page.rechargeResult');
+            },function(x){
+              $scope.$emit('$resetAjax');
+              $scope.card = undefined;
+              $scope.loader = 'ocultar';
+              $scope.cuerpo = 'mostrar';
+              // console.log(x.data.error);
+              toaster.pop('error', 'Error', x.data.error.msjUser);
+              $state.go('app.page.recharge.get_contrato');
             });
           }
         });
@@ -363,15 +367,17 @@ app.controller('ReloadController',
        }
       $scope.datos.operadora = operadora;
       $scope.ofertas = Recharge.info.ofertas;
-      $scope.showOffers = true; $scope.showOperator = true;
+      $scope.showOffers = true;
+      $scope.showOperator = true;
     }, function(res){
       //$scope.loaderRecharge = 'ocultar';
+      $scope.$emit('$resetAjax');
+      $scope.$emit('$errorAjax',res.data);
       $scope.loader = 'ocultar';
       $scope.cuerpo = 'mostrar';
       $scope.showOffers = false;
       $scope.error_msj_oferta = true;
-      /*$scope.$emit('$resetAjax');
-      $scope.$emit('$errorAjax',res.data);*/
+      toaster.pop('error', 'Error', res.data.error.msjUser);
     });
     }
   }

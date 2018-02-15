@@ -74,13 +74,13 @@
                   <input type="" name="fourth_fourth" data-mode-1 placeholder="----" maxlength="4" minlength="3" ng-model="fullCard.fourthEntry" ng-disabled="formTDC.first_fourth.$error.required || formTDC.first_fourth.$error.numero || formTDC.first_fourth.$error.minlength || formTDC.second_fourth.$error.required || formTDC.second_fourth.$error.numero || formTDC.second_fourth.$error.minlength || formTDC.third_fourth.$error.required || formTDC.third_fourth.$error.numero || formTDC.third_fourth.$error.minlength" style="text-align: center; letter-spacing: 5px;">
                 </div>&nbsp;&nbsp;
 
-                <span ng-show="cardType == 'Visa'" class="pillar-70px" style="justify-content:center; align-items: center;">
+                <span ng-show="cardType == 'Visa' && formTDC.first_fourth.$dirty" class="pillar-70px" style="justify-content:center; align-items: center;">
                   <img src="../../images/visa.png">
                 </span>
-                <span ng-show="cardType == 'Mastercard'" class="pillar-70px" style="justify-content:center; align-items: center;">
+                <span ng-show="cardType == 'Mastercard' && formTDC.first_fourth.$dirty" class="pillar-70px" style="justify-content:center; align-items: center;">
                   <img src="../../images/master.png">
                 </span>
-                <span ng-show="cardType == 'AmericanExpress'" class="pillar-70px" style="justify-content:center; align-items: center;">
+                <span ng-show="cardType == 'AmericanExpress' && formTDC.first_fourth.$dirty" class="pillar-70px" style="justify-content:center; align-items: center;">
                   <img src="../../images/american-express.png">
                 </span>
               </div><br>

@@ -124,6 +124,7 @@ angular.module('app')
             templateUrl: 'templates/app/recharge/reload.html',
             params: {'code': '', 'number': '', 'url': ''},
             resolve: load([
+              'toaster',
               'js/controllers/app/recharge.js',
               'js/directives/stripe.js',
               'js/services/Sales.js'
@@ -153,6 +154,7 @@ angular.module('app')
             url: '/rechargeResult',
             templateUrl: 'templates/app/recharge/result.html',
             resolve: load([
+              'toaster',
               'js/controllers/app/rechargeResult.js'
             ])
           })
@@ -163,6 +165,7 @@ angular.module('app')
             url: '/tdc_afiliadas',
             templateUrl: 'templates/app/recharge/tdc_afiliadas.html',
             resolve: load([
+              'toaster',
               'js/controllers/app/tdcController.js',
               'js/directives/val-input.js',
             ]),
@@ -174,6 +177,7 @@ angular.module('app')
             url: '/transactions',
             templateUrl: 'templates/app/movimientos/movimientos.html',
             resolve: load([
+              'toaster',
               'js/controllers/app/transactions.js'
             ])
           })
@@ -181,6 +185,7 @@ angular.module('app')
             url: '/transactionDetail/:id',
             templateUrl: 'templates/app/movimientos/movDetalles.html',
             resolve: load([
+              'toaster',
               'js/controllers/app/transactionDetail.js'
             ])
           })
@@ -191,6 +196,7 @@ angular.module('app')
             url: '/frequent',
             templateUrl: 'templates/app/numeroFrecuente/numeroFrecuente.html',
             resolve: load([
+                'toaster',
                 'js/controllers/app/frequentController.js',
                 'dataTable'
               ])
@@ -202,6 +208,7 @@ angular.module('app')
             url: '/home',
             templateUrl: 'templates/app/home/home.html',
             resolve: load([
+              'toaster',
               'js/controllers/app/home.js'
             ])
           })
@@ -211,6 +218,7 @@ angular.module('app')
             url: '/profile',
             templateUrl: 'templates/app/profile/profile.html',
             resolve: load([
+                'toaster',
                 'js/directives/val-input.js',
                 'ngImgCrop',
                 'filestyle',
@@ -240,6 +248,7 @@ angular.module('app')
             url: '/security',
             templateUrl: 'templates/app/profile/security.html',
             resolve: load([
+              'toaster',
               'js/services/Password.js'
               ])
           })
@@ -285,6 +294,7 @@ angular.module('app')
               url: '/access',
               templateUrl: 'templates/access.html',
               resolve: load([
+                'toaster',
                 'js/services/Password.js',
                 'js/directives/val-input.js',
                 'js/directives/html.js'
@@ -294,13 +304,19 @@ angular.module('app')
           .state('access.signin', {
               url: '/signin',
               templateUrl: 'templates/access/signin.html',
-              resolve: load( ['js/controllers/access/signin.js'] )
+              resolve: load( [
+                'toaster',
+                'js/controllers/access/signin.js'
+              ])
           })
           // registro de usuario ################################
           .state('access.signup', {
             url: '/signup',
             templateUrl: 'templates/access/signup.html',
-            resolve: load( ['js/controllers/access/signup.js'] )
+            resolve: load( [
+              'toaster',
+              'js/controllers/access/signup.js'
+            ])
           })
           // registro de usuario ################################
           .state('access.terminos', {
@@ -315,19 +331,28 @@ angular.module('app')
           .state('access.applyValEmail', {
             url: '/applyValEmail',
             templateUrl: 'templates/access/apply_val_email.html',
-            resolve: load(['js/controllers/access/applyValEmail.js'])
+            resolve: load([
+              'toaster',
+              'js/controllers/access/applyValEmail.js'
+            ])
           })
           // fin registro de usuario ############################
           // Recuperacion de password ###########################
           .state('access.forgotpwd', {
               url: '/forgotpwd',
               templateUrl: 'templates/access/forgotpwd.html',
-              resolve: load(['js/controllers/access/forgotpwd.js'])
+              resolve: load([
+                'toaster',
+                'js/controllers/access/forgotpwd.js'
+              ])
           })
           .state('access.applyForgotPwd', {
               url: '/applyForgotPwd',
               templateUrl: 'templates/access/applyForgotPwd.html',
-              resolve: load(['js/controllers/access/forgotpwd.js'])
+              resolve: load([
+                'toaster',
+                'js/controllers/access/forgotpwd.js'
+              ])
           })
           .state('access.successforgotpwd', {
               url: '/successForgotPwd',
