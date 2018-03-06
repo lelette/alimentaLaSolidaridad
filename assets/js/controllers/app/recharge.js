@@ -9,7 +9,7 @@ app.controller('ReloadController',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal, toaster) {
     // console.log('Recharge', Recharge);
 
-  Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv'); // Identificacion con Stripe
+  Stripe.setPublishableKey('pk_live_iIFJtinoQEdDziff0r2QyEun'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-green-off";
   $scope.btnPayment = "btn-green-off";
   $scope.btnClassPay = "btn-green-off";
@@ -252,14 +252,19 @@ app.controller('ReloadController',
         $scope.card.number = $scope.fullCard.firstEntry+$scope.fullCard.secondEntry+$scope.fullCard.thirdEntry+$scope.fullCard.fourthEntry;
 
         // Validacion para cuando el mes tiene 1 solo numero como "1" o dos numeros como "24"
-        if($scope.fullCard.cardExpiry.substr(0,1) >= 1 && $scope.fullCard.cardExpiry.substr(0,1) <=9){
-          $scope.card.exp_month = '0'+$scope.fullCard.cardExpiry.substr(0,1);
+        var month = $scope.fullCard.cardExpiry.split('/')[0];
+        var year = $scope.fullCard.cardExpiry.split('/')[1];
+        console.log($scope.fullCard.cardExpiry);
+        if(parseInt(month) >= 1 && parseInt(month) <=9){
+          $scope.card.exp_month = '0'+month;
+          console.log($scope.card.exp_month);
         }
         else{
-          $scope.card.exp_month = $scope.fullCard.cardExpiry.substr(0,1);
+          $scope.card.exp_month = $scope.fullCard.cardExpiry.substring(0,1);
         }
 
-        $scope.card.exp_year = $scope.fullCard.cardExpiry.substr(3,7);
+        $scope.card.exp_year = $scope.fullCard.cardExpiry.substring(3,7);
+        console.log($scope.card);
 
         // Creo el token de seguridad de la tarjeta
         $scope.loader = 'mostrar';

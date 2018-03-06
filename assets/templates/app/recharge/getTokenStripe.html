@@ -161,7 +161,7 @@
                   </div>
                   <p class="p-gray">CVV</p>
                   <div class="pillar-50p">
-                    <input minlength="3" maxlength="3" type="password" name="cvv" data-mode-1 autocomplete="off" ng-model="card.cvc" required numero>
+                    <input minlength="3" maxlength="4" type="password" name="cvv" data-mode-1 autocomplete="off" ng-model="card.cvc" required numero>
                   </div><br>
                   <div class="text-center" ng-if="formTDC.cvv.$dirty && (formTDC.cvv.$invalid || formTDC.cvv.$touched)">
                     <span ng-if="formTDC.cvv.$error.required && !!formTDC.exp_date.$error.required" class="error-input-msj" >
