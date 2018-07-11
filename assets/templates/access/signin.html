@@ -1,50 +1,41 @@
-
 <div class="m-t-lg">
   <div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
     <div class="m-b-lg">
       <form name="form" class="form-validation">
-        <div class="text-danger wrapper text-center" ng-show="authError">
+        <!-- <div class="text-danger wrapper text-center" ng-show="authError">
             {{authError | translate}}
-        </div>
+        </div> -->
         <div class="list-group list-group-sm" style="margin-top: 45px">
           <div class="pillar-auto" style="margin-top: 45px">
-            <input data-hide-3 type="email" placeholder='{{ "std.Email" | translate }}' name="user.login" ng-model="user.login" required>
+            <input data-hide-3 type="email" placeholder='Email' name="user.login" ng-model="user.login" required>
           </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
               <div class="text-center" ng-if="form.email.$dirty && (form.email.$invalid || form.email.$touched)">
                 <span ng-if="form.email.$error.required" class="error-input-msj" >
-                  {{"err.required" | translate}}
+                  Ingrese un email
                 </span>
                 <span ng-if="form.email.$error.email" class="error-input-msj" >
-                  {{"err.email.format" | translate}}
+                  Formato Invalido
                 </span>
               </div>
               <!-- ERRORES EN CAMPO DE EMAIL -->
 
             <div class="pillar-auto">
-              <input data-hide-3 type="password" name="user.password"   placeholder="{{ 'std.Password' | translate }}" maxlength="16" ng-model="user.password" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" required>
+              <input data-hide-3 type="password" name="user.password"   placeholder="Contraseña" maxlength="16" ng-model="user.password" uib-popover-html="popoverContrasena.contenido" style="" title="Contraseña" popover-title="{{popoverContrasena.titulo | translate}}" popover-trigger="focus" popover-placement="bottom" required>
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
             <div class="text-center" ng-if="form.password.$dirty && (form.password.$invalid || form.password.$touched)">
               <span ng-if="form.password.$error.required" class="error-input-msj" >
-                {{"err.required" | translate}}
+                Ingrese la contraseña
               </span>
             </div>
             <!-- ERRORES EN CAMPO DE PASSWORD -->
         </div>
         <div style="margin-top:51px; justify-content:center; display:flex;">
-          <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="signin()" ladda="loading" data-style="expand-right">{{'Iniciar_Sesion' | translate}}</button>
+          <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="signin()" ladda="loading" data-style="expand-right">Iniciar Sesion</button>
         </div>
         <div class="text-center m-t m-b" style="margin-top:15px">
-          <a ui-sref="access.forgotpwd" style="font-family:neeru; color:gray; font-weight:200px">{{"¿Olvidaste_tu_contraseña?" | translate}}</a>
-        </div>
-        <div style="position:relative; top: 55px;">
-          <div class="text-center" style="margin-bottom: 10px;">
-            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-facebook" name="button" href="https://www.neeru.io:9002/plataform/user/signinFacebook" ng-model="fbLogin" ng-change="FBLogin(fbLogin)"><span aria-hidden="true" class="fa fa-facebook pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Facebook" | translate}}</a>
-          </div>
-          <div class="text-center" style="margin-bottom: 10px;">
-            <a type="button" target="_parent"  class="btn btn-primary btn-lg btn-block button-google" name="button" href="https://www.neeru.io:9002/plataform/user/signinGoogle" ><span aria-hidden="true" class="fa fa-google pull-left" style="margin-right:20px"></span>{{ "Iniciar_Sesion_Google" | translate}}</a>
-          </div>
+          <a ui-sref="access.forgotpwd" style="font-family:neeru; color:gray; font-weight:200px">¿Olvidaste tu contraseña?</a>
         </div>
       </form>
     </div>

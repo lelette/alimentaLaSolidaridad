@@ -163,81 +163,17 @@ app.controller('GlobalCtrl',
     //   $rootScope.header.icono = "";
     //   $rootScope.header.home = true;
     //   $rootScope.header.namePage = '';
-    User.refresh(function(err){
-      if (err) {
-        return $state.go('access.signin');
-      }
-      $scope.user = User.info;
-      $scope.user.imagen_perfil = User.info.imagen_perfil;
-      $scope.user.pin = User.info.pin;
-      $rootScope.usernombre = $scope.user.nombres;
-      // console.log($rootScope.usernombre);
-      // Variables fijas del SUBHeader
-      // if ($state.current.name=='app.page.home')
-      // { $rootScope.header = {}
-      //   $rootScope.header.icono = "images/icoInicio.png";
-      //   $rootScope.header.home = true;
-      //   $rootScope.header.namePage = $scope.user.nombres;
-      //   console.log($state.current.name);
-      // }else {
-      //   if($state.current.name=='app.page.transactions'){
-      //     $rootScope.header = {}
-      //     $rootScope.header.icono = "images/icoMovimientos.png";
-      //     $rootScope.header.namePage = "Movimientos";
-      //   }
-      //   console.log($state.current.name);
-      // }
 
-      $scope.loader = 'ocultar';
-      $scope.cuerpo = 'mostrar';
-
-    });
 
 
     $scope.logout = function(){
-      $http.post('plataform/user/logout').then(function (res){
-        Recharge.reset();
-        Recharge.cart = {
-          token: null,
-          details: []
-        };
-        // console.log("logout");
-        $state.go('access.signin');
-      });
+
+        $state.go('login');
+      
     }
 
-    if (Recharge.cart && Recharge.cart.details.length != 0){
-      $scope.cart = Recharge.cart.details;
-    }else {
-      $http.get('plataform/sales/getshoppingCart')
-      .then(function(response){
-          var res = response.data;
-          if (res.carrito.length == 0) {
-            Recharge.cart.details = [];
-            Recharge.cart.token = null;
-          }else {
-            var cart = [];
-            res.carrito.forEach(function (value) {
-              cart.push({
-                idSale: value.id,
-                id: value.idProduct,
-                fee: value.serviceFee,
-                operator: value.operator,
-                phone: value.phone,
-                price_local_unit: value.expectedAmount,
-                price_unit: value.realAmount
-              });
-            })
-            Recharge.cart.details = cart;
-            $scope.cart = cart;
-
-          }
-
-          $scope.loader = 'ocultar'; $scope.cuerpo = 'mostrar';
-
-      }, function(error){
-        $scope.loader='ocultar';$scope.cuerpo='mostrar';
-      });
+    $scope.refresh = function(){
+      $state.go('app.page.adminficha');
     }
 
 }]);

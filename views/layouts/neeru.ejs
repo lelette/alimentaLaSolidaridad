@@ -3,9 +3,9 @@
 <head>
   <base href="/">
   <meta charset="utf-8" />
-  <title ng-bind="$state.current.title || 'neeru'">Neeru</title>
-  <meta name="description" content="Best Top-Up Service Worldwide!" />
-  <meta name="keywords" content="top up, recharge, remittances, remesas, recargas, courier, carrier" />
+  <title ng-bind="$state.current.title || 'ALS'">ALS</title>
+  <meta name="description" content="Alimenta La Solidaridad" />
+  <meta name="keywords" content="fundacion, venezuela, alimentacion, nutricion, caridad" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="/libs/assets/animate.css/animate.css" type="text/css" />
   <link rel="stylesheet" href="/libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="styles/css/font.css" type="text/css" />
   <link rel="stylesheet" href="global/css/global.css" type="text/css" />
   <link rel="stylesheet" href="styles/css/app.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+
   <!-- endbuild -->
 </head>
 
@@ -33,7 +36,7 @@
   <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
     <%-body%>
   </div>
-  <input type="hidden" api-url value="https://www.neeru.io:9002">
+  <input type="hidden" api-url value="http://localhost:9002">
   <!-- LIBRERIAS -->
 
   <!-- jQuery -->

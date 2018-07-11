@@ -6,29 +6,19 @@
 
 
  // Prefijo de URL para el Core de Servicios
- var API_URL = 'https://www.neeru.io:9002/';
- // var API_URL = 'http://localhost:9002/';
+ // var API_URL = 'https://www.neeru.io:9002/';
+ var API_URL = 'http://localhost:9002/';
 
  function apiInterceptor($q, $cookies) {
    return {
      request: function(config) {
        var url = config.url;
-       var regex = new RegExp("^(http[s]?:\\/\\/www\\.google\\.com)");
 
        // Se ignoran requests para templates
        if (url.substr(url.length - 5) == '.html') return config || $q.when(config);
 
-       if (url == 'l10n/en.js' || url == 'l10n/es.js') {
-          config.url = "https:///neeru.io/"+ url;
-          return config || $q.when(config);
-        };
-
-       // Se ingoran rutas de google
-       if (regex.test(url)) return config || $q.when(config);
-
        config.headers = config.headers || {};
        config.headers['cookie'] = $cookies.get('sails.sid');
-       config.url = API_URL + config.url;
        return config || $q.when(config);
      }
    }
@@ -57,7 +47,7 @@ angular.module('app')
         // Configuración general del servicio $http
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push(apiInterceptor);
-				$urlRouterProvider.when('/', '/landing/home')
+				$urlRouterProvider.when('/', '/login')
         $urlRouterProvider.when('/app/page/recharge', '/app/page/recharge/contract')
         $urlRouterProvider.when('/app/page/home#', '/app/page/home')
         $urlRouterProvider.otherwise('/access/404');
@@ -119,20 +109,19 @@ angular.module('app')
           //     ])
           // })
           // recharge ###########################################
-          .state('app.page.recharge', {
-            url: '/recharge',
-            templateUrl: 'templates/app/recharge/reload.html',
-            params: {'code': '', 'number': '', 'url': ''},
-            resolve: load([
-              'toaster',
-              'js/controllers/app/recharge.js',
-              'js/directives/stripe.js',
-              'js/services/Sales.js'
-              ])
+          .state('app.page.newForm', {
+            url: '/new',
+            templateUrl: 'templates/app/newForm/newForm.html',
+            // resolve: load([
+            //   'toaster',
+            //   'js/controllers/app/recharge.js',
+            //   'js/directives/stripe.js',
+            //   'js/services/Sales.js'
+            //   ])
           })
-          .state('app.page.recharge.get_contrato', {
-            url: '/contract',
-            templateUrl: 'templates/app/recharge/getContrato.html',
+          .state('app.page.adminficha', {
+            url: '/adminficha',
+            templateUrl: 'templates/app/updateForm/updateForm.html',
             resolve: load([])
           })
           .state('app.page.recharge.cal_amount', {
@@ -301,12 +290,12 @@ angular.module('app')
               ])
           })
           // autenticacion o inicio de session autenticada
-          .state('access.signin', {
-              url: '/signin',
+          .state('login', {
+              url: '/login',
               templateUrl: 'templates/access/signin.html',
               resolve: load( [
                 'toaster',
-                'js/controllers/access/signin.js'
+               'js/controllers/access/signin.js'
               ])
           })
           // registro de usuario ################################

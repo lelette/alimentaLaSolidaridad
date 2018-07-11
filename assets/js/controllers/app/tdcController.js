@@ -9,7 +9,7 @@ app.controller('tdcCtrl',
   ['$rootScope', '$scope', '$http', '$state','$translate',
   function($rootScope, $scope, $http, $state,$translate) {
 
-    Stripe.setPublishableKey('pk_live_iIFJtinoQEdDziff0r2QyEun'); // Identificacion con Stripe
+    Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv'); // Identificacion con Stripe
 
     // Variables fijas del Header
     $rootScope.header = {};

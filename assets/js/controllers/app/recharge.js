@@ -9,7 +9,7 @@ app.controller('ReloadController',
   function($rootScope,  $scope, $http, $state, Recharge, $translate, $stateParams, $uibModal, toaster) {
     // console.log('Recharge', Recharge);
 
-  Stripe.setPublishableKey('pk_live_iIFJtinoQEdDziff0r2QyEun'); // Identificacion con Stripe
+  Stripe.setPublishableKey('pk_test_LNmVmGs1NRu9PjqYUFwhTxuv'); // Identificacion con Stripe
   $scope.btnClassRecarga = "btn-green-off";
   $scope.btnPayment = "btn-green-off";
   $scope.btnClassPay = "btn-green-off";

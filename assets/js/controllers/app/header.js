@@ -6,18 +6,12 @@
 *****************************************************************************************/
 
 app.controller('HeaderController',
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
 
     $scope.logout = function(){
-      User.logout(function(err){
-        if (err) {
-          // console.log(err);
-          return fale;
-        };
-
         $state.go('access.signin');
-      });
     };
+  }
 
-}]);
+]);

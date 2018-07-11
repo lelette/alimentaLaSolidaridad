@@ -1,14 +1,14 @@
-.placeholder-blanco {
+/* .placeholder-blanco {
   ::-webkit-input-placeholder { color: white; }
 
-  :-moz-placeholder { /* Firefox 18- */ color: white; }
+  :-moz-placeholder { color: white; }
 
-  ::-moz-placeholder { /* Firefox 19+ */ color: white; }
+  ::-moz-placeholder {  color: white; }
 
   :-ms-input-placeholder { color: white; }
-}
+} */
 
-input[log-in]::placeholder {
+.input[log-in]::placeholder {
   color: white !important;
 }
 .language{
@@ -46,7 +46,7 @@ form[log-in]::before{
 }
 
 .btnContactos {
-  background-color: #0d9e2c;
+  background-color: #4267b2;
   color: white;
   border: 0px;
   border-radius: 8px;
@@ -60,7 +60,7 @@ form[log-in]::before{
 
 
 .btnHome {
-  background-color: #32c250;
+  background-color: #4267b2;
   color: white;
   border: 0px;
   border-radius: 8px;
@@ -75,7 +75,7 @@ form[log-in]::before{
 }
 
 .btnSeguridad {
-  background-color: #32c250;
+  background-color: #4267b2;
   color: white;
   width: 50%;
   border: 0px;
@@ -108,7 +108,7 @@ form[log-in]::before{
 }
 
 .hrFunciona {
-  border-bottom: 4px #0db731 solid;
+  border-bottom: 4px #4267b2 solid;
   margin: 0 auto;
   width: 63px;
 }
@@ -116,7 +116,7 @@ form[log-in]::before{
 .hrHome {
   width: 80px;
   height: 5px;
-  background-color: #0db731;
+  background-color: #4267b2;
   margin-left: 0px;
 }
 
@@ -126,7 +126,7 @@ form[log-in]::before{
 }
 
 .color-verde {
-  color: #2BBF49;
+  color: #4267b2;
 }
 
 .color-blanco {
@@ -140,14 +140,14 @@ form[log-in]::before{
 }
 
 .hTxt2 {
-  color: #2BBF49;
+  color: #4267b2;
   font-weight: 200;
   font-size: 2.55em;
 }
 
 #idHeader {
   height: 72px;
-  background-color: #0db731;
+  background-color: #4267b2;
 }
 
 a:hover {
@@ -256,7 +256,7 @@ box-shadow:none;
 }
 
 .titulo1 {
-  color: #0DB730;
+  color: #4267b2;
   font-weight: 500;
 }
 
@@ -376,11 +376,11 @@ header > section:last-child > div:first-child p{
   margin-left: 0.5pc;
 }
  header > section:first-child{
-  background-color: #0DB731;
+  background-color: #4267b2;
   height: 70px;
 }
  header > section:last-child{
-  background-color: #48C863;
+  background-color: #4267b2;
 }
  header > section:first-child,
  header > section:last-child{

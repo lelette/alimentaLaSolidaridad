@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "@material/fab": "^0.37.0",
     "angular-image-cropper": "^1.2.0",
     "angular-ladda": "^0.4.3",
     "async": "^2.1.4",

@@ -6,8 +6,8 @@
 *****************************************************************************************/
 
 app.controller('SigninFormController',
-  ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
-  function($rootScope, $scope, $http, $state, validarPassword, $translate) {
+  ['$rootScope', '$scope', '$http', '$state',
+  function($rootScope, $scope, $http, $state) {
 
   $rootScope.header = {}
   $rootScope.header.icono = "images/icoMiPerfil.png";
@@ -25,30 +25,8 @@ app.controller('SigninFormController',
   *****************************************************/
   $scope.signin = function() {
     $scope.authError = null;
-    $scope.loading = true;
-    var datos = {
-      login: $scope.user.login,
-      password: $scope.user.password
-    };
+    $state.go('app.page.adminficha');
 
-    if (!$scope.user.login) {
-        $scope.authError = "Introduzca un correo";
-        return
-    }
-
-    if (!$scope.user.password) {
-        $scope.authError = "Introduzca la contraseña";
-        return
-    }
-
-    $http.post('plataform/user/signin', datos)
-    .then(function(response) {
-      $scope.loading = false;
-      $state.go('app.page.recharge');
-    }, function(res) {
-      $scope.loading = false;
-      $scope.authError = res.data.error.msjUser;
-    });
   };
 
 }]);
