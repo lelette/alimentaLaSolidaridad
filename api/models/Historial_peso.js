@@ -15,8 +15,8 @@ module.exports = {
       primaryKey: true,
     },
 
-    persona: {
-      model:'persona',
+    nino: {
+      model:'nino',
       required: true
     },
 

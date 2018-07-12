@@ -112,17 +112,20 @@ angular.module('app')
           .state('app.page.newForm', {
             url: '/new',
             templateUrl: 'templates/app/newForm/newForm.html',
-            // resolve: load([
+            resolve: load([
             //   'toaster',
-            //   'js/controllers/app/recharge.js',
+               'js/controllers/newForm/newForm.js',
             //   'js/directives/stripe.js',
             //   'js/services/Sales.js'
-            //   ])
+               ])
           })
           .state('app.page.adminficha', {
             url: '/adminficha',
             templateUrl: 'templates/app/updateForm/updateForm.html',
-            resolve: load([])
+            resolve: load([
+              'js/controllers/fichas/fichas.js',
+
+            ])
           })
           .state('app.page.recharge.cal_amount', {
             url: '/amount',

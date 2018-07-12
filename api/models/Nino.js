@@ -15,6 +15,19 @@ module.exports = {
       primaryKey: true,
     },
     
+    fecha_ingreso: {
+      type:'string',
+      required: true
+    },
+
+    sector:{
+        type: 'string'
+    },
+
+    parroquia:{
+        type:'string'
+    },
+    
     //################### DATOS PERSONALES #########################
     nombres: {
       type: 'string',
@@ -69,8 +82,19 @@ module.exports = {
 
     medicamentos: {
       type: 'string'
+    },
+
+    fecha_ingreso: {
+      type: 'string'
+    },
+
+    representante: {
+      model: 'representante'
     }
 
   }
+
+
+  //EN CONSULTAR, CALCULAR LA EDAD RESPECTO A LA FECHA
 };
 

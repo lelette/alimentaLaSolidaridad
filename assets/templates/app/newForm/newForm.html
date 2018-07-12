@@ -1,99 +1,268 @@
-<div class="container-fluid jumbotron" >
+<div ng-controller="newFormCtrl">
+    <div class="container-fluid jumbotron">
         <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">CREAR NUEVA FICHA</h2>
-    <h2  align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%"><i class="fa fa-plus" style="color:#5a5c60"></i></h2>
-</div>
-<div style="margin:20%; margin-top:5px" align="center">
-    <form id="createFicha" class="form-validation" type="submit" align="center">
-        <fieldset>
-                <br>
-
-            <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                <input data-hide-3 type="text" name="ficha.nombres" placeholder="Nombres" maxlength="50" ng-model="ficha.nombres" required>
-            </div>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha.apellidos" required>
-            </div>
-            <div class="clearfix"></div>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50"
-                    ng-model="ficha.fecha_nacimiento" required>
-            </div>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.cedula"
-                    required>
-            </div>
-            <div class="clearfix"></div>
-            <br>
-            <br>
-
-
-            <!-- PONER CHECKBOX DE ESTUDIA -->
-            <h4 align="center" style="color:#5a5c60"> - DATOS ESCOLARES -</h4>
-
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.colegio" placeholder="Colegio" maxlength="50" ng-model="ficha.colegio" required>
-            </div>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.grado" placeholder="Grado" maxlength="50" ng-model="ficha.grado" required>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
-                    <input data-hide-3 type="text" name="ficha.direccion_colegio" placeholder="Direccion del Colegio" maxlength="50" ng-model="ficha.direccion_colegio"
-                    required>
-            </div>
-            <div class="clearfix"></div>
-            <br>
-            <br>
-
-
-
-            <!-- PONER CHECKBOX DE SI ESTA ENFERMO -->
-            <!-- SI ESTA ENFERMO ENTONCES -->
-            <h4 align="center" style="color:#5a5c60"> - DATOS MEDICOS -</h4>
-
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.enfermedad" placeholder="Enfermedad(es)" maxlength="50" ng-model="ficha.enfermedad"
-                    required>
-            </div>
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.alergia" placeholder="Alergia(s)" maxlength="50" ng-model="ficha.alergia" required>
-            </div>
-            <div class="clearfix"></div>
-
-
-            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                    <input data-hide-3 type="text" name="ficha.medicamentos" placeholder="Medicamento(s)" maxlength="50" ng-model="ficha.medicamentos"
-                    required>
-            </div>
-        </fieldset>
-
-    </form>
-
-    <!-- <fieldset>
-        <div class="divider">
-            <h3>column 1</h3>
-            <label>foo:
-                <input type="text" name="foo">
-            </label>
-            <label>bar:
-                <input type="text" name="bar">
-            </label>
-        </div>
-        <div>
-            <h3>column 2</h3>
-            <label>doe:
-                <input type="text" name="doe">
-            </label>
-            <label>ray:
-                <input type="text" name="ray">
-            </label>
-        </div>
-    </fieldset> -->
-
-    <div style="margin-top:51px; justify-content:center;  width:30%">
-        <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="" ladda="loading"
-            data-style="expand-right">Aceptar</button>
+        <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-plus" style="color:#5a5c60"></i>
+        </h2>
     </div>
-</div>
+    <div style="margin:20%; margin-top:5px" align="center">
+        <div align="center">
+            <label for="singleSelect"> Seleccionar tipo de ficha: </label>
+            <br>
+            <select name="ficha.tipoFicha" ng-model="ficha.tipoFicha" ng-options="tipo as tipo.label for tipo in tipos">
+            </select>
+
+
+
+            <!-- FICHA DE NINOS -->
+            <div ng-if="ficha.tipoFicha.value=='nino'" align="center">
+                <form id="createFicha" class="form-validation" type="submit" align="center">
+                    <fieldset align="center">
+                        <br>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <input data-hide-3 type="text" name="ficha.id_representante" placeholder="No. Ficha de Representante" maxlength="50" ng-model="ficha.id_representante"
+                                required style="text-align:center">
+                        </div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.nombres" placeholder="Nombres" maxlength="50" ng-model="ficha.nombres" required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha.apellidos" required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50"
+                                ng-model="ficha.fecha_nacimiento" required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.cedula"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+
+
+                        <!-- PONER CHECKBOX DE ESTUDIA -->
+                        <h4 align="center" style="color:#5a5c60"> - DATOS ESCOLARES -</h4>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha.estudia" ng-model="ficha.estudia">
+                            <label class="form-check-label" for="exampleCheck1">¿Estudia actualmente?</label>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.colegio" placeholder="Colegio" maxlength="50" ng-model="ficha.colegio" required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.grado" placeholder="Grado" maxlength="50" ng-model="ficha.grado" required>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
+                            <input data-hide-3 type="text" name="ficha.direccion_colegio" placeholder="Direccion del Colegio" maxlength="50" ng-model="ficha.direccion_colegio"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS MEDICOS -</h4>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha.isEnfermo" ng-model="ficha.isEnfermo">
+                            <label class="form-check-label" for="exampleCheck1">¿Tiene alguna enfermedad?</label>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.enfermedad" placeholder="Enfermedad(es)" maxlength="50" ng-model="ficha.enfermedad"
+                                required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.alergia" placeholder="Alergia(s)" maxlength="50" ng-model="ficha.alergia" required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.medicamentos" placeholder="Medicamento(s)" maxlength="50" ng-model="ficha.medicamentos"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+
+                        <h4 align="center" style="color:#5a5c60"> - DATOS ANTROPOMÉTRICOS INICIALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                                <input data-hide-3 type="text" name="ficha.historial_peso.peso" placeholder="Peso (kg)" maxlength="50" ng-model="ficha.historial_peso.peso"
+                                    required>
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                                <input data-hide-3 type="text" name="ficha.historial_peso.circunferencia_brazo" placeholder="Circunferencia de brazo (cm)" maxlength="50"
+                                 ng-model="ficha.historial_peso.circunferencia_brazo" required>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                                <input data-hide-3 type="text" name="ficha.historial_peso.altura" placeholder="Altura (cm)" maxlength="50" 
+                                ng-model="ficha.historial_peso.altura"
+                                    required>
+                            </div>
+                            
+                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                                    <input data-hide-3 type="text" name="ficha.historial_peso.circunferencia_cabeza" 
+                                    placeholder="Circunferencia de cabeza (cm) - solo para menores de 2 años" maxlength="50" 
+                                    ng-model="ficha.historial_peso.circunferencia_cabeza"
+                                        required>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
+                                        <input data-hide-3 type="text" name="ficha.historial_peso.diagnostico" placeholder="Diagnóstico" maxlength="50" 
+                                        ng-model="ficha.historial_peso.diagnostico"
+                                            required>
+                                    </div>
+                            <div class="clearfix"></div>
+                    </fieldset>
+
+                </form>
+                <div style="margin-top:51px; justify-content:center;  width:30%">
+                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="" ladda="loading"
+                        data-style="expand-right">Continuar</button>
+                </div>
+            </div>
+            <!-- FIN DE FICHA DE NINO -->
+
+            <!-- FICHA DE REPRESENTANTE -->
+            <div ng-if="ficha.tipoFicha.value=='representante'">
+                <form id="createFicha" class="form-validation" type="submit" align="center">
+                    <fieldset>
+                        <br>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <input data-hide-3 type="text" name="ficha_representante.sector" placeholder="Sector" maxlength="50" ng-model="ficha_representante.sector"
+                                required style="text-align:center">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <input data-hide-3 type="text" name="ficha_representante.parroquia" placeholder="Parroquia" maxlength="50" ng-model="ficha_representante.parroquia"
+                                required style="text-align:center">
+                        </div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+
+                            <label for="sexoSelect"> Sexo: </label>
+                            <br>
+                            <select name="ficha_representante.sexoSelect" ng-model="ficha_representante.sexoSelect" ng-options="sexo as sexo.label for sexo in sexos">
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+
+                            <label for="edoCivilSelect"> Estado Civil: </label>
+                            <br>
+                            <select name="ficha_representante.edoCivilSelect" ng-model="ficha_representante.edoCivilSelect" ng-options="estado as estado.label for estado in estadosciviles">
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.nombres" placeholder="Nombres" maxlength="50" ng-model="ficha_representante.nombres"
+                                required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha_representante.apellidos"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)"
+                                maxlength="50" ng-model="ficha_representante.fecha_nacimiento" required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.cedula"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.direccion_habitacion" placeholder="Dirección de Habitación" maxlength="50"
+                                ng-model="ficha_representante.direccion_habitacion" required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.telefono" placeholder="Telefono de Contacto" maxlength="50" ng-model="ficha_representante.telefono"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha_representante.trabaja" ng-model="ficha_representante.trabaja">
+                            <label class="form-check-label" for="examplficha_representante.trabajaeCheck1">¿Trabaja actualmente?</label>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.profesion" placeholder="Profesion" maxlength="50" ng-model="ficha_representante.profesion"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.ocupacion" placeholder="Ocupación" maxlength="50" ng-model="ficha_representante.ocupacion"
+                                required>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.ingreso_mensual" placeholder="Ingreso Mensual (Bs.)" maxlength="50"
+                                ng-model="ficha_representante.ingreso_mensual" required>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - CONTACTO DE EMERGENCIA -</h4>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.emergencia_nombre" placeholder="Nombre(s) y Apellido(s)" maxlength="50"
+                                ng-model="ficha_representante.emergencia_nombre" required>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.emergencia_telefono" placeholder="Telefono" maxlength="50" ng-model="ficha_representante.emergencia_telefono"
+                                required>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ficha_representante.emergencia_parentesco" placeholder="Parentesco" maxlength="50" ng-model="ficha_representante.emergencia_parentesco"
+                                required>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - HABITOS ALIMENTICIOS -</h4>
+                        <div class="clearfix"></div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha_representante.modificacion_alim_seis_meses" ng-model="ficha_representante.modificacion_alim_seis_meses">
+                            <label class="form-check-label" for="exampleCheck1">¿Ha cambiado su alimentación en los últimos seis meses?</label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-4 col-md-9 col-lg-9">
+                            <input data-hide-3 type="text" name="ficha_representante.modificacion_razon" placeholder="¿Por qué?" maxlength="100" ng-model="ficha_representante.modificacion_razon"
+                                required>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-2 col-md-3 col-lg-3">
+                            <input data-hide-3 type="number" name="ficha_representante.numero_comidas_diarias" placeholder="Cantidad de comidas" maxlength="50"
+                                ng-model="ficha_representante.numero_comidas_diarias" required>
+                        </div>
+                    </fieldset>
+
+                </form>
+                <div style="margin-top:51px; justify-content:center;  width:30%">
+                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="" ladda="loading"
+                        data-style="expand-right">Crear</button>
+                </div>
+            </div>
+            <!-- FIN DE FICHA DE REPRESENTANTE -->
+        </div>
+    </div>
