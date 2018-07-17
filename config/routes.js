@@ -216,7 +216,12 @@ module.exports.routes = {
   'GET /api/nino/getAll': 'NinoController.consultarTodos',
 
   'POST /api/nino/getSome': 'NinoController.consultar',
-  'POST /api/nino/update': 'NinoController.modificar'
+
+  'POST /api/nino/update': 'NinoController.modificar',
+
+  'POST /api/historial/eliminar': 'Historial_pesoController.eliminar',
+
+  'POST /api/historial/agregar': 'Historial_pesoController.agregar'
 
 
 

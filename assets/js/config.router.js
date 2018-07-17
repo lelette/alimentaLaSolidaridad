@@ -138,6 +138,14 @@ angular.module('app')
 
             ])
           })
+          .state('app.page.newHistory', {
+            url: '/history/new/:cedula',
+            templateUrl: 'templates/app/historial_peso/nuevoHistorial.html',
+            resolve: load([
+              'js/controllers/historial_peso/historial_peso.js',
+
+            ])
+          })
           .state('app.page.recharge.cal_amount', {
             url: '/amount',
             templateUrl: 'templates/app/recharge/calAmount.html',
