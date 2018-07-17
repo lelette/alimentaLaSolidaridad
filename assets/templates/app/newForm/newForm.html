@@ -1,4 +1,4 @@
-<div ng-controller="newFormCtrl">
+<div ng-controller="newFichaCtrl">
     <div class="container-fluid jumbotron">
         <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">CREAR NUEVA FICHA</h2>
         <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
@@ -16,29 +16,29 @@
 
             <!-- FICHA DE NINOS -->
             <div ng-if="ficha.tipoFicha.value=='nino'" align="center">
-                <form id="createFicha" class="form-validation" type="submit" align="center">
+                <form  id="kidForm" class="form-validation" align="center">
                     <fieldset align="center">
                         <br>
                         <div style="width:40%; margin-left:30%" align="center">
-                            <input data-hide-3 type="text" name="ficha.id_representante" placeholder="No. Ficha de Representante" maxlength="50" ng-model="ficha.id_representante"
+                            <input data-hide-3 type="text" name="ficha.nino.id_representante" placeholder="No. Ficha de Representante" maxlength="50" ng-model="ficha.nino.id_representante"
                                 required style="text-align:center">
                         </div>
                         <br>
                         <br>
                         <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
                         <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.nombres" placeholder="Nombres" maxlength="50" ng-model="ficha.nombres" required>
+                            <input data-hide-3 type="text" name="ficha.nino.nombres" placeholder="Nombres" maxlength="50" ng-model="ficha.nino.nombres" required>
                         </div>
                         <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha.apellidos" required>
+                            <input data-hide-3 type="text" name="ficha.nino.apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha.nino.apellidos" required>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50"
-                                ng-model="ficha.fecha_nacimiento" required>
+                            <input data-hide-3 type="text" name="ficha.nino.fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50"
+                                ng-model="ficha.nino.fecha_nacimiento" required>
                         </div>
                         <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.cedula"
+                            <input data-hide-3 type="text" name="ficha.nino.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.nino.cedula"
                                 required>
                         </div>
                         <div class="clearfix"></div>
@@ -46,52 +46,50 @@
                         <br>
 
 
-                        <!-- PONER CHECKBOX DE ESTUDIA -->
-                        <h4 align="center" style="color:#5a5c60"> - DATOS ESCOLARES -</h4>
+                        <h4 align="center" style="color:#5a5c60; margin-top:2%"> - DATOS ESCOLARES -</h4>
                         <br>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="ficha.estudia" ng-model="ficha.estudia">
+                            <input type="checkbox" class="form-check-input" name="ficha.nino.estudia" ng-model="ficha.nino.estudia">
                             <label class="form-check-label" for="exampleCheck1">¿Estudia actualmente?</label>
                         </div>
-                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.colegio" placeholder="Colegio" maxlength="50" ng-model="ficha.colegio" required>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.estudia">
+                            <input data-hide-3 type="text" name="ficha.nino.colegio" placeholder="Colegio" maxlength="50" ng-model="ficha.nino.colegio" required>
                         </div>
-                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.grado" placeholder="Grado" maxlength="50" ng-model="ficha.grado" required>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.estudia">
+                            <input data-hide-3 type="text" name="ficha.nino.grado" placeholder="Grado" maxlength="50" ng-model="ficha.nino.grado" required>
                         </div>
                         <div class="clearfix"></div>
 
-                        <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
-                            <input data-hide-3 type="text" name="ficha.direccion_colegio" placeholder="Direccion del Colegio" maxlength="50" ng-model="ficha.direccion_colegio"
+                        <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12" ng-if="ficha.nino.estudia">
+                            <input data-hide-3 type="text" name="ficha.nino.direccion_colegio" placeholder="Direccion del Colegio" 
+                            maxlength="50" ng-model="ficha.nino.direccion_colegio"
                                 required>
                         </div>
                         <div class="clearfix"></div>
                         <br>
                         <br>
-                        <h4 align="center" style="color:#5a5c60"> - DATOS MEDICOS -</h4>
+                        <h4 align="center" style="color:#5a5c60; margin-top:2%"> - DATOS MEDICOS -</h4>
                         <br>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="ficha.isEnfermo" ng-model="ficha.isEnfermo">
+                        <div class="form-check" style="margin-bottom:3%">
+                            <input type="checkbox" class="form-check-input" name="ficha.nino.isEnfermo" ng-model="ficha.nino.isEnfermo">
                             <label class="form-check-label" for="exampleCheck1">¿Tiene alguna enfermedad?</label>
                         </div>
 
-                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.enfermedad" placeholder="Enfermedad(es)" maxlength="50" ng-model="ficha.enfermedad"
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="ficha.nino.enfermedad" placeholder="Enfermedad(es)" maxlength="50" ng-model="ficha.nino.enfermedad"
                                 required>
                         </div>
-                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.alergia" placeholder="Alergia(s)" maxlength="50" ng-model="ficha.alergia" required>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6"  ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="ficha.nino.alergia" placeholder="Alergia(s)" maxlength="50" ng-model="ficha.nino.alergia" required>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                            <input data-hide-3 type="text" name="ficha.medicamentos" placeholder="Medicamento(s)" maxlength="50" ng-model="ficha.medicamentos"
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6"  ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="ficha.nino.medicamentos" placeholder="Medicamento(s)" maxlength="50" ng-model="ficha.nino.medicamentos"
                                 required>
                         </div>
                         <div class="clearfix"></div>
 
-
-
-                        <h4 align="center" style="color:#5a5c60"> - DATOS ANTROPOMÉTRICOS INICIALES -</h4>
+                        <h4 align="center" style="color:#5a5c60; margin-top:2%"> - DATOS ANTROPOMÉTRICOS INICIALES -</h4>
                         <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
                                 <input data-hide-3 type="text" name="ficha.historial_peso.peso" placeholder="Peso (kg)" maxlength="50" ng-model="ficha.historial_peso.peso"
                                     required>
@@ -125,8 +123,8 @@
 
                 </form>
                 <div style="margin-top:51px; justify-content:center;  width:30%">
-                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="" ladda="loading"
-                        data-style="expand-right">Continuar</button>
+                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="createKid(ficha)" ladda="loading"
+                        data-style="expand-right">Aceptar</button>
                 </div>
             </div>
             <!-- FIN DE FICHA DE NINO -->

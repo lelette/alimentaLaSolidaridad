@@ -1,0 +1,40 @@
+<div ng-controller="historialCtrl">
+        <div class="container-fluid jumbotron">
+          <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">DATOS ANTROPOMETRICOS</h2>
+          <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-briefcase-medical" style="color:#5a5c60"></i>
+          </h2>
+        </div>
+      
+        <div>
+          <div class="center" style="width:50%">
+            <br>
+            <button type="button" title="Nueva entrada" class="btn btn-success" ng-click="">
+                    <i class="fa fa-plus" style="color:white; margin-right:1%"></i> Agregar Nuevo Registro
+                  </button>            
+            <br>            
+            <!-- UNA FICHA -->
+            <div  ng-repeat="historial in historiales" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+              <div align="left">
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                        Peso (kg): {{historial.peso}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% "> 
+                    Circunferencia de brazo (cm): {{historial.circunferencia_brazo}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% "> 
+                    Altura (cm): {{historial.altura}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% "> 
+                    Circunferencia de cabeza (cm) - solo para menores de 2 años: {{historial.circunferencia_cabeza}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% "> 
+                    Diagnóstico: {{historial.diagnostico}}</p>
+
+              </div>
+              <div align="right" style="margin-top:5%">
+                <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminar(ficha)">
+                  <i class="fa fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+            <!-- FIN DE LA FICHA -->
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,61 @@
+<div ng-controller="fichaDetailsCtrl">
+    <div class="container-fluid jumbotron">
+        <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">
+            {{ficha.nombres}} {{ficha.apellidos}}</h2>
+        <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-smile" style="color:#5a5c60"></i>
+        </h2>
+    </div>
+    <div style="margin:20%; margin-top:25px" align="center">
+        <div align="center">
+            <p class="p-small p-500"> Tipo de Ficha: Niño</p>
+            <button type="button" title="Datos antropometricos" class="btn btn-warning" ng-click=""
+            style="margin-top:1.5% ">
+                <i class="fa fa-briefcase-medical" style="color:warning"></i>
+            </button>
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> DATOS PERSONALES:</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Nombre(s) y Apellido(s): {{ficha.nombres}} {{ficha.apellidos}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Fecha de Nacimiento: {{ficha.fecha_nacimiento}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Cedula: {{ficha.cedula}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Fecha de Ingreso: {{ficha.fecha_ingreso}}</p>
+
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> DATOS ACADEMICOS:</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
+                Estudia actualmente</p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="!ficha.estudia">
+                No studia actualmente</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
+                Colegio: {{ficha.colegio}} </p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
+                Direccion del Colegio: {{ficha.direccion_colegio}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
+                Grado: {{ficha.grado}}</p>
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> DATOS MEDICOS:</p>
+            <p class="p-small p-400" ng-if="ficha.isEnfermo" style="margin-top:1.5% ">
+                Tiene alguna enfermedad</p>
+            <p class="p-small p-400" ng-if="!ficha.isEnfermo" style="margin-top:1.5% ">
+                No tiene ninguna enfermedad registrada</p>
+            <p class="p-small p-400" ng-if="ficha.isEnfermo" style="margin-top:1.5% ">
+                Enfermedad: {{ficha.enfermedad}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Alergias: {{ficha.alergia}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Medicamentos: {{ficha.medicamentos}}</p>
+            <button type="button" class="btn btn-outline-primary" ui-sref="app.page.adminficha"
+            style="margin-top:10% ">Volver</button>
+        </div>
+    </div>
+</div>

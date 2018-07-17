@@ -100,30 +100,41 @@ angular.module('app')
                 'js/directives/html.js',
               ])
           })
-          // .state('app.page.index', {
-          //   url: '/index',
-          //   templateUrl: 'templates/index.html',
-          //   resolve: load([
-          //     'js/controllers/app/index.js',
-          //     'js/services/Sales.js'
-          //     ])
-          // })
-          // recharge ###########################################
           .state('app.page.newForm', {
             url: '/new',
             templateUrl: 'templates/app/newForm/newForm.html',
             resolve: load([
-            //   'toaster',
-               'js/controllers/newForm/newForm.js',
-            //   'js/directives/stripe.js',
-            //   'js/services/Sales.js'
+               'toaster',
+               'js/controllers/newFicha/newFicha.js',
+               ])
+          })
+          .state('app.page.updateForm', {
+            url: '/update/:isNino/:cedula',
+            templateUrl: 'templates/app/updateForm/updateForm.html',
+            resolve: load([
+               'js/controllers/updateFicha/updateFicha.js',
+               ])
+          })
+          .state('app.page.formDetails', {
+            url: '/details/:isNino/:cedula',
+            templateUrl: 'templates/app/fichaDetails/fichaDetails.html',
+            resolve: load([
+               'js/controllers/fichaDetails/fichaDetails.js',
                ])
           })
           .state('app.page.adminficha', {
             url: '/adminficha',
-            templateUrl: 'templates/app/updateForm/updateForm.html',
+            templateUrl: 'templates/app/adminForms/adminForms.html',
             resolve: load([
               'js/controllers/fichas/fichas.js',
+
+            ])
+          })
+          .state('app.page.historial_peso', {
+            url: '/historial_peso/:cedula',
+            templateUrl: 'templates/app/historial_peso/historial_peso.html',
+            resolve: load([
+              'js/controllers/historial_peso/historial_peso.js',
 
             ])
           })

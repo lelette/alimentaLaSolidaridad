@@ -32,6 +32,10 @@ module.exports = {
       type: 'string'
     },
 
+    diagnostico: {
+      type: 'string'
+    },
+
     circunferencia_cabeza: {
       type: 'string'
     },
@@ -40,6 +44,20 @@ module.exports = {
       type: 'string',
       required: true
     }
+  },
+
+  agregar: function(datos, cb){
+    Historial_peso.create(datos, function(err, ok){
+      if (err) return cb({error: 'Error agregando registros de historial de peso.'});
+      return cb(undefined, {ok: 'Registro creado exitosamente'});
+    })
+  },
+
+  eliminar: function(datos, cb){
+    Historial_peso.destroy({id: datos.id}, function(err, ok){
+      if (err) return cb({error: 'Error eliminando registro de historial de peso.'});
+      return cb(undefined, {ok: 'Registro eliminado exitosamente'});
+    })
   }
 };
 

@@ -1,59 +1,74 @@
 'use strict';
 
-/****************************************************************************************
-* @description :: define la interaccion necesaria para realizar el registro de usuarios *
-* @autor :: Aquilino Pinto apinto@transamovil.com                                       *
-*****************************************************************************************/
-
 app.controller('FichaCtrl',
   ['$rootScope', '$scope', '$http', '$state',
-  function($rootScope, $scope, $http, $state) {
-  $scope.representante = true;
-  $scope.nino = false;
-  $scope.enfermo = false;
-  $scope.fichas = [{
-      nombres: 'Marialette Nicole',
-      apellidos: 'Arguelles Diaz',
-      edad: '22',
-      cedula: '25786243',
-      fecha_ingreso: '02/02/2017',
-      tipo: 'Representante'
-  }];
+    function ($rootScope, $scope, $http, $state) {
+      $scope.representante = true;
+      $scope.nino = false;
+      $scope.enfermo = false;
+      $scope.ninos = [];
 
-  $scope.tipos = [{
-    value: 'representante',
-    label: 'Representante'
-  }, {
-    value: 'nino',
-    label: 'Niño'
-  }];  
-  
-  $scope.sexos = [{
-    value: 'm',
-    label: 'Masculino'
-  }, {
-    value: 'f',
-    label: 'Femenino'
-  }]; 
-  $scope.estadosciviles = [{
-    value: 'soltero/a',
-    label: 'Soltero/a'
-  }, {
-    value: 'divorciado/a',
-    label: 'Divorciado/a'
-  },
-  {
-    value: 'viudo/a',
-    label: 'Viduo/a'
-  },{
-    value: 'casado/a',
-    label: 'Casado/a'
-  },];  
 
-  $scope.signin = function() {
-    $scope.authError = null;
-    $state.go('app.page.adminficha');
+      $scope.tipos = [{
+        value: 'representante',
+        label: 'Representante'
+      }, {
+        value: 'nino',
+        label: 'Niño'
+      }];
+      $scope.getAll = function () {
+        $http.get('api/nino/getAll')
+          .then(function (res) {
+            $scope.ninos = res.data.ninos;
+          }, function (res) {
+            alert(res.data.error);
+          });
+      };
 
-  };
+      $scope.eliminar = function (ficha) {
+        $http.post('api/nino/delete', {cedula:ficha.cedula})
+          .then(function (res) {
+            $state.reload();
+            alert(res.data.ok);
+          }, function (res) {
+            alert(res.data.error);
+          });
+      };
 
-}]);
+      $scope.select = function () {
+        if ($scope.tipoFicha.value == 'nino'){
+          $scope.getAll();
+        }else{
+          if ($scope.tipoFicha.value == 'representante'){
+            //get all parents
+          }
+        }
+      };
+
+      $scope.modificar = function(ficha){
+        if ($scope.tipoFicha.value == 'nino'){
+          $state.go('app.page.updateForm', {isNino: true, cedula: ficha.cedula});
+        }else{
+          if ($scope.tipoFicha.value == 'representante'){
+          //  $state.go('app.page.updateForm', {isNino: false, cedula: ficha.cedula})
+          }
+        }
+      }
+
+      $scope.verDetalles = function(ficha){
+        if ($scope.tipoFicha.value == 'nino'){
+          $state.go('app.page.formDetails', {isNino: true, cedula: ficha.cedula});
+        }else{
+          if ($scope.tipoFicha.value == 'representante'){
+          //  $state.go('app.page.updateForm', {isNino: false, cedula: ficha.cedula})
+          }
+        }
+      }
+      
+
+      $scope.historiales = function(ficha){
+        if ($scope.tipoFicha.value == 'nino'){
+          $state.go('app.page.historial_peso', {cedula: ficha.cedula});
+        }
+      }
+    }]);

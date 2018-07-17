@@ -207,7 +207,19 @@ module.exports.routes = {
 	/**************************************************************************
 	* Ruta para realizar una consulta de tasa de cambio a USD                 *
 	**************************************************************************/
-	'/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+  '/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+  
+  'POST /api/nino/create': 'NinoController.crearFicha',
+
+  'POST /api/nino/delete': 'NinoController.eliminarFicha',
+
+  'GET /api/nino/getAll': 'NinoController.consultarTodos',
+
+  'POST /api/nino/getSome': 'NinoController.consultar',
+  'POST /api/nino/update': 'NinoController.modificar'
+
+
+
 
   /***************************************************************************
   *                                                                          *
