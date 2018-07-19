@@ -7,6 +7,7 @@ app.controller('FichaCtrl',
       $scope.nino = false;
       $scope.enfermo = false;
       $scope.ninos = [];
+      $scope.representantes= [];
 
 
       $scope.tipos = [{
@@ -20,6 +21,15 @@ app.controller('FichaCtrl',
         $http.get('api/nino/getAll')
           .then(function (res) {
             $scope.ninos = res.data.ninos;
+          }, function (res) {
+            alert(res.data.error);
+          });
+      };
+
+      $scope.getAllParents = function () {
+        $http.get('api/representante/getAll')
+          .then(function (res) {
+            $scope.representantes = res.data.todas;
           }, function (res) {
             alert(res.data.error);
           });
@@ -40,7 +50,7 @@ app.controller('FichaCtrl',
           $scope.getAll();
         }else{
           if ($scope.tipoFicha.value == 'representante'){
-            //get all parents
+            $scope.getAllParents();           
           }
         }
       };
@@ -50,7 +60,7 @@ app.controller('FichaCtrl',
           $state.go('app.page.updateForm', {isNino: true, cedula: ficha.cedula});
         }else{
           if ($scope.tipoFicha.value == 'representante'){
-          //  $state.go('app.page.updateForm', {isNino: false, cedula: ficha.cedula})
+            $state.go('app.page.updateForm', {isNino: false, cedula: ficha.cedula})
           }
         }
       }
@@ -60,7 +70,7 @@ app.controller('FichaCtrl',
           $state.go('app.page.formDetails', {isNino: true, cedula: ficha.cedula});
         }else{
           if ($scope.tipoFicha.value == 'representante'){
-          //  $state.go('app.page.updateForm', {isNino: false, cedula: ficha.cedula})
+            $state.go('app.page.formDetails', {isNino: false, cedula: ficha.cedula})
           }
         }
       }
@@ -71,4 +81,19 @@ app.controller('FichaCtrl',
           $state.go('app.page.historial_peso', {cedula: ficha.cedula});
         }
       }
+
+      $scope.eliminarRepresentante = function (ficha) {
+        $http.post('api/representante/delete', {cedula:ficha.cedula})
+          .then(function (res) {
+            $state.reload();
+            alert(res.data.ok);
+          }, function (res) {
+            alert(res.data.error);
+          });
+      }; 
+
+      
+    
+    
+    
     }]);

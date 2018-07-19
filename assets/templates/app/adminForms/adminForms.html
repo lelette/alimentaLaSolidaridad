@@ -47,6 +47,31 @@
         </div>
       </div>
       <!-- FIN DE LA FICHA -->
+
+       <!-- UNA FICHA DE REPRESENTANTE -->
+       <div ng-if="tipoFicha.value=='representante'" ng-repeat="ficha in representantes" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+        <div align="left">
+          <p class="p-small p-500"> Tipo de Ficha: Representante</p>
+
+          <p class="p-small p-400" style="margin-top:1.5% "> No. de Ficha: {{ficha.id}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% ">
+            Nombre(s) y Apellido(s): {{ficha.nombres}} {{ficha.apellidos}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Cedula: {{ficha.cedula}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Fecha de Ingreso: {{ficha.fecha_ingreso}}</p>
+        </div>
+        <div align="right">
+          <button type="button" class="btn btn-success" title="Modificar" ng-click="modificar(ficha)">
+            <i class="fa fa-pencil-alt" style="color:white"></i>
+          </button>
+          <button type="button" class="btn btn-primary" title="Ver Detalles" ng-click="verDetalles(ficha)">
+            <i class="fa fa-eye"></i>
+          </button>
+          <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminar(ficha)">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+      <!-- FIN DE LA FICHA -->
     </div>
   </div>
 </div>

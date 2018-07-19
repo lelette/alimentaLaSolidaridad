@@ -221,7 +221,20 @@ module.exports.routes = {
 
   'POST /api/historial/eliminar': 'Historial_pesoController.eliminar',
 
-  'POST /api/historial/agregar': 'Historial_pesoController.agregar'
+  'POST /api/historial/agregar': 'Historial_pesoController.agregar',
+
+  'POST /api/representante/create': 'RepresentanteController.crearFicha',
+
+  'GET /api/representante/getAll': 'RepresentanteController.consultarTodas',
+
+  'POST /api/representante/getSome': 'RepresentanteController.consultar',
+
+  'POST /api/representante/delete': 'RepresentanteController.eliminar',
+
+  'POST /api/representante/update': 'RepresentanteController.modificar',
+
+
+
 
 
 

@@ -61,8 +61,13 @@ app.controller('updateFichaCtrl',
             //console.log(res);
           });
         }else{
-          console.log("is representante");
-        }
+          $http.post('api/representante/getSome', {cedula: $scope.cedula})
+          .then(function(res){
+           $scope.ficha_representante = res.data.resultado[0]
+          },function(res){
+            alert(res.data.error);
+            //console.log(res);
+          });        }
       };
 
       $scope.buscarDetalles();

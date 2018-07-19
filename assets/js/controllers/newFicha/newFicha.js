@@ -18,6 +18,8 @@ app.controller('newFichaCtrl',
       $scope.ficha.nino.isEnfermo = false;
       $scope.ficha.nino.estudia=false;
       $scope.ficha_representante = {};
+      $scope.ficha_representante.datos = {};
+      $scope.ficha_representante.datos.trabaja = false;
 
       $scope.tipos = [{
           value: 'representante',
@@ -28,10 +30,10 @@ app.controller('newFichaCtrl',
         }];
 
       $scope.sexos = [{
-          value: 'm',
+          value: 'M',
           label: 'Masculino'
         }, {
-          value: 'f',
+          value: 'F',
           label: 'Femenino'
         }];
       $scope.estadosciviles = [{
@@ -66,7 +68,7 @@ app.controller('newFichaCtrl',
       };
 
       $scope.validateInputs = function(){
-        if (!$scope.ficha.nino.id_representante) {
+        if (!$scope.ficha.nino.representante) {
           alert('Debe ingresar No. de ficha del representante del niño.');
           return false;
         }else
@@ -89,6 +91,68 @@ app.controller('newFichaCtrl',
           return true;
         }
       }
+
+
+      $scope.createParent = function() {
+        
+        var enviar = $scope.ficha_representante.datos;
+        enviar.sexo = $scope.ficha_representante.sexoSelect.value;
+        enviar.estado_civil = $scope.ficha_representante.edoCivilSelect.value;
+        if ($scope.validateParentInputs() == true){
+          $http.post('api/representante/create', enviar)
+          .then(function(res){
+            alert('La ficha se creo exitosamente');
+            $state.go('app.page.adminficha');
+          },function(res){
+            alert(res.data.error);
+            //console.log(res);
+          });
+        }
+      };
+
+
+      $scope.validateParentInputs = function(){
+        if (!$scope.ficha_representante.datos.sector) {
+          alert('Debe ingresar el sector del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.parroquia) {
+          alert('Debe ingresar la parroquia del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.nombres) {
+          alert('Debe ingresar el(los) nombres(s) del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.apellidos) {
+          alert('Debe ingresar el(los) apellido(s) del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.cedula) {
+          alert('Debe ingresar la cedula del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.fecha_nacimiento) {
+          alert('Debe ingresar la fecha de nacimiento del representante.');
+          return false;
+        }else
+        if (!$scope.ficha_representante.datos.telefono) {
+          alert('Debe ingresar el telefono del representante.');
+          return false;
+        }
+        if (!$scope.ficha_representante.sexoSelect.value) {
+          alert('Debe ingresar el sexo del representante.');
+          return false;
+        }
+        if (!$scope.ficha_representante.edoCivilSelect.value) {
+          alert('Debe ingresar el sexo del representante.');
+          return false;
+        }else{
+          return true;
+        }
+      }
+
+
 
 
         /******************************** FIN DE FUNCIONES DEL CONTROLADOR *****************************/

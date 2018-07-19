@@ -28,9 +28,9 @@ module.exports.connections = {
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
+  // localDiskDb: {
+  //   adapter: 'sails-disk'
+  // },
 
   /***************************************************************************
   *                                                                          *
@@ -74,14 +74,14 @@ module.exports.connections = {
 	*                                                                          *
 	*                                                                          *
 	***************************************************************************/
-	// somePostgresqlServer: {
-	// 	adapter: 'sails-postgresql',
-	// 	host: 'localhost',
-	// 	port: 5432,
-	// 	user: 'transamovil_user',
-	// 	password: '123456',
-	// 	database: 'neeru_db'
-	// },
+	conexionPostgres: {
+		adapter: 'sails-postgresql',
+		host: 'localhost',
+		port: 5432,
+		user: 'transamovil_user',
+		password: '123456',
+		database: 'als_db'
+	},
 
   /***************************************************************************
   *                                                                          *

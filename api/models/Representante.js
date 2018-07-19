@@ -7,112 +7,175 @@
 
 module.exports = {
 
-    attributes: {
-      
-      id: {
-        type: 'integer',
-        autoIncrement: true,
-        primaryKey: true,
-      },
+  attributes: {
 
-      fecha_ingreso: {
-        type:'string',
-        required: true
+    id: {
+      type: 'integer',
+      autoIncrement: true,
+      primaryKey: true,
     },
 
-    sector:{
-        type: 'string'
+    fecha_ingreso: {
+      type: 'string',
+      required: true
     },
 
-    parroquia:{
-        type:'string'
+    sector: {
+      type: 'string'
     },
-      
-      //################### DATOS PERSONALES #########################
-      nombres: {
-        type: 'string',
-        required: true
-      },
-  
-      apellidos: {
-        type: 'string',
-        required: true
-      },
-  
-      fecha_nacimiento: {
-        type: 'string',
-        required: true
-      },
-  
-      cedula:{
-        type: 'string'
-      },
 
-      direccion_habitacion:{
-        type: 'string'
-      },
+    parroquia: {
+      type: 'string'
+    },
 
-      telefono:{
-        type: 'string'
-      },
+    //################### DATOS PERSONALES #########################
+    nombres: {
+      type: 'string',
+      required: true
+    },
 
-      profesion:{
-        type: 'string'
-      },
+    apellidos: {
+      type: 'string',
+      required: true
+    },
 
-      sexo:{
-        type: 'string',
-        enum: ['F', 'M']
-      },
+    fecha_nacimiento: {
+      type: 'string',
+      required: true
+    },
 
-      trabaja:{
-        type: 'boolean',
-        required: true
-      },
-  
-      ocupacion: {
-        type: 'string'
-      },
-  
-      ingreso_mensual: {
-        type:'string'
-      },
-  
-      estado_civil:{
-        type: 'string',
-        enum:['soltero/a', 'casado/a', 'divorciado/a', 'viudo/a']
-      },
-  
-      emergencia_nombre: {
-        type: 'string'
-      },
-  
-      emergencia_telefono: {
-        type: 'string'
-      },
-  
-      emergencia_parentesco: {
-        type: 'string'
-      },
+    cedula: {
+      type: 'string'
+    },
 
-      numero_comidas_diarias: {
-          type: 'integer'
-      },
+    direccion_habitacion: {
+      type: 'string'
+    },
 
-      modificacion_alim_seis_meses :{
-          type: 'boolean'
-      },
+    telefono: {
+      type: 'string'
+    },
 
-      modificacion_razon: {
-          type: 'string'
-      },
+    profesion: {
+      type: 'string'
+    },
 
-      ninos: {
-        collection: 'nino',
-        via: 'representante'
-      }
-  
+    sexo: {
+      type: 'string',
+      enum: ['F', 'M']
+    },
+
+    trabaja: {
+      type: 'boolean',
+      required: true
+    },
+
+    ocupacion: {
+      type: 'string'
+    },
+
+    ingreso_mensual: {
+      type: 'string'
+    },
+
+    estado_civil: {
+      type: 'string',
+      enum: ['soltero/a', 'casado/a', 'divorciado/a', 'viudo/a']
+    },
+
+    emergencia_nombre: {
+      type: 'string'
+    },
+
+    emergencia_telefono: {
+      type: 'string'
+    },
+
+    emergencia_parentesco: {
+      type: 'string'
+    },
+
+    numero_comidas_diarias: {
+      type: 'integer'
+    },
+
+    modificacion_alim_seis_meses: {
+      type: 'boolean'
+    },
+
+    modificacion_razon: {
+      type: 'string'
+    },
+
+    ninos: {
+      collection: 'nino',
+      via: 'representante'
     }
-  };
-  
-  
+
+  },
+
+  crearFicha: function (datos, cb) {
+    var crear = datos;
+    var fecha_ingreso = {};
+    fecha_ingreso.raw = new Date();
+    fecha_ingreso.month = fecha_ingreso.raw.getMonth() + 1;
+    fecha_ingreso.day = fecha_ingreso.raw.getDate();
+    fecha_ingreso.year = fecha_ingreso.raw.getFullYear();
+    crear.fecha_ingreso = fecha_ingreso.day + "-" + fecha_ingreso.month + "-" + fecha_ingreso.year;
+
+    Representante.create(crear, function (err, nuevoRepresentante) {
+      if (err) {
+        console.log(err);
+        return cb({ error: 'Error creando la ficha del representante. Intente mas tarde' });
+      }
+
+      console.log(nuevoRepresentante);
+      return cb(undefined, { nuevoRepresentante: nuevoRepresentante });
+    })
+  },
+
+  consultarTodas: function (cb) {
+    Representante.find(function (err, all) {
+      if (err) {
+        console.log(err);
+        return cb({ error: 'Error creando la ficha del representante. Intente mas tarde' });
+      }
+
+      console.log(all);
+      return cb(undefined, { todas: all });
+    })
+  },
+
+
+  consultar: function (datos, cb) {
+    var criterios = {};
+    if (datos.nombres) criterios.nombres = datos.nombres;
+    if (datos.apellidos) criterios.apellidos = datos.apellidos;
+    if (datos.cedula) criterios.cedula = datos.cedula;
+    Representante.find(criterios)
+      .exec(function (err, resultado) {
+        if (err) return cb({ error: "ERROR CONSULTANDO CON FILTROS" });
+        if (!resultado) return cb(undefined, { resultado: "No se encontraron resultados para la busqueda." });
+        //EN CONSULTAR, CALCULAR LA EDAD RESPECTO A LA FECHA
+        return cb(undefined, { resultado: resultado });
+      })
+  },
+
+  eliminar: function (datos, cb) {
+    if (!datos.cedula) return cb({ error: "Debe ingresar la cedula para eliminar una ficha" });
+    Representante.destroy({ cedula: datos.cedula }, function (err, ok) {
+      if (err) return cb({ error: "Error eliminando de la base de datos." });
+      return cb(undefined, { ok: "Ficha eliminada exitosamente" });
+    })
+  },
+
+  modificar: function (datos, cb) {
+    Representante.update({ cedula: datos.cedula }, datos, function (err, ok) {
+      if (err) return cb({ error: "Error modificando en la base de datos." });
+      return cb(undefined, { ok: "Ficha modificada exitosamente" });
+    })
+  }
+
+
+};
+
