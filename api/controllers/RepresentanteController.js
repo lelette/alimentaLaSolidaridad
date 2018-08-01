@@ -37,4 +37,12 @@ module.exports = {
             return res.ok(ok);
         })
     },
+
+    changeStatus: function(req, res){
+        var datos = req.params.all();
+        Representante.changeStatus(datos, function(err, ok){
+            if (err) return res.serverError(err)
+            return res.ok(ok);
+        })
+    }
 }

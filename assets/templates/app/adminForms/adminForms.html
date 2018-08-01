@@ -17,11 +17,17 @@
   <div>
     <div class="center" style="width:50%">
       <br>
-        <label for="singleSelect"> Seleccione tipo de ficha a consultar: </label>
-        <br>
-        <select name="tipoFicha" ng-model="tipoFicha" ng-options="tipo as tipo.label for tipo in tipos" ng-change="select()">
-        </select>
+      <label for="singleSelect"> Seleccione tipo de ficha a consultar: </label>
+      <br>
+      <select name="tipoFicha" ng-model="tipoFicha" ng-options="tipo as tipo.label for tipo in tipos" ng-change="select()">
+      </select>
       <!-- UNA FICHA -->
+      <div ng-if="(tipoFicha.value=='nino' && ninos.length==0)" align="center" style="margin-top:5%; text-align:center">
+          <div align="center">
+
+        <p class="p-small p-500"> -- No hay niños registrados --</p>
+        </div>
+      </div>
       <div ng-if="tipoFicha.value=='nino'" ng-repeat="ficha in ninos" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
         <div align="left">
           <p class="p-small p-500"> Tipo de Ficha: Niño</p>
@@ -42,14 +48,22 @@
             <i class="fa fa-trash-alt"></i>
           </button>
           <button type="button" title="Datos antropometricos" class="btn btn-warning" ng-click="historiales(ficha)">
-              <i class="fa fa-briefcase-medical" style="color:warning"></i>
-            </button>
+            <i class="fa fa-briefcase-medical" style="color:warning"></i>
+          </button>
+          <div style="    display: flex;
+          justify-content: space-between;"> 
+            <span style="margin-top: 1.5pc;">Activo: </span>
+              <label class="switch" style="margin-top:1pc">
+                  <input type="checkbox" ng-model="ficha.activo">
+                  <span class="slider round"></span>
+                </label>
+           </div>  
         </div>
       </div>
       <!-- FIN DE LA FICHA -->
 
-       <!-- UNA FICHA DE REPRESENTANTE -->
-       <div ng-if="tipoFicha.value=='representante'" ng-repeat="ficha in representantes" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+      <!-- UNA FICHA DE REPRESENTANTE -->
+      <div ng-if="tipoFicha.value=='representante'" ng-repeat="ficha in representantes" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
         <div align="left">
           <p class="p-small p-500"> Tipo de Ficha: Representante</p>
 
@@ -66,9 +80,23 @@
           <button type="button" class="btn btn-primary" title="Ver Detalles" ng-click="verDetalles(ficha)">
             <i class="fa fa-eye"></i>
           </button>
-          <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminar(ficha)">
+          <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminarRepresentante(ficha)">
             <i class="fa fa-trash-alt"></i>
           </button>
+          <div style="    display: flex;
+          justify-content: space-between;"> 
+            <span style="margin-top: 1.5pc;">Activo: </span>
+              <label class="switch" style="margin-top:1pc">
+                  <input type="checkbox" ng-model="ficha.activo" ng-change="activar(ficha)">
+                  <span class="slider round"></span>
+                </label>
+           </div>     
+        </div>
+      </div>
+      <div ng-if="(tipoFicha.value=='representante' && representantes.length==0)" align="center" style="margin-top:5%">
+          <div align="center">
+
+        <p class="p-small p-500"> -- No hay representantes registrados --</p>
         </div>
       </div>
       <!-- FIN DE LA FICHA -->

@@ -233,6 +233,8 @@ module.exports.routes = {
 
   'POST /api/representante/update': 'RepresentanteController.modificar',
 
+  'POST /api/representante/changeStatus': 'RepresentanteController.changeStatus',
+
 
 
 

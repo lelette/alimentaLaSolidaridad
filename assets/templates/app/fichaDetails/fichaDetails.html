@@ -1,24 +1,29 @@
 <div ng-controller="fichaDetailsCtrl">
     <div class="container-fluid jumbotron">
-        <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">
-            {{ficha.nombres}} {{ficha.apellidos}}</h2>
+        <h2 align="center" ng-if="!isNino" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">
+            {{ficha.nombres.toUpperCase()}} {{ficha.apellidos.toUpperCase()}}</h2>
+        <h2 align="center" ng-if="isNino" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">
+            {{representante.nombres.toUpperCase()}} {{representante.apellidos.toUpperCase()}}</h2>
+        <h2 align="center" ng-if="isNino" style="color:#5a5c60; margin-top:1%; margin-bottom:0%">
+            No. Ficha: {{representante.id}}</h2>
         <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
             <i class="fa fa-smile" style="color:#5a5c60"></i>
         </h2>
     </div>
     <div style="margin:20%; margin-top:25px" align="center">
-        <div align="center">
-            <p class="p-small p-500"> Tipo de Ficha: Niño</p>
-            <button type="button" title="Datos antropometricos" class="btn btn-warning" ng-click=""
-            style="margin-top:1.5% ">
+        <div align="center" ng-if="isNino == 'true'">
+            <p class="p-small p-500" ng-if="!isNino"> Tipo de Ficha: Niño</p>
+            <button type="button" ng-if="!isNino" title="Datos antropometricos" class="btn btn-warning" ng-click="verHistorial()" style="margin-top:1.5% ">
                 <i class="fa fa-briefcase-medical" style="color:warning"></i>
             </button>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <strong>Ficha Representante:</strong> {{ficha.representante}}</p>
             <p style="margin-top:15px">
                 _________________________________________________________________</p>
             <p class="p-small p-500" style="margin-top:3% "> DATOS PERSONALES:</p>
 
             <p class="p-small p-400" style="margin-top:1.5% ">
-                Nombre(s) y Apellido(s): {{ficha.nombres}} {{ficha.apellidos}}</p>
+                Nombre(s) y Apellido(s): {{representante.nombres}} {{ficha.apellidos}}</p>
             <p class="p-small p-400" style="margin-top:1.5% ">
                 Fecha de Nacimiento: {{ficha.fecha_nacimiento}}</p>
             <p class="p-small p-400" style="margin-top:1.5% ">
@@ -33,7 +38,7 @@
             <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
                 Estudia actualmente</p>
             <p class="p-small p-400" style="margin-top:1.5% " ng-if="!ficha.estudia">
-                No studia actualmente</p>
+                No estudia actualmente</p>
 
             <p class="p-small p-400" style="margin-top:1.5% " ng-if="ficha.estudia">
                 Colegio: {{ficha.colegio}} </p>
@@ -50,12 +55,84 @@
                 No tiene ninguna enfermedad registrada</p>
             <p class="p-small p-400" ng-if="ficha.isEnfermo" style="margin-top:1.5% ">
                 Enfermedad: {{ficha.enfermedad}}</p>
-            <p class="p-small p-400" style="margin-top:1.5% ">
+            <p class="p-small p-400" ng-if="ficha.isEnfermo" style="margin-top:1.5% ">
                 Alergias: {{ficha.alergia}}</p>
-            <p class="p-small p-400" style="margin-top:1.5% ">
+            <p class="p-small p-400" ng-if="ficha.isEnfermo" style="margin-top:1.5% ">
                 Medicamentos: {{ficha.medicamentos}}</p>
-            <button type="button" class="btn btn-outline-primary" ui-sref="app.page.adminficha"
-            style="margin-top:10% ">Volver</button>
+            <button type="button" class="btn btn-outline-primary" ui-sref="app.page.adminficha" style="margin-top:10% ">Volver</button>
         </div>
+
+        <!-- FICHA DE REPRESENTANTE -->
+        <div align="center" ng-if="isNino == 'false'">
+            <p class="p-small p-500"> Tipo de Ficha: Representante</p>
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> DATOS PERSONALES:</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Nombre(s) y Apellido(s): </u>{{representante.nombres}} {{representante.apellidos}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Fecha de Nacimiento:</u> {{representante.fecha_nacimiento}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Cedula:</u> {{representante.cedula}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Fecha de Ingreso:</u> {{representante.fecha_ingreso}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Sexo:</u>{{representante.sexo}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Direccion de Habitación:</u> {{representante.direccion_habitacion}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Sector:</u> {{representante.sector}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Parroquia:</u> {{representante.parroquia}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Telefono:</u> {{representante.telefono}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                <u style="text-decoration: underline">Estado Civil:</u>{{representante.estado_civil}}</p>
+
+            <!-- DATOS LABORALES -->
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> DATOS LABORALES:</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="representante.trabaja">
+                Trabaja actualmente</p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="!representante.trabaja">
+                No trabaja actualmente</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="representante.trabaja">
+                Ingreso Mensual: {{representante.ingreso_mensual}} </p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="representante.trabaja">
+                Profesion: {{representante.profesion}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="representante.trabaja">
+                Ocupacion: {{representante.ocupacion}}</p>
+            <!-- FIN DATOS LABORALES  -->
+
+            <p style="margin-top:15px">
+                _________________________________________________________________</p>
+            <p class="p-small p-500" style="margin-top:3% "> CONTACTO DE EMERGENCIA:</p>
+
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Nombre de Contacto: {{representante.emergencia_nombre}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Telefono: {{representante.emergencia_telefono}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Parentesco: {{representante.emergencia_parentesco}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                No. de Comidas diarias: {{representante.numero_comidas_diarias}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                ¿Ha modificado su alimentación en los últimos seis meses?: {{representante.modificacion_alim_seis_meses}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% ">
+                Razón: {{representante.modificacion_razon}}</p>
+            <p class="p-small p-400" style="margin-top:1.5% " ng-if="representante.ninos.length>0">
+                <p style="text-decoration: underline">Niños bajo el número de ficha de este representante:</p>
+                <p ng-repeat="nino in representante.ninos">{{nino.cedula}} - {{nino.nombres}} {{nino.apellidos}}</p>
+            </p>
+            <p class="p-small p-400" style="margin-top:1.5%; color:red" ng-if="representante.ninos.length==0">
+                <strong>Este representante no tiene ninos asociados aún</strong>
+            </p>
+            <button type="button" class="btn btn-outline-primary" ui-sref="app.page.adminficha" style="margin-top:10% ">Volver</button>
+        </div>
+        <!-- FIN DE FICHA REPRESENTANTE -->
     </div>
 </div>

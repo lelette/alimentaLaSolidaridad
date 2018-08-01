@@ -131,7 +131,7 @@ angular.module('app')
             ])
           })
           .state('app.page.historial_peso', {
-            url: '/historial_peso/:cedula',
+            url: '/historial_peso/:cedula/:isConsulta',
             templateUrl: 'templates/app/historial_peso/historial_peso.html',
             resolve: load([
               'js/controllers/historial_peso/historial_peso.js',

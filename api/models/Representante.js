@@ -19,7 +19,11 @@ module.exports = {
       type: 'string',
       required: true
     },
-
+    activo: {
+      defaultsTo: true,
+      required:true,
+      type:'boolean'
+    },
     sector: {
       type: 'string'
     },
@@ -153,6 +157,7 @@ module.exports = {
     if (datos.apellidos) criterios.apellidos = datos.apellidos;
     if (datos.cedula) criterios.cedula = datos.cedula;
     Representante.find(criterios)
+      .populateAll()
       .exec(function (err, resultado) {
         if (err) return cb({ error: "ERROR CONSULTANDO CON FILTROS" });
         if (!resultado) return cb(undefined, { resultado: "No se encontraron resultados para la busqueda." });
@@ -163,16 +168,37 @@ module.exports = {
 
   eliminar: function (datos, cb) {
     if (!datos.cedula) return cb({ error: "Debe ingresar la cedula para eliminar una ficha" });
-    Representante.destroy({ cedula: datos.cedula }, function (err, ok) {
-      if (err) return cb({ error: "Error eliminando de la base de datos." });
-      return cb(undefined, { ok: "Ficha eliminada exitosamente" });
+    Representante.findOne({ cedula: datos.cedula }, function (err, rep) {
+      if (err) return cb({ error: "Error conectando a la base de datos." });
+      if (!rep) return cb({ error: "No se encontro representante con esa cedula." });
+      Nino.destroy({ representante: rep.id }, function (err, ninos) {
+        if (err) return cb({ error: "Error borrando las fichas de los ninos de ese representante" });
+        Representante.destroy({ cedula: datos.cedula }, function (err, ok) {
+          if (err) return cb({ error: "Error eliminando de representante de la base de datos." });
+          return cb(undefined, { ok: "Ficha eliminada exitosamente" });
+        })
+      })
     })
   },
 
   modificar: function (datos, cb) {
     Representante.update({ cedula: datos.cedula }, datos, function (err, ok) {
       if (err) return cb({ error: "Error modificando en la base de datos." });
+
       return cb(undefined, { ok: "Ficha modificada exitosamente" });
+    })
+  },
+
+  changeStatus: function(datos, cb){
+    Representante.update({ cedula: datos.cedula }, datos, function (err, ok) {
+      if (err) return cb({ error: "Error modificando en la base de datos." });
+
+      console.log("OKKKKKKKKK :: ".green, ok);
+      Nino.update({representante: ok.id}, datos, function(err, okKid){
+        if (err) return cb({ error: "Error modificando en la base de datos el estado de los ninos." });
+
+        return cb(undefined, { ok: "Ficha modificada exitosamente" });
+      })
     })
   }
 

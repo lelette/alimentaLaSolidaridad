@@ -19,6 +19,11 @@ module.exports = {
       type: 'string',
       required: true
     },
+    activo: {
+      defaultsTo: true,
+      required:true,
+      type:'boolean'
+    },
 
     //################### DATOS PERSONALES #########################
     nombres: {
@@ -83,6 +88,7 @@ module.exports = {
     representante: {
       model: 'representante'
     },
+    
 
     historial_peso: {
       collection: 'historial_peso',
@@ -100,25 +106,33 @@ module.exports = {
     fecha_ingreso.day = fecha_ingreso.raw.getDate();
     fecha_ingreso.year = fecha_ingreso.raw.getFullYear();
     datos_crear.fecha_ingreso = fecha_ingreso.day + "-" + fecha_ingreso.month + "-" + fecha_ingreso.year;
-
-    Nino.create(datos_crear, function (err, newFicha) {
+    Representante.findOne({ id: datos_crear.representante }, function (err, rep) {
       if (err) {
         console.log("ERROR REGISTRANDO EN LA BD :: ", err);
         return cb({ error: 'Error creando la ficha en la base de datos. Intente mas tarde.' });
       }
-      if (datos.historial_peso) {
-        datos_historial.fecha_medicion = datos_crear.fecha_ingreso;
-        datos_historial.nino = newFicha.id;
-        Historial_peso.create(datos_historial, function (err, ok) {
-          if (err) console.log("ERROR CREANDO EL HISTORIAL DE PESO:: ", err);
+
+      if (!rep) return cb({ error: 'No existe el numero de ficha de representante que ingreso' });
+      Nino.create(datos_crear, function (err, newFicha) {
+        if (err) {
+          console.log("ERROR REGISTRANDO EN LA BD :: ", err);
+          return cb({ error: 'Error creando la ficha en la base de datos. Intente mas tarde.' });
+        }
+        if (datos.historial_peso) {
+          datos_historial.fecha_medicion = datos_crear.fecha_ingreso;
+          datos_historial.nino = newFicha.id;
+          Historial_peso.create(datos_historial, function (err, ok) {
+            if (err) console.log("ERROR CREANDO EL HISTORIAL DE PESO:: ", err);
+            console.log("Ficha ", newFicha.id, " de ", newFicha.nombres, " ", newFicha.apellidos, "creada exitosamente. ");
+            return cb(undefined, { newFicha: newFicha })
+          })
+        } else {
           console.log("Ficha ", newFicha.id, " de ", newFicha.nombres, " ", newFicha.apellidos, "creada exitosamente. ");
-          return cb(undefined, { newFicha: newFicha })
-        })
-      } else {
-        console.log("Ficha ", newFicha.id, " de ", newFicha.nombres, " ", newFicha.apellidos, "creada exitosamente. ");
-        return cb(undefined, { newFicha: newFicha });
-      }
-    });
+          return cb(undefined, { newFicha: newFicha });
+        }
+      });
+    })
+
   },
 
   consultarTodos: function (cb) {
@@ -142,6 +156,7 @@ module.exports = {
         if (err) return cb({ error: "ERROR CONSULTANDO CON FILTROS" });
         if (!resultado) return cb(undefined, { resultado: "No se encontraron resultados para la busqueda." });
         //EN CONSULTAR, CALCULAR LA EDAD RESPECTO A LA FECHA
+        console.log("RESULTADO :: ", resultado);
         return cb(undefined, { resultado: resultado })
       })
   },
@@ -155,15 +170,35 @@ module.exports = {
   },
 
   modificar: function (datos, cb) {
-    Nino.update({ cedula: datos.cedula }, datos, function (err, ok) {
-      if (err) return cb({ error: "Error modificando en la base de datos." });
+    Nino.update({ cedula: datos.nino.cedula }, datos.nino, function (err, ok) {
+      if (err) {
+        console.log(err);
+        return cb({ error: "Error modificando en la base de datos." });
+      }
       if (datos.historial_peso) {
-        datos.nino = ok.id;
-        Historial_peso.findOrCreate({nino: datos.nino}, datos.historial_peso, function(err,ok){
-          if (err) console.log("ERROR modificando el historial de peso del nino ", datos.nino);
+        datos.historial_peso.nino = ok[0].id;
+        var fecha_ingreso = {};
+        fecha_ingreso.raw = new Date();
+        fecha_ingreso.month = fecha_ingreso.raw.getMonth() + 1;
+        fecha_ingreso.day = fecha_ingreso.raw.getDate();
+        fecha_ingreso.year = fecha_ingreso.raw.getFullYear();
+        datos.historial_peso.fecha_medicion = fecha_ingreso.day + "-" + fecha_ingreso.month + "-" + fecha_ingreso.year;
+        Historial_peso.update({ nino: datos.historial_peso.id_nino, id: datos.historial_peso.id }, datos.historial_peso, function (err, upd) {
+          if (err) {
+            console.log("ERROR modificando el historial de peso del nino ".red, datos.id_nino);
+            console.log(err);
+          }
+          if (upd.length == 0) {
+            Historial_peso.create(datos.historial_peso, function (err, ne) {
+              if (err) {
+                console.log("ERROR creando el historial de peso del nino ".red, datos.id_nino);
+                console.log(err);
+              }
+            })
+          }
           return cb(undefined, { ok: "Ficha modificada exitosamente" });
         })
-      }else{
+      } else {
         return cb(undefined, { ok: "Ficha modificada exitosamente" });
       }
     })

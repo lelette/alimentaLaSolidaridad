@@ -9,6 +9,8 @@ app.controller('historialCtrl',
       $scope.historial_peso = {};
       //    $scope.isNino = $stateParams.isNino;
       $scope.cedula = $stateParams.cedula;
+      $scope.isConsulta = $stateParams.isConsulta;
+      $scope.nombre;
       $scope.historiales = []
 
 
@@ -17,6 +19,8 @@ app.controller('historialCtrl',
           .then(function (res) {
             console.log(res.data)
             $scope.historiales = res.data.resultado[0].historial_peso;
+            $scope.nombre = res.data.resultado[0].nombres + " " +res.data.resultado[0].apellidos;
+            console.log($scope.nombre);
           }, function (res) {
             alert(res.data.error);
             //console.log(res);

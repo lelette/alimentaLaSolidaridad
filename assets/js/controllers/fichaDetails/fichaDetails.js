@@ -7,7 +7,9 @@ app.controller('fichaDetailsCtrl',
       $scope.nino = false;
       $scope.enfermo = false;
       $scope.ficha = {};
+      $scope.representante = {};
       $scope.isNino = $stateParams.isNino;
+      console.log($scope.isNino);
       $scope.cedula = $stateParams.cedula;
 
 
@@ -19,12 +21,21 @@ app.controller('fichaDetailsCtrl',
            $scope.ficha.historial_peso = res.data.resultado[0].historial_peso[0]
           },function(res){
             alert(res.data.error);
-            //console.log(res);
           });
         }else{
-          console.log("is representante");
-        }
+          $http.post('api/representante/getSome', {cedula: $scope.cedula})
+          .then(function(res){
+            console.log(res.data);
+            $scope.representante = res.data.resultado[0];
+            console.log($scope.representante);
+          },function(res){
+            alert(res.data.error);
+          });        }
       };
+
+      $scope.verHistorial = function(){
+        $state.go('app.page.historial_peso', {cedula: $scope.cedula, isConsulta: true});
+      }
 
       $scope.buscarDetalles();
       
