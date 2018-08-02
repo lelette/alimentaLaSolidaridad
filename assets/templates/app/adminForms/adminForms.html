@@ -7,8 +7,8 @@
   </div>
   <div align="center">
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar cédula o nombre..." aria-label="Buscar">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cédula o nombre..." aria-label="Buscar" ng-change="filtrar()">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="filtrar()">
         <i class="fa fa-search"></i>
       </button>
     </form>
@@ -54,7 +54,7 @@
           justify-content: space-between;"> 
             <span style="margin-top: 1.5pc;">Activo: </span>
               <label class="switch" style="margin-top:1pc">
-                  <input type="checkbox" ng-model="ficha.activo">
+                  <input type="checkbox" ng-model="ficha.activo"  ng-change="activar(ficha)">
                   <span class="slider round"></span>
                 </label>
            </div>  

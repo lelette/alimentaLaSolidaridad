@@ -193,7 +193,6 @@ module.exports = {
     Representante.update({ cedula: datos.cedula }, datos, function (err, ok) {
       if (err) return cb({ error: "Error modificando en la base de datos." });
 
-      console.log("OKKKKKKKKK :: ".green, ok);
       Nino.update({representante: ok.id}, datos, function(err, okKid){
         if (err) return cb({ error: "Error modificando en la base de datos el estado de los ninos." });
 

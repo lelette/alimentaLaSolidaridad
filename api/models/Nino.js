@@ -202,6 +202,20 @@ module.exports = {
         return cb(undefined, { ok: "Ficha modificada exitosamente" });
       }
     })
+  },
+
+  changeStatus: function(datos, cb){
+    var act = {};
+    act.representante = datos.representante;
+    act.activo = datos.activo;
+    Nino.update({representante: act.representante}, {activo: act.activo}, function(err, okKid){
+      if (err) {
+        console.log(err);
+        return cb({ error: "Error modificando en la base de datos el estado de los ninos." });
+      }
+
+      return cb(undefined, { ok: "Ficha modificada exitosamente" });
+    })
   }
 
 

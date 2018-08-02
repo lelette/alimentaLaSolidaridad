@@ -206,8 +206,16 @@ module.exports.routes = {
 
 	/**************************************************************************
 	* Ruta para realizar una consulta de tasa de cambio a USD                 *
-	**************************************************************************/
-  '/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+  **************************************************************************/
+   '/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+
+
+
+  /************************************************************************
+  * RUTAS DE ALIMENTA LA SOLIDARIDAD
+  */
+
+  //  RUTAS DE NINOS 
   
   'POST /api/nino/create': 'NinoController.crearFicha',
 
@@ -217,11 +225,19 @@ module.exports.routes = {
 
   'POST /api/nino/getSome': 'NinoController.consultar',
 
+  'GET /api/nino/searchBar': 'NinoController.searchBar',
+
   'POST /api/nino/update': 'NinoController.modificar',
+
+  'POST /api/nino/changeStatus': 'NinoController.changeStatus',
+
+  // RUTAS DE HISTORIAL 
 
   'POST /api/historial/eliminar': 'Historial_pesoController.eliminar',
 
   'POST /api/historial/agregar': 'Historial_pesoController.agregar',
+
+  // RUTAS DE REPRESENTANTE
 
   'POST /api/representante/create': 'RepresentanteController.crearFicha',
 
@@ -236,7 +252,9 @@ module.exports.routes = {
   'POST /api/representante/changeStatus': 'RepresentanteController.changeStatus',
 
 
-
+/*******************************************************************************
+ * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD
+ */
 
 
 

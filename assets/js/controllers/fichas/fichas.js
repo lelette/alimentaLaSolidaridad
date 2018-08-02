@@ -38,7 +38,24 @@ app.controller('FichaCtrl',
 
       $scope.activar = function (ficha) {
         if ($scope.tipoFicha.value == 'nino') {
+          var datos = {};
+          datos.representante = ficha.representante;
+          console.log("ACTIVO Y REPRESENTANTE :: ", ficha.activo, ficha.representante);
+          datos.activo = ficha.activo;
+          var r = confirm("Para confirmar que desea inactivar esta ficha presione OK.");
+          if (r == true) {
+            $http.post('api/nino/changeStatus', datos)
+              .then(function (res) {
+                if (datos.activo == true) {
+                  alert('Nino activado');
+                } else {
+                  alert('Nino inactivado');
+                }
+              }, function (res) {
+                alert(res.data.error);
 
+              });
+          }
         } else {
           if ($scope.tipoFicha.value == 'representante') {
             var padres = {};
@@ -49,13 +66,13 @@ app.controller('FichaCtrl',
               $http.post('api/representante/changeStatus', padres)
                 .then(function (res) {
                   if (padres.activo == true) {
-                    alert('Representante inactivado');
-                  } else {
                     alert('Representante activado');
+                  } else {
+                    alert('Representante inactivado');
                   }
-                  $state.go('app.page.adminficha');
                 }, function (res) {
                   alert(res.data.error);
+
                 });
             }
           }
@@ -64,14 +81,48 @@ app.controller('FichaCtrl',
       }
 
       $scope.eliminar = function (ficha) {
-        $http.post('api/nino/delete', { cedula: ficha.cedula })
-          .then(function (res) {
-            $state.reload();
-            alert(res.data.ok);
-          }, function (res) {
-            alert(res.data.error);
-          });
+        var r = confirm("Para confirmar que desea eliminar esta ficha presione OK.");
+        if (r == true) {
+          $http.post('api/nino/delete', { cedula: ficha.cedula })
+            .then(function (res) {
+              $state.reload();
+              alert(res.data.ok);
+            }, function (res) {
+              alert(res.data.error);
+            });
+        }
       };
+
+      $scope.filtrar = function () {
+        var nombre = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+
+
+        var cedula = /^[VE]-\d+(\.\d+)?$/;
+        if (nombre.test(name_cap)) {
+          busqueda = '&nombres=' + name_cap + '&apellidos=' + name_cap;
+        }
+        else if (cedula.test(valor)) {
+          busqueda = '&identificacion=' + valor;
+        }
+        else {
+          $scope.criterio = '';
+        }
+
+        $http.get('api/usuario/consultarTodos?page='+$scope.paginaActual+'&limit='+$scope.limit+busqueda)
+			.then(function(respuesta){
+                busqueda = '';
+                $scope.usuarios = respuesta.data.usuarios;
+				$scope.itemTotales = respuesta.data.cantidad;
+				$scope.numPages = Math.ceil($scope.itemTotales / $scope.limit);
+			},function(respuesta){
+				busqueda = '';
+				$scope.$emit('$errorAjax',respuesta.data);
+			});
+
+
+
+
+      }
 
       $scope.select = function () {
         if ($scope.tipoFicha.value == 'nino') {
