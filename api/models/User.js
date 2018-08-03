@@ -33,6 +33,12 @@ module.exports = {
     email: {
       unique: true,
       type: 'string'
+    },
+
+    isAdmin: {
+      required: true,
+      type: 'boolean',
+      defaultsTo: false
     }
   },
 

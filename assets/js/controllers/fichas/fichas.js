@@ -8,7 +8,8 @@ app.controller('FichaCtrl',
       $scope.enfermo = false;
       $scope.ninos = [];
       $scope.representantes = [];
-
+      $scope.searchTerm = '';
+      var busqueda = '';
 
       $scope.tipos = [{
         value: 'representante',
@@ -94,34 +95,46 @@ app.controller('FichaCtrl',
       };
 
       $scope.filtrar = function () {
-        var nombre = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
-
-
+        var nombre = /^[a-zA-Z\s]*$/;
         var cedula = /^[VE]-\d+(\.\d+)?$/;
-        if (nombre.test(name_cap)) {
-          busqueda = '&nombres=' + name_cap + '&apellidos=' + name_cap;
+        busqueda = '';
+        var apellidos = '';
+        if ($scope.searchTerm.split(' ')[1] != undefined){
+          apellidos = '%20' + $scope.searchTerm.split(' ')[1];
         }
-        else if (cedula.test(valor)) {
-          busqueda = '&identificacion=' + valor;
+        if (nombre.test($scope.searchTerm)) {
+          busqueda = '&nombreCompleto=' + $scope.searchTerm.split(' ')[0]+apellidos ;
+        }
+        else if (cedula.test($scope.searchTerm)) {
+          busqueda = '&cedula=' + $scope.searchTerm;
         }
         else {
-          $scope.criterio = '';
+          busqueda = '';
         }
 
-        $http.get('api/usuario/consultarTodos?page='+$scope.paginaActual+'&limit='+$scope.limit+busqueda)
-			.then(function(respuesta){
+        if ($scope.tipoFicha.value == 'nino') {
+          $http.get('api/nino/searchBar?' + busqueda)
+            .then(function (respuesta) {
+              busqueda = '';
+              $scope.ninos = respuesta.data.resultado;
+            }, function (respuesta) {
+              busqueda = '';
+            });
+        } else {
+          if ($scope.tipoFicha.value == 'representante') {
+            $http.get('api/representante/searchBar?' + busqueda)
+              .then(function (respuesta) {
                 busqueda = '';
-                $scope.usuarios = respuesta.data.usuarios;
-				$scope.itemTotales = respuesta.data.cantidad;
-				$scope.numPages = Math.ceil($scope.itemTotales / $scope.limit);
-			},function(respuesta){
-				busqueda = '';
-				$scope.$emit('$errorAjax',respuesta.data);
-			});
+                $scope.representantes = respuesta.data.resultado;
+              }, function (respuesta) {
+                busqueda = '';
+              });
+          }
+        }
+      }
 
-
-
-
+      $scope.newUser = function(){
+        $state.go('app.page.newUser');
       }
 
       $scope.select = function () {

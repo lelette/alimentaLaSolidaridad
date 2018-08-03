@@ -146,6 +146,14 @@ angular.module('app')
 
             ])
           })
+          .state('app.page.newUser', {
+            url: '/user/new',
+            templateUrl: 'templates/app/admin/createUsers.html',
+            resolve: load([
+            //  'js/controllers/historial_peso/historial_peso.js',
+
+            ])
+          })
           .state('app.page.recharge.cal_amount', {
             url: '/amount',
             templateUrl: 'templates/app/recharge/calAmount.html',

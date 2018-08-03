@@ -5,22 +5,26 @@
       <i class="fa fa-address-card" style="color:#5a5c60"></i>
     </h2>
   </div>
-  <div align="center">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cédula o nombre..." aria-label="Buscar" ng-change="filtrar()">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="filtrar()">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-  </div>
+
 
   <div>
+    
     <div class="center" style="width:50%">
       <br>
       <label for="singleSelect"> Seleccione tipo de ficha a consultar: </label>
       <br>
       <select name="tipoFicha" ng-model="tipoFicha" ng-options="tipo as tipo.label for tipo in tipos" ng-change="select()">
       </select>
+
+      <div align="center" style="margin-top:2%" ng-show="(tipoFicha.value=='nino')||(tipoFicha.value=='representante')" >
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cédula o nombre..." ng-model="searchTerm" 
+            aria-label="Buscar" ng-change="filtrar()">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="filtrar()">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
       <!-- UNA FICHA -->
       <div ng-if="(tipoFicha.value=='nino' && ninos.length==0)" align="center" style="margin-top:5%; text-align:center">
           <div align="center">
@@ -59,11 +63,13 @@
                 </label>
            </div>  
         </div>
+        <button ng-click="newUser()">GO!!!</button>
       </div>
       <!-- FIN DE LA FICHA -->
 
       <!-- UNA FICHA DE REPRESENTANTE -->
       <div ng-if="tipoFicha.value=='representante'" ng-repeat="ficha in representantes" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+        
         <div align="left">
           <p class="p-small p-500"> Tipo de Ficha: Representante</p>
 

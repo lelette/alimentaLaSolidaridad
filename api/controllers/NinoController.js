@@ -47,16 +47,18 @@ module.exports = {
     },
 
     searchBar: function (req, res) {
-        var datos = {
-            nombres: req.query.nombres,
-            apellidos: req.query.apellidos
-          };
-          console.log(datos);
-          if (req.query.page) datos.paginacion = req.query.page;
-          if (req.query.limit) datos.cantidad = req.query.limit;
-          Usuario.consultarTodos(datos, function (err, usuarios) {
-            if (err) return res.responder(err);
-            return res.responder(usuarios);
+        var datos = {};
+          if (req.query.nombreCompleto){
+            datos.nombreCompleto = req.query.nombreCompleto;
+            datos.nombres = datos.nombreCompleto.split(' ')[0];
+            datos.apellidos = datos.nombreCompleto.split(' ')[1];
+          }
+          if (req.query.cedula) {
+              datos.cedula = req.query.cedula;
+          }
+          Nino.consultar(datos, function (err, resultado) {
+            if (err) return res.serverError(err);
+            return res.ok(resultado);
           });
         
     }

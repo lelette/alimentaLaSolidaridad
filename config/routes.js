@@ -251,6 +251,9 @@ module.exports.routes = {
 
   'POST /api/representante/changeStatus': 'RepresentanteController.changeStatus',
 
+  'GET /api/representante/searchBar': 'RepresentanteController.searchBar',
+
+
 
 /*******************************************************************************
  * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD

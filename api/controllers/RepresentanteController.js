@@ -38,6 +38,23 @@ module.exports = {
         })
     },
 
+    searchBar: function (req, res) {
+        var datos = {};
+          if (req.query.nombreCompleto){
+            datos.nombreCompleto = req.query.nombreCompleto;
+            datos.nombres = datos.nombreCompleto.split(' ')[0];
+            datos.apellidos = datos.nombreCompleto.split(' ')[1];
+          }
+          if (req.query.cedula) {
+              datos.cedula = req.query.cedula;
+          }
+          Representante.consultar(datos, function (err, resultado) {
+            if (err) return res.serverError(err);
+            return res.ok(resultado);
+          });
+        
+    },
+
     changeStatus: function(req, res){
         var datos = req.params.all();
         Representante.changeStatus(datos, function(err, ok){
