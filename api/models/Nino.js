@@ -21,8 +21,8 @@ module.exports = {
     },
     activo: {
       defaultsTo: true,
-      required:true,
-      type:'boolean'
+      required: true,
+      type: 'boolean'
     },
 
     //################### DATOS PERSONALES #########################
@@ -88,7 +88,7 @@ module.exports = {
     representante: {
       model: 'representante'
     },
-    
+
 
     historial_peso: {
       collection: 'historial_peso',
@@ -141,7 +141,12 @@ module.exports = {
         console.log("ERROR CONSULTANDO LA BASE DE DATOS :: ", err);
         return cb({ error: "Error consultando todos los ninos en la base de datos." });
       }
-      return cb(undefined, { ninos: todos });
+      var ninos = [];
+      todos.forEach(function (elm) {
+        elm.edad = getAge(elm.fecha_nacimiento);
+        ninos.push(elm);
+      })
+      return cb(undefined, { ninos: ninos });
     })
   },
 
@@ -155,9 +160,12 @@ module.exports = {
       .exec(function (err, resultado) {
         if (err) return cb({ error: "ERROR CONSULTANDO CON FILTROS" });
         if (!resultado) return cb(undefined, { resultado: "No se encontraron resultados para la busqueda." });
-        //EN CONSULTAR, CALCULAR LA EDAD RESPECTO A LA FECHA
-        console.log("RESULTADO :: ", resultado);
-        return cb(undefined, { resultado: resultado })
+        var ninos = [];
+        resultado.forEach(function (elm) {
+          elm.edad = getAge(elm.fecha_nacimiento);
+          ninos.push(elm);
+        })
+        return cb(undefined, { resultado: ninos })
       })
   },
 
@@ -204,11 +212,11 @@ module.exports = {
     })
   },
 
-  changeStatus: function(datos, cb){
+  changeStatus: function (datos, cb) {
     var act = {};
     act.representante = datos.representante;
     act.activo = datos.activo;
-    Nino.update({representante: act.representante}, {activo: act.activo}, function(err, okKid){
+    Nino.update({ representante: act.representante }, { activo: act.activo }, function (err, okKid) {
       if (err) {
         console.log(err);
         return cb({ error: "Error modificando en la base de datos el estado de los ninos." });
@@ -221,3 +229,13 @@ module.exports = {
 
 };
 
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}

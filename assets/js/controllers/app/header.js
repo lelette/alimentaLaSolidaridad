@@ -10,7 +10,14 @@ app.controller('HeaderController',
   function($rootScope,  $scope, $http, $state, $translate) {
 
     $scope.logout = function(){
+      $http.post('api/user/logout')
+      .then(function (res) {
+        console.log(res.data, "OKIIIIIII");
         $state.go('access.signin');
+      }, function (res) {
+        console.log("OKIIIIIII");
+        alert(res.data.error);
+      });
     };
   }
 

@@ -230,11 +230,7 @@ app.directive('fechaNac', function() {
         // Fechas mayores al año actual son inválidas
         if (year >= yearActual || year < 1900) return false;
         else {
-          var diff = yearActual - year;
-
-          // Debe ser mayor de 16 años
-          if (diff > 16) return true;
-          else return false;
+          return true;
         }
       };
     }
@@ -260,6 +256,33 @@ app.directive('cedulaVen', function() {
         }
 
         if (CEDULA_VEN_REGEXP.test(viewValue) && viewValue.length > 5 && viewValue.length < 9) {
+          // si pasa el test es valido
+          return true;
+        }
+
+        // si no pasa el test no es valido
+        return false;
+      };
+    }
+  };
+});
+
+
+var DATE_REGEXP = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
+
+app.directive('dateVal', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      // console.log(elm);
+      ctrl.$validators.dateVal = function(modelValue, viewValue) {
+
+        if (ctrl.$isEmpty(modelValue)) {
+          // si pasa el test es valido
+          return true;
+        }
+
+        if (DATE_REGEXP.test(viewValue)) {
           // si pasa el test es valido
           return true;
         }

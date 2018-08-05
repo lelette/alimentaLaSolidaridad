@@ -1,0 +1,60 @@
+<div ng-controller="adminUserCtrl">
+        <div class="container-fluid jumbotron">
+          <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">USUARIOS DEL SISTEMA</h2>
+          <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-address-card" style="color:#5a5c60"></i>
+          </h2>
+        </div>
+      
+      
+        <div>
+          
+          <div class="center" style="width:50%">
+            
+      
+            <div align="center" style="margin-top:2%"  >
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre de usuario..." ng-model="searchTerm" 
+                  aria-label="Buscar" ng-change="filtrar()">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="filtrar()">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </form>
+              </div>
+      
+            <!-- UNA FICHA DE REPRESENTANTE -->
+            <div  ng-repeat="usuario in usuarios" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+              
+              <div align="left">
+                <p class="p-small p-400" style="margin-top:1.5% "> <strong>Username:</strong> {{usuario.username}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                  <strong>Nombre(s) y Apellido(s):</strong> {{usuario.nombreApellido}} </p>
+                <p class="p-small p-400" style="margin-top:1.5% "> <strong>Email:</strong> {{usuario.email}}</p>
+              </div>
+              <div align="right">
+                <button type="button" class="btn btn-success" title="Modificar" ng-click="modificar(usuario)">
+                  <i class="fa fa-pencil-alt" style="color:white"></i>
+                </button>
+                <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminar(usuario)">
+                  <i class="fa fa-trash-alt"></i>
+                </button>
+                <div style="    display: flex;
+                justify-content: space-between;"> 
+                  <span style="margin-top: 1.5pc;">Administrador: </span>
+                    <label class="switch" style="margin-top:1pc; margin-left:2%">
+                        <input type="checkbox" ng-model="usuario.isAdmin" ng-change="activar(usuario)">
+                        <span class="slider round"></span>
+                      </label>
+                 </div>     
+              </div>
+            </div>
+            <div ng-if="(usuarios.length==0)" align="center" style="margin-top:5%">
+                    <div align="center">
+          
+                  <p class="p-small p-500"> -- No hay usuarios registrados --</p>
+                  </div>
+                </div>
+            <!-- FIN DE LA FICHA -->
+          </div>
+        </div>
+      </div>

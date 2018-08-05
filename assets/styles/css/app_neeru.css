@@ -1,6 +1,6 @@
 .bg-neeru{
 	color:white;
-	background-color: #6ca1f7;
+	background-color: #1e6a9c;
 }
 
 .btn-go{
@@ -16,7 +16,7 @@
 }
 
 .btn-go i {
-	color: #6ca1f7;
+	color: #1e6a9c;
 	font-size: 30px;
 }
 
@@ -202,13 +202,13 @@ b {
 	position: absolute;
 	width: 100%;
 	top: 100%;
-	border: 1.5px solid #6ca1f7;
+	border: 1.5px solid #1e6a9c;
 	border-radius: .5rem;
 	max-height: 164px;
 	min-width: 220px;
 	display: none;
 	overflow: auto;
-	background: white;
+	background: #f7f7f7;
 	z-index: 10;
 	top: 45px;
 	left: -90%;
@@ -232,24 +232,24 @@ b {
 }
 
 .header-option-neeru:hover{
-	background-color: white;
+	background-color: #f7f7f7;
 }
 
 .header-option-neeru:hover p {
-	color: #5fc963;
+	color: #1e6a9c;
 }
 
 .header-language-select-box {
     position: absolute;
     width: 100%;
     /*top: 100%;*/
-    border: 1.5px solid #6ca1f7;
+    border: 1.5px solid #1e6a9c;
     border-radius: .5rem;
     max-height: 300px;
     min-width: 65px;
     display: none;
     overflow: auto;
-    background: white;
+    background: #f7f7f7;
     z-index: 10;
     top: 40px;
     left: 0%;
@@ -265,7 +265,7 @@ b {
 }
 
 .header-language-select-box p:hover{
-	color: #6ca1f7;
+	color: #1e6a9c;
 }
 
 .header-language-select-box p:focus{
@@ -420,7 +420,7 @@ tr:last-child{
 }
 
 .profile-email {
-    color: #6ca1f7;
+    color: #1e6a9c;
     font-size: 0.9em;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -612,7 +612,7 @@ tr:last-child{
 	    display: block;
 	    position: fixed;
 	    width: 100%;
-	    background: white;
+	    background:#f7f7f7;
 	    overflow: auto;
 	    box-sizing: border-box;
 	    z-index: 10;

@@ -1,0 +1,83 @@
+<div ng-controller="updateUserCtrl">
+        <div class="container-fluid jumbotron">
+            <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">CREAR USUARIO</h2>
+            <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+                <i class="fa fa-plus" style="color:#5a5c60"></i>
+            </h2>
+        </div>
+        <div class="center" style="width:50%">
+    
+    
+        <form id="userForm" name="userForm"class="form-validation" align="center">
+            <fieldset align="center">
+                <br>
+                <div style="width:40%; margin-left:30%" align="center">
+                    <input data-hide-3 type="text" name="username" placeholder="Nombre de usuario" maxlength="10" minlength="5" ng-model="user.username"
+                        required style="text-align:center" >
+                        <div class="text-center" ng-if="userForm.username.$dirty && (userForm.username.$invalid || userForm.username.$touched)">
+                            <span ng-if="userForm.username.$error.required" class="error-input-msj">
+                                Debes llenar este campo.
+                            </span>
+                            <span ng-if="userForm.username.$error.minlength" class="error-input-msj">
+                                Este campo debe tener al menos 6 caracteres.
+                            </span>
+                        </div>
+                </div>
+                <div style="    display: flex;
+              justify-content: center;"> 
+                <span style="margin-top: 1.5pc;">Administrador: </span>
+                  <label class="switch" style="margin-top:1pc; margin-left:1%">
+                      <input type="checkbox" ng-model="user.isAdmin" >
+                      <span class="slider round"></span>
+                    </label>
+               </div> 
+                <br>
+                <br>
+                <h4 align="center" style="color:#5a5c60"> - DATOS -</h4>
+                <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                    <input data-hide-3 type="text" name="nombreApellido" placeholder="Nombre(s) y Apellido(s)" maxlength="30" minlength="6" ng-model="user.nombreApellido"
+                        required string-std>
+                        <div class="text-center" ng-if="userForm.nombreApellido.$dirty && (userForm.nombreApellido.$invalid || userForm.nombreApellido.$touched)">
+                            <span ng-if="userForm.nombreApellido.$error.required" class="error-input-msj">
+                                Debes llenar este campo.
+                            </span>
+                            <span ng-if="userForm.nombreApellido.$error.minlength" class="error-input-msj">
+                                Este campo debe tener al menos 6 caracteres.
+                            </span>
+                            <span ng-if="userForm.nombreApellido.$error.stringStd" class="error-input-msj">
+                                Este campo debe tener sólo letras y espacios.
+                            </span>
+                        </div>
+                </div>
+                <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                    <input data-hide-3 type="email" name="email" placeholder="Email" maxlength="50" ng-model="user.email"
+                        required>
+                        <div class="text-center" ng-if="userForm.email.$dirty && (userForm.email.$invalid || userForm.email.$touched)">
+                            <span ng-if="userForm.email.$error.required" class="error-input-msj">
+                                Debes llenar este campo.
+                            </span>
+                            <span ng-if="userForm.email.$error.minlength" class="error-input-msj">
+                                Este campo debe tener al menos 6 caracteres.
+                            </span>
+                            <span ng-if="userForm.email.$dirty && (userForm.email.$invalid && userForm.email.$touched)" class="error-input-msj">
+                                El formato del email no es valido.
+                            </span>
+                        </div>
+                </div>
+                <div class="clearfix"></div>
+                
+               
+                <br>
+                <br>
+            </fieldset>
+        </form>
+        <div style="
+        margin-left: 31%;
+        margin-top: 2%; width:30%">
+                <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="update()" ladda="loading"
+                    data-style="expand-right" >Actualizar</button>
+            </div>
+    
+    </div>
+    
+    </div>

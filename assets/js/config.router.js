@@ -101,11 +101,25 @@ angular.module('app')
               ])
           })
           .state('app.page.newForm', {
-            url: '/new',
+            url: '/user/new',
             templateUrl: 'templates/app/newForm/newForm.html',
             resolve: load([
                'toaster',
                'js/controllers/newFicha/newFicha.js',
+               ])
+          })
+          .state('app.page.adminUsers', {
+            url: '/user/admin',
+            templateUrl: 'templates/app/admin/adminUsers.html',
+            resolve: load([
+               'js/controllers/users/admin.js',
+               ])
+          })
+          .state('app.page.updateUser', {
+            url: '/user/update/:username',
+            templateUrl: 'templates/app/admin/updateUsers.html',
+            resolve: load([
+               'js/controllers/users/update.js',
                ])
           })
           .state('app.page.updateForm', {
@@ -150,7 +164,7 @@ angular.module('app')
             url: '/user/new',
             templateUrl: 'templates/app/admin/createUsers.html',
             resolve: load([
-            //  'js/controllers/historial_peso/historial_peso.js',
+              'js/controllers/users/create.js',
 
             ])
           })

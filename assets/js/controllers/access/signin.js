@@ -2,20 +2,25 @@
 
 app.controller('SigninFormController',
   ['$rootScope', '$scope', '$http', '$state',
-  function($rootScope, $scope, $http, $state) {
+    function ($rootScope, $scope, $http, $state) {
 
-  $rootScope.header = {}
-  $rootScope.header.icono = "images/icoMiPerfil.png";
-  $rootScope.header.namePage = "signin.subtitulo";
-  $scope.fbLogin = '';
-  $scope.user = {};
-  $scope.authError = null;
-  $scope.loading = false;
+      $scope.user = {};
+      $scope.loading = false;
 
-  $scope.signin = function() {
-    $scope.authError = null;
-    $state.go('app.page.adminficha');
+      $scope.signin = function () {
+        $scope.authError = null;
+        $scope.loading = true;
+        $http.post('api/user/login', $scope.user)
+          .then(function (res) {
+            console.log(res);
+            $scope.loading = false;
+            $state.go('app.page.adminficha');
+          }, function (res) {
+            $scope.loading = false;
+            alert(res.data.error);
+          });
+      };
 
-  };
-
-}]);
+    }
+  ]
+);

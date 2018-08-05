@@ -253,7 +253,20 @@ module.exports.routes = {
 
   'GET /api/representante/searchBar': 'RepresentanteController.searchBar',
 
+   //RUTAS DE USUARIO
+  'POST /api/user/create': 'UserController.create',
 
+  'POST /api/user/login': 'UserController.login',
+
+  'POST /api/user/logout': 'UserController.logout',
+
+  'POST /api/user/delete': 'UserController.eliminar',
+
+  'POST /api/user/update': 'UserController.modificar',
+
+  'GET /api/user/getAll': 'UserController.consultarTodos',
+
+  'GET /api/user/get': 'UserController.consultar',
 
 /*******************************************************************************
  * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD

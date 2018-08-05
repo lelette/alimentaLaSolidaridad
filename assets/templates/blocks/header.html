@@ -1,7 +1,7 @@
 <header >
   <section ng-controller="GlobalCtrl">
-    <div style="max-width: 100px;" ng-click="refresh()">
-      <img src="images/sample2.png" width="200px">
+    <div style="max-width: 200px; margin-top:2%" ng-click="refresh()">
+      <img src="images/logov5.png" width="200px">
     </div>
     <nav>
       <!--
@@ -22,11 +22,28 @@
          <p class="mi-cuenta">NUEVA FICHA</p>
       </div> 
 
+     <div class="" uib-dropdown uib-dropdown-toggle>
+        <p class="mi-cuenta">USUARIOS</p>
+        <div class="uib-dropdown-menu header-neeru-select-box animated fadeInUp">
+          <div class="header-option-neeru"  ui-sref="app.page.newUser">
+            <p>Crear</p>
+          </div>
+          <div class="header-option-neeru" ui-sref="app.page.adminUsers">
+            <p>Consultar</p>
+          </div>
+          
+        </div>
+      </div>
+
+
     </nav>
     <div data-aux-1>
       <div>
         <p class="p-small"> {{user.username}}</p>
-        <p class="p-small" ng-click="logout()">Cerrar Sesion</p>
+        <p class="p-small" ng-click="logout()">        
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+
+        </p>
       </div>
       <!-- <div>
         <img class="aux-img-1-SA" src="{{user.imagen_perfil}}">
