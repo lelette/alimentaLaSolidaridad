@@ -44,10 +44,21 @@ module.exports.routes = {
   *                                                                         *
   **************************************************************************/
 
+
   /**************************************************************************
   * Ruta para home de la pagina                                             *
   **************************************************************************/
-  '/': {
+  '/landing/*': {
+    view: 'home',
+    locals: {
+      layout: 'layouts/neeru'
+    }
+  },
+
+  /**************************************************************************
+  * Ruta para home de la pagina                                             *
+  **************************************************************************/
+  '/login': {
     view: 'home',
     locals: {
       layout: 'layouts/neeru'
@@ -69,19 +80,22 @@ module.exports.routes = {
   * Rutas del cliente web                                                   *
   **************************************************************************/
   '/app/*' : {
-    controller: 'ClienteWebController',
-    action: 'auth',
+    //controller: 'ClienteWebController',
+    //action: 'auth',
+    view: 'home',
     locals: {
       layout: 'layouts/neeru'
     }
   },
 
+
+
   /**************************************************************************
   * Rutas del cliente web admin                                             *
   **************************************************************************/
   '/admin/*' : {
-    controller: 'ClienteWebController',
-    action: 'admin',
+    //controller: 'ClienteWebController',
+    //action: 'admin',
     locals: {
       layout: 'layouts/neeru'
     }
@@ -192,8 +206,78 @@ module.exports.routes = {
 
 	/**************************************************************************
 	* Ruta para realizar una consulta de tasa de cambio a USD                 *
-	**************************************************************************/
-	'/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+  **************************************************************************/
+   '/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+
+
+
+  /************************************************************************
+  * RUTAS DE ALIMENTA LA SOLIDARIDAD
+  */
+
+  //  RUTAS DE NINOS 
+  
+  'POST /api/nino/create': 'NinoController.crearFicha',
+
+  'POST /api/nino/delete': 'NinoController.eliminarFicha',
+
+  'GET /api/nino/getAll': 'NinoController.consultarTodos',
+
+  'POST /api/nino/getSome': 'NinoController.consultar',
+
+  'GET /api/nino/searchBar': 'NinoController.searchBar',
+
+  'POST /api/nino/update': 'NinoController.modificar',
+
+  'POST /api/nino/changeStatus': 'NinoController.changeStatus',
+
+  // RUTAS DE HISTORIAL 
+
+  'POST /api/historial/eliminar': 'Historial_pesoController.eliminar',
+
+  'POST /api/historial/agregar': 'Historial_pesoController.agregar',
+
+  // RUTAS DE REPRESENTANTE
+
+  'POST /api/representante/create': 'RepresentanteController.crearFicha',
+
+  'GET /api/representante/getAll': 'RepresentanteController.consultarTodas',
+
+  'POST /api/representante/getSome': 'RepresentanteController.consultar',
+
+  'POST /api/representante/delete': 'RepresentanteController.eliminar',
+
+  'POST /api/representante/update': 'RepresentanteController.modificar',
+
+  'POST /api/representante/changeStatus': 'RepresentanteController.changeStatus',
+
+  'GET /api/representante/searchBar': 'RepresentanteController.searchBar',
+
+   //RUTAS DE USUARIO
+  'POST /api/user/create': 'UserController.create',
+
+  'POST /api/user/login': 'UserController.login',
+
+  'POST /api/user/logout': 'UserController.logout',
+
+  'POST /api/user/delete': 'UserController.eliminar',
+
+  'POST /api/user/update': 'UserController.modificar',
+
+  'POST /api/user/password': 'UserController.cambiarpassword',
+
+  'GET /api/user/getAll': 'UserController.consultarTodos',
+
+  'GET /api/user/get': 'UserController.consultar',
+
+  'GET /api/user/estadisticas': 'UserController.estadisticas',
+
+/*******************************************************************************
+ * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD
+ */
+
+
+
 
   /***************************************************************************
   *                                                                          *

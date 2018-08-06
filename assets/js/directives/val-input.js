@@ -192,7 +192,7 @@ app.directive('fechaNacSinDate', function($window) {
           if (angular.isDefined(fecha)) {
             // Garantizamos que la persona tiene mas de 16 años
             if ( (dia > 31) || (yearActual  - year) < 15 ) {
-              console.log('No cumple con el requisito de edad');
+              // console.log('No cumple con el requisito de edad');
               return false;
             }else {
               return true;
@@ -230,11 +230,7 @@ app.directive('fechaNac', function() {
         // Fechas mayores al año actual son inválidas
         if (year >= yearActual || year < 1900) return false;
         else {
-          var diff = yearActual - year;
-
-          // Debe ser mayor de 16 años
-          if (diff > 16) return true;
-          else return false;
+          return true;
         }
       };
     }
@@ -251,7 +247,7 @@ app.directive('cedulaVen', function() {
   return {
     require: 'ngModel',
     link: function(scope, elm, attrs, ctrl) {
-      console.log(elm);
+      // console.log(elm);
       ctrl.$validators.cedulaVen = function(modelValue, viewValue) {
 
         if (ctrl.$isEmpty(modelValue)) {
@@ -260,6 +256,33 @@ app.directive('cedulaVen', function() {
         }
 
         if (CEDULA_VEN_REGEXP.test(viewValue) && viewValue.length > 5 && viewValue.length < 9) {
+          // si pasa el test es valido
+          return true;
+        }
+
+        // si no pasa el test no es valido
+        return false;
+      };
+    }
+  };
+});
+
+
+var DATE_REGEXP = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
+
+app.directive('dateVal', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      // console.log(elm);
+      ctrl.$validators.dateVal = function(modelValue, viewValue) {
+
+        if (ctrl.$isEmpty(modelValue)) {
+          // si pasa el test es valido
+          return true;
+        }
+
+        if (DATE_REGEXP.test(viewValue)) {
           // si pasa el test es valido
           return true;
         }
@@ -368,7 +391,7 @@ app.directive('password', function() {
 
 // ################### Directiva Caracteres validos ####################
 
-var PASSWORD_REGEXPE = /^[\*]*$/;
+var PASSWORD_REGEXP = /^[0-9A-Za-z@ñÑ\.\,\_\$#\-]*$/;
 
 app.directive('caracteresValidos', function() {
   return {
@@ -519,3 +542,32 @@ app.directive('minAmount', function() {
 });
 
 // ################ Fin de direcriva minAmount #########################
+// app.directive('validFile', function() {
+//   console.log('Hola mundo');
+//   return {
+//     require: 'ngModel',
+//     link: function(scope, el, attrs, ctrl) {
+//       console.log(ctrl);
+//       // var model = attrs.ctrl
+//       // var modelSetter = model.assign;
+//       var maxSize = 2*1024*1024; //2*1024*1024 B
+//       ctrl.$validators.validFile = function (modelValue, viewValue) {
+//         console.log(modelValue);
+//         if (ctrl.$isEmpty(modelValue)) {
+//           return true;
+//         }
+//
+//         return false;
+//         // if (el[0].files.length > 1) {
+//         //     modelSetter(scope, el[0].files);
+//         // } else {
+//         //     modelSetter(scope, el[0].files[0]);
+//         // }
+//         // var fileSize = el[0].files[0].size;
+//         // if (fileSize > maxSize) {
+//         //     scope.ebook.maxSizeError = true;
+//         // }
+//       };
+//     }
+//   };
+// });

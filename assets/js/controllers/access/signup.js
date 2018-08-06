@@ -7,8 +7,11 @@
 
 app.controller('SignupFormController',
   ['$rootScope', '$scope', '$http', '$state', 'validarPassword', '$translate',
-  function($rootScope,  $scope, $http, $state, validarPassword, $translate) {
-
+  function($rootScope, $scope, $http, $state, validarPassword, $translate) {
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoMiPerfil.png";
+    $rootScope.header.namePage = "signup.subtitulo";
+    $scope.loading = false;
 
   /*****************************************************
   * Validaciond e password dinamica                    *
@@ -79,7 +82,29 @@ app.controller('SignupFormController',
     return val1 == val2;
   };
 
+  //************* Verifica si el correo ya fue registrado **********************//
+  $scope.consultaCorreo = function() {
+    if ($scope.user.email !== undefined) {
+      $http.post('plataform/consultaRapida',{email: $scope.user.email.toLowerCase()})
+      .then(function(res) {  // success
+        if (res.data.msj === false) {
+          $scope.correoval = "El correo ingresado ya está registrado";
+          $scope.correoValido = true;
+        }
+        else {
+          $scope.correoval = "";
+          $scope.correoValido = false;
+        };
+      }, function(res) { // fail
+        if (res.data.error && res.data.error.codigo == 10000) $scope.$emit('$errorAjax',res.data);
+      });
+    }
+    else {
+      $scope.correoval = "";
+    }
+  };
 
+  if ($scope.user.email) $scope.consultaCorreo();
   /****************************************************
   * signup                                            *
   *   @descripcion :: realiza el consumo del          *
@@ -87,19 +112,50 @@ app.controller('SignupFormController',
   *****************************************************/
   $scope.signup = function() {
     $scope.authError = null;
+    $scope.loading = true;
 
     var recaptcha = $scope.$getValRecaptcha();
 
+    if (!$scope.user.nombres) {
+      $scope.authError = 'Falta campo nombre';
+      return false;
+    };
+
+    if (!$scope.user.apellidos) {
+      $scope.authError = 'Falta campo apellido';
+      return false;
+    };
+
+    if (!$scope.user.email) {
+      $scope.authError = 'Falta correo electronico';
+      return false;
+    };
+
+    if (!$scope.user.password) {
+      $scope.authError = 'Falta campo contraseña';
+      return false;
+    };
+
+    if (!$scope.user.terminos) {
+        $scope.authError = 'Debes aceptar los terminos y condiciones';
+        return false;
+    };
+
     if (!recaptcha) {
+      $scope.loading = false;
       $scope.authError = 'err.recaptcha.required';
       return false;
     };
 
     var datos = {
+      nombres: $scope.user.nombres,
       email: $scope.user.email,
       password: $scope.user.password,
       recaptcha: recaptcha
     };
+
+    $scope.loader = 'mostrar';
+    $scope.cuerpo = 'ocultar';
 
     $http.post('plataform/user/signup', datos)
     .then(function(response) {
@@ -108,16 +164,38 @@ app.controller('SignupFormController',
         data_target: "email"
       })
       .then(function(resonse){
+        $scope.loading = false;
         $state.go('access.emitValEmail');
       },function(res){
+        $scope.loading = false;
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
         $scope.authError = res.data.error.msjUser;
       });
 
     }, function(res) {
-
+      $scope.loader = 'ocultar';
+      $scope.cuerpo = 'mostrar';
+      $scope.loading = false;
       $scope.authError = res.data.error.msjUser;
 
     });
   };
 
 }]);
+
+
+
+app.controller('SuccessController',
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
+
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoMiPerfil.png";
+    $rootScope.header.namePage = "signup.subtitulo";
+
+    $scope.redirect = function () {
+        $state.go('access.signin');
+    }
+
+  }]);

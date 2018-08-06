@@ -10,8 +10,20 @@ app.service('Recharge', [
   '$http',
   function ($http) {
 
-    // Información por defecto del usuario
-    this.info = {};
+    // Resultadode las recargas realizadas
+    this.result = {};
+
+    // Información permanente de las recargas pendientes
+    this.cart = {
+      checkAfiliacionTDC: false,
+      token: null,
+      details: []
+    };
+
+    // Información temporal de la recarga a realizar
+    this.info = {
+      pais: {}
+    };
 
     /*******************************************************
     * reset                                                *
@@ -40,7 +52,6 @@ app.service('Recharge', [
 
       $http.post('plataform/sale/getTCUSD', datos)
       .then(function(res){
-        console.log('estoy haciendo algo', res);
         return cb(undefined, res.data.result);
       }, function(res){
         return cb(res.data);
@@ -64,6 +75,5 @@ app.service('Recharge', [
       });
 
     };
-
 
 }]);

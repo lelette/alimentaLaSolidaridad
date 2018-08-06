@@ -1,6 +1,4 @@
-
-
-// ################# Directivas
+// ################### Directiva API URL ####################
 
 app.directive('apiUrl', ['$rootScope', function($rootScope) {
   return {
@@ -8,7 +6,16 @@ app.directive('apiUrl', ['$rootScope', function($rootScope) {
       $rootScope.apiUrl = attrs.value;
     }
   };
-}]);
+}])
+
+app.directive('subHeader', ['$rootScope', function($rootScope) {
+  return {
+    link: function(scope, elm, attrs, ctrl) {
+      $rootScope.subHeader = attrs.value;
+    }
+  };
+}])
+
 
 // mudar de locacion a la carpeta de directivas
 
@@ -23,7 +30,7 @@ app.directive('insertHtml', function() {
 
       var sepPunto = attrs.insertHtml.split('\.');
 
-      console.log(sepPunto);
+      // console.log(sepPunto);
       var html = scope;
 
       // reconstruimos el scope
@@ -36,7 +43,7 @@ app.directive('insertHtml', function() {
       elm.append(html);
     }
   };
-});
+})
 
 // ################ Fin de direcriva Numero #########################
 
@@ -62,7 +69,7 @@ app.directive('insertRecaptcha', function() {
       scope.$getValRecaptcha = recogerValor;
     }
   };
-});
+})
 
 // ############### Fin de Directiva insertRecaptcha #################
 
@@ -80,3 +87,37 @@ app.directive('clearErrorAjax', function(){
 })
 
 // ############### Fin de Directiva insertRecaptcha #################
+
+
+app.directive('fileButton', function() {
+  return {
+    link: function(scope, element, attributes) {
+
+      var el = angular.element(element)
+      var button = el.children()[0]
+      console.log();
+      el.css({
+        position: 'relative',
+        overflow: 'hidden',
+        // width: auto,
+        // height: auto
+      })
+
+      var fileInput = angular.element('<input id="fileInput" type="file" onClick="prueba()"/>')
+      fileInput.css({
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        'z-index': '2',
+        width: '100%',
+        height: '100%',
+        // opacity: '0',
+        cursor: 'pointer'
+      })
+
+      el.append(fileInput)
+
+
+    }
+  }
+})

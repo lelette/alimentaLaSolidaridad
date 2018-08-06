@@ -1,0 +1,114 @@
+<div ng-controller="FichaCtrl">
+  <div class="container-fluid jumbotron">
+    <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">FICHAS DE CONTROL</h2>
+    <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+      <i class="fa fa-address-card" style="color:#5a5c60"></i>
+    </h2>
+  </div>
+
+
+  <div>
+    
+    <div class="center" style="width:50%">
+      <br>
+      <label for="singleSelect"> Seleccione tipo de ficha a consultar: </label>
+      <br>
+      <select name="tipoFicha" ng-model="tipoFicha" ng-options="tipo as tipo.label for tipo in tipos" ng-change="select()">
+      </select>
+
+      <div align="center" style="margin-top:2%" ng-show="(tipoFicha.value=='nino')||(tipoFicha.value=='representante')" >
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cédula o nombre..." ng-model="searchTerm" 
+            aria-label="Buscar" ng-change="filtrar()">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="filtrar()">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+      <!-- UNA FICHA -->
+      <div ng-if="(tipoFicha.value=='nino' && ninos.length==0)" align="center" style="margin-top:5%; text-align:center">
+          <div align="center">
+
+        <p class="p-small p-500"> -- No hay niños registrados --</p>
+        </div>
+      </div>
+      <div ng-if="tipoFicha.value=='nino'" ng-repeat="ficha in ninos" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+        <div align="left">
+          <p class="p-small p-500"> Tipo de Ficha: Niño</p>
+          <p class="p-small p-400" style="margin-top:1.5% ">
+            Nombre(s) y Apellido(s): {{ficha.nombres}} {{ficha.apellidos}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Edad: {{ficha.edad}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Sexo: {{ficha.sexo}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Cedula: {{ficha.cedula}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Fecha de Ingreso: {{ficha.fecha_ingreso}}</p>
+        </div>
+        <div align="right">
+          <button type="button" class="btn btn-success" title="Modificar" ng-click="modificar(ficha)">
+            <i class="fa fa-pencil-alt" style="color:white"></i>
+          </button>
+          <button type="button" class="btn btn-primary" title="Ver Detalles" ng-click="verDetalles(ficha)">
+            <i class="fa fa-eye"></i>
+          </button>
+          <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminar(ficha)">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+          <button type="button" title="Datos antropometricos" class="btn btn-warning" ng-click="historiales(ficha)">
+            <i class="fa fa-briefcase-medical" style="color:warning"></i>
+          </button>
+          <!-- <button type="button" title="Cambiar Imagen" class="btn btn-info" ng-click="cambiarImagen(ficha)">
+              <i class="fa fa-camera" style="color:warning"></i>
+            </button> -->
+          <div style="    display: flex;
+          justify-content: space-between;"> 
+            <span style="margin-top: 1.5pc;">Activo: </span>
+              <label class="switch" style="margin-top:1pc">
+                  <input type="checkbox" ng-model="ficha.activo"  ng-change="activar(ficha)">
+                  <span class="slider round"></span>
+                </label>
+           </div>  
+        </div>
+      </div>
+      <!-- FIN DE LA FICHA -->
+
+      <!-- UNA FICHA DE REPRESENTANTE -->
+      <div ng-if="tipoFicha.value=='representante'" ng-repeat="ficha in representantes" align="left" style="display:flex; justify-content: space-between; margin-top:5% ">
+        
+        <div align="left">
+          <p class="p-small p-500"> Tipo de Ficha: Representante</p>
+
+          <p class="p-small p-400" style="margin-top:1.5% "> No. de Ficha: {{ficha.id}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% ">
+            Nombre(s) y Apellido(s): {{ficha.nombres}} {{ficha.apellidos}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Cedula: {{ficha.cedula}}</p>
+          <p class="p-small p-400" style="margin-top:1.5% "> Fecha de Ingreso: {{ficha.fecha_ingreso}}</p>
+        </div>
+        <div align="right">
+          <button type="button" class="btn btn-success" title="Modificar" ng-click="modificar(ficha)">
+            <i class="fa fa-pencil-alt" style="color:white"></i>
+          </button>
+          <button type="button" class="btn btn-primary" title="Ver Detalles" ng-click="verDetalles(ficha)">
+            <i class="fa fa-eye"></i>
+          </button>
+          <button type="button" title="Eliminar" class="btn btn-danger" ng-click="eliminarRepresentante(ficha)">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+          <div style="    display: flex;
+          justify-content: space-between;"> 
+            <span style="margin-top: 1.5pc;">Activo: </span>
+              <label class="switch" style="margin-top:1pc">
+                  <input type="checkbox" ng-model="ficha.activo" ng-change="activar(ficha)">
+                  <span class="slider round"></span>
+                </label>
+           </div>     
+        </div>
+      </div>
+      <div ng-if="(tipoFicha.value=='representante' && representantes.length==0)" align="center" style="margin-top:5%">
+          <div align="center">
+
+        <p class="p-small p-500"> -- No hay representantes registrados --</p>
+        </div>
+      </div>
+      <!-- FIN DE LA FICHA -->
+    </div>
+  </div>
+</div>

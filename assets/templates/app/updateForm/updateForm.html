@@ -1,0 +1,542 @@
+<div ng-controller="updateFichaCtrl">
+    <div class="container-fluid jumbotron">
+        <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">MODIFICAR INFORMACION</h2>
+        <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-plus" style="color:#5a5c60"></i>
+        </h2>
+    </div>
+    <div style="margin:20%; margin-top:5px" align="center">
+        <div align="center">
+
+            <!-- FICHA DE NINOS -->
+            <div ng-if="isNino == 'true'" align="center">
+                <form id="kidForm" name="kidForm" class="form-validation" align="center" ng-dirty="true">
+                    <fieldset align="center">
+                        <br>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <h5>Tipo de ficha: Niño</h5>
+                            <h4>
+                                <strong>No. Ficha de Representante:</strong> {{ficha.nino.representante}}
+                            </h4>
+                        </div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="nombres" placeholder="Nombres" maxlength="50" minlength="6" ng-model="ficha.nino.nombres"
+                                required string-std>
+                            <div class="text-center" ng-if="kidForm.nombres.$dirty && (kidForm.nombres.$invalid || kidForm.nombres.$touched)">
+                                <span ng-if="kidForm.nombres.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.nombres.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.nombres.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="apellidos" placeholder="Apellidos" maxlength="50" minlength="6" ng-model="ficha.nino.apellidos"
+                                required string-std>
+                            <div class="text-center" ng-if="kidForm.apellidos.$dirty && (kidForm.apellidos.$invalid || kidForm.apellidos.$touched)">
+                                <span ng-if="kidForm.apellidos.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.apellidos.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.apellidos.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50" ng-model="ficha.nino.fecha_nacimiento"
+                                minlength="8" required date-val>
+                            <div class="text-center" ng-if="kidForm.fecha_nacimiento.$dirty && (kidForm.fecha_nacimiento.$invalid || kidForm.fecha_nacimiento.$touched)">
+                                <span ng-if="kidForm.fecha_nacimiento.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.fecha_nacimiento.$error.dateVal" class="error-input-msj">
+                                    El formato de la fecha debe ser DD/MM/AAA.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" style="text-align:start">
+                            <!-- <input data-hide-3 type="text" name="ficha.nino.cedula" placeholder="Cedula (V-XXXXXXX)" maxlength="50" ng-model="ficha.nino.cedula"
+                                required> -->
+                            <h5>Cedula: {{ficha.nino.cedula}}</h5>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+
+
+                        <!-- PONER CHECKBOX DE ESTUDIA -->
+                        <h4 align="center" style="color:#5a5c60"> - DATOS ESCOLARES -</h4>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha.nino.estudia" ng-model="ficha.nino.estudia">
+                            <label class="form-check-label" for="exampleCheck1">¿Estudia actualmente?</label>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="colegio" placeholder="Colegio" maxlength="50"  minlength="6" ng-model="ficha.nino.colegio">
+                            <div class="text-center" ng-if="kidForm.colegio.$dirty && (kidForm.colegio.$invalid || kidForm.colegio.$touched)">
+
+                                <span ng-if="kidForm.colegio.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.colegio.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="grado" placeholder="Grado" maxlength="10" minlength="6" ng-model="ficha.nino.grado">
+                            <div class="text-center" ng-if="kidForm.grado.$dirty && (kidForm.grado.$invalid || kidForm.grado.$touched)">
+                                <span ng-if="kidForm.grado.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
+                            <input data-hide-3 type="text" name="direccion_colegio" placeholder="Direccion del Colegio" maxlength="50" minlength="6"
+                                ng-model="ficha.nino.direccion_colegio" string-std>
+                            <div class="text-center" ng-if="kidForm.direccion_colegio.$dirty && (kidForm.direccion_colegio.$invalid || kidForm.direccion_colegio.$touched)">
+                                <span ng-if="kidForm.direccion_colegio.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.direccion_colegio.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS MEDICOS -</h4>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha.nino.isEnfermo" ng-model="ficha.nino.isEnfermo">
+                            <label class="form-check-label" for="exampleCheck1">¿Tiene alguna enfermedad?</label>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="enfermedad" placeholder="Enfermedad(es)" maxlength="50" minlength="6" ng-model="ficha.nino.enfermedad"
+                                string-std>
+                            <div class="text-center" ng-if="kidForm.enfermedad.$dirty && (kidForm.enfermedad.$invalid || kidForm.enfermedad.$touched)">
+                                <span ng-if="kidForm.enfermedad.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.enfermedad.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="alergia" placeholder="Alergia(s)" maxlength="50" minlength="6" ng-model="ficha.nino.alergia"
+                                string-std>
+                            <div class="text-center" ng-if="kidForm.enfermedad.$dirty && (kidForm.enfermedad.$invalid || kidForm.enfermedad.$touched)">
+                                <span ng-if="kidForm.alergia.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="kidForm.alergia.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" ng-if="ficha.nino.isEnfermo">
+                            <input data-hide-3 type="text" name="medicamentos" placeholder="Medicamento(s)" maxlength="50" minlength="6" ng-model="ficha.nino.medicamentos"
+                                string-std>
+                            <div class="text-center" ng-if="kidForm.medicamentos.$dirty && (kidForm.medicamentos.$invalid || kidForm.medicamentos.$touched)">
+                                <span ng-if="kidForm.medicamentos.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+
+                        <h4 align="center" style="color:#5a5c60"> - DATOS ANTROPOMÉTRICOS INICIALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="peso" placeholder="Peso (kg)" maxlength="4" minlength="1" ng-model="ficha.historial_peso.peso"
+                                required numero>
+                            <div class="text-center" ng-if="kidForm.peso.$dirty && (kidForm.peso.$invalid || kidForm.peso.$touched)">
+                                <span ng-if="kidForm.peso.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.peso.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 1 caracter.
+                                </span>
+                                <span ng-if="kidForm.peso.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="circunferencia_brazo" placeholder="Circunferencia de brazo (cm)" maxlength="4" minlength="1"
+                                ng-model="ficha.historial_peso.circunferencia_brazo" required numero>
+                            <div class="text-center" ng-if="kidForm.circunferencia_brazo.$dirty && (kidForm.circunferencia_brazo.$invalid || kidForm.circunferencia_brazo.$touched)">
+                                <span ng-if="kidForm.circunferencia_brazo.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.circunferencia_brazo.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 1 caracter.
+                                </span>
+                                <span ng-if="kidForm.circunferencia_brazo.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="altura" placeholder="Altura (cm)" maxlength="4" minlength="1" ng-model="ficha.historial_peso.altura"
+                                required numero>
+                            <div class="text-center" ng-if="kidForm.altura.$dirty && (kidForm.altura.$invalid || kidForm.altura.$touched)">
+                                <span ng-if="kidForm.altura.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.altura.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 1 caracter.
+                                </span>
+                                <span ng-if="kidForm.altura.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="circunferencia_cabeza" placeholder="Circunferencia de cabeza (cm) - solo para menores de 2 años"
+                                maxlength="4" minlength="1" ng-model="ficha.historial_peso.circunferencia_cabeza" required numero>
+                            <div class="text-center" ng-if="kidForm.circunferencia_cabeza.$dirty && (kidForm.circunferencia_cabeza.$invalid || kidForm.circunferencia_cabeza.$touched)">
+                                <span ng-if="kidForm.circunferencia_cabeza.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.circunferencia_cabeza.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 1 caracter.
+                                </span>
+                                <span ng-if="kidForm.circunferencia_cabeza.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
+                            <input data-hide-3 type="text" name="diagnostico" placeholder="Diagnóstico" maxlength="50" minlength="4" ng-model="ficha.historial_peso.diagnostico"
+                                required string-std>
+                            <div class="text-center" ng-if="kidForm.diagnostico.$dirty && (kidForm.diagnostico.$invalid || kidForm.diagnostico.$touched)">
+                                <span ng-if="kidForm.diagnostico.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="kidForm.diagnostico.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 4 caracteres.
+                                </span>
+                                <span ng-if="kidForm.diagnostico.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </fieldset>
+
+                </form>
+                <div style="margin-top:51px; justify-content:center;  width:30%">
+                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="modificarKid(ficha)"
+                        ladda="loading" data-style="expand-right">Aceptar</button>
+                </div>
+            </div>
+            <!-- FIN DE FICHA DE NINO -->
+
+            <!-- FICHA DE REPRESENTANTE -->
+            <div ng-if="isNino == 'false'">
+                <form id="createFichaRep" name="createFichaRep" class="form-validation" type="submit" align="center">
+                    <fieldset>
+                        <br>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <!-- <input data-hide-3 type="text" name="ficha.nino.id_representante" placeholder="No. Ficha de Representante" maxlength="50"
+                                    ng-model="ficha.nino.id_representante" required style="text-align:center"> -->
+                            <h5>Tipo de ficha: Representante</h5>
+                            <!-- <h4><strong>No. Ficha de Representante:</strong> {{ficha.nino.representante}}</h4> -->
+                        </div>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <input data-hide-3 type="text" name="sector" placeholder="Sector" maxlength="50" ng-model="ficha_representante.sector" required
+                                style="text-align:center" string-std>
+                            <div class="text-center" ng-if="createFichaRep.sector.$dirty && (createFichaRep.sector.$invalid || createFichaRep.sector.$touched)">
+                                <span ng-if="createFichaRep.sector.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.sector.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.sector.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="width:40%; margin-left:30%" align="center">
+                            <input data-hide-3 type="text" name="parroquia" placeholder="Parroquia" maxlength="50" ng-model="ficha_representante.parroquia"
+                                required style="text-align:center" string-std>
+                            <div class="text-center" ng-if="createFichaRep.parroquia.$dirty && (createFichaRep.parroquia.$invalid || createFichaRep.parroquia.$touched)">
+                                <span ng-if="createFichaRep.parroquia.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.parroquia.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.parroquia.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - DATOS PERSONALES -</h4>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+
+                            <label for="sexoSelect"> Sexo: </label>
+                            <br>
+                            <select name="ficha_representante.sexoSelect" ng-model="ficha_representante.sexoSelect" ng-options="sexo as sexo.label for sexo in sexos track by sexo.value">
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+
+                            <label for="edoCivilSelect"> Estado Civil: </label>
+                            <br>
+                            <select name="ficha_representante.edoCivilSelect" ng-model="ficha_representante.edoCivilSelect" ng-options="estado as estado.label for estado in estadosciviles track by estado.value">
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="nombres" placeholder="Nombres" maxlength="50" ng-model="ficha_representante.nombres"
+                                required string-std>
+                            <div class="text-center" ng-if="createFichaRep.nombres.$dirty && (createFichaRep.nombres.$invalid || createFichaRep.nombres.$touched)">
+                                <span ng-if="createFichaRep.nombres.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.nombres.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.nombres.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="apellidos" placeholder="Apellidos" maxlength="50" ng-model="ficha_representante.apellidos"
+                                required string-std>
+                            <div class="text-center" ng-if="createFichaRep.apellidos.$dirty && (createFichaRep.apellidos.$invalid || createFichaRep.apellidos.$touched)">
+                                <span ng-if="createFichaRep.apellidos.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.apellidos.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.apellidos.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="fecha_nacimiento" placeholder="Fecha de Nacimiento (DD-MM-AAA)" maxlength="50" ng-model="ficha_representante.fecha_nacimiento"
+                                required date-val>
+                            <div class="text-center" ng-if="createFichaRep.fecha_nacimiento.$dirty && (createFichaRep.fecha_nacimiento.$invalid || createFichaRep.fecha_nacimiento.$touched)">
+                                <span ng-if="createFichaRep.fecha_nacimiento.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.fecha_nacimiento.$error.dateVal" class="error-input-msj">
+                                    El formato de la fecha debe ser DD/MM/AAA.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6" style="text-align:start">
+
+                            <h5>Cedula: {{ficha_representante.cedula}}</h5>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="direccion_habitacion" placeholder="Dirección de Habitación" maxlength="50" ng-model="ficha_representante.direccion_habitacion"
+                                required string-std>
+                            <div class="text-center" ng-if="createFichaRep.direccion_habitacion.$dirty && (createFichaRep.direccion_habitacion.$invalid || createFichaRep.direccion_habitacion.$touched)">
+                                <span ng-if="createFichaRep.direccion_habitacion.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.direccion_habitacion.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.direccion_habitacion.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="telefono" placeholder="Telefono de Contacto" maxlength="50" ng-model="ficha_representante.telefono"
+                                required numero>
+                            <div class="text-center" ng-if="createFichaRep.telefono.$dirty && (createFichaRep.telefono.$invalid || createFichaRep.telefono.$touched)">
+                                <span ng-if="createFichaRep.telefono.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.telefono.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.telefono.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha_representante.trabaja" ng-model="ficha_representante.trabaja">
+                            <label class="form-check-label" for="examplficha_representante.trabajaeCheck1">¿Trabaja actualmente?</label>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="profesion" placeholder="Profesion" maxlength="50" ng-model="ficha_representante.profesion"
+                                string-std>
+                            <div class="text-center" ng-if="createFichaRep.profesion.$dirty && (createFichaRep.profesion.$invalid || createFichaRep.profesion.$touched)">
+
+                                <span ng-if="createFichaRep.profesion.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.profesion.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ocupacion" placeholder="Ocupación" maxlength="50" ng-model="ficha_representante.ocupacion"
+                                string-std>
+                            <div class="text-center" ng-if="createFichaRep.ocupacion.$dirty && (createFichaRep.ocupacion.$invalid || createFichaRep.ocupacion.$touched)">
+
+                                <span ng-if="createFichaRep.ocupacion.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.ocupacion.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="ingreso_mensual" placeholder="Ingreso Mensual (Bs.)" maxlength="50" ng-model="ficha_representante.ingreso_mensual"
+                                numero>
+                            <div class="text-center" ng-if="createFichaRep.ingreso_mensual.$dirty && (createFichaRep.ingreso_mensual.$invalid || createFichaRep.ingreso_mensual.$touched)">
+
+                                <span ng-if="createFichaRep.ingreso_mensual.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.ingreso_mensual.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - CONTACTO DE EMERGENCIA -</h4>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="emergencia_nombre" placeholder="Nombre(s) y Apellido(s)" maxlength="50" ng-model="ficha_representante.emergencia_nombre"
+                                required string-std>
+                            <div class="text-center" ng-if="createFichaRep.emergencia_nombre.$dirty && (createFichaRep.emergencia_nombre.$invalid || createFichaRep.emergencia_nombre.$touched)">
+                                <span ng-if="createFichaRep.emergencia_nombre.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_nombre.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_nombre.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="emergencia_telefono" placeholder="Telefono" maxlength="50" ng-model="ficha_representante.emergencia_telefono"
+                                required numero>
+                            <div class="text-center" ng-if="createFichaRep.emergencia_telefono.$dirty && (createFichaRep.emergencia_telefono.$invalid || createFichaRep.emergencia_telefono.$touched)">
+                                <span ng-if="createFichaRep.emergencia_telefono.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_telefono.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_telefono.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <input data-hide-3 type="text" name="emergencia_parentesco" placeholder="Parentesco" maxlength="50" ng-model="ficha_representante.emergencia_parentesco"
+                                required string-std>
+                            <div class="text-center" ng-if="createFichaRep.emergencia_parentesco.$dirty && (createFichaRep.emergencia_parentesco.$invalid || createFichaRep.emergencia_parentesco.$touched)">
+                                <span ng-if="createFichaRep.emergencia_parentesco.$error.required" class="error-input-msj">
+                                    Debes llenar este campo.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_parentesco.$error.minlength" class="error-input-msj">
+                                    Este campo debe tener al menos 6 caracteres.
+                                </span>
+                                <span ng-if="createFichaRep.emergencia_parentesco.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br>
+                        <br>
+                        <h4 align="center" style="color:#5a5c60"> - HABITOS ALIMENTICIOS -</h4>
+                        <div class="clearfix"></div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="ficha_representante.modificacion_alim_seis_meses" ng-model="ficha_representante.modificacion_alim_seis_meses">
+                            <label class="form-check-label" for="exampleCheck1">¿Ha cambiado su alimentación en los últimos seis meses?</label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-10 col-sm-4 col-md-9 col-lg-9">
+                            <input data-hide-3 type="text" name="ficha_representante.modificacion_razon" placeholder="¿Por qué?" maxlength="100" ng-model="ficha_representante.modificacion_razon"
+                                string-std>
+                            <div class="text-center" ng-if="createFichaRep.modificacion_razon.$dirty && (createFichaRep.modificacion_razon.$invalid || createFichaRep.modificacion_razon.$touched)">
+
+                                <span ng-if="createFichaRep.modificacion_razon.$error.stringStd" class="error-input-msj">
+                                    Este campo debe tener sólo letras y espacios.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-10 col-sm-2 col-md-3 col-lg-3">
+                            <input data-hide-3 type="number" name="numero_comidas_diarias" placeholder="Cantidad de comidas" maxlength="50" minlength="6"
+                                ng-model="ficha_representante.numero_comidas_diarias" numero>
+                            <div class="text-center" ng-if="createFichaRep.numero_comidas_diarias.$dirty && (createFichaRep.numero_comidas_diarias.$invalid || createFichaRep.numero_comidas_diarias.$touched)">
+
+                                <span ng-if="createFichaRep.numero_comidas_diarias.$error.numero" class="error-input-msj">
+                                    Este campo debe tener sólo números.
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div style="margin-top:51px; justify-content:center;  width:30%">
+                    <button type="submit" style="font-family: neeru; width:100%" data-standard class="btn-green" ng-click="modificarParent()"
+                        ladda="loading" data-style="expand-right" >Aceptar</button>
+                </div>
+            </div>
+            <!-- FIN DE FICHA DE REPRESENTANTE -->
+        </div>
+    </div>

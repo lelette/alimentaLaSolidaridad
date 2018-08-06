@@ -5,19 +5,20 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('HeaderController', 
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
-    
-    $scope.logout = function(){
-      User.logout(function(err){
-        if (err) {
-          console.log(err);
-          return fale;
-        };
+app.controller('HeaderController',
+  ['$rootScope', '$scope', '$http', '$state', '$translate',
+  function($rootScope,  $scope, $http, $state, $translate) {
 
-        $state.go('access.signin');        
+    $scope.logout = function(){
+      $http.post('api/user/logout')
+      .then(function (res) {
+        console.log(res.data, "OKIIIIIII");
+        $state.go('access.signin');
+      }, function (res) {
+        console.log("OKIIIIIII");
+        alert(res.data.error);
       });
     };
+  }
 
-}]);
+]);

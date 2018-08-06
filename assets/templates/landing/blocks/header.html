@@ -1,0 +1,34 @@
+<header>
+  <section id="idHeader" ng-controller="LandingHomeCtrl" style="display: flex;">
+    <div class="imgNeeru" style="max-width: 50px;">
+      <img src="images/logo-neeru-blanco.png" width="200px;">
+    </div>
+    <nav style="margin-right: -10%; text-align: -webkit-center;">
+      <div class="">
+        <p><a href="#item1">{{"landing.como_funciona" | translate}}</a></p>
+      </div>
+      <div class="">
+        <p><a href="#item2">{{"landing.seguridad" | translate}}</a></p>
+      </div>
+      <div class="">
+        <p><a href="#item3">{{"landing.contactanos" | translate}}</a></p>
+      </div>
+    </nav>
+    <nav>
+      <form name="form" class="form-validation" log-in style="display: flex;">
+        <input id="email" data-hide-3 log-in style="background-color: #0db731; width:100%;" type="email" name="user.login" class="form-control" ng-model="user.login" placeholder="{{ 'std.Email' | translate }}" maxlength="100">
+        <input id="password" data-hide-3 log-in style="background-color: #0db731; width:100%; margin-left:5%;" type="password" name="user.password" class="form-control" ng-model="user.password" minlength="8" maxlength="16" placeholder="{{ 'std.Password' | translate }}">
+        <button id="btnIniciar" data-standard class="btn-neeru" style="margin-left: 5%; width:65%; background-color: #00000038; color: white; margin-top: 10px;" type="submit" ng-click="signin()" ng-disabled='form.$invalid' ladda="loading"  tabindex = "3">
+          <p style="color: white; font-size: 10px;">{{"signin.subtitulo" | translate}}</p>
+        </button>
+      </form>
+
+      <div class="languege-box" style="display: flex;">
+        <div class="aux-1-SA" ng-repeat="(langKey, label) in langs" >
+          <img ng-class="{language: selectLang == 'ES'}" ng-if="label === 'ES'" width="30%" src="/images/spain.png" ng-click="setLang(langKey, $event)">
+          <img ng-class="{language: selectLang == 'EN'}" ng-if="label === 'EN'" width="30%" src="/images/uk.png" ng-click="setLang(langKey, $event)" >
+        </div>
+      </div>
+    </nav>
+  </section>
+</header>

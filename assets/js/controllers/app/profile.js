@@ -5,9 +5,9 @@
 * @autor :: Aquilino Pinto apinto@transamovil.com                                       *
 *****************************************************************************************/
 
-app.controller('BasicController', 
-  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
-  function($rootScope,  $scope, $http, $state, User, $translate) {
+app.controller('BasicController',
+  ['$rootScope', '$scope', '$http', '$state', 'User', '$translate', '$uibModal',
+  function($rootScope,  $scope, $http, $state, User, $translate, $uibModal) {
 
     $scope.user = {};
 
@@ -15,20 +15,52 @@ app.controller('BasicController',
       'F',
       'M'
     ];
-
+    // Variables fijas del SUBHeader
+    $rootScope.header = {}
+    $rootScope.header.icono = "images/icoInicio.png";
+    $rootScope.header.home = false;
+    $rootScope.header.namePage = "Perfil";
+    $scope.load = true;
     // refrescamos la data que tenemos del user
+    $scope.loader='mostrar';
+    $scope.cuerpo='ocultar';
+
+  $scope.refreshUser = function () {
     User.refresh(function(err){
       if (err) {
-        console.log(err);
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
       }else{
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
         $scope.user = {
           nombres : User.info.nombres,
           apellidos : User.info.apellidos,
           sexo: User.info.sexo,
-          fecha_nacimiento: new Date(User.info.fecha_nacimiento)
+          fecha_nacimiento: new Date(User.info.fecha_nacimiento),
+          email: User.info.login.email.email,
+          imagen_perfil: User.info.imagen_perfil,
         };
       }
     });
+  };
+  $scope.refreshUser();
+
+  $scope.imageChange = function () {
+    var modalInstance = $uibModal.open({
+      templateUrl: 'templates/modals/modalChangeImage.html',
+      controller: 'ImgChangeCtrl',
+      backdrop: 'static',
+      resolve: {
+        dataScope:function() {
+          return {
+            user: $scope.user
+          }
+        }
+      }
+    });
+
+  }
 
     /****************************************************
     * update                                            *
@@ -37,14 +69,14 @@ app.controller('BasicController',
     $scope.update = function(){
       User.update($scope.user, function(err){
         if (err) {
-          console.log(err);
         };
+
       });
-    }
+    };
 
 }]);
 
-app.controller('SecurityController', 
+app.controller('SecurityController',
   ['$rootScope', '$scope', '$http', '$state', 'User', 'validarPassword', '$translate',
   function($rootScope,  $scope, $http, $state, User, validarPassword, $translate) {
 
@@ -55,7 +87,9 @@ app.controller('SecurityController',
     $scope.popoverContrasena = {
       contenido: '',
       titulo: 'signup.popover.password.titulo'
-    }
+    };
+
+    $scope.loading = false;
 
     // Reiniciar los datos del popover
     $scope.validaciones = validarPassword.inicializarData();
@@ -120,17 +154,20 @@ app.controller('SecurityController',
     *   @descripcion :: actualiza los datos del usuario *
     *****************************************************/
     $scope.changePwd = function(){
+      $scope.loading = true;
       User.changePwd($scope.user, function(err){
         if (err) {
-          console.log(err);
+          $scope.loading = false;
         };
+        $scope.loading = false;
+        $state.go('app.page.profile')
       });
     }
 
 }]);
 
 
-app.controller('ContactController', 
+app.controller('ContactController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
 
@@ -143,7 +180,7 @@ app.controller('ContactController',
     // refrescamos la data que tenemos del user
     User.refresh(function(err){
       if (err) {
-        console.log(err);
+        // console.log(err);
       }else{
         var emails = [];
 
@@ -152,7 +189,6 @@ app.controller('ContactController',
         });
 
         $scope.user.emails = emails;
-        console.log($scope.user.emails);
       }
     });
 
@@ -161,9 +197,9 @@ app.controller('ContactController',
     $scope.data = [];
 
     $scope.numberOfPages=function(){
-        return Math.ceil($scope.user.emails.length/$scope.pageSize);                
+        return Math.ceil($scope.user.emails.length/$scope.pageSize);
     }
-  
+
 }]);
 
 
@@ -175,7 +211,7 @@ app.filter('startFrom', function() {
 });
 
 
-app.controller('AddEmailController', 
+app.controller('AddEmailController',
   ['$rootScope', '$scope', '$http', '$state', 'User', '$translate',
   function($rootScope,  $scope, $http, $state, User, $translate) {
 
@@ -184,13 +220,13 @@ app.controller('AddEmailController',
     $scope.add = function(){
       User.addEmail($scope.user, function(err, result){
         if (err) {
-          console.log(err);
+          // console.log(err);
         }else{
 
           if ($scope.user.validate) {
             User.validateEmail({rel: result.rel}, function(err){
               if (err) {
-                console.log(err);
+                // console.log(err);
               }else{
                 $state.go('app.page.profile.contacto');
               };
@@ -201,4 +237,137 @@ app.controller('AddEmailController',
         };
       });
     };
+}]);
+
+app.controller('ImgChangeCtrl', [
+  '$rootScope',
+  '$scope',
+  'FileUploader',
+  '$http',
+  '$state',
+  '$interval',
+  'User',
+  function($rootScope, $scope, FileUploader, $http, $state, $interval, User) {
+    $scope.myImage='';
+    $scope.myCroppedImage='';
+    $scope.cropType="circle";
+    $scope.files='';
+    $scope.estatus= false;
+    var filename = undefined;
+    $scope.imageFile = false;
+    $scope.imageName = '';
+    $scope.selectPreview = false;
+    $('.modal-backdrop').removeAttr('style')
+
+
+    $scope.btnCambiar = function () {
+      $scope.imageFile = false;
+      $scope.selectPreview = false;
+    }
+
+    $scope.loader='ocultar';
+    $scope.cuerpo='mostrar';
+
+    $(window).keyup(function (e) {
+      if (e.keyCode == 27) {
+        $scope.cancel();
+      }
+    });
+
+    $scope.cancel = function () {
+
+      $('.modal-backdrop').css('opacity',0)
+      $('.modal-backdrop').css('z-index','0');
+      $('div.modal').children().remove()
+      $('div.modal').css('display','none');
+    }
+
+    var uploader = $scope.uploader = new FileUploader({
+       url: $rootScope.apiUrl+'plataform/user/changeImage',
+       alias: 'imagen_perfil',
+       autoUpload: false,
+       withCredentials: true,
+     });
+
+    var handleFileSelect = function(evt) {
+      var file = evt.currentTarget.files[0];
+      var reader = new FileReader();
+
+      if (file) {
+        filename = file.name;
+      }
+
+      reader.onload = function(evt) {
+        $scope.$apply(function($scope) {
+          $scope.myImage = evt.target.result;
+          $scope.estatus = true;
+        });
+      };
+      $scope.imageFile = true;
+      $scope.imageName = file.name;
+      reader.readAsDataURL(file);
+    };
+
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+    function base64ToBlob(base64Data, contentType) {
+      contentType = contentType || '';
+
+      var sliceSize = 1024;
+      var byteCharacters = atob(base64Data);
+      var bytesLength = byteCharacters.length;
+      var slicesCount = Math.ceil(bytesLength / sliceSize);
+      var byteArrays = new Array(slicesCount);
+
+      for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+        var begin = sliceIndex * sliceSize;
+        var end = Math.min(begin + sliceSize, bytesLength);
+
+        var bytes = new Array(end - begin);
+        for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+          bytes[i] = byteCharacters[offset].charCodeAt(0);
+        }
+        byteArrays[sliceIndex] = new Uint8Array(bytes);
+      }
+
+      var blob = new Blob(byteArrays, { type: contentType});
+
+      return blob;
+    };
+
+    $scope.upload = function() {
+      var sep = $scope.myCroppedImage.split(';');
+      var type = sep[0].replace('data:','');
+      var base64 = sep[1];
+      var rutaDeImagen = "";
+      var file = base64ToBlob(base64.replace('base64,',''), type);
+      file.name = filename;
+
+      uploader.addToQueue(file);
+      uploader.uploadAll();
+      $scope.loader='mostrar';
+      $scope.cuerpo='ocultar';
+      uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        // $state.reload();
+        $scope.cancel();
+
+        // refrescamos la data que tenemos del user
+        User.refresh(function(err){
+          if (err) {
+            // console.log(err);
+          }
+          $state.reload()
+        });
+        // $modalInstance.dismiss();
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
+      };
+      uploader.onErrorItem = function(fileItem, response, status, headers) {
+        // toaster.pop('error','Error','No se pudo actualizar la imagen. Intente más tarde');
+        $scope.loader = 'ocultar';
+        $scope.cuerpo = 'mostrar';
+        $scope.cancel();
+      };
+    };
+
 }]);

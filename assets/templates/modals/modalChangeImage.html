@@ -1,0 +1,56 @@
+<div ng-controller="ImgChangeCtrl">
+
+
+
+
+  <div  style="position:relative; top:0px; z-index:1;">
+    <div class="select-operator-box">
+      <div class="line-100" style="margin-top: 50px;">
+        <p class="p-green modal-title">Cambiar foto...</p>
+      </div>
+      <div class="wrapper-md">
+        <div class="hbox hbox-auto-xs modal-body" style="text-align: -webkit-center" ng-show="!selectPreview">
+          <div class="col" style="margin-bottom: 20px;" ng-show="imageFile">
+            <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+              <div class="bg-light" style="height:320px">
+                <img-crop ng-src="{myCroppedImage}" image="myImage" result-image="myCroppedImage" result-image-size="160" area-type="square"></img-crop>
+              </div>
+            </div>
+          </div>
+          <div class="empty-profile-box" style="height: 60px; width: 60%;" ng-hide="imageFile">
+            <div class="line-100">
+              <input class="btn-file" type="file" id="fileInput" accept="image/png, image/jpeg" data-standard ng-model="files" />
+              <img src="images/conectar.png" style="width: auto; height: auto;">
+              <p style="margin-left: 20px;">Subir imagen</p>
+            </div>
+          </div>
+        </div>
+        <div class="m-b" style="text-align: -webkit-center;" ng-show="selectPreview">
+          <div class="empty-image-box" style="width: 65%; height: 90px;">
+            <div class="line-100">
+              <img style="width: 40%; height: 70%;" ng-src="{{myCroppedImage}}" />
+              <div class="" style="text-align: left;">
+                <p>"FOTO"</p>
+                <a ng-click="btnCambiar()" data-standard class="btn-change">Cambiar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom: 100px; margin-top: 40px;">
+          <button type="button" data-standard class="btn-gray-on" style="float: left; width: 160px; margin-left: 10%; border-radius: 1rem;"
+            ng-click="cancel()">
+            <p>Cancelar</p>
+          </button>
+          <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;"
+            ng-hide="!selectPreview" ng-click="upload()">
+            <p>Aceptar</p>
+          </button>
+          <button type="button" data-standard class="btn-green-on" style="float: right; width: 160px; margin-right: 10%; border-radius: 1rem;"
+            ng-show="!selectPreview" ng-disabled="!imageFile" ng-click="selectPreview = true;">
+            <p>Aceptar</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

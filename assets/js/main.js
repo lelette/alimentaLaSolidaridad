@@ -3,8 +3,9 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window',
-    function(              $scope,   $translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$http',
+    function(              $scope,   $translate,   $localStorage,   $window,  $http ) {
+
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       if(isIE){ angular.element($window.document.body).addClass('ie');}
@@ -55,8 +56,8 @@ angular.module('app')
 
       // angular translate
       $scope.lang = { isopen: false };
-      $scope.langs = {es:'Spanish', en: 'English'};
-      $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "Spanish";
+      $scope.langs = {es:'ES', en: 'EN'};
+      $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "EN";
 
       $scope.setLang = function(langKey, $event) {
         // set the current lang
