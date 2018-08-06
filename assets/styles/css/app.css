@@ -144,6 +144,26 @@
 	.tab-off:hover{
 		color: #1e6a9c;
 	}
+
+
+	.btn-yellow-on{
+		background-color: #eebb1e;
+	}
+	.btn-yellow{
+		background-color: #eebb1e;
+		width: 40%;
+	}
+	.btn-yellow-uno{
+		background-color: #eebb1e;
+		width: 35%;
+	}
+	.btn-off,
+	.btn-gray-on{
+		background-color: #BAC2BC;
+	}
+	.tab-off:hover{
+		color: #eebb1e;
+	}
 /* Elements */
 
 /* Text */

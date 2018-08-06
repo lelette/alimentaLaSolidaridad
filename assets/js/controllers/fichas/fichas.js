@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('FichaCtrl',
-  ['$rootScope', '$scope', '$http', '$state',
-    function ($rootScope, $scope, $http, $state) {
+  ['$rootScope', '$scope', '$http', '$state', '$uibModal',
+    function ($rootScope, $scope, $http, $state, $uibModal) {
       $scope.representante = true;
       $scope.nino = false;
       $scope.enfermo = false;
@@ -10,6 +10,7 @@ app.controller('FichaCtrl',
       $scope.representantes = [];
       $scope.searchTerm = '';
       var busqueda = '';
+      
 
       $scope.tipos = [{
         value: 'representante',
@@ -21,6 +22,7 @@ app.controller('FichaCtrl',
       $scope.getAll = function () {
         $http.get('api/nino/getAll')
           .then(function (res) {
+            console.log(res.data);
             $scope.ninos = res.data.ninos;
           }, function (res) {
             alert(res.data.error);
@@ -41,7 +43,6 @@ app.controller('FichaCtrl',
         if ($scope.tipoFicha.value == 'nino') {
           var datos = {};
           datos.representante = ficha.representante;
-          console.log("ACTIVO Y REPRESENTANTE :: ", ficha.activo, ficha.representante);
           datos.activo = ficha.activo;
           var r = confirm("Para confirmar que desea inactivar esta ficha presione OK.");
           if (r == true) {
@@ -187,8 +188,32 @@ app.controller('FichaCtrl',
         }
       };
 
+      $scope.cambiarImagen = function(ficha){
+
+      }
+
+
+      $scope.imageChange = function () {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'templates/modals/modalChangeImage.html',
+          controller: 'ImgChangeCtrl',
+          backdrop: 'static',
+          resolve: {
+            dataScope:function() {
+              return {
+                user: $scope.user
+              }
+            }
+          }
+        });
+      }
+    
+
 
 
 
 
     }]);
+
+
+    

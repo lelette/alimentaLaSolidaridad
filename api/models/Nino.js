@@ -84,11 +84,15 @@ module.exports = {
     fecha_ingreso: {
       type: 'string'
     },
+    
+    sexo: {
+      type: 'string',
+      enum: ['F', 'M']
+    },
 
     representante: {
       model: 'representante'
     },
-
 
     historial_peso: {
       collection: 'historial_peso',

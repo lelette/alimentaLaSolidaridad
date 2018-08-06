@@ -22,7 +22,7 @@
          <p class="mi-cuenta">NUEVA FICHA</p>
       </div> 
 
-     <div class="" uib-dropdown uib-dropdown-toggle>
+     <div class="" uib-dropdown uib-dropdown-toggle ng-show="isAdmin">
         <p class="mi-cuenta">USUARIOS</p>
         <div class="uib-dropdown-menu header-neeru-select-box animated fadeInUp">
           <div class="header-option-neeru"  ui-sref="app.page.newUser">
@@ -32,14 +32,21 @@
             <p>Consultar</p>
           </div>
           
+          <div class="header-option-neeru" ui-sref="app.page.recoverPassword">
+              <p>Cambiar Contraseña</p>
+            </div>
         </div>
       </div>
+
+      <div ui-sref="app.page.estadisticas" style="width:100%">
+        <p class="mi-cuenta">ESTADÍSTICAS</p>
+     </div>
 
 
     </nav>
     <div data-aux-1>
-      <div>
-        <p class="p-small"> {{user.username}}</p>
+      <div style="text-align:center" >
+        <p class="p-small" style="color:#fbf1d1; margin-bottom:10%"> <strong>{{username}}</strong></p>
         <p class="p-small" ng-click="logout()">        
           <i class="fa fa-power-off" aria-hidden="true"></i>
 

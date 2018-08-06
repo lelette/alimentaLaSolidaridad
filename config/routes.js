@@ -264,9 +264,13 @@ module.exports.routes = {
 
   'POST /api/user/update': 'UserController.modificar',
 
+  'POST /api/user/password': 'UserController.cambiarpassword',
+
   'GET /api/user/getAll': 'UserController.consultarTodos',
 
   'GET /api/user/get': 'UserController.consultar',
+
+  'GET /api/user/estadisticas': 'UserController.estadisticas',
 
 /*******************************************************************************
  * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD

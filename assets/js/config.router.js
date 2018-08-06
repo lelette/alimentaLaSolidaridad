@@ -101,11 +101,15 @@ angular.module('app')
               ])
           })
           .state('app.page.newForm', {
-            url: '/user/new',
+            url: '/nino/new',
             templateUrl: 'templates/app/newForm/newForm.html',
             resolve: load([
                'toaster',
                'js/controllers/newFicha/newFicha.js',
+               'ngImgCrop',
+                'filestyle',
+                'angularFileUpload',
+                'js/directives/html.js',
                ])
           })
           .state('app.page.adminUsers', {
@@ -113,6 +117,20 @@ angular.module('app')
             templateUrl: 'templates/app/admin/adminUsers.html',
             resolve: load([
                'js/controllers/users/admin.js',
+               ])
+          })
+          .state('access.forgotPass', {
+            url: '/access/password/recovery/:username',
+            templateUrl: 'templates/app/access/forgotPassword.html',
+            resolve: load([
+               'js/controllers/access_als/forgotPassword.js',
+               ])
+          })
+          .state('app.page.recoverPassword', {
+            url: '/user/password/recovery/:username',
+            templateUrl: 'templates/app/admin/recoverPassword.html',
+            resolve: load([
+               'js/controllers/users/pwdrecovery.js',
                ])
           })
           .state('app.page.updateUser', {
@@ -161,10 +179,18 @@ angular.module('app')
             ])
           })
           .state('app.page.newUser', {
-            url: '/user/new',
+            url: '/user/newUser',
             templateUrl: 'templates/app/admin/createUsers.html',
             resolve: load([
               'js/controllers/users/create.js',
+
+            ])
+          })
+          .state('app.page.estadisticas', {
+            url: '/statistics',
+            templateUrl: 'templates/app/statistics/statistics.html',
+            resolve: load([
+              'js/controllers/statistics/statistics.js',
 
             ])
           })
@@ -336,10 +362,10 @@ angular.module('app')
           // autenticacion o inicio de session autenticada
           .state('login', {
               url: '/login',
-              templateUrl: 'templates/access/signin.html',
+              templateUrl: 'templates/app/access/signin.html',
               resolve: load( [
                 'toaster',
-               'js/controllers/access/signin.js'
+               'js/controllers/access_als/signin.js'
               ])
           })
           // registro de usuario ################################

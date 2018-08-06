@@ -45,10 +45,15 @@ module.exports = {
   crear: function (datos, cb) {
     //validar que el username
     User.findOne({ username: datos.username }, function (err, exists) {
-      if (err) return cb({error: 'Error accesando la base de datos.'});
+      if (err) {
+        console.log(err);
+        return cb({error: 'Error accesando la base de datos.'});
+      }
       if (!exists) {
         User.create(datos, function (err, user) {
-          if (err) return cb({ error: 'Hubo un error creando el registro en la BD' });
+          if (err) {
+            return cb({ error: 'El email ingresado ya existe' });
+          }
           return cb(undefined, user);
         })
       }else{
@@ -69,7 +74,7 @@ module.exports = {
     User.findOne(datos, function(err, ok){
       if (!ok){
         console.log('El usuario no se encuentra registrado'.red);
-        return cb({error: 'El usuario no se encuentra registrado'});
+        return cb({error: 'Incorrecto nombre de usuario y/o contraseña'});
       }else{
         return cb(undefined, ok);
       }
@@ -105,8 +110,98 @@ module.exports = {
         if (err) {console.log(err); return cb({ error: "Error eliminando de la base de datos." });}
         return cb(undefined, { ok: "Usuario eliminado exitosamente" });
       })
-  
+  },
+
+  cambiarpassword: function(datos, cb){
+    if (!datos.username) return cb({ error: "Debe ingresar el username para eliminar un usuario" });
+    User.update({username: datos.username}, {password: datos.password}, function(err, ok){
+      if (err) {console.log(err); return cb({ error: "Error actualizando usuario en la base de datos." });}
+      return cb(undefined, { ok: "Contraseña actualizada exitosamente" });
+    })
+  },
+
+  estadisticas: function(cb){
+    async.parallel({
+      ninas: function(callback){
+        femenino(function(girls){
+          return callback(undefined, girls);
+        })
+      },
+      ninos: function(callback){
+        masculino(function(boys){
+          return callback(undefined, boys);
+        })
+      }
+    }, function(err, todos){
+      return cb(undefined, todos);
+    })
   }
 
 };
 
+function femenino(callback){
+  Nino.find({sexo:'F'}, function(err, ninas){
+    var girls= {};
+    girls.cero_cinco = 0;
+    girls.seis_diez = 0;
+    girls.once_quince = 0;
+    girls.mayorQuince = 0;
+    ninas.forEach(function(nina){
+      nina.edad = getAge(nina.fecha_nacimiento);
+      if (nina.edad >=0 && nina.edad <6){
+        girls.cero_cinco = girls.cero_cinco + 1;
+      }else{
+        if (nina.edad>=6 && nina.edad<11){
+          girls.seis_diez = girls.seis_diez +1;
+        }else{
+          if(nina.edad>=11 && nina.edad<16){
+            girls.once_quince= girls.once_quince +1;
+          }else{
+            girls.mayorQuince = girls.mayorQuince +1;
+          }
+        }
+      }
+    });
+    girls.cantidad = girls.cero_cinco + girls.seis_diez + girls.once_quince + girls.mayorQuince;
+    return callback(girls);
+  })
+}
+
+function masculino(callback){
+  Nino.find({sexo:'M'}, function(err, ninas){
+    var boys= {};
+    boys.cero_cinco = 0;
+    boys.seis_diez = 0;
+    boys.once_quince = 0;
+    boys.mayorQuince = 0;
+    ninas.forEach(function(nino){
+      nino.edad = getAge(nino.fecha_nacimiento);
+      if (nino.edad >=0 && nino.edad <6){
+        boys.cero_cinco = boys.cero_cinco + 1;
+      }else{
+        if (nino.edad>=6 && nino.edad<11){
+          boys.seis_diez = boys.seis_diez +1;
+        }else{
+          if(nino.edad>=11 && nino.edad<16){
+            boys.once_quince= boys.once_quince +1;
+          }else{
+            boys.mayorQuince = boys.mayorQuince +1;
+          }
+        }
+      }
+    });
+    boys.cantidad = boys.cero_cinco + boys.seis_diez + boys.once_quince + boys.mayorQuince;
+    return callback(boys);
+  })
+}
+
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}

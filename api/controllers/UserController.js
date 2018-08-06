@@ -63,5 +63,19 @@ module.exports = {
         })
     },
 
+    cambiarpassword: function(req, res){
+        var datos = req.params.all();
+        User.cambiarpassword(datos, function(err, ok){
+            if (err) return res.serverError(err)
+            return res.ok(ok);
+        })
+    },
+
+    estadisticas: function(req, res){
+        User.estadisticas(function(err, stats){
+            return res.ok(stats);
+        })
+    }
+
 };
 
