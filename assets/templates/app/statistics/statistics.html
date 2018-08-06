@@ -1,0 +1,51 @@
+<div ng-controller="statsCtrl">
+    <div class="container-fluid jumbotron">
+        <h2 align="center" style="color:#5a5c60; margin-top:0%; margin-bottom:0%">ESTADISTICAS</h2>
+        <h2 align="center" style="color:#5a5c60; margin-top:0.5%; margin-bottom:0%">
+            <i class="fa fa-chart-bar" style="color:#5a5c60"></i>
+        </h2>
+    </div>
+    <div style="margin:30%; margin-top:25px" align="center">
+        <div align="center">
+
+            <p class="p-small p-400" style="margin-top:1.5%; font-size:1pc ">
+                <strong>Género-Edad:</strong>
+            </p>
+            <p style="margin-top:10px; border-bottom:solid 0.1pc #eebb1e">
+                </p>
+            <div align="left" style="margin-left:25%">
+                <p class="p-small p-500" style="margin-top:3% "> Género: Femenino</p>
+
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    0-5 años: {{ninos.ninas.cero_cinco}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    6-10 años: {{ninos.ninas.seis_diez}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    11-15 años: {{ninos.ninas.once_quince}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    Mayores de 15 años: {{ninos.ninas.mayorQuince}}</p>
+                <p class="p-small p-500" style="margin-top:1.5% ">
+                    Cantidad Total de Género Femenino: {{ninos.ninas.cantidad}}</p>
+            </div>
+
+
+            <p style="margin-top:10px; border-bottom:solid 0.1pc #eebb1e">
+                                                            </p>
+            <div align="left" style="margin-left:25%">
+
+                <p class="p-small p-500" style="margin-top:3% "> Género: Masculino</p>
+
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    0-5 años: {{ninos.ninos.cero_cinco}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    6-10 años: {{ninos.ninos.seis_diez}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    11-15 años: {{ninos.ninos.once_quince}}</p>
+                <p class="p-small p-400" style="margin-top:1.5% ">
+                    Mayores de 15 años: {{ninos.ninos.mayorQuince}}</p>
+                <p class="p-small p-500" style="margin-top:1.5% ">
+                    Cantidad Total de Género Masculino: {{ninos.ninos.cantidad}}</p>
+            </div>
+        </div>
+    </div>
+</div>
