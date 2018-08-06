@@ -51,8 +51,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://AQUILINO_TRANSA@bitbucket.org/AQUILINO_TRANSA/pwi.git"
+    "url": "git://github.com/marialette/ServicioComunitario.git"
   },
-  "author": "aquilino",
+  "author": "marialette",
   "license": ""
 }
