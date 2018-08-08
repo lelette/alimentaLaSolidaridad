@@ -22,7 +22,6 @@ app.controller('FichaCtrl',
       $scope.getAll = function () {
         $http.get('api/nino/getAll')
           .then(function (res) {
-            console.log(res.data);
             $scope.ninos = res.data.ninos;
           }, function (res) {
             alert(res.data.error);
@@ -33,7 +32,6 @@ app.controller('FichaCtrl',
         $http.get('api/representante/getAll')
           .then(function (res) {
             $scope.representantes = res.data.todas;
-            console.log($scope.representantes);
           }, function (res) {
             alert(res.data.error);
           });

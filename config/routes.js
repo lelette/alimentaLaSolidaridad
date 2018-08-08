@@ -22,27 +22,6 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
-
-  /**************************************************************************
-  *                                                                         *
-  * Rutas de prueba ventas                                                  *
-  *                                                                         *
-  **************************************************************************/
-
-  /**************************************************************************
-  *                                                                         *
-  * Rutas de Cliente Web                                                    *
-  *                                                                         *
-  **************************************************************************/
 
 
   /**************************************************************************
@@ -59,6 +38,13 @@ module.exports.routes = {
   * Ruta para home de la pagina                                             *
   **************************************************************************/
   '/login': {
+    view: 'home',
+    locals: {
+      layout: 'layouts/neeru'
+    }
+  },
+
+    '/': {
     view: 'home',
     locals: {
       layout: 'layouts/neeru'
@@ -102,112 +88,7 @@ module.exports.routes = {
   },
 
 
-  /**************************************************************************
-  *                                                                         *
-  * Rutas de servicios Web                                                  *
-  *                                                                         *
-  **************************************************************************/
-
-  /**************************************************************************
-  * Ruta para la autenticacion de usuario                                   *
-  **************************************************************************/
-  '/plataform/user/signin': 'UserController.signin',
-
-  /**************************************************************************
-  * Ruta para cerrar la session autenticada del usuario                     *
-  **************************************************************************/
-  '/plataform/user/logout': 'UserController.logout',
-
-  /**************************************************************************
-  * Ruta para registro de usuario                                           *
-  **************************************************************************/
-  '/plataform/user/signup': 'UserController.signup',
-
-	/**************************************************************************
-	* Ruta para generar forgotpw                                              *
-	**************************************************************************/
-	'/plataform/forgotpwd/generate': 'UserController.generateForgotPwd',
-
-	/**************************************************************************
-	* Ruta para aplicar forgotpwd                                             *
-	**************************************************************************/
-	'/plataform/forgotpwd/apply': 'UserController.applyForgotPwd',
-
-	/**************************************************************************
-	* Ruta para el cambio de la contraseña del usuario                        *
-	**************************************************************************/
-	'/plataform/user/changePassword': "UserController.changePassword",
-
-	/**************************************************************************
-	* Ruta para consulta de datos basicos del usuario                         *
-	**************************************************************************/
-	'/plataform/user/getProfile': "UserController.getProfile",
-
-	/**************************************************************************
-	* Ruta para actualizacion de datos basicos del usuario                    *
-	**************************************************************************/
-	'/plataform/user/updateProfile': "UserController.updateProfile",
-
-  /**************************************************************************
-  * Ruta para agregar un nuevo email al usuario autenticado                 *
-  **************************************************************************/
-  '/plataform/user/addEmail': "UserController.addEmail",
-
-	/**************************************************************************
-	* Ruta para remover un email al usuario autenticado                       *
-	**************************************************************************/
-	'/plataform/user/removeEmail': "UserController.removeEmail",
-
-  /**************************************************************************
-  * Ruta para solicitar la informacion de usuarios activos del sistema      *
-  **************************************************************************/
-  '/plataform/user/users': "UserController.getUsers",
-
-  /**************************************************************************
-  * Ruta para bloquear a un usuario del sistema                             *
-  **************************************************************************/
-  '/plataform/user/lock': "UserController.lock",
-
-  /**************************************************************************
-  * Ruta para habilitar o deshabilitar privilegios a un usuario             *
-  **************************************************************************/
-  '/plataform/user/privilege/enable': 'UserController.enablePrivilege',
-
-  /**************************************************************************
-  * Ruta para generar validacion                                            *
-  **************************************************************************/
-  '/plataform/validation/generate': 'ValidationController.generate',
-
-  /**************************************************************************
-  * Ruta para aplicar validacion                                            *
-  **************************************************************************/
-  '/plataform/validation/apply': 'ValidationController.apply',
-
-  /**************************************************************************
-  * Ruta para consultar la oferta de servicios de                           *
-  **************************************************************************/
-  '/plataform/offer': 'OfertaController.getOfertas',
-
-	/**************************************************************************
-	* Ruta para solicitar una recarga                                         *
-	**************************************************************************/
-	'/plataform/sales/recharge': 'SalesController.recharge',
-
-  /**************************************************************************
-  * Ruta para consultar todas las transacciones realizadas por el usuario   *
-  * autenticado                                                             *
-  **************************************************************************/
-  '/plataform/sale/getTransactions': 'SalesController.transactions',
-
-  /**************************************************************************
-  * Ruta para consultar todas las transacciones realizadas en el sistema    *
-  **************************************************************************/
-  '/plataform/sale/getAllTransactions': 'SalesController.allTransactions',
-
-	/**************************************************************************
-	* Ruta para realizar una consulta de tasa de cambio a USD                 *
-  **************************************************************************/
-   '/plataform/sale/getTCUSD': 'SalesController.getTCUSD',
+ 
 
 
 
@@ -276,17 +157,5 @@ module.exports.routes = {
  * FIN DE RUTAS DE ALIMENTA LA SOLIDARIDAD
  */
 
-
-
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
 
 };

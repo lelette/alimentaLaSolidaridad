@@ -12,7 +12,6 @@ app.controller('SigninFormController',
         $scope.loading = true;
         $http.post('api/user/login', $scope.user)
           .then(function (res) {
-            console.log(res);
             $scope.loading = false;
             $rootScope.username = res.data.username;
             $rootScope.isAdmin = res.data.isAdmin;
