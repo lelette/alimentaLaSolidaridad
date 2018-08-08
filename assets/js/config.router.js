@@ -12,6 +12,7 @@
  function apiInterceptor($q, $cookies) {
    return {
      request: function(config) {
+       console.log("CONFIG :: ", config);
        var url = config.url;
 
        // Se ignoran requests para templates
