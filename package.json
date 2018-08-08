@@ -46,7 +46,7 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "sails lift"
+    "start": "node app.js --NODE_ENV"
   },
   "main": "app.js",
   "repository": {
