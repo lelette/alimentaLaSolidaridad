@@ -74,7 +74,16 @@ module.exports.connections = {
 	*                                                                          *
 	*                                                                          *
 	***************************************************************************/
-	conexionPostgres: {
+	// conexionPostgres: {
+	// 	adapter: 'sails-postgresql',
+	// 	host: 'localhost',
+	// 	port: 5432,
+	// 	user: 'transamovil_user',
+	// 	password: '123456',
+	// 	database: 'als_db'
+  // },
+  
+  conexionPostgres: {
 		adapter: 'sails-postgresql',
 		host: 'ec2-107-21-98-165.compute-1.amazonaws.com',
 		port: 5432,

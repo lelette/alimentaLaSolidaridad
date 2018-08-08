@@ -53,6 +53,7 @@ module.exports = {
         User.create(datos, function (err, user) {
           if (err) {
             console.log("ERROR CREANDO USUARIO EN LA BASE DE DATOS:: ".red, err);
+            console.log("USUARIO RECIBIDO :: ".red, datos);
             return cb({ error: 'El email ingresado ya existe' });
           }
           return cb(undefined, user);
